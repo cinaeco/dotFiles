@@ -1,0 +1,7 @@
+Create the following symlinks to use the dotFiles files in this repository
+(Use from the home directory)
+
+ln -s dotFiles/vim/vimrc ./.vimrc
+
+ln -s dotFiles/zsh/zshrc ./.zshrc
+ln -s dotFiles/zsh/zshenv ./.zshenv
