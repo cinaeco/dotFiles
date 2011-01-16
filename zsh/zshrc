@@ -1,0 +1,201 @@
+#
+# .zshrc is sourced in interactive shells.
+# It should contain commands to set up aliases,
+# functions, options, key bindings, etc.
+#
+
+##################
+# LOAD FUNCTIONS #
+##################
+
+## completions
+autoload -U compinit
+compinit
+
+## colors
+autoload -U colors
+colors
+
+## renaming
+autoload zmv
+alias mmv='noglob zmv -W'
+
+###############
+# SET OPTIONS #
+###############
+
+#allow tab completion in the middle of a word
+setopt COMPLETE_IN_WORD
+
+## Correct my spelling
+#setopt CORRECT
+
+## Don't ask me
+setopt RMSTARSILENT
+
+## Don't require 'cd'
+#setopt AUTOCD
+
+## Automatically pushd - then I can go to an old dir with cd - <tab> (pick no.)
+setopt AUTOPUSHD
+export DIRSTACKSIZE=11 # stack size of eleven gives me a list with ten entries
+
+## Autocomplete hosts from .ssh/known_hosts
+#local _myhosts
+_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+zstyle ':completion:*' hosts $_myhosts
+
+HISTSIZE=3000
+SAVEHIST=3000
+HISTFILE=~/.zsh_history
+
+#####################
+# SHELL ENVIRONMENT #
+#####################
+
+## Ctrl-W stops at a directory
+## see http://www.zsh.org/mla/users/1995/msg00088.html
+WORDCHARS='*?_-.[]~\!#$%^(){}<>|`@#$%^*()+:?'
+
+## set up my prompt
+export PS1="%{${fg[yellow]}%}[%n@%m] %{${fg[green]}%}%3~ %# %{${fg[default]}%}"
+#export RPS1="%{${fg[yellow]}%}%T%{${fg[default]}%}"
+
+## color STDERR red
+#exec 2>>(while read line; do
+#  print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
+
+#if [ "`uname`" = "Darwin" ]; then
+#   compctl -f -x 'c[-1,-a][-1,-A] p[2]' -s "`/bin/ls -d1 /Applications/*/*.app /Applications/*.app | sed 's|^.*/\([^/]*\)\.app.*|\\1|;s/ /\\\\ /g'`"  -- open
+#   alias run='open -a'
+#fi
+
+#############
+# FUNCTIONS #
+#############
+
+trash() { mv $@ ~/.Trash }
+pc() { awk "{print \$$1}" }
+mcd() { mkdir -p "$1" && cd "$1" }
+calc() { echo "$@" | bc -l -q -i }
+dont() { echo "OK, I won't!" }
+settab() { echo -ne "\e]1;$1\a" }
+settabh() { settab `hostname | cut -d. -f1` }
+#'"
+
+###########
+# ALIASES #
+###########
+
+## history
+alias h='history'
+
+## shortcuts
+alias l='ls'
+alias l1='ls -1'
+alias ll='ls -hl'
+alias la='ls -A'
+alias lal="ls -Ahl"
+alias l.='ls -d .[^.]*'
+alias lsd='ls -ld *(-/DN)'
+alias lg='ls -l | grep -i'
+alias cd..='cd ..';
+alias ..='cd ..'
+alias df='df -h'
+alias du='du -sh'
+
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias cp='nocorrect cp'
+alias touch='nocorrect touch'
+alias ln='nocorrect ln'
+
+alias -g G="| grep"
+alias -g g="| grep -i"
+alias -g L="| less"
+alias -g H="| head"
+
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../.."
+
+alias igrep='grep -i'
+alias rgrep='grep -R'
+alias rigrep='grep -iR'
+
+alias phplog='tail -f /private/etc/httpd/phplog.txt'
+alias proxy='export http_proxy=http://192.168.1.102:3128;export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;'
+alias noproxy="export http_proxy='';export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;"
+alias hosts='vim /etc/hosts'
+alias graceful='apachectl graceful'
+alias flushdns='lookupd -flushcache'
+alias bc='bc -l'
+alias o.='open .'
+alias upd='cvs -q upd -dP'
+alias upd-head='cvs -q upd -dPA'
+
+#alias guantanamo-start='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k start'
+#alias guantanamo-graceful='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k graceful'
+#alias guantanamo-stop='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k stop'  
+#alias guantanamo-check='chroot /jails/guantanamo /usr/local/apache2/bin/apachectl -t'  
+
+#alias woomera-start='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k start'
+#alias woomera-graceful='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k graceful'
+#alias woomera-stop='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k stop'  
+#alias woomera-check='chroot /jails/woomera /usr/local/apache2/bin/apachectl -t'  
+
+#alias littlehey-start='env -i /usr/sbin/chroot /jails/littlehey /usr/local/apache2/bin/httpd -k start'
+#alias littlehey-graceful='env -i /usr/sbin/chroot /jails/littlehey /usr/local/apache2/bin/httpd -k graceful'
+#alias littlehey-stop='env -i /usr/sbin/chroot /jails/littlehey /usr/local/apache2/bin/httpd -k stop'
+#alias littlehey-check='chroot /jails/littlehey /usr/local/apache2/bin/apachectl -t'
+
+#alias alcatraz-start='env -i /usr/sbin/chroot /jails/alcatraz /usr/local/apache2/bin/httpd -k start'
+#alias alcatraz-graceful='env -i /usr/sbin/chroot /jails/alcatraz /usr/local/apache2/bin/httpd -k graceful'
+#alias alcatraz-stop='env -i /usr/sbin/chroot /jails/alcatraz /usr/local/apache2/bin/httpd -k stop'
+#alias alcatraz-check='chroot /jails/alcatraz /usr/local/apache2/bin/apachectl -t'
+
+#alias kerobokan-start='env -i /usr/sbin/chroot /jails/kerobokan /usr/local/apache2/bin/httpd -k start'
+#alias kerobokan-graceful='env -i /usr/sbin/chroot /jails/kerobokan /usr/local/apache2/bin/httpd -k graceful'
+#alias kerobokan-stop='env -i /usr/sbin/chroot /jails/kerobokan /usr/local/apache2/bin/httpd -k stop'
+#alias kerobokan-check='chroot /jails/kerobokan /usr/local/apache2/bin/apachectl -t'
+
+#alias changi-start='/etc/init.d/tc-chroot start'
+#alias changi-stop='/etc/init.d/tc-chroot stop'
+
+# If I am on the mac,
+if [ `uname` = Darwin ]; then
+    alias updatedb='sudo /usr/libexec/locate.updatedb'
+fi
+
+## common typos
+#alias sl='ls' #commented out because Jaf's steam train /usr/bin/sl much more fun
+alias vf='cd'
+alias xs='cd'
+alias ks='ls'
+alias ecgi='echo'
+
+## ensure X11 is running when I gvim, xterm etc
+alias xterm='open -a X11 && /usr/X11R6/bin/xterm  -sb -sl 5000 -rightbar -fg white -bg black -geometry 100x50+40+20'
+alias gvim='open -a X11 && vim -g'
+## on the other hand, don't try and connect to X when I am not gvimming
+#alias vim='vim -X'
+#alias x='open -a X11'
+
+## shortcuts to other machines
+alias dev='ssh mekong && settabh'
+alias elrond='ssh elrond && settabh'
+alias samwise='ssh samwise && settabh'
+alias legolas2='ssh legolas2 && settabh'
+alias web1='ssh web1 && settabh'
+
+settabh
+
+alias debug='strace -f -e open'
+
+alias athome='screen -t murray'
+alias selrond='screen -t elrond ssh elrond'
+alias snile='screen -t nile ssh nile'
+alias sorinoco='screen -t orinoco ssh orinoco'
+alias skwai='screen -t kwai ssh kwai'
+alias ssamwise='screen -t samwise ssh samwise'
+alias sseine='screen -t seine ssh seine'

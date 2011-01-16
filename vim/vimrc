@@ -1,0 +1,70 @@
+""""""""
+"" General Behaviours
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible "Don't have to try to be compatible with old vi
+set autoread "Read a file if it's changed from outside of vim
+
+let mapleader = "," "Leader key lets you make more kinds of shortcuts!
+
+" Source the vimrc file after saving it (courtesy of vimcasts.org!)
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+
+""""""""
+"" Tabbing
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set tabstop=4 "actual tab presses
+set shiftwidth=4 "for autoindent
+set expandtab "change to single spaces
+set smarttab
+set autoindent "use last line to set next indent
+set smartindent "guess harder, based on C-like language
+" set wrap "wrap lines of text
+
+
+""""""""
+"" UI - Colours
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+hi Comment ctermfg=darkmagenta
+syntax on
+colorscheme desert
+set colorcolumn=120
+
+
+""""""""
+"" UI - Numbering
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set number "show line numbers
+set relativenumber "current line always 0 (requires 7.3 and up)
+set ruler "show row,col count in status line
+
+
+""""""""
+"" UI - Search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set hlsearch "make searches highlighted
+set incsearch "vim will search as you type!
+
+
+""""""""
+"" Shortcuts 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" More convenient escape
+imap ii <Esc>
+imap II <Esc>
+
+" Add extra lines up and down
+map <leader>j o<Esc>k
+map <leader>k O<Esc>j
+
+" window resizing
+noremap + <C-w>10+
+noremap - <C-w>10-
