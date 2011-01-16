@@ -5,3 +5,5 @@ ln -s dotFiles/vim/vimrc ./.vimrc
 
 ln -s dotFiles/zsh/zshrc ./.zshrc
 ln -s dotFiles/zsh/zshenv ./.zshenv
+
+ln -s dotFiles/pentadactyl/pentadactylrc ./.pentadactylrc
