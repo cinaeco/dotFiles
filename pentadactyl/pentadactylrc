@@ -1,2 +1,2 @@
 " pentadactyl gui options
-set guioptions=rbCBn
+set guioptions=rbCBns
