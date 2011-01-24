@@ -33,7 +33,7 @@ set smartindent "guess harder, based on C-like language
 hi Comment ctermfg=darkmagenta
 syntax on
 colorscheme desert
-set colorcolumn=120
+set colorcolumn=80
 
 
 """"""""
