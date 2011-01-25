@@ -30,10 +30,10 @@ set smartindent "guess harder, based on C-like language
 "" UI - Colours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-hi Comment ctermfg=darkmagenta
 syntax on
 colorscheme desert
 set colorcolumn=80
+hi Folded ctermfg=darkred
 
 
 """"""""
@@ -43,6 +43,26 @@ set colorcolumn=80
 set number "show line numbers
 set relativenumber "current line always 0 (requires 7.3 and up)
 set ruler "show row,col count in status line
+
+
+""""""""
+"" UI - Code Folding
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set foldmethod=indent
+set foldlevel=1
+set foldtext=MyFoldText()
+
+function! MyFoldText()
+    let line = getline(v:foldstart)
+    let linecount = v:foldend+1 - v:foldstart
+    let plural = ""
+    if linecount != 1
+        let plural = "s"
+    endif
+    let foldtext = '+'.line.'... ('.linecount.' More lines)'
+    return foldtext
+endfunction
 
 
 """"""""
