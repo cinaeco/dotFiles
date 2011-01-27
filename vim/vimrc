@@ -7,10 +7,8 @@ set autoread "Read a file if it's changed from outside of vim
 
 let mapleader = "," "Leader key lets you make more kinds of shortcuts!
 
-" Source the vimrc file after saving it (courtesy of vimcasts.org!)
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+" Source the vimrc file after saving it
+autocmd! bufwritepost .vimrc source $MYVIMRC
 
 
 """"""""
@@ -33,7 +31,7 @@ set smartindent "guess harder, based on C-like language
 syntax on
 colorscheme desert
 set colorcolumn=80
-hi Folded ctermfg=darkred
+hi Folded ctermfg=darkred "set colour for folded lines
 
 
 """"""""
