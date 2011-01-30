@@ -1,2 +1,3 @@
 " pentadactyl gui options
+" right scroll, bottom scroll, Cmdline outside status, Bookmark bar, Tab number, Status bar
 set guioptions=rbCBns
