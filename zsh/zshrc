@@ -129,8 +129,7 @@ alias igrep='grep -i'
 alias rgrep='grep -R'
 alias rigrep='grep -iR'
 
-alias phplog='tail -f /private/etc/httpd/phplog.txt'
-alias proxy='export http_proxy=http://192.168.1.102:3128;export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;'
+alias proxy='export http_proxy=http://192.168.1.248:3128;export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;'
 alias noproxy="export http_proxy='';export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;"
 alias hosts='vim /etc/hosts'
 alias graceful='apachectl graceful'
@@ -187,21 +186,10 @@ alias gvim='open -a X11 && vim -g'
 #alias vim='vim -X'
 #alias x='open -a X11'
 
-## shortcuts to other machines
-alias dev='ssh mekong && settabh'
-alias elrond='ssh elrond && settabh'
-alias samwise='ssh samwise && settabh'
-alias legolas2='ssh legolas2 && settabh'
-alias web1='ssh web1 && settabh'
-
 settabh
 
-alias debug='strace -f -e open'
-
-alias athome='screen -t murray'
-alias selrond='screen -t elrond ssh elrond'
-alias snile='screen -t nile ssh nile'
-alias sorinoco='screen -t orinoco ssh orinoco'
-alias skwai='screen -t kwai ssh kwai'
-alias ssamwise='screen -t samwise ssh samwise'
-alias sseine='screen -t seine ssh seine'
+## shortcuts to other machines
+alias murray='ssh weiyi@murray'
+alias nile='ssh weiyi@nile'
+alias orinoco='ssh weiyi@orinoco'
+alias kwai='ssh weiyi@kwai'
