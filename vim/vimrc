@@ -54,7 +54,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=5
 set foldtext=MyFoldText()
 
 function! MyFoldText()
