@@ -30,8 +30,11 @@ set smartindent "guess harder, based on C-like language
 
 syntax on
 colorscheme desert
-set colorcolumn=80
 hi Folded ctermfg=darkred "set colour for folded lines
+
+if version >= 730
+    set colorcolumn=80
+endif
 
 
 """"""""
@@ -39,8 +42,11 @@ hi Folded ctermfg=darkred "set colour for folded lines
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set number "show line numbers
-set relativenumber "current line always 0 (requires 7.3 and up)
 set ruler "show row,col count in status line
+
+if version >= 730
+    set relativenumber "current line always 0 (requires 7.3 and up)
+endif
 
 
 """"""""
