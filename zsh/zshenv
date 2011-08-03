@@ -25,7 +25,7 @@ export FISHEYE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
 export FISHEYE_INST=/var/crucible 
 
 # Move Homebrew temp files to ramdisk (build directory)
-export HOMEBREW_TEMP=/Volumes/RamDisk
+#export HOMEBREW_TEMP=/Volumes/RamDisk
 
 export DISPLAY=:0.0
 
