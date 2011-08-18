@@ -1,10 +1,10 @@
 # Running this script creates the appropriate symlinks in home
 # Use from within dotFiles directory
 
-ln -s ./vim/vimrc ~/.vimrc
-ln -s ./vim/vim ~/.vim
+ln -s dotFiles/vim/vimrc ~/.vimrc
+ln -s dotFiles/vim/vim ~/.vim
 
-ln -s ./zsh/zshrc ~/.zshrc
-ln -s ./zsh/zshenv ~/.zshenv
+ln -s dotFiles/zsh/zshrc ~/.zshrc
+ln -s dotFiles/zsh/zshenv ~/.zshenv
 
-ln -s ./pentadactyl/pentadactylrc ~/.pentadactylrc
+ln -s dotFiles/pentadactyl/pentadactylrc ~/.pentadactylrc
