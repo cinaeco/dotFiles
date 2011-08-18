@@ -1,10 +1,13 @@
 # Running this script creates the appropriate symlinks in home
 # Use from within dotFiles directory
 
+ln -s dotFiles/vim ~/.vim
 ln -s dotFiles/vim/vimrc ~/.vimrc
-ln -s dotFiles/vim/vim ~/.vim
 
 ln -s dotFiles/zsh/zshrc ~/.zshrc
 ln -s dotFiles/zsh/zshenv ~/.zshenv
 
 ln -s dotFiles/pentadactyl/pentadactylrc ~/.pentadactylrc
+
+# vim plugins can be added as git submodules into the dotFiles repository
+# git submodule add git://github.com/tpope/vim-pathogen.git vim/bundle/pathogen
