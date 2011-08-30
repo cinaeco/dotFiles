@@ -12,23 +12,21 @@ call pathogen#helptags()
 set nocompatible "Don't have to try to be compatible with old vi
 set autoread "Read a file if it's changed from outside of vim
 
-let mapleader = "," "Leader key lets you make more kinds of shortcuts!
-
 " Source the vimrc file after saving it
 autocmd! bufwritepost .vimrc source $MYVIMRC
 
 
 """"""""
-"" Tabbing
+"" Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set tabstop=4 "actual tab presses
 set shiftwidth=4 "for autoindent
+set softtabstop=4 " let backspace delete indent
 set expandtab "change to single spaces
-set smarttab
 set autoindent "use last line to set next indent
 set smartindent "guess harder, based on C-like language
-" set wrap "wrap lines of text
+set nowrap "do not wrap long lines of text
 
 
 """"""""
@@ -87,8 +85,10 @@ set incsearch "vim will search as you type!
 
 
 """"""""
-"" Shortcuts 
+"" Key Remaps and Shortcuts 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let mapleader = "," "Leader key lets you make more kinds of shortcuts!
 
 " More convenient escape
 imap ii <Esc>
