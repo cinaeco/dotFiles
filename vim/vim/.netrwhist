@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/usr'
-let g:netrw_dirhist_2='/usr/bin'
-let g:netrw_dirhist_3='/Users/acerlouw/Downloads/SHSAT/1-ScannedFile/SHS11'
-let g:netrw_dirhist_4='/Users/acerlouw/Downloads/SHSAT/1-ScannedFile/SHS Images'
-let g:netrw_dirhist_5='/Users/acerlouw/Downloads/SHSAT/1-ScannedFile/SHS11'
-let g:netrw_dirhist_6='/Users/acerlouw/Documents/workspace/vitdb-meta/src/au/edu/acer/vitdb/ws/wsdl/MyPD'
