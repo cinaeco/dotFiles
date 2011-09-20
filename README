@@ -2,7 +2,7 @@
 # Use from within dotFiles directory
 
 # Vim
-ln -s dotFiles/vim ~/.vim
+ln -s dotFiles/vim/ ~/.vim
 ln -s dotFiles/vim/vimrc ~/.vimrc
 
 # Zsh
