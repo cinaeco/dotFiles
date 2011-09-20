@@ -82,6 +82,7 @@ endfunction
 
 set hlsearch "make searches highlighted
 set incsearch "vim will search as you type!
+set ignorecase
 
 
 """"""""
