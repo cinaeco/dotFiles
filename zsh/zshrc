@@ -191,7 +191,9 @@ settabh
 ## shortcuts to other machines
 alias murray='ssh weiyi@murray'
 alias nile='ssh weiyi@nile'
+alias niles='ssh weiyi@nile-stage'
 alias orinoco='ssh weiyi@orinoco'
+alias orinocos='ssh weiyi@orinoco-stage'
 alias kwai='ssh weiyi@kwai'
 alias devbox='ssh root@devbox'
 alias danshui='ssh weiyi@danshui'
