@@ -11,6 +11,10 @@ call pathogen#infect()
 set nocompatible "Don't have to try to be compatible with old vi
 set autoread "Read a file if it's changed from outside of vim
 
+if version >= 700
+    set mouse=a "mouse support for 7.x
+endif 
+
 " Source the vimrc file after saving it
 autocmd! bufwritepost .vimrc source $MYVIMRC
 
@@ -19,7 +23,7 @@ autocmd! bufwritepost .vimrc source $MYVIMRC
 "" Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set tabstop=4 "actual tab presses
+set tabstop=4 "actual tab press distance
 set shiftwidth=4 "for autoindent
 set softtabstop=4 " let backspace delete indent
 set expandtab "change to single spaces
