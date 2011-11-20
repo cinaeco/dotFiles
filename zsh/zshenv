@@ -16,7 +16,8 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 export CVSROOT=:pserver:weiyi@cvs:/usr/cvsroot
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/php/bin:/usr/local/apache2/bin:/usr/local/mysql/bin:/usr/local/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/php/bin:$PATH
+export PATH=~/bin:/usr/lib/firefox-3.6:/usr/local/php53/bin:/usr/local/apache2/bin:/usr/local/mysql/bin:/usr/local/bin:/jails/alcatraz/usr/local/www/lithium/current/libraries/lithium/console:$PATH
 export JAVA_HOME=/usr/local/java
 export ANT_HOME=/Developer/Java/Ant
 export CATALINA_HOME=/usr/local/tomcat
