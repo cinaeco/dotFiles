@@ -58,6 +58,7 @@ endif
 
 set number "show line numbers
 set ruler "show row,col count in status line
+set laststatus=2 "always show a status line
 
 if version >= 730
     set relativenumber "current line always 0 (requires 7.3 and up)
