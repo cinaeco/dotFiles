@@ -33,7 +33,7 @@ set softtabstop=4 " let backspace delete indent
 set expandtab "change to single spaces
 set autoindent "use last line to set next indent
 set smartindent "guess harder, based on C-like language
-set wrap "wrap long lines of text
+set wrap lbr "wrap long lines of text
 
 " Set backspace config
 set backspace=eol,start,indent
