@@ -11,6 +11,10 @@ call pathogen#infect()
 set nocompatible "Don't have to try to be compatible with old vi
 set autoread "Read a file if it's changed from outside of vim
 
+" Enable filetype specific features
+filetype plugin on
+filetype indent on
+
 if version >= 700
     set mouse=a "mouse support for 7.x
 endif 
@@ -29,7 +33,10 @@ set softtabstop=4 " let backspace delete indent
 set expandtab "change to single spaces
 set autoindent "use last line to set next indent
 set smartindent "guess harder, based on C-like language
-set nowrap "do not wrap long lines of text
+set wrap "wrap long lines of text
+
+" Set backspace config
+set backspace=eol,start,indent
 
 
 """"""""
@@ -61,22 +68,22 @@ endif
 "" UI - Code Folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set foldmethod=indent
-set foldlevel=5
-set foldtext=MyFoldText()
-
-function! MyFoldText()
-    let line = getline(v:foldstart)
-    let indent = indent(v:foldstart)
-    let indentOnly = strpart(line, 0, indent-1)
-    let linecount = v:foldend+1 - v:foldstart
-    let plural = ""
-    if linecount != 1
-        let plural = "s"
-    endif
-    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
-    return foldtext
-endfunction
+"set foldmethod=indent
+"set foldlevel=5
+"set foldtext=MyFoldText()
+"
+"function! MyFoldText()
+"    let line = getline(v:foldstart)
+"    let indent = indent(v:foldstart)
+"    let indentOnly = strpart(line, 0, indent-1)
+"    let linecount = v:foldend+1 - v:foldstart
+"    let plural = ""
+"    if linecount != 1
+"        let plural = "s"
+"    endif
+"    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
+"    return foldtext
+"endfunction
 
 
 """"""""
@@ -102,6 +109,37 @@ imap II <Esc>
 map <leader>j o<Esc>k
 map <leader>k O<Esc>j
 
+
+""""""""
+"" Key Remaps - Movement and Windows
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Smart way to move btw. windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 " window resizing
 noremap + <C-w>10+
 noremap - <C-w>10-
+
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+    if &wrap
+        return "g" . a:movement
+    else
+        return a:movement
+    endif
+endfunction
+
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")</expr></silent>
