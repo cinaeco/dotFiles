@@ -24,6 +24,7 @@ export CATALINA_HOME=/usr/local/tomcat
 export CLASSPATH=/usr/local/cruisecontrol/lib
 export FISHEYE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
 export FISHEYE_INST=/var/crucible 
+export LESS='-eirMX'
 
 # Move Homebrew temp files to ramdisk (build directory)
 #export HOMEBREW_TEMP=/Volumes/RamDisk
