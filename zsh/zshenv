@@ -8,7 +8,7 @@
 #
 
 ## don't close less when I am done reading
-export LESS='-X -e'
+export LESS='-eirMX'
 export PAGER=less
 
 ## colour ls
@@ -24,12 +24,11 @@ export CATALINA_HOME=/usr/local/tomcat
 export CLASSPATH=/usr/local/cruisecontrol/lib
 export FISHEYE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
 export FISHEYE_INST=/var/crucible 
-export LESS='-eirMX'
 
 # Move Homebrew temp files to ramdisk (build directory)
 #export HOMEBREW_TEMP=/Volumes/RamDisk
 
-export DISPLAY="localhost:10.0"
+export DISPLAY=localhost:10.0
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then
