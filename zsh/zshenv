@@ -29,7 +29,7 @@ export LESS='-eirMX'
 # Move Homebrew temp files to ramdisk (build directory)
 #export HOMEBREW_TEMP=/Volumes/RamDisk
 
-export DISPLAY=:0.0
+export DISPLAY="localhost:10.0"
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then
