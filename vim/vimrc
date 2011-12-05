@@ -143,4 +143,3 @@ nnoremap <silent> <expr> j ScreenMovement("j")
 nnoremap <silent> <expr> k ScreenMovement("k")
 nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
-nnoremap <silent> <expr> $ ScreenMovement("$")</expr></silent>
