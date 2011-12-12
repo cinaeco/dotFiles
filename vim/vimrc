@@ -10,6 +10,8 @@ call pathogen#infect()
 
 set nocompatible "Don't have to try to be compatible with old vi
 set autoread "Read a file if it's changed from outside of vim
+set splitbelow "New splits appear below current window instead of above
+set ttyfast "Smooth movement
 
 " Enable filetype specific features
 filetype plugin on
@@ -34,9 +36,7 @@ set expandtab "change to single spaces
 set autoindent "use last line to set next indent
 set smartindent "guess harder, based on C-like language
 set wrap lbr "wrap long lines of text
-
-" Set backspace config
-set backspace=eol,start,indent
+set backspace=eol,start,indent "backspace over everything
 
 
 """"""""
@@ -58,6 +58,7 @@ endif
 
 set number "show line numbers
 set ruler "show row,col count in status line
+set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%)>)
 set laststatus=2 "always show a status line
 
 if version >= 730
@@ -94,6 +95,7 @@ endif
 set hlsearch "make searches highlighted
 set incsearch "vim will search as you type!
 set ignorecase
+set magic "enables wildcard searching
 
 
 """"""""
