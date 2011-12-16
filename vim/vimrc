@@ -106,7 +106,8 @@ endif
 
 set hlsearch "make searches highlighted
 set incsearch "vim will search as you type!
-set ignorecase
+set ignorecase "ignore case for searches
+set smartcase " well, unless a user puts in uppercase search characters
 set magic "enables wildcard searching
 
 
