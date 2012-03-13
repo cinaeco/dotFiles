@@ -12,6 +12,9 @@ ln -s dotFiles/zsh/zshenv ~/.zshenv
 # Pentadactyl
 ln -s dotFiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 
+# Screen
+ln -s dotFiles/screen/screenrc ~/.screenrc
+
 # This repository has vim plugins as submodules, so initialise and clone them in
 git submodule init
 git submodule update
