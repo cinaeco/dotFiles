@@ -73,3 +73,15 @@ vbell                 on              # default: ???
 
 # Message to be displayed when the visual bell is triggered.
 vbell_msg             " *beep* "
+
+# default windows
+screen -t "controllers" 1
+screen -t "views" 2
+screen -t "models" 3
+screen -t "partials" 4
+screen -t "javascript" 5
+screen -t "libraries" 6
+screen -t "logs" 7
+screen -t "mysql" 8
+screen -t "mongo" 9
+screen -t "home" 0
