@@ -82,22 +82,22 @@ endif
 "" UI - Code Folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set foldmethod=indent
-"set foldlevel=5
-"set foldtext=MyFoldText()
-"
-"function! MyFoldText()
-"    let line = getline(v:foldstart)
-"    let indent = indent(v:foldstart)
-"    let indentOnly = strpart(line, 0, indent-1)
-"    let linecount = v:foldend+1 - v:foldstart
-"    let plural = ""
-"    if linecount != 1
-"        let plural = "s"
-"    endif
-"    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
-"    return foldtext
-"endfunction
+set foldmethod=indent
+set foldlevel=5
+set foldtext=MyFoldText()
+
+function! MyFoldText()
+    let line = getline(v:foldstart)
+    let indent = indent(v:foldstart)
+    let indentOnly = strpart(line, 0, indent-1)
+    let linecount = v:foldend+1 - v:foldstart
+    let plural = ""
+    if linecount != 1
+        let plural = "s"
+    endif
+    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
+    return foldtext
+endfunction
 
 
 """"""""
