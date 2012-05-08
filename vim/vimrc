@@ -1,3 +1,5 @@
+set nocompatible "Don't have to try to be compatible with old vi
+
 """"""""
 "" Plugin Loading with Pathogen
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,7 +22,6 @@ autocmd VimEnter * call StartUp()
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-set nocompatible "Don't have to try to be compatible with old vi
 set autoread "Read a file if it's changed from outside of vim
 set splitbelow "New splits appear below current window instead of above
 set ttyfast "Smooth movement
@@ -69,9 +70,10 @@ set backspace=eol,start,indent "backspace over everything
 "" UI - Colours
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on
-set t_Co=256
-colorscheme desert
+syntax enable
+set t_Co=16
+set background=dark
+colorscheme solarized
 hi Folded ctermfg=darkred "set colour for folded lines
 
 if version >= 730
