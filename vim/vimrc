@@ -5,6 +5,18 @@ call pathogen#infect()
 
 
 """"""""
+"" Start Up
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd VimEnter * call StartUp()
+
+
+""""""""
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -58,6 +70,7 @@ set backspace=eol,start,indent "backspace over everything
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax on
+set t_Co=256
 colorscheme desert
 hi Folded ctermfg=darkred "set colour for folded lines
 
@@ -159,3 +172,11 @@ nnoremap <silent> <expr> j ScreenMovement("j")
 nnoremap <silent> <expr> k ScreenMovement("k")
 nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
+
+
+""""""""
+"" Plugin options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" let g:NERDTreeQuitOnOpen = 1
+let g:SuperTabDefaultCompletionType = "context"
