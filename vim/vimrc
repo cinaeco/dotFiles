@@ -84,6 +84,8 @@ endif
 
 set number "show line numbers
 set ruler "show row,col count in status line
+set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+nnoremap <silent> <expr> $ ScreenMovement("$")
 set laststatus=2 "always show a status line
 
 if version >= 730
