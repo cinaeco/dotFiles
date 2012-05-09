@@ -50,17 +50,18 @@ else
 endif
 
 """"""""
-"" Formatting
+"" Tabs and Text Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set tabstop=4 "actual tab press distance
-set shiftwidth=4 "for autoindent
-set softtabstop=4 " let backspace delete indent
-set expandtab "change to single spaces
-set autoindent "use last line to set next indent
-set smartindent "guess harder, based on C-like language
-set wrap lbr "wrap long lines of text
+set expandtab       " change to single spaces
+set tabstop=4       " actual tab press distance
+set shiftround      " indent to nearest tabstops
+set shiftwidth=4    " amount to indent with > and <
+set smarttab        " backspace tabs where appropriate even if spaces
+set softtabstop=4   " let backspace delete indent
+set wrap lbr        " wrap long lines of text
 set backspace=eol,start,indent "backspace over everything
+set textwidth=80
 
 
 """"""""
@@ -72,10 +73,7 @@ set t_Co=16
 set background=dark
 colorscheme solarized
 hi Folded ctermfg=darkred "set colour for folded lines
-
-if version >= 730
-    set colorcolumn=80
-endif
+set colorcolumn=+1
 
 
 """"""""
@@ -87,10 +85,7 @@ set ruler "show row,col count in status line
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
 nnoremap <silent> <expr> $ ScreenMovement("$")
 set laststatus=2 "always show a status line
-
-if version >= 730
-    set relativenumber "current line always 0 (requires 7.3 and up)
-endif
+"set relativenumber "current line always 0 (requires 7.3 and up)
 
 
 """"""""
@@ -98,7 +93,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set foldmethod=indent
-set foldlevel=5
+set foldlevel=7
 set foldtext=MyFoldText()
 
 function! MyFoldText()
@@ -119,11 +114,11 @@ endfunction
 "" UI - Search
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set hlsearch "make searches highlighted
-set incsearch "vim will search as you type!
-set ignorecase "ignore case for searches
-set smartcase " well, unless a user puts in uppercase search characters
-set magic "enables wildcard searching
+set hlsearch    " make searches highlighted
+set incsearch   " vim will search as you type!
+set ignorecase  " ignore case for searches
+set smartcase   " well, unless a user puts in uppercase search characters
+set magic       " enables wildcard searching
 
 
 """"""""
