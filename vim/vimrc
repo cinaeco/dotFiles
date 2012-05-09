@@ -24,32 +24,28 @@ autocmd VimEnter * call StartUp()
 
 set autoread "Read a file if it's changed from outside of vim
 set splitbelow "New splits appear below current window instead of above
+set splitright "New splits appear right of current window
 set ttyfast "Smooth movement
-
-" Enable filetype specific features
-filetype plugin on
-filetype indent on
 
 "if version >= 700
 "    set mouse=a "mouse support for 7.x, but don't use this if we use screen
 "    because it has no effect, and then just becomes annoying for copy/paste
 "endif 
 
-" Source the vimrc file after saving it
-autocmd! bufwritepost .vimrc source $MYVIMRC
-
-" Remember last location in file
-" Only do this part when compiled with support for autocommands
 if has("autocmd")
-  augroup redhat
-    " In text files, always limit the width of text to 78 characters
-    autocmd BufRead *.txt set tw=78
+    " Enable filetype specific features
+    filetype plugin indent on
+    " Clear existing autocmd
+    autocmd!
     " When editing a file, always jump to the last cursor position
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
-  augroup END 
+    " Source the vimrc file after saving it
+    autocmd bufwritepost .vimrc source $MYVIMRC
+else
+    set autoindent on
 endif
 
 """"""""
