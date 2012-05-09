@@ -10,12 +10,11 @@ call pathogen#infect()
 "" Start Up
 """""""""""""""""""""""""""""""""""""""""""""""""""
 function! StartUp()
+    " Stuff in here will be called by autocmd below
     if 0 == argc()
         NERDTree
     end
 endfunction
-
-autocmd VimEnter * call StartUp()
 
 
 """"""""
@@ -44,6 +43,8 @@ if has("autocmd")
     \ endif
     " Source the vimrc file after saving it
     autocmd bufwritepost .vimrc source $MYVIMRC
+    " so far, this startup just opens NERDTree when there are no arguments
+    autocmd VimEnter * call StartUp()
 else
     set autoindent on
 endif
