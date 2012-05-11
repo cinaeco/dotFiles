@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Running this script creates the appropriate symlinks in home
 # Use from within dotFiles directory
 
@@ -21,19 +23,12 @@ git submodule update
 
 # Add more vim plugins from this dotFiles directory, like so:
 #     git submodule add git://github.com/tpope/vim-pathogen.git vim/bundle/pathogen
-
-
-
+#
 # Apart from updating plugins individually, you can update all submodules in one shot
 #     git submodule foreach git pull origin master
 
-
 # color for git! Some machines don't have it.
 
-git config color.branch auto
-git config color.diff auto
-git config color.interactive auto
-git config color.status auto
-
+git config --global color.ui true
 
 # A lot of this extra knowledge courtesy of vimcasts.org!
