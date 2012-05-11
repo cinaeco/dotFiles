@@ -25,6 +25,9 @@ export CLASSPATH=/usr/local/cruisecontrol/lib
 export FISHEYE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
 export FISHEYE_INST=/var/crucible 
 
+# for esxi perl stuff to not fail
+export PERL_LWP_SSL_VERIFY_HOSTNAME=0
+
 # Move Homebrew temp files to ramdisk (build directory)
 #export HOMEBREW_TEMP=/Volumes/RamDisk
 
