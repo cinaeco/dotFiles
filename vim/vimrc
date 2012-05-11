@@ -132,9 +132,16 @@ imap ii <Esc>
 imap II <Esc>
 
 " Add extra lines up and down
-map <leader>j o<Esc>k
-map <leader>k O<Esc>j
+nmap <leader>j o<Esc>k
+nmap <leader>k O<Esc>j
 
+" Toggle NERDTree instead of the normal dir browser
+nmap <silent> <leader>d   :NERDTreeToggle<CR>
+
+" Comment out lines with NERDCommenter
+
+" Edit .vimrc
+map <leader>v   :e $MYVIMRC<CR>
 
 """"""""
 "" Key Remaps - Movement and Windows
