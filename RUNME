@@ -32,3 +32,5 @@ git submodule update
 git config --global color.ui true
 
 # A lot of this extra knowledge courtesy of vimcasts.org!
+
+touch ~/.ssh/known_hosts
