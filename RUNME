@@ -2,15 +2,19 @@
 
 # Running this script creates the appropriate symlinks in home
 # Use from within dotFiles directory
+# A lot of this extra knowledge courtesy of vimcasts.org!
 
 # Vim
 ln -s dotFiles/vim/ ~/.vim
 ln -s dotFiles/vim/vimrc ~/.vimrc
+# Vim persistent undo directory
 mkdir ~/.vimundo
 
 # Zsh
 ln -s dotFiles/zsh/zshrc ~/.zshrc
 ln -s dotFiles/zsh/zshenv ~/.zshenv
+# Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
+touch ~/.ssh/known_hosts
 
 # Pentadactyl
 ln -s dotFiles/pentadactyl/pentadactylrc ~/.pentadactylrc
@@ -29,9 +33,7 @@ git submodule update
 #     git submodule foreach git pull origin master
 
 # color for git! Some machines don't have it.
-
 git config --global color.ui true
 
-# A lot of this extra knowledge courtesy of vimcasts.org!
-
-touch ~/.ssh/known_hosts
+# Ack for this user (perl 5.8.8 or higher on system)
+# curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
