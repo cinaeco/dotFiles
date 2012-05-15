@@ -6,6 +6,7 @@
 # Vim
 ln -s dotFiles/vim/ ~/.vim
 ln -s dotFiles/vim/vimrc ~/.vimrc
+mkdir ~/.vimundo
 
 # Zsh
 ln -s dotFiles/zsh/zshrc ~/.zshrc
