@@ -78,7 +78,7 @@ vbell_msg             " *beep* "
 screen -t "controllers" 1
 screen -t "views" 2
 screen -t "models" 3
-screen -t "partials" 4
+screen -t "routes" 4
 screen -t "javascript" 5
 screen -t "libraries" 6
 screen -t "logs" 7
