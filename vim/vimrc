@@ -139,10 +139,15 @@ imap II <Esc>
 nmap <leader>j o<Esc>k
 nmap <leader>k O<Esc>j
 
-" Toggle NERDTree instead of the normal dir browser
-nmap <silent> <leader>d   :NERDTreeToggle<CR>
+" Toggle numbering
+nmap <silent> <leader>n    :set number!<CR>
 
-" Comment out lines with NERDCommenter
+" Toggle NERDTree instead of the normal dir browser
+nnoremap <silent> <leader>d    :NERDTreeToggle<CR>
+
+" Toggle Commenting out lines with NERDCommenter
+nnoremap <silent> <leader>,    :call NERDComment(0, "toggle")<CR>
+vnoremap <silent> <leader>,    <ESC>:call NERDComment(1, "toggle")<CR>
 
 " Edit .vimrc
 map <leader>v   :e $MYVIMRC<CR>
@@ -150,6 +155,10 @@ map <leader>v   :e $MYVIMRC<CR>
 """"""""
 "" Key Remaps - Movement and Windows
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" jump to beginning and end of line easier
+nmap H ^
+nmap L $
 
 " Smart way to move btw. windows
 map <C-j> <C-W>j
@@ -186,4 +195,4 @@ nnoremap <silent> <expr> ^ ScreenMovement("^")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let g:NERDTreeQuitOnOpen = 1
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
