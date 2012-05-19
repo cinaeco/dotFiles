@@ -87,7 +87,6 @@ set colorcolumn=+1
 set number "show line numbers
 set ruler "show row,col count in status line
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
-nnoremap <silent> <expr> $ ScreenMovement("$")
 set laststatus=2 "always show a status line
 "set relativenumber "current line always 0 (requires 7.3 and up)
 
@@ -141,9 +140,10 @@ nmap <leader>k O<Esc>j
 
 " Toggle numbering
 nmap <silent> <leader>n    :set number!<CR>
+nmap <silent> <leader>p    :set paste! paste?<CR>
 
 " Toggle NERDTree instead of the normal dir browser
-nnoremap <silent> <leader>d    :NERDTreeToggle<CR>
+nmap <silent> <leader>d    :NERDTreeToggle<CR>
 
 " Toggle Commenting out lines with NERDCommenter
 nnoremap <silent> <leader>,    :call NERDComment(0, "toggle")<CR>
@@ -161,10 +161,10 @@ nmap H ^
 nmap L $
 
 " Smart way to move btw. windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 
 " window resizing
 noremap + <C-w>10+
@@ -188,6 +188,7 @@ nnoremap <silent> <expr> j ScreenMovement("j")
 nnoremap <silent> <expr> k ScreenMovement("k")
 nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
 
 
 """"""""
@@ -195,4 +196,4 @@ nnoremap <silent> <expr> ^ ScreenMovement("^")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let g:NERDTreeQuitOnOpen = 1
-" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = 'context'
