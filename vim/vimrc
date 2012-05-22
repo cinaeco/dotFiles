@@ -7,17 +7,6 @@ call pathogen#infect()
 
 
 """"""""
-"" Start Up
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-function! StartUp()
-    " Stuff in here will be called by autocmd below
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
-
-
-""""""""
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -27,8 +16,10 @@ set splitright "New splits appear right of current window
 set ttyfast "Smooth movement
 
 " Persistent undo
-set undofile
-set undodir=~/.vimundo
+if has("persistent_undo")
+    set undofile
+    set undodir=~/.vimundo
+endif
 
 "if version >= 700
 "    set mouse=a "mouse support for 7.x, but don't use this if we use screen
@@ -45,6 +36,10 @@ if has("autocmd")
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
+
+    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+
     " Source the vimrc file after saving it
     autocmd bufwritepost .vimrc source $MYVIMRC
     " so far, this startup just opens NERDTree when there are no arguments
@@ -52,6 +47,18 @@ if has("autocmd")
 else
     set autoindent on
 endif
+
+
+""""""""
+"" Start Up
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+function! StartUp()
+    " Stuff in here will be called by autocmd below
+    if 0 == argc()
+        "NERDTree
+    end
+endfunction
+
 
 """"""""
 "" Tabs and Text Formatting
@@ -73,11 +80,11 @@ set textwidth=80
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable
+colorscheme solarized
 set t_Co=16
 set background=dark
-colorscheme solarized
-hi Folded ctermfg=darkred "set colour for folded lines
 set colorcolumn=+1
+hi Folded ctermfg=darkred "set colour for folded lines
 
 
 """"""""
@@ -96,7 +103,7 @@ set laststatus=2 "always show a status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set foldmethod=indent
-set foldlevel=7
+set foldlevel=10
 set foldtext=MyFoldText()
 
 function! MyFoldText()
@@ -140,10 +147,13 @@ nmap <leader>k O<Esc>j
 
 " Toggle numbering
 nmap <silent> <leader>n    :set number!<CR>
+" Toggle paste with/without indenting
 nmap <silent> <leader>p    :set paste! paste?<CR>
+" Toggle showing whitespace characters
+nmap <silent> <leader>l    :set list! <CR>
 
 " Toggle NERDTree instead of the normal dir browser
-nmap <silent> <leader>d    :NERDTreeToggle<CR>
+map <silent> <leader>d    :NERDTreeToggle<CR>
 
 " Toggle Commenting out lines with NERDCommenter
 nnoremap <silent> <leader>,    :call NERDComment(0, "toggle")<CR>
