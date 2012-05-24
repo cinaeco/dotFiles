@@ -159,8 +159,14 @@ nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
 " Toggle NERDTree instead of the normal dir browser
 map <silent> <leader>d    :NERDTreeToggle<CR>
 " Toggle Commenting out lines with NERDCommenter
-nnoremap <silent> <leader>,    :call NERDComment(0, "toggle")<CR>
-vnoremap <silent> <leader>,    <ESC>:call NERDComment(1, "toggle")<CR>
+nnoremap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
+vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
+
+" Search with ack!
+nnoremap <leader>a :Ack <cword><CR>
+nnoremap <leader>A :LAck <cword><CR>
+vnoremap <leader>a :Ack <cword><CR>
+vnoremap <leader>A :LAck <cword><CR>
 
 " Colemak layout for INSERT mode only
 " Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./
