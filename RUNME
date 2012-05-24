@@ -36,4 +36,6 @@ git submodule update
 git config --global color.ui true
 
 # Ack for this user (perl 5.8.8 or higher on system)
-# curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
+# Curl may need to have proxy settings
+mkdir -p ~/bin
+curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
