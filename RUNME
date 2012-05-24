@@ -13,14 +13,33 @@ mkdir ~/.vimundo
 # Zsh
 ln -s dotFiles/zsh/zshrc ~/.zshrc
 ln -s dotFiles/zsh/zshenv ~/.zshenv
-# Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
-touch ~/.ssh/known_hosts
 
 # Pentadactyl
 ln -s dotFiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 
 # Screen
 ln -s dotFiles/screen/screenrc ~/.screenrc
+
+# Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
+echo "Checking for known_hosts in ~/.ssh/..."
+if test -f "~/.ssh/known_hosts"; then
+  echo "Does not exist. Creating..."
+  mkdur -p ~/.ssh
+  touch ~/.ssh/known_hosts
+else
+  echo "known_hosts found. All good..."
+fi
+
+# Ack for this user (perl 5.8.8 or higher on system)
+# Curl may need to have proxy settings
+echo "Checking for ack in ~/bin/..."
+if test -f "~/bin/ack"; then
+  echo "Downloading ack from betterthangrep.com..."
+  mkdir -p ~/bin
+  curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
+else
+  echo "Skipping ack download: already installed..."
+fi
 
 # This repository has vim plugins as submodules, so initialise and clone them in
 git submodule init
@@ -34,8 +53,4 @@ git submodule update
 
 # color for git! Some machines don't have it.
 git config --global color.ui true
-
-# Ack for this user (perl 5.8.8 or higher on system)
-# Curl may need to have proxy settings
-mkdir -p ~/bin
-curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
+git config --global core.editor "vim"
