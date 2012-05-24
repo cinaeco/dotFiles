@@ -137,6 +137,9 @@ set magic       " enables wildcard searching
 
 let mapleader = "," "Leader key lets you make more kinds of shortcuts!
 
+" Edit .vimrc
+map <leader>v   :e $MYVIMRC<CR>
+
 " More convenient escape
 imap ii <Esc>
 imap II <Esc>
@@ -151,16 +154,53 @@ nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>p    :set paste! paste?<CR>
 " Toggle showing whitespace characters
 nmap <silent> <leader>l    :set list! <CR>
-
+" Toggle scrollbind for moving multiple splits in sync together
+nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
 " Toggle NERDTree instead of the normal dir browser
 map <silent> <leader>d    :NERDTreeToggle<CR>
-
 " Toggle Commenting out lines with NERDCommenter
 nnoremap <silent> <leader>,    :call NERDComment(0, "toggle")<CR>
 vnoremap <silent> <leader>,    <ESC>:call NERDComment(1, "toggle")<CR>
 
-" Edit .vimrc
-map <leader>v   :e $MYVIMRC<CR>
+" Colemak layout for INSERT mode only
+" Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./
+" Colemak - qwfpgjluy;arstdhneio'zxcvbkm,./
+inoremap <silent> e f
+inoremap <silent> r p
+inoremap <silent> t g
+inoremap <silent> y j
+inoremap <silent> u l
+inoremap <silent> i u
+inoremap <silent> o y
+inoremap <silent> p ;
+inoremap <silent> s r
+inoremap <silent> d s
+inoremap <silent> f t
+inoremap <silent> g d
+inoremap <silent> j n
+inoremap <silent> k e
+inoremap <silent> l i
+inoremap <silent> ; o
+inoremap <silent> n k
+
+inoremap <silent> E F
+inoremap <silent> R P
+inoremap <silent> T G
+inoremap <silent> Y J
+inoremap <silent> U L
+inoremap <silent> I U
+inoremap <silent> O Y
+inoremap <silent> P :
+inoremap <silent> S R
+inoremap <silent> D S
+inoremap <silent> F T
+inoremap <silent> G D
+inoremap <silent> J N
+inoremap <silent> K E
+inoremap <silent> L I
+inoremap <silent> : O
+inoremap <silent> N K
+
 
 """"""""
 "" Key Remaps - Movement and Windows
