@@ -22,7 +22,7 @@ ln -s dotFiles/screen/screenrc ~/.screenrc
 
 # Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
 echo "Checking for known_hosts in ~/.ssh/..."
-if test -f "~/.ssh/known_hosts"; then
+if test -f ~/.ssh/known_hosts; then
   echo "known_hosts found..."
 else
   echo "Does not exist. Creating..."
@@ -33,7 +33,7 @@ fi
 # Ack for this user (perl 5.8.8 or higher on system)
 # Curl may need to have proxy settings
 echo "Checking for ack in ~/bin/..."
-if test -f "~/bin/ack"; then
+if test -f ~/bin/ack; then
   echo "ack found..."
 else
   echo "Downloading ack from betterthangrep.com..."
