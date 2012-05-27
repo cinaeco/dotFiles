@@ -26,7 +26,7 @@ if test -f "~/.ssh/known_hosts"; then
   echo "known_hosts found..."
 else
   echo "Does not exist. Creating..."
-  mkdur -p ~/.ssh
+  mkdir -p ~/.ssh
   touch ~/.ssh/known_hosts
 fi
 
