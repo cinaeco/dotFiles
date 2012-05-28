@@ -150,13 +150,15 @@ nmap <leader>k O<Esc>j
 
 " Toggle numbering
 nmap <silent> <leader>n    :set number!<CR>
+" Toggle wrap
+nmap <silent> <leader>w    :set wrap!<CR>
 " Toggle paste with/without indenting
 nmap <silent> <leader>p    :set paste! paste?<CR>
 " Toggle showing whitespace characters
 nmap <silent> <leader>l    :set list! <CR>
 " Toggle scrollbind for moving multiple splits in sync together
 nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
-" Toggle NERDTree instead of the normal dir browser
+" Toggle NERDTree instead of the normal dir browser... Doesn't seem to work yet
 map <silent> <leader>d    :NERDTreeToggle<CR>
 " Toggle Commenting out lines with NERDCommenter
 nnoremap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
@@ -164,9 +166,9 @@ vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 
 " Search with ack!
 nnoremap <leader>a :Ack <cword><CR>
-nnoremap <leader>A :LAck <cword><CR>
+nnoremap <leader>A :Ack -a <cword><CR>
 vnoremap <leader>a :Ack <cword><CR>
-vnoremap <leader>A :LAck <cword><CR>
+vnoremap <leader>A :Ack -a <cword><CR>
 
 " Colemak layout for INSERT mode only
 " Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./
