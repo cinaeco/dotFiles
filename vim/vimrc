@@ -7,6 +7,17 @@ call pathogen#infect()
 
 
 """"""""
+"" Environment
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Determine what kind of machine we're on e.g. Linux, Darwin, Win(?)
+if has("unix")
+  " remove the newline character from the uname command
+  let s:uname = substitute(system("uname"), "\n", "", "")
+endif
+
+
+""""""""
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -261,11 +272,8 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 " let g:NERDTreeQuitOnOpen = 1
 
 " Having problems showing NERDTree arrows in OS X
-if has("unix")
-  let s:uname = system("uname")
-  if s:uname == "Darwin"
-    let g:NERDTreeDirArrows=0 
-  endif
+if s:uname == "Darwin"
+  let g:NERDTreeDirArrows=0 
 endif
 
 " let g:SuperTabDefaultCompletionType = 'context'
