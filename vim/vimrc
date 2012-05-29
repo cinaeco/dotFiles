@@ -21,10 +21,9 @@ if has("persistent_undo")
     set undodir=~/.vimundo
 endif
 
-"if version >= 700
-"    set mouse=a "mouse support for 7.x, but don't use this if we use screen
-"    because it has no effect, and then just becomes annoying for copy/paste
-"endif 
+" mouse support. TODO: Are there any checks we should be doing?
+set ttymouse=xterm2
+set mouse=a
 
 if has("autocmd")
     " Enable filetype specific features
