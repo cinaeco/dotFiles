@@ -77,6 +77,45 @@ export PS1="%{${fg[yellow]}%}[%n@%m] %{${fg[green]}%}%3~ %# %{${fg[default]}%}"
 export LS_COLORS='no=00:fi=00:di=00;36:ln=01;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
 
 #############
+# SSH AGENT #
+#############
+
+# Check to see if SSH Agent is already running
+agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}')"
+ 
+# If the agent is not running (pid is zero length string)
+if [[ -z "$agent_pid" ]]; then
+    # Start up SSH Agent
+ 
+    # this seems to be the proper method as opposed to `exec ssh-agent bash`
+    eval "$(ssh-agent)"
+ 
+    # if you have a passphrase on your key file you may or may
+    # not want to add it when logging in, so comment this out
+    # if asking for the passphrase annoys you
+    #ssh-add
+ 
+# If the agent is running (pid is non zero)
+else
+    # Connect to the currently running ssh-agent
+ 
+    # this doesn't work because for some reason the ppid is 1 both when
+    # starting from ~/.profile and when executing as `ssh-agent bash`
+    #agent_ppid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($3)}')"
+    agent_ppid="$(($agent_pid - 1))"
+ 
+    # and the actual auth socket file name is simply numerically one less than
+    # the actual process id, regardless of what `ps -ef` reports as the ppid
+    agent_sock="$(find /tmp -path "*ssh*" -type s -iname "agent.$agent_ppid")"
+ 
+    echo "Agent pid $agent_pid"
+    export SSH_AGENT_PID="$agent_pid"
+ 
+    echo "Agent sock $agent_sock"
+    export SSH_AUTH_SOCK="$agent_sock"
+fi
+
+#############
 # FUNCTIONS #
 #############
 
@@ -212,3 +251,5 @@ alias cdo='cd /jails/alcatraz/usr/local/www/oars'
 alias cds='cd /jails/alcatraz/usr/local/www/schools'
 alias cdd='cd /jails/alcatraz/usr/local/www/delivery'
 alias sqlo='mysql -u oars -p'
+
+
