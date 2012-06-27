@@ -39,17 +39,18 @@ if test -f ~/bin/ack; then
 else
   echo "Downloading ack from betterthangrep.com..."
   mkdir -p ~/bin
-  curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 !#:3 
+  curl http://betterthangrep.com/ack-standalone > ~/bin/ack
+  chmod 0755 ~/bin/ack
 fi
 
-# This repository has vim plugins as submodules, so initialise and clone them in
+# This repository has vim plugins as submodules, so initialise and clone them
 git submodule init
 git submodule update
 
 # Add more vim plugins from this dotfiles directory, like so:
-#     git submodule add git://github.com/tpope/vim-pathogen.git vim/bundle/pathogen
+#     git submodule add git://github.com/tpope/module.git vim/bundle/module
 #
-# Apart from updating plugins individually, you can update all submodules in one shot
+# Apart from updating plugins individually, you can update all submodules
 #     git submodule foreach git pull origin master
 
 # color for git! Some machines don't have it.
