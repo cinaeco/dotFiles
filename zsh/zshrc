@@ -141,7 +141,7 @@ settabh() { settab `hostname | cut -d. -f1` }
 ## history
 alias h='history'
 
-## shortcuts
+## folder listing/traversal
 alias l='ls'
 alias l1='ls -1'
 alias ll='ls -hl'
@@ -152,28 +152,31 @@ alias lsd='ls -ld *(-/DN)'
 alias lg='ls -l | grep -i'
 alias cd..='cd ..';
 alias ..='cd ..'
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../.."
+
+## disk usage
 alias df='df -h'
 alias du='du -sh'
 
+## file manipulation
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias touch='nocorrect touch'
 alias ln='nocorrect ln'
 
+## grep (which is mostly replaced with ack anyway)
 alias -g G="| grep"
 alias -g g="| grep -i"
 alias -g L="| less"
 alias -g H="| head"
-
-alias -g ...="../.."
-alias -g ....="../../.."
-alias -g .....="../../../.."
-
 alias igrep='grep -i'
 alias rgrep='grep -R'
 alias rigrep='grep -iR'
 
+## proxy setup
 alias proxy='export http_proxy=http://192.168.1.248:3128;export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
 alias noproxy='export http_proxy='';export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
 alias hosts='vim /etc/hosts'
@@ -183,6 +186,12 @@ alias bc='bc -l'
 alias o.='open .'
 alias upd='cvs -q upd -dP'
 alias upd-head='cvs -q upd -dPA'
+
+## git
+alias gs='git status'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias ga='git add .'
 
 # update locate data for mac
 if [ `uname` = Darwin ]; then
@@ -196,12 +205,13 @@ alias ks='ls'
 alias ecgi='echo'
 
 ## ensure X11 is running when I gvim, xterm etc
+## TODO do we really need this?
 alias xterm='open -a X11 && /usr/X11R6/bin/xterm  -sb -sl 5000 -rightbar -fg white -bg black -geometry 100x50+40+20'
 alias gvim='open -a X11 && vim -g'
 
 settabh
 
-## include any settings specific to this machine
+## include settings specific to this machine
 if [[ -r ~/.zshlocal ]]; then
     source ~/.zshlocal
 fi
