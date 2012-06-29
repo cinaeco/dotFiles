@@ -1,51 +1,45 @@
 #!/bin/sh
 
-# Running this script creates the appropriate symlinks in home
-# Use from within dotfiles directory
+# This script pulls extra software and creates appropriate symlinks in the home
+# directory
+# Run from where it's located (within dotfiles directory)
 # A lot of this extra knowledge courtesy of vimcasts.org!
 
-# Vim
-ln -s dotfiles/vim/ ~/.vim
-ln -s dotfiles/vim/vimrc ~/.vimrc
-# Vim persistent undo directory
-mkdir ~/.vimundo
-
-# Zsh
-ln -s dotfiles/zsh/zshrc ~/.zshrc
-ln -s dotfiles/zsh/zshenv ~/.zshenv
-ln -s dotfiles/zsh/zshlocal ~/.zshlocal
-
-# Pentadactyl
-ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
-
-# Screen
-ln -s dotfiles/screen/screenrc ~/.screenrc
-
 # Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
-echo "Checking for known_hosts in ~/.ssh/..."
+echo "Checking for known_hosts:"
 if test -f ~/.ssh/known_hosts; then
-  echo "known_hosts found..."
+  echo " -> Found"
 else
-  echo "Does not exist. Creating..."
+  echo " -> Not Found"
   mkdir -p ~/.ssh
   touch ~/.ssh/known_hosts
+  echo " -> Created ~/.ssh/known_hosts"
 fi
 
 # Ack for this user (perl 5.8.8 or higher on system)
 # Curl may need to have proxy settings
-echo "Checking for ack in ~/bin/..."
+echo "Checking for ack in ~/bin:"
 if test -f ~/bin/ack; then
-  echo "ack found..."
+  echo " -> Found"
 else
-  echo "Downloading ack from betterthangrep.com..."
+  echo " -> Not Found"
   mkdir -p ~/bin
   curl http://betterthangrep.com/ack-standalone > ~/bin/ack
   chmod 0755 ~/bin/ack
+  echo " -> Installed ~/bin/ack from betterthangrep.com"
 fi
 
+# color for git! Some machines don't have it.
+echo "Setting up git colour and editor:"
+git config --global color.ui true
+git config --global core.editor "vim"
+echo " -> Done"
+
 # This repository has vim plugins as submodules, so initialise and clone them
+echo "Getting dotfiles submodules:"
 git submodule init
 git submodule update
+echo " -> Done"
 
 # Add more vim plugins from this dotfiles directory, like so:
 #     git submodule add git://github.com/tpope/module.git vim/bundle/module
@@ -53,6 +47,27 @@ git submodule update
 # Apart from updating plugins individually, you can update all submodules
 #     git submodule foreach git pull origin master
 
-# color for git! Some machines don't have it.
-git config --global color.ui true
-git config --global core.editor "vim"
+# Vim
+echo "Symlinking for vim:"
+ln -s dotfiles/vim/ ~/.vim
+ln -s dotfiles/vim/vimrc ~/.vimrc
+mkdir ~/.vimundo # persistent undo directory
+echo " -> Done"
+
+# Zsh
+echo "Symlinking for zsh:"
+ln -s dotfiles/zsh/zshrc ~/.zshrc
+ln -s dotfiles/zsh/zshenv ~/.zshenv
+ln -s dotfiles/zsh/zshlocal ~/.zshlocal
+ln -s ../../oh-my-zsh-customs/cinaeco.zsh-theme zsh/oh-my-zsh/custom
+echo " -> Done"
+
+# Pentadactyl
+echo "Symlinking for pentadactyl:"
+ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
+echo " -> Done"
+
+# Screen
+echo "Symlinking for gnu screen:"
+ln -s dotfiles/screen/screenrc ~/.screenrc
+echo " -> Done"

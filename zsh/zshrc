@@ -24,9 +24,6 @@ alias mmv='noglob zmv -W'
 # SET OPTIONS #
 ###############
 
-# vi keybindings
-bindkey -v
-
 #allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
 
