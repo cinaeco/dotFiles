@@ -14,7 +14,7 @@ function precmd() {
 $fg[cyan][%n@%m] $reset_color%T $fg[yellow]%3~  $(git_prompt_info)'
 }
 
-PROMPT='%{$reset_color%}→ '
+PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[red]%}-- COMMAND MODE --%{$reset_color%}"
 
