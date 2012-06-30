@@ -43,8 +43,8 @@ git_prompt_status() {
 ## Using precmd instead of having a multiline prompt reduces the number of 
 ## `%{` and `%}` escape sequences needed. Actions like changing mode in vi-mode
 ## and using tab completion need the escapes to know the right number of printed
-## characters in the prompt (and mode indicator) variable, otherwise, they
-## offset (backwards or forwards) by the wrong number of characters.
+## characters in the prompt or rprompt, otherwise, they will offset displayed
+## characters by too many or too few. The precmd text is just printed text.
 function precmd() {
   print -rP '
 $fg[cyan][%n@%m]  $fg[yellow]%3~  $(git_prompt_info)'
@@ -56,9 +56,9 @@ RPROMPT='$(vi_mode_prompt_info) %T %{$fg[white]%}%h%{$reset_color%}'
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
-ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]"
+ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}"
 
 ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[082]%}+%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[160]%}+%{$reset_color%}"
