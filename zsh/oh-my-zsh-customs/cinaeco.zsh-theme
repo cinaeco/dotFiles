@@ -11,12 +11,13 @@ function git_prompt_info() {
 ## offset (backwards or forwards) by the wrong number of characters.
 function precmd() {
   print -rP '
-$fg[cyan][%n@%m] $reset_color%T $fg[yellow]%3~  $(git_prompt_info)'
+$fg[cyan][%n@%m]  $fg[yellow]%3~  $(git_prompt_info)'
 }
 
 PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
+RPROMPT='$(vi_mode_prompt_info) %T %{$fg[white]%}%h%{$reset_color%}'
 
-MODE_INDICATOR="%{$fg[red]%}-- COMMAND MODE --%{$reset_color%}"
+MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
