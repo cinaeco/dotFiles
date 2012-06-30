@@ -47,7 +47,7 @@ git_prompt_status() {
 ## characters by too many or too few. The precmd text is just printed text.
 function precmd() {
   print -rP '
-$fg[cyan][%n@%m]  $fg[yellow]%3~  $(git_prompt_info)'
+$fg[cyan][$reset_color%n $fg[cyan]@ %m]  $fg[yellow]%3~  $(git_prompt_info)'
 }
 
 PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
@@ -58,7 +58,8 @@ MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}"
+
 
 ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[082]%}+%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[160]%}+%{$reset_color%}"
