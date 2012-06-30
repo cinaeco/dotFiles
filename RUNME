@@ -56,8 +56,8 @@ echo " -> Done"
 
 # Zsh
 echo "Symlinking for zsh:"
+ln -s dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 ln -s dotfiles/zsh/zshrc.ohmyzsh ~/.zshrc
-ln -s dotfiles/zsh/zshenv ~/.zshenv
 ln -s dotfiles/zsh/zshlocal ~/.zshlocal
 ln -s ../../oh-my-zsh-customs/cinaeco.zsh-theme zsh/oh-my-zsh/custom
 echo " -> Done"
