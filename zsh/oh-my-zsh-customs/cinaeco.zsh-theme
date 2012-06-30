@@ -2,38 +2,41 @@
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX $(git_prompt_status)"
+
 }
 
 ## Override the default `git_prompt_status` function
 git_prompt_status() {
-  INDEX=$(git status --porcelain 2> /dev/null)
+  INDEX=$(git status -s 2> /dev/null)
   STATUS=""
-  if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
-  fi
+  echo $INDEX | while IFS= read line; do
+    if $(echo "$line" | grep '^?? ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED"
+    fi
+    if $(echo "$line" | grep '^A  ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
+    elif $(echo "$line" | grep '^M. ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
+    fi
+    if $(echo "$line" | grep '^.M ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
+    elif $(echo "$line" | grep '^AM ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
+    elif $(echo "$line" | grep '^ T ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
+    fi
+    if $(echo "$line" | grep '^R  ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_RENAMED"
+    fi
+    if $(echo "$line" | grep '^ D ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
+    elif $(echo "$line" | grep '^AD ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
+    fi
+    if $(echo "$line" | grep '^UU ' &> /dev/null); then
+      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
+    fi
+  done
   echo $STATUS
 }
 
@@ -58,8 +61,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]"
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]"
 
 ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[082]%}+%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[166]%}m%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[160]%}+%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$FG[160]%}x%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}r%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[082]%}um%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[190]%}?%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}>%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[082]%}u%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[160]%}?%{$reset_color%}"
