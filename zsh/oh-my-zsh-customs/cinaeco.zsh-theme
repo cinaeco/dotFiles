@@ -1,10 +1,9 @@
 PROMPT='
-$fg[yellow][%n@%m] $fg_bold[green]%T $fg[cyan]%3~ $fg[blue]$(git_prompt_info)$reset_color
-→ $reset_color'
+$fg[yellow][%n@%m] $reset_color%T $fg[blue]%3~$reset_color $(git_prompt_info)$reset_color
+→ '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="is a git repo [branch: "
-ZSH_THEME_GIT_PROMPT_SUFFIX="]"
-ZSH_THEME_GIT_PROMPT_CLEAN=" ✔ is clean"
-ZSH_THEME_GIT_PROMPT_DIRTY=" ✗ has changes"
-
-MODE_INDICATOR="-- Command --"
+MODE_INDICATOR="$fg[red]-- COMMAND MODE --$reset_color"
+ZSH_THEME_GIT_PROMPT_PREFIX="$fg[magenta]==> $fg[cyan]git( "
+ZSH_THEME_GIT_PROMPT_SUFFIX=" $fg[cyan])"
+ZSH_THEME_GIT_PROMPT_CLEAN=" $fg[green]✔$fg[cyan] is clean"
+ZSH_THEME_GIT_PROMPT_DIRTY=" $fg[red]✗$fg[cyan] has changes"
