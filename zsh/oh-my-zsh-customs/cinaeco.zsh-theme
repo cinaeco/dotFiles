@@ -47,7 +47,7 @@ git_prompt_status() {
 ## characters by too many or too few. The precmd text is just printed text.
 function precmd() {
   print -rP '
-$fg[cyan][$reset_color%n $fg[cyan]@ %m]  $fg[yellow]%3~  $(git_prompt_info)'
+$fg[cyan][%n @ %m]  $fg[yellow]%3~  $(git_prompt_info)'
 }
 
 PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
