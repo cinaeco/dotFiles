@@ -56,7 +56,11 @@ echo " -> Done"
 
 # Zsh
 echo "Symlinking for zsh:"
-ln -s dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+if test -d ~/.oh-my-zsh; then
+  echo " -> oh-my-zsh folder exists"
+else
+  ln -s dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
+fi
 ln -s dotfiles/zsh/zshrc.ohmyzsh ~/.zshrc
 ln -s dotfiles/zsh/zshenv ~/.zshenv
 ln -s dotfiles/zsh/zshlocal ~/.zshlocal
