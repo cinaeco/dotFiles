@@ -47,11 +47,11 @@ git_prompt_status() {
 ## characters by too many or too few. The precmd text is just printed text.
 function precmd() {
   print -rP '
-$fg[cyan][%n @ %m]  $fg[yellow]%3~  $(git_prompt_info)'
+$fg[cyan][%m]  $fg[yellow]%3~  $(git_prompt_info)'
 }
 
 PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
-RPROMPT='$(vi_mode_prompt_info) %T %{$fg[white]%}%h%{$reset_color%}'
+RPROMPT='$(vi_mode_prompt_info) %{$fg[cyan]%}%n %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
