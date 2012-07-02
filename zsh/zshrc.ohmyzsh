@@ -34,3 +34,47 @@ plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+## history
+alias h='history'
+
+## common typos
+alias vf='cd'
+alias xs='cd'
+alias ks='ls'
+alias ecgi='echo'
+
+## folder listing/traversal
+alias l='ls'
+alias l1='ls -1'
+alias ll='ls -hl'
+alias la='ls -A'
+alias lal="ls -Ahl"
+alias l.='ls -d .[^.]*'
+alias lsd='ls -ld *(-/DN)'
+alias lg='ls -l | grep -i'
+alias cd..='cd ..';
+alias ..='cd ..'
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../.."
+
+## file manipulation
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias cp='nocorrect cp'
+alias touch='nocorrect touch'
+alias ln='nocorrect ln'
+
+## host file
+alias hosts='vim /etc/hosts'
+
+## additional git shortcuts not in the git plugin
+alias gs='git status'
+alias gd='git diff'
+alias gds='git diff --staged'
+
+## include settings specific to this machine
+if [[ -r ~/.zshlocal ]]; then
+    source ~/.zshlocal
+fi

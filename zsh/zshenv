@@ -11,27 +11,27 @@
 export LESS='-eirMX'
 export PAGER=less
 
-## colour ls
-export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
-
+## csv login
 export CVSROOT=:pserver:weiyi@cvs:/usr/cvsroot
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:~/bin:$PATH
-export PATH=/usr/local/git/bin:/usr/local/php/bin:/usr/local/php53/bin:/usr/local/apache2/bin:/usr/local/mysql/bin:/usr/lib/firefox-3.6:/jails/alcatraz/usr/local/www/oars/libraries/lithium/console:$PATH
+
+## paths
+export PATH=/usr/sbin:/usr/bin:~/bin:$PATH
+export PATH=/usr/lib/firefox-3.6:$PATH
+export PATH=/usr/local/bin:/usr/local/git/bin:$PATH
+export PATH=/usr/local/php/bin:/usr/local/php53/bin:$PATH
+export PATH=/usr/local/apache2/bin:/usr/local/mysql/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/jails/alcatraz/usr/local/www/oars/libraries/lithium/console:$PATH
 export JAVA_HOME=/usr/local/java
 export ANT_HOME=/Developer/Java/Ant
 export CATALINA_HOME=/usr/local/tomcat
 export CLASSPATH=/usr/local/cruisecontrol/lib
-export FISHEYE_OPTS="-Xms128m -Xmx512m -XX:MaxPermSize=256m"
-export FISHEYE_INST=/var/crucible 
 
 # for esxi perl stuff to not fail
 export PERL_LWP_SSL_VERIFY_HOSTNAME=0
 
-# Move Homebrew temp files to ramdisk (build directory)
+# Homebrew for Mac: move temp files to ramdisk (build directory)
 #export HOMEBREW_TEMP=/Volumes/RamDisk
-
-export DISPLAY=localhost:10.0
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then

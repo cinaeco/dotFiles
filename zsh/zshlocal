@@ -15,10 +15,10 @@ alias tfine='ssh cinaeco@tfine'
 alias blackomelette='ssh cinaeco@10.0.1.1'
 
 ## shortcuts for development
-alias auth-log='tail -F /jails/alcatraz/usr/local/www-conf/logs/auth-log'
-alias delivery-log='tail -F /jails/alcatraz/usr/local/www-conf/logs/delivery-phplog'
-alias oars-log='tail -F /jails/alcatraz/usr/local/www-conf/logs/oars-phplog'
-alias schools-log='tail -F /jails/alcatraz/usr/local/www-conf/logs/schools-phplog'
+alias authlog='tail -F /jails/alcatraz/usr/local/www-conf/logs/auth-phplog'
+alias deliverylog='tail -F /jails/alcatraz/usr/local/www-conf/logs/delivery-phplog'
+alias oarslog='tail -F /jails/alcatraz/usr/local/www-conf/logs/oars-phplog'
+alias schoolslog='tail -F /jails/alcatraz/usr/local/www-conf/logs/schools-phplog'
 alias cda='cd /jails/alcatraz/usr/local/www/auth'
 alias cdd='cd /jails/alcatraz/usr/local/www/delivery'
 alias cdo='cd /jails/alcatraz/usr/local/www/oars'
@@ -26,6 +26,11 @@ alias cds='cd /jails/alcatraz/usr/local/www/schools'
 alias migrate='li3 migration db:migrate'
 alias sqlo='mysql -u oars -p'
 
+## proxy setup
+alias proxy='export http_proxy=http://192.168.1.248:3128;export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
+alias noproxy='export http_proxy='';export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
+
+## shortcuts for Jails setup
 #alias guantanamo-start='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k start'
 #alias guantanamo-graceful='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k graceful'
 #alias guantanamo-stop='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k stop'  
