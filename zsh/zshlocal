@@ -11,8 +11,10 @@ alias dev5='ssh root@dev5'
 alias danshui='ssh weiyi@danshui'
 alias elrond='ssh weiyi@elrond'
 alias samwise='ssh weiyi@samwise'
-alias tfine='ssh cinaeco@tfine'
-alias blackomelette='ssh cinaeco@10.0.1.1'
+alias blackomelette='ssh cinaeco@10.0.1.20'
+alias pavo='ssh cinaeco@pavo'
+alias ursa='ssh cinaeco@ursa'
+alias fornax='ssh administrator@fornax'
 
 ## shortcuts for development
 alias authlog='tail -F /jails/alcatraz/usr/local/www-conf/logs/auth-phplog'
