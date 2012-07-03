@@ -49,7 +49,11 @@ echo " -> Done"
 
 # Vim
 echo "Symlinking for vim:"
-ln -s dotfiles/vim/ ~/.vim
+if test -d ~/.oh-my-zsh; then
+  echo " -> .vim folder exists"
+else
+  ln -s dotfiles/vim/ ~/.vim
+fi
 ln -s dotfiles/vim/vimrc ~/.vimrc
 mkdir ~/.vimundo # persistent undo directory
 echo " -> Done"
@@ -57,7 +61,7 @@ echo " -> Done"
 # Zsh
 echo "Symlinking for zsh:"
 if test -d ~/.oh-my-zsh; then
-  echo " -> oh-my-zsh folder exists"
+  echo " -> .oh-my-zsh folder exists"
 else
   ln -s dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
 fi
