@@ -69,10 +69,14 @@ alias ln='nocorrect ln'
 ## host file
 alias hosts='vim /etc/hosts'
 
-## additional git shortcuts not in the git plugin
+## preferred git shortcuts not in the git plugin
+alias ga.='git add .'
 alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --staged'
+alias gl='git log --pretty=oneline'
+alias gls='git log --stat'
+alias glg='git log --graph'
 
 #############
 # SSH AGENT #
