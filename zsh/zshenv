@@ -20,7 +20,6 @@ export PATH=/usr/lib/firefox-3.6:$PATH
 export PATH=/usr/local/bin:/usr/local/git/bin:$PATH
 export PATH=/usr/local/php/bin:/usr/local/php53/bin:$PATH
 export PATH=/usr/local/apache2/bin:/usr/local/mysql/bin:$PATH
-export PATH=/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/jails/alcatraz/usr/local/www/oars/libraries/lithium/console:$PATH
 export JAVA_HOME=/usr/local/java
