@@ -67,7 +67,7 @@ else
 fi
 ln -s dotfiles/zsh/zshrc.ohmyzsh ~/.zshrc
 ln -s dotfiles/zsh/zshenv ~/.zshenv
-ln -s dotfiles/zsh/zshlocal ~/.zshlocal
+ln -s dotfiles/zsh/zshdev ~/.zshdev
 ln -s ../../oh-my-zsh-customs/cinaeco.zsh-theme zsh/oh-my-zsh/custom
 echo " -> Done"
 

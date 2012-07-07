@@ -122,6 +122,11 @@ if [ `uname` != Darwin ]; then
   fi
 fi
 
+## include additional settings
+if [[ -r ~/.zshdev ]]; then
+    source ~/.zshdev
+fi
+
 ## include settings specific to this machine
 if [[ -r ~/.zshlocal ]]; then
     source ~/.zshlocal

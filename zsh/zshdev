@@ -1,3 +1,7 @@
+#
+# zshdev is sourced by a command in zshrc
+#
+
 ## shortcuts to other machines
 alias murray='ssh weiyi@murray'
 alias nile='ssh weiyi@nile'
@@ -35,13 +39,13 @@ alias noproxy='export http_proxy='';export HTTP_PROXY=$http_proxy;export https_p
 ## shortcuts for Jails setup
 #alias guantanamo-start='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k start'
 #alias guantanamo-graceful='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k graceful'
-#alias guantanamo-stop='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k stop'  
-#alias guantanamo-check='chroot /jails/guantanamo /usr/local/apache2/bin/apachectl -t'  
+#alias guantanamo-stop='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k stop'
+#alias guantanamo-check='chroot /jails/guantanamo /usr/local/apache2/bin/apachectl -t'
 
 #alias woomera-start='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k start'
 #alias woomera-graceful='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k graceful'
-#alias woomera-stop='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k stop'  
-#alias woomera-check='chroot /jails/woomera /usr/local/apache2/bin/apachectl -t'  
+#alias woomera-stop='env -i /usr/sbin/chroot /jails/woomera /usr/local/apache2/bin/httpd -k stop'
+#alias woomera-check='chroot /jails/woomera /usr/local/apache2/bin/apachectl -t'
 
 #alias littlehey-start='env -i /usr/sbin/chroot /jails/littlehey /usr/local/apache2/bin/httpd -k start'
 #alias littlehey-graceful='env -i /usr/sbin/chroot /jails/littlehey /usr/local/apache2/bin/httpd -k graceful'
