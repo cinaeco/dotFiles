@@ -6,7 +6,7 @@
 # A lot of this extra knowledge courtesy of vimcasts.org!
 
 # Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
-echo "Checking for known_hosts:"
+echo "\nChecking for known_hosts:"
 if test -f ~/.ssh/known_hosts; then
   echo " -> Found"
 else
@@ -18,7 +18,7 @@ fi
 
 # Ack for this user (perl 5.8.8 or higher on system)
 # Curl may need to have proxy settings
-echo "Checking for ack in ~/bin:"
+echo "\nChecking for ack in ~/bin:"
 if test -f ~/bin/ack; then
   echo " -> Found"
 else
@@ -30,13 +30,13 @@ else
 fi
 
 # color for git! Some machines don't have it.
-echo "Setting up git colour and editor:"
+echo "\nSetting up git colour and editor:"
 git config --global color.ui true
 git config --global core.editor "vim"
 echo " -> Done"
 
 # This repository has vim plugins as submodules, so initialise and clone them
-echo "Getting dotfiles submodules:"
+echo "\nGetting dotfiles submodules:"
 git submodule init
 git submodule update
 echo " -> Done"
@@ -48,7 +48,7 @@ echo " -> Done"
 #     git submodule foreach git pull origin master
 
 # Vim
-echo "Symlinking for vim:"
+echo "\nSymlinking for vim:"
 if test -d ~/.oh-my-zsh; then
   echo " -> .vim folder exists"
 else
@@ -59,7 +59,7 @@ mkdir ~/.vimundo # persistent undo directory
 echo " -> Done"
 
 # Zsh
-echo "Symlinking for zsh:"
+echo "\nSymlinking for zsh:"
 if test -d ~/.oh-my-zsh; then
   echo " -> .oh-my-zsh folder exists"
 else
@@ -72,11 +72,18 @@ ln -s ../../oh-my-zsh-customs/cinaeco.zsh-theme zsh/oh-my-zsh/custom
 echo " -> Done"
 
 # Pentadactyl
-echo "Symlinking for pentadactyl:"
+echo "\nSymlinking for pentadactyl:"
 ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 echo " -> Done"
 
 # Screen
-echo "Symlinking for gnu screen:"
+echo "\nSymlinking for gnu screen:"
 ln -s dotfiles/screen/screenrc ~/.screenrc
 echo " -> Done"
+
+# Nethack
+echo "\nSymlinking for nethack:"
+ln -s dotfiles/nethack/nethackrc ~/.nethackrc
+echo " -> Done"
+
+echo "\nSetup complete!"
