@@ -150,7 +150,7 @@ caption               always          "%{= kw} %=%-Lw%{g}[%n* %t%? %f%?]%{= kw}%
 # %m - month number
 # %Y - full year number
 #
-hardstatus            alwayslastline  "%{k.} %=Host: %{+b r}%H   %{-}Session: %{y}%1`%?   %{-}Users: %{m}(%u)%?   %{-}Time: %{b}%c, %LD, %d.%m.%Y%="
+hardstatus            alwayslastline  "%{k.} %=Host: %{+b r}%H   %{-}Session: %{y}[ %1` ]%?   %{-}Users: %{m}(%u)%?   %{-}Time: %{b}%c, %LD, %d.%m.%Y%="
 msgwait               15
 
 
@@ -158,6 +158,7 @@ msgwait               15
 # Backtick Commands
 #
 # Commands to call using the %` substitutions (e.g. in hardstatus line)
+# Potentially Very Powerful!
 #
 # Syntax:
 #     backtick id lifespan autorefresh command [args...]
