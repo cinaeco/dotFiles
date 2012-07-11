@@ -9,7 +9,6 @@
 
 ## don't close less when I am done reading
 export LESS='-eirMX'
-export PAGER=less
 
 ## csv login
 export CVSROOT=:pserver:weiyi@cvs:/usr/cvsroot
