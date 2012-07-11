@@ -1,20 +1,22 @@
 # For a complete list of available commands, see http://bit.ly/jLtj
 
-# Message to display in the status line when activity is detected in a
-# monitored window.
-activity              "activity in %n (%t) [%w:%s]~"
+# Set the default program for new windows.
+shell                 zsh
+
+# Set default lines of scrollback.
+defscrollback         5000            # default: 100
 
 # Detach session on hangup instead of terminating screen completely.
 autodetach            on              # default: on
+
+# Message to display in the status line when activity is detected in a
+# monitored window.
+activity              "activity in %n (%t) [%w:%s]~"
 
 # When a bell character is sent to a background window, screen displays a
 # notification in the message line. The notification message can be re-defined
 # by this command.
 bell_msg              "bell     in %n (%t) [%w:%s]~"
-
-# This command controls the display of the window captions. Normally a caption
-# is only used if more than one window is shown on the display.
-caption               always          "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
 
 # Select line break behavior for copying.
 crlf                  off             # default: off
@@ -22,26 +24,13 @@ crlf                  off             # default: off
 # Select default utmp logging behavior.
 #deflogin              off             # default: on
 
-# Set default lines of scrollback.
-defscrollback         3000            # default: 100
-
 # If set to 'on', screen will append to the 'hardcopy.n' files created by the
 # command hardcopy; otherwise, these files are overwritten each time.
 hardcopy_append       on              # default: off
 
-# This command configures the use and emulation of the terminal's hardstatus
-# line. The type 'lastline' will reserve the last line of the display for the
-# hardstatus. Prepending the word 'always' will force screen to use the type
-# even if the terminal supports a hardstatus line.
-hardstatus            alwayslastline  "%{+b kr}[ %H ] %{ky} Load: %l %-=%{kb} %c  %Y.%m.%d"
-msgwait               15
-
 # Set message displayed on pow_detach (when HUP is sent to screen's parent
 # process).
 pow_detach_msg        "BYE"
-
-# Set the default program for new windows.
-shell                 zsh
 
 # Default timeout to trigger an inactivity notify.
 silencewait           30              # default: 30
@@ -74,14 +63,137 @@ vbell                 on              # default: ???
 # Message to be displayed when the visual bell is triggered.
 vbell_msg             " *beep* "
 
-# default windows
+# Disable nethack error messsages. This gets triggered by the prescence of a
+# .nethackrc or the $NETHACKOPTIONS environmental variable
+nethack off
+
+
+##################################
+# Captions
+#
+# Control the display of the window captions.
+# Without the `always` option, captions will only show when there are multiple
+# windows.
+#
+# String Escapes, especially some Hard-to-Discover escapes, are described below.
+# For an age-old tool, screen documentation is not great.
+#
+# Great thanks to:
+# http://blog.quixey.com/2011/07/29/make-your-life-easier-with-gnu-screen/
+# http://aperiodic.net/screen/man:string_escapes
+# http://superuser.com/questions/212392/how-to-include-screens-session-name-in-hardstatus
+# http://superuser.com/questions/209585/adding-conditional-formatting-to-the-status-line-in-gnu-screen
+#
+# %{= kw} - clear existing format, set color to black/white background/foreground
+# %= - pad line with spaces to fill display width. In this case, centering can be
+#      done by having `%=` on both the left and and right, as screen will
+#      automatically make both paddings the same length. 
+#      More spacing and padding can be seen here:
+#
+#      http://aperiodic.net/screen/truncation_padding_escapes
+#
+#      I did not bother reading it.
+#
+# %-w - show windows smaller in number than the current
+# %+w - show windows greater in number than the current
+#
+#       --- Note about the `L` flag ---
+#       This was hard to catch in the docs.
+#       Some screen escapes can be prefixed with 'L'.
+#       For `%-Lw`, window flags are added to the window names,
+#       For `%LD` and `%LM`, longer name are used
+#
+# %{+b} - add the bold attribute to the text
+# %n - window number
+# %t - window title
+# %f - window flags (for various states)
+# %?...%? - IF statement. Contents will only display if any ESCAPES produce at
+#           least one char So, if `%f` resolves to nothing (i.e. there are no
+#           other flags for this window), then nothing will be displayed.
+#
+#           There is also an else, using `%:`, but I don't know how to use that.
+#
+caption               always          "%{= kw} %=%-Lw%{g}[%n* %t%? %f%?]%{= kw}%+Lw%="
+
+
+##################################
+# Hardstatus Line
+#
+# Configure the use and emulation of the terminal's hardstatus line.
+# `lastline` will reserve the last line of the display for the hardstatus.
+# Prepending the word 'always' will force screen to use the type even if the
+# terminal supports a hardstatus line.
+#
+# Explanation of escapes
+#
+# %{k.} - change the background color. The `.` in place of the foreground
+#         leaves the colour unchanged.
+#         `%{.r}` would be redundant: single colours specified without other
+#         modifiers are assumed to be foreground colour changes.
+#
+#         Notice a space after this formatting - this is to force the following
+#         padding escape to take the formatting. Otherwise, formatting will only
+#         start from the next displayed character (the 'H' in 'Host:').
+#
+# %{+b r} - add bold, foreground red.
+# %{-} - special formatting escape saying, revert the last change to formatting
+#        (in the first case, the adding of bold and red foreground)
+# %{y} - yellow foreground
+# %{m} - magenta foreground
+# %{b} - blue foreground
+# %H - Hostname
+# %1` - run `backtick` command with id = 1 (refer to below)
+# %u - other users in this window (surrounded by brackets)
+# %c - 24hr time
+# %LD - Long Day name (refer to L note above)
+# %d - day number
+# %m - month number
+# %Y - full year number
+#
+hardstatus            alwayslastline  "%{k.} %=Host: %{+b r}%H   %{-}Session: %{y}%1`%?   %{-}Users: %{m}(%u)%?   %{-}Time: %{b}%c, %LD, %d.%m.%Y%="
+msgwait               15
+
+
+##################################
+# Backtick Commands
+#
+# Commands to call using the %` substitutions (e.g. in hardstatus line)
+#
+# Syntax:
+#     backtick id lifespan autorefresh command [args...]
+#
+# id - number to use in substitution e.g. %2` would call backtick with id = 2
+#      id = 0 is called simply with %`
+# lifespan - seconds to run command again
+# autorefresh - seconds to refresh caption and hardstatus text
+#
+# if both lifespan and autorefresh are 0, it is expected the command will
+# periodically produce a line of output. Once output is detected, hardstatus and
+# captions will refresh if necessary e.g. if command is a `tail -F`
+
+# get the sessionname that has been set by `C-a :sessionname` or by
+# `screen -S [name]`
+#
+backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID.[A-Za-z0-9]*" | sed s/$PPID.//'
+
+
+##################################
+# Default Windows
+#
+# In theory, you could use `chdir` before a `screen -t` to automate the changing
+# of directories, but I have found this troublesome if you just want screen for
+# other purposes (like performing Ubuntu release upgrades).
+#
+# Is there a way of toggling default windows on/off based on how we start
+# screen?
+#
 screen -t "controllers" 1
 screen -t "views" 2
 screen -t "models" 3
 screen -t "routes" 4
-screen -t "javascript" 5
+screen -t "webroot" 5
 screen -t "libraries" 6
 screen -t "logs" 7
-screen -t "mysql" 8
-screen -t "mongo" 9
+screen -t "db" 8
+screen -t "extra" 9
 screen -t "home" 0
