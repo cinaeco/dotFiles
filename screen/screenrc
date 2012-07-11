@@ -159,6 +159,8 @@ msgwait               15
 #
 # Commands to call using the %` substitutions (e.g. in hardstatus line)
 # Potentially Very Powerful!
+# Note that any commands in backtick are expected to return only ONE line of
+# output (no idea what happens if there's more than that).
 #
 # Syntax:
 #     backtick id lifespan autorefresh command [args...]
@@ -175,7 +177,7 @@ msgwait               15
 # get the sessionname that has been set by `C-a :sessionname` or by
 # `screen -S [name]`
 #
-backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID.[A-Za-z0-9]*" | sed s/$PPID.//'
+backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" | sed s/$PPID\.//'
 
 
 ##################################
