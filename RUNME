@@ -47,6 +47,11 @@ echo " -> Done"
 # Apart from updating plugins individually, you can update all submodules
 #     git submodule foreach git pull origin master
 
+# SSH Config
+echo "Symlinking for ssh:"
+ln -s ../dotfiles/ssh/config ~/.ssh/config
+echo " -> Done"
+
 # Vim
 echo "Symlinking for vim:"
 if test -d ~/.vim; then

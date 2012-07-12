@@ -1,19 +1,27 @@
-
 ## shortcuts to other machines
-alias murray='ssh weiyi@murray'
-alias nile='ssh weiyi@nile'
-alias niles='ssh weiyi@nile-stage'
-alias orinoco='ssh weiyi@orinoco'
-alias orinocos='ssh weiyi@orinoco-stage'
-alias beni='ssh root@beni'
-alias feni='ssh root@feni'
-alias kwai='ssh weiyi@kwai'
-alias dev5='ssh root@dev5'
-alias danshui='ssh weiyi@danshui'
-alias elrond='ssh weiyi@elrond'
-alias samwise='ssh weiyi@samwise'
-alias blackomelette='ssh cinaeco@10.0.1.20'
-alias pavo='ssh cinaeco@pavo'
-alias ursa='ssh cinaeco@ursa'
-alias fornax='ssh administrator@fornax'
+#alias niles='ssh weiyi@nile-stage'
+#alias orinocos='ssh weiyi@orinoco-stage'
 
+Host beni
+User root
+
+Host feni
+User root
+
+Host dev5
+User root
+
+Host pavo
+User cinaeco
+
+Host ursa
+User cinaeco
+
+Host fornax
+User administrator
+
+## Keep alive for all hosts
+Host *
+User weiyi
+ServerAliveCountMax 4
+ServerAliveInterval 15
