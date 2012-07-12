@@ -1,7 +1,3 @@
-#
-# zshdev is sourced by a command in zshrc
-#
-
 ## shortcuts to other machines
 alias murray='ssh weiyi@murray'
 alias nile='ssh weiyi@nile'

@@ -1,142 +1,51 @@
-#
-# .zshrc is sourced in interactive shells.
-# It should contain commands to set up aliases,
-# functions, options, key bindings, etc.
-#
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/dotfiles/zsh/oh-my-zsh
+ZSH_CUSTOM=$HOME/dotfiles/zsh/oh-my-zsh-custom
 
-##################
-# LOAD FUNCTIONS #
-##################
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="cinaeco"
 
-## completions
-autoload -U compinit
-compinit
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-## colors
-autoload -U colors
-colors
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-## renaming
-autoload zmv
-alias mmv='noglob zmv -W'
+# Comment this out to disable weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
 
-###############
-# SET OPTIONS #
-###############
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-#allow tab completion in the middle of a word
-setopt COMPLETE_IN_WORD
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-## Correct my spelling
-#setopt CORRECT
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-## Don't ask me
-setopt RMSTARSILENT
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git vi-mode)
 
-## Don't require 'cd'
-#setopt AUTOCD
+source $ZSH/oh-my-zsh.sh
 
-## Automatically pushd - then I can go to an old dir with cd - <tab> (pick no.)
-setopt AUTOPUSHD
-export DIRSTACKSIZE=11 # stack size of eleven gives me a list with ten entries
-
-## Autocomplete hosts from .ssh/known_hosts
-#local _myhosts
-_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-zstyle ':completion:*' hosts $_myhosts
-
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
-
-#####################
-# SHELL ENVIRONMENT #
-#####################
-
-## Ctrl-W stops at a directory
-## see http://www.zsh.org/mla/users/1995/msg00088.html
-WORDCHARS='*?_-.[]~\!#$%^(){}<>|`@#$%^*()+:?'
-
-## set up my prompt
-export PS1="%{${fg[yellow]}%}[%n@%m] %{${fg[green]}%}%3~ %# %{${fg[default]}%}"
-
-## color STDERR red
-#exec 2>>(while read line; do
-#  print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
-
-#if [ "`uname`" = "Darwin" ]; then
-#   compctl -f -x 'c[-1,-a][-1,-A] p[2]' -s "`/bin/ls -d1 /Applications/*/*.app /Applications/*.app | sed 's|^.*/\([^/]*\)\.app.*|\\1|;s/ /\\\\ /g'`"  -- open
-#   alias run='open -a'
-#fi
-
-## set list colours
-# TODO do we need to rework this?
-export LS_COLORS='no=00:fi=00:di=00;36:ln=01;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
-
-
-#############
-# SSH AGENT #
-#############
-
-# Don't do for OSX, as it has it's own handling of ssh-agent
-if [ `uname` != Darwin ]; then
-
-  # Check to see if SSH Agent is already running
-  agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}')"
- 
-  # If the agent is not running (pid is zero length string)
-  if [[ -z "$agent_pid" ]]; then
-      # Start up SSH Agent
-   
-      # this seems to be the proper method as opposed to `exec ssh-agent bash`
-      eval "$(ssh-agent)"
-   
-      # if you have a passphrase on your key file you may or may
-      # not want to add it when logging in, so comment this out
-      # if asking for the passphrase annoys you
-      #ssh-add
-   
-  # If the agent is running (pid is non zero)
-  else
-      # Connect to the currently running ssh-agent
-   
-      # this doesn't work because for some reason the ppid is 1 both when
-      # starting from ~/.profile and when executing as `ssh-agent bash`
-      #agent_ppid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($3)}')"
-      agent_ppid="$(($agent_pid - 1))"
-   
-      # and the actual auth socket file name is simply numerically one less than
-      # the actual process id, regardless of what `ps -ef` reports as the ppid
-      agent_sock="$(find /tmp -path "*ssh*" -type s -iname "agent.$agent_ppid")"
-   
-      echo "Agent pid $agent_pid"
-      export SSH_AGENT_PID="$agent_pid"
-   
-      echo "Agent sock $agent_sock"
-      export SSH_AUTH_SOCK="$agent_sock"
-  fi
-fi
-
-
-#############
-# FUNCTIONS #
-#############
-
-trash() { mv $@ ~/.Trash }
-pc() { awk "{print \$$1}" }
-mcd() { mkdir -p "$1" && cd "$1" }
-calc() { echo "$@" | bc -l -q -i }
-dont() { echo "OK, I won't!" }
-settab() { echo -ne "\e]1;$1\a" }
-settabh() { settab `hostname | cut -d. -f1` }
-
-
-###########
-# ALIASES #
-###########
+# Customize to your needs...
 
 ## history
 alias h='history'
+## don't show expansions, just execute, e.g. for !! and !$
+setopt nohistverify
+
+## common typos
+alias vf='cd'
+alias xs='cd'
+alias ks='ls'
+alias ecgi='echo'
 
 ## folder listing/traversal
 alias l='ls'
@@ -153,10 +62,6 @@ alias -g ...="../.."
 alias -g ....="../../.."
 alias -g .....="../../../.."
 
-## disk usage
-alias df='df -h'
-alias du='du -sh'
-
 ## file manipulation
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
@@ -164,51 +69,64 @@ alias cp='nocorrect cp'
 alias touch='nocorrect touch'
 alias ln='nocorrect ln'
 
-## grep (which is mostly replaced with ack anyway)
-alias -g G="| grep"
-alias -g g="| grep -i"
-alias -g L="| less"
-alias -g H="| head"
-alias igrep='grep -i'
-alias rgrep='grep -R'
-alias rigrep='grep -iR'
-
-## proxy setup
-alias proxy='export http_proxy=http://192.168.1.248:3128;export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
-alias noproxy='export http_proxy='';export HTTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export HTTPS_PROXY=$http_proxy;export ftp_proxy=$http_proxy;export FTP_PROXY=$http_proxy;'
+## host file
 alias hosts='vim /etc/hosts'
-alias graceful='apachectl graceful'
-alias flushdns='lookupd -flushcache'
-alias bc='bc -l'
-alias o.='open .'
-alias upd='cvs -q upd -dP'
-alias upd-head='cvs -q upd -dPA'
 
-## git
+## preferred git shortcuts not in the git plugin
+alias ga.='git add .'
 alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --staged'
-alias ga='git add .'
+alias gl='git log --pretty=oneline'
+alias glg='git log --graph'
+alias glp='git log -p'
+alias gls='git log --stat'
 
-# update locate data for mac
-if [ `uname` = Darwin ]; then
-    alias updatedb='sudo /usr/libexec/locate.updatedb'
+#############
+# SSH AGENT #
+#############
+
+# Don't do for OSX, as it has it's own handling of ssh-agent
+if [ `uname` != Darwin ]; then
+
+  # Check to see if SSH Agent is already running
+  agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}')"
+
+  # If the agent is not running (pid is zero length string)
+  if [[ -z "$agent_pid" ]]; then
+    # Start up SSH Agent
+
+    # this seems to be the proper method as opposed to `exec ssh-agent bash`
+    eval "$(ssh-agent)"
+
+    # if you have a passphrase on your key file you may or may
+    # not want to add it when logging in, so comment this out
+    # if asking for the passphrase annoys you
+    #ssh-add
+
+  # If the agent is running (pid is non zero)
+  else
+    # Connect to the currently running ssh-agent
+
+    # this doesn't work because for some reason the ppid is 1 both when
+    # starting from ~/.profile and when executing as `ssh-agent bash`
+    #agent_ppid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($3)}')"
+    agent_ppid="$(($agent_pid - 1))"
+
+    # and the actual auth socket file name is simply numerically one less than
+    # the actual process id, regardless of what `ps -ef` reports as the ppid
+    agent_sock="$(find /tmp -path "*ssh*" -type s -iname "agent.$agent_ppid")"
+
+    echo "Agent pid $agent_pid"
+    export SSH_AGENT_PID="$agent_pid"
+
+    echo "Agent sock $agent_sock"
+    export SSH_AUTH_SOCK="$agent_sock"
+  fi
 fi
-
-## common typos
-alias vf='cd'
-alias xs='cd'
-alias ks='ls'
-alias ecgi='echo'
-
-## ensure X11 is running when I gvim, xterm etc
-## TODO do we really need this?
-alias xterm='open -a X11 && /usr/X11R6/bin/xterm  -sb -sl 5000 -rightbar -fg white -bg black -geometry 100x50+40+20'
-alias gvim='open -a X11 && vim -g'
-
-settabh
 
 ## include settings specific to this machine
 if [[ -r ~/.zshlocal ]]; then
     source ~/.zshlocal
 fi
+print -Pn "\e]1;`hostname | cut -d. -f1`\a"
