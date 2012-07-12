@@ -154,7 +154,7 @@ caption               always          "%{= kw} %=%-Lw%{g}[%n* %t%? %f%?]%{= kw}%
 # %m - month number
 # %Y - full year number
 #
-hardstatus            alwayslastline  "%{k.} %=Host: %{+b r}%H   %{-}Session: %{y}[ %1` ]%?   %{-}Users: %{m}(%u)%?   %{-}Time: %{b}%c, %LD, %d.%m.%Y%="
+hardstatus            alwayslastline  "%{k.}%{y}Session: %{-}%{+b r}%?[%1`]%:[NoName]%? %{-}on %H%=%?%{-}Users: (%u)%?%=%{b}%c, %LD, %d.%m.%Y"
 msgwait               15
 
 
@@ -181,7 +181,7 @@ msgwait               15
 # get the sessionname that has been set by `C-a :sessionname` or by
 # `screen -S [name]`
 #
-backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" | sed s/$PPID\.//'
+backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" | sed s/$PPID\.// | sed s/ttys.*//g | sed s/pts-.*//g'
 
 
 ##################################
