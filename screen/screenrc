@@ -67,6 +67,10 @@ vbell_msg             " *beep* "
 # .nethackrc or the $NETHACKOPTIONS environmental variable
 nethack off
 
+# Get rid of screen 0
+# http://www.linuxquestions.org/questions/linux-software-2/gnu-screen-start-window-numbering-at-1-keep-window-number-0-from-ever-being-used-772580/
+bind c screen 1
+bind 0 select 10
 
 ##################################
 # Captions
@@ -190,13 +194,12 @@ backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" |
 # Is there a way of toggling default windows on/off based on how we start
 # screen?
 #
-screen -t "controllers" 1
-screen -t "views" 2
-screen -t "models" 3
-screen -t "routes" 4
-screen -t "webroot" 5
-screen -t "libraries" 6
-screen -t "logs" 7
-screen -t "db" 8
-screen -t "extra" 9
-screen -t "home" 0
+screen -t "controllers" 2
+screen -t "views" 3
+screen -t "models" 4
+screen -t "routes" 5
+screen -t "webroot" 6
+screen -t "libraries" 7
+screen -t "logs" 8
+screen -t "db" 9
+screen -t "home" 1
