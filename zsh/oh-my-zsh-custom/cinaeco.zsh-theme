@@ -50,6 +50,9 @@ function precmd() {
 $fg[cyan][%m]  $fg[yellow]%3~  $(git_prompt_info)'
 }
 
+## Set tab title to hostname
+print -Pn "\e]1;`hostname | cut -d. -f1`\a"
+
 PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
 RPROMPT='$(vi_mode_prompt_info) %{$fg[cyan]%}%n %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
