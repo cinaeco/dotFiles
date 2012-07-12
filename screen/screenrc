@@ -202,4 +202,5 @@ screen -t "webroot" 6
 screen -t "libraries" 7
 screen -t "logs" 8
 screen -t "db" 9
+screen -t "extra" 10
 screen -t "home" 1
