@@ -68,7 +68,7 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}>%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[082]%}u%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[160]%}?%{$reset_color%}"
 
-# Using precmd instead of having a multiline prompt reduces the number of 
+# Using precmd instead of having a multiline prompt reduces the number of
 # `%{` and `%}` escape sequences needed. Actions like changing mode in vi-mode
 # and using tab completion need the escapes to know the right number of printed
 # characters in the prompt or rprompt, otherwise, they will offset displayed
