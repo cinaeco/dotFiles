@@ -1,7 +1,7 @@
 ## Override the default `git_prompt_info` function
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX $(git_prompt_status)"
+  echo "$(git_prompt_status) $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 
 }
 
@@ -40,21 +40,23 @@ git_prompt_status() {
   echo $STATUS
 }
 
-## Using precmd instead of having a multiline prompt reduces the number of 
-## `%{` and `%}` escape sequences needed. Actions like changing mode in vi-mode
-## and using tab completion need the escapes to know the right number of printed
-## characters in the prompt or rprompt, otherwise, they will offset displayed
-## characters by too many or too few. The precmd text is just printed text.
-function precmd() {
-  print -rP '
-$fg[cyan][%m]  $fg[yellow]%3~  $(git_prompt_info)'
-}
+# Using precmd instead of having a multiline prompt reduces the number of 
+# `%{` and `%}` escape sequences needed. Actions like changing mode in vi-mode
+# and using tab completion need the escapes to know the right number of printed
+# characters in the prompt or rprompt, otherwise, they will offset displayed
+# characters by too many or too few. The precmd text is just printed text.
+#
+# UPDATE: was told that precmd slows things down. Sure enough, after building a
+# new prompt not based on precmd, found that prompt renders half a second faster
+# which is much less annoying over prolonged usage. Have moved git status to the
+# right prompt. Less exciting, but more functional. Drats.
+#function precmd() {}
 
 ## Set tab title to hostname
 print -Pn "\e]1;`hostname | cut -d. -f1`\a"
 
-PROMPT='%{$fg[magenta]%}→ %{$reset_color%}'
-RPROMPT='$(vi_mode_prompt_info) %{$fg[cyan]%}%n %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
+PROMPT='%{$fg[cyan]%}[%n@%m] %{$fg[yellow]%}%3~ %{$fg[magenta]%}→ %{$reset_color%}'
+RPROMPT='$(vi_mode_prompt_info) $(git_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
