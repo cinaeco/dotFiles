@@ -32,9 +32,7 @@ if has("persistent_undo")
     set undodir=~/.vimundo
 endif
 
-" mouse support. TODO: Are there any checks we should be doing?
 set ttymouse=xterm2
-set mouse=a
 
 if has("autocmd")
     " Enable filetype specific features
@@ -70,9 +68,9 @@ endif
 function! StartUp()
     " Stuff in here will be called by autocmd below
     " example, start NERDTree if vim called with no arguments
-    "if 0 == argc()
-        "NERDTree
-    "end
+    if 0 == argc()
+        NERDTree
+    end
 endfunction
 
 
@@ -89,6 +87,7 @@ set softtabstop=2   " let backspace delete indent
 set wrap lbr        " wrap long lines of text
 set backspace=eol,start,indent "backspace over everything
 set textwidth=80
+set colorcolumn=+1  " mark out the limits of the textwidth
 
 
 """"""""
@@ -99,7 +98,6 @@ syntax enable
 colorscheme solarized
 set t_Co=16
 set background=dark
-set colorcolumn=+1
 hi Folded ctermfg=darkred "set colour for folded lines
 
 
@@ -120,20 +118,7 @@ set laststatus=2 "always show a status line
 
 set foldmethod=indent
 set foldlevel=10
-set foldtext=MyFoldText()
-
-function! MyFoldText()
-    let line = getline(v:foldstart)
-    let indent = indent(v:foldstart)
-    let indentOnly = strpart(line, 0, indent-1)
-    let linecount = v:foldend+1 - v:foldstart
-    let plural = ""
-    if linecount != 1
-        let plural = "s"
-    endif
-    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
-    return foldtext
-endfunction
+set foldtext=FoldText()
 
 
 """"""""
@@ -164,30 +149,114 @@ imap II <Esc>
 nmap <leader>j o<Esc>k
 nmap <leader>k O<Esc>j
 
-" Toggle numbering
 nmap <silent> <leader>n    :set number!<CR>
-" Toggle wrap
 nmap <silent> <leader>w    :set wrap!<CR>
-" Toggle paste with/without indenting
+
+" Toggle paste mode - no autoindenting of pasted material
 nmap <silent> <leader>p    :set paste! paste?<CR>
-" Toggle showing whitespace characters
-nmap <silent> <leader>l    :set list! <CR>
+
+" Toggle visible whitespace characters
+nmap <silent> <leader>l    :set list!<CR>
+
 " Toggle scrollbind for moving multiple splits in sync together
 nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
+
+" Toggle mouse support.
+nnoremap <leader>m         :call ToggleMouse()<CR>
+
 " Toggle NERDTree instead of the normal dir browser... Doesn't seem to work yet
-nmap <silent> <leader>d    :NERDTreeToggle<CR>
+nnoremap <silent> <leader>d    :NERDTreeToggle<CR>
+
 " Toggle Commenting out lines with NERDCommenter
 nnoremap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
 vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 
-" Vim's Undo Tree with Gundo!
+" Traverse undo tree with Gundo!
 nnoremap <leader>u :GundoToggle<CR>
 
-" Search with ack!
+" Search under cursor with ack!
 nnoremap <leader>a :Ack <cword><CR>
 nnoremap <leader>A :Ack -a <cword><CR>
 vnoremap <leader>a :Ack <cword><CR>
 vnoremap <leader>A :Ack -a <cword><CR>
+
+
+""""""""
+"" Key Remaps - Movement and Windows
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" jump to beginning and end of line easier
+nmap H ^
+nmap L $
+
+" Smart way to move between windows
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+
+" mapping to make movements operate on 1 screen line in wrap mode
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+
+
+""""""""
+"" Plugin options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" let g:NERDTreeQuitOnOpen = 1
+
+" Having problems showing NERDTree arrows in OS X
+if s:uname == "Darwin"
+  let g:NERDTreeDirArrows=0 
+endif
+
+" let g:SuperTabDefaultCompletionType = 'context'
+
+
+""""""""
+"" Functions, the Givers of Power (in order of use)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! FoldText()
+    let line = getline(v:foldstart)
+    let indent = indent(v:foldstart)
+    let indentOnly = strpart(line, 0, indent-1)
+    let linecount = v:foldend+1 - v:foldstart
+    let plural = ""
+    if linecount != 1
+        let plural = "s"
+    endif
+    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
+    return foldtext
+endfunction
+
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
+
+function! ScreenMovement(movement)
+    if &wrap
+        return "g" . a:movement
+    else
+        return a:movement
+    endif
+endfunction
+
 
 " Colemak layout for INSERT mode only
 " Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./
@@ -227,52 +296,3 @@ vnoremap <leader>A :Ack -a <cword><CR>
 "inoremap <silent> L I
 "inoremap <silent> : O
 "inoremap <silent> N K
-
-
-""""""""
-"" Key Remaps - Movement and Windows
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" jump to beginning and end of line easier
-nmap H ^
-nmap L $
-
-" Smart way to move btw. windows
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" mapping to make movements operate on 1 screen line in wrap mode
-function! ScreenMovement(movement)
-    if &wrap
-        return "g" . a:movement
-    else
-        return a:movement
-    endif
-endfunction
-
-onoremap <silent> <expr> j ScreenMovement("j")
-onoremap <silent> <expr> k ScreenMovement("k")
-onoremap <silent> <expr> 0 ScreenMovement("0")
-onoremap <silent> <expr> ^ ScreenMovement("^")
-onoremap <silent> <expr> $ ScreenMovement("$")
-nnoremap <silent> <expr> j ScreenMovement("j")
-nnoremap <silent> <expr> k ScreenMovement("k")
-nnoremap <silent> <expr> 0 ScreenMovement("0")
-nnoremap <silent> <expr> ^ ScreenMovement("^")
-nnoremap <silent> <expr> $ ScreenMovement("$")
-
-
-""""""""
-"" Plugin options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:NERDTreeQuitOnOpen = 1
-
-" Having problems showing NERDTree arrows in OS X
-if s:uname == "Darwin"
-  let g:NERDTreeDirArrows=0 
-endif
-
-" let g:SuperTabDefaultCompletionType = 'context'
