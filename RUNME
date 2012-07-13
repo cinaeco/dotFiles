@@ -6,40 +6,34 @@
 # A lot of this extra knowledge courtesy of vimcasts.org!
 
 # Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
-echo "Checking for known_hosts:"
 if test -f ~/.ssh/known_hosts; then
-  echo " -> Found"
+  echo "known_hosts found..."
 else
-  echo " -> Not Found"
   mkdir -p ~/.ssh
   touch ~/.ssh/known_hosts
-  echo " -> Created ~/.ssh/known_hosts"
+  echo "known_hosts created (blank)..."
 fi
 
 # Ack for this user (perl 5.8.8 or higher on system)
 # Curl may need to have proxy settings
-echo "Checking for ack in ~/bin:"
 if test -f ~/bin/ack; then
-  echo " -> Found"
+  echo "ack found..."
 else
-  echo " -> Not Found"
   mkdir -p ~/bin
   curl http://betterthangrep.com/ack-standalone > ~/bin/ack
   chmod 0755 ~/bin/ack
-  echo " -> Installed ~/bin/ack from betterthangrep.com"
+  echo "ack installed from betterthangrep.com..."
 fi
 
 # color for git! Some machines don't have it.
-echo "Setting up git colour and editor:"
 git config --global color.ui true
 git config --global core.editor "vim"
-echo " -> Done"
+echo "git colour and editor setup..."
 
 # This repository has vim plugins as submodules, so initialise and clone them
-echo "Getting dotfiles submodules:"
 git submodule init
 git submodule update
-echo " -> Done"
+echo "dotfiles submodules done..."
 
 # Add more vim plugins from this dotfiles directory, like so:
 #     git submodule add git://github.com/tpope/module.git vim/bundle/module
@@ -47,41 +41,41 @@ echo " -> Done"
 # Apart from updating plugins individually, you can update all submodules
 #     git submodule foreach git pull origin master
 
-# SSH Config
-echo "Symlinking for ssh:"
-ln -s ../dotfiles/ssh/config ~/.ssh/config
-echo " -> Done"
 
-# Vim
-echo "Symlinking for vim:"
-if test -d ~/.vim; then
-  echo " -> .vim folder exists"
-else
-  ln -s dotfiles/vim/ ~/.vim
-fi
-ln -s dotfiles/vim/vimrc ~/.vimrc
-mkdir ~/.vimundo # persistent undo directory
-echo " -> Done"
+#
+# Thanks to: https://github.com/dangerous/dotfiles
+# for cleaner way of handling symlinking
+#
+BACKUP_DIR="/tmp/$(date)"
+mkdir "$BACKUP_DIR"
 
 # Zsh
-echo "Symlinking for zsh:"
+mv ~/.zshrc "$BACKUP_DIR"
 ln -s dotfiles/zsh/zshrc ~/.zshrc
+mv ~/.zshenv "$BACKUP_DIR"
 ln -s dotfiles/zsh/zshenv ~/.zshenv
-echo " -> Done"
+
+# Vim
+mv ~/.vim "$BACKUP_DIR"
+ln -s dotfiles/vim ~/.vim
+mv ~/.vimrc "$BACKUP_DIR"
+ln -s dotfiles/vim/vimrc ~/.vimrc
+mkdir -p ~/.vimundo # persistent undo directory
+
+# SSH Config
+mv ~/.ssh/config "$BACKUP_DIR"
+ln -s ../dotfiles/ssh/config ~/.ssh/config
 
 # Pentadactyl
-echo "Symlinking for pentadactyl:"
+mv ~/.pentadactylrc "$BACKUP_DIR"
 ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
-echo " -> Done"
 
 # Screen
-echo "Symlinking for gnu screen:"
+mv ~/.screenrc "$BACKUP_DIR"
 ln -s dotfiles/screen/screenrc ~/.screenrc
-echo " -> Done"
 
 # Nethack
-echo "Symlinking for nethack:"
+mv ~/.nethackrc "$BACKUP_DIR"
 ln -s dotfiles/nethack/nethackrc ~/.nethackrc
-echo " -> Done"
 
 echo "Setup complete!"
