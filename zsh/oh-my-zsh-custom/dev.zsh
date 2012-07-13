@@ -1,14 +1,21 @@
 #
 # shortcuts for development
 #
+
+# logs
 alias authlog='tail -F /jails/alcatraz/usr/local/www-conf/logs/auth-phplog'
 alias deliverylog='tail -F /jails/alcatraz/usr/local/www-conf/logs/delivery-phplog'
 alias oarslog='tail -F /jails/alcatraz/usr/local/www-conf/logs/oars-phplog'
 alias schoolslog='tail -F /jails/alcatraz/usr/local/www-conf/logs/schools-phplog'
+
+# apps
 alias cda='cd /jails/alcatraz/usr/local/www/auth'
 alias cdd='cd /jails/alcatraz/usr/local/www/delivery'
 alias cdo='cd /jails/alcatraz/usr/local/www/oars'
 alias cds='cd /jails/alcatraz/usr/local/www/schools'
+alias cd.='cd ~/dotfiles'
+
+# db
 alias migrate='li3 migration db:migrate'
 alias sqlo='mysql -u oars -p'
 
