@@ -105,11 +105,23 @@ hi Folded ctermfg=darkred "set colour for folded lines
 "" UI - Numbering
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set number "show line numbers
-set ruler "show row,col count in status line
-set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
-set laststatus=2 "always show a status line
-"set relativenumber "current line always 0 (requires 7.3 and up)
+set number          " show line numbers
+"set relativenumber " current line always 0 (requires 7.3 and up)
+set laststatus=2    " status line is second last line (not hidden by commands)
+set statusline=%f   " short filepath
+set statusline+=%h  " help flag
+set statusline+=%w  " preview flag
+set statusline+=%r  " read-only flag
+set statusline+=%m  " modified flag
+set statusline+=%=  " left-right aligned item separator
+"set statusline+=\ \ Chr:%B/%b
+set statusline+=%{fugitive#statusline()}
+if exists("*strftime")
+  set statusline+=\ \ %{strftime('%a\ %d\ %b\ %H:%M')}
+endif
+set statusline+=\ \ %-14(Line:%l/%L%)
+set statusline+=%-11(Col:%c%V%)
+set statusline+=Scroll:%P
 
 
 """"""""
