@@ -24,7 +24,7 @@ print -Pn "\e]1;`hostname | cut -d. -f1`\a"
 ## multi line prompt
 PROMPT='
 %{$fg[cyan]%}[%m]  %{$fg[yellow]%}%3~  $(git_prompt_info) 
-%{$fg[magenta]%}%n %{$fg[magenta]%}→ %{$reset_color%}'
+%{$fg[magenta]%}%n → %{$reset_color%}'
 RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
