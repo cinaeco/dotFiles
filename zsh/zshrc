@@ -69,13 +69,13 @@ alias ga.='git add .'
 alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --staged'
-alias gl='git log --pretty=oneline --graph'
-alias glg='git log --graph'
+alias gl='git log --graph --pretty="format:%C(yellow)%H %Cblue[%cn] %Creset%s"'
+alias gls='git log --graph --stat'
 alias glp='git log -p'
-alias gls='git log --stat'
+alias gr='git rebase'
 # useful git plugin built-in ones include:
-#   gc, gco, gb, gba, grhh
-# if you can't guess what they do, I suppose they are not that good afterall
+#   gc, gco, gb, gba, gm, grhh, ggpull, ggpush
+# ggpull translates into `git pull origin <current branch>`, same for ggpush
 
 #############
 # SSH AGENT #
