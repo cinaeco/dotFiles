@@ -181,7 +181,7 @@ msgwait               15
 # get the sessionname that has been set by `C-a :sessionname` or by
 # `screen -S [name]`
 #
-backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" | sed s/$PPID\.// | sed s/ttys.*//g | sed s/pts-.*//g'
+backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" | sed s/$PPID\.// | sed s/ttys.*// | sed s/pts-.*//'
 
 
 ##################################
