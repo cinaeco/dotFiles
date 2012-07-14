@@ -164,7 +164,7 @@ nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
 " Toggle mouse support.
 nnoremap <leader>m         :call ToggleMouse()<CR>
 
-" Toggle NERDTree instead of the normal dir browser... Doesn't seem to work yet
+" Toggle NERDTree file browser
 nnoremap <silent> <leader>d    :NERDTreeToggle<CR>
 
 " Toggle Commenting out lines with NERDCommenter
@@ -212,7 +212,7 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 "" Plugin options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" let g:NERDTreeQuitOnOpen = 1
+ let g:NERDTreeQuitOnOpen = 1
 
 " Having problems showing NERDTree arrows in OS X
 if s:uname == "Darwin"
