@@ -224,7 +224,7 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 "" Plugin options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
- let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 1
 
 " Having problems showing NERDTree arrows in OS X
 if s:uname == "Darwin"
@@ -232,6 +232,8 @@ if s:uname == "Darwin"
 endif
 
 " let g:SuperTabDefaultCompletionType = 'context'
+
+let g:gundo_preview_bottom = 1
 
 
 """"""""
