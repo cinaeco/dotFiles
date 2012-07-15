@@ -43,6 +43,9 @@ setopt nohistverify
 ## don't have the same history across tabs/windows
 setopt nosharehistory
 
+## typos
+alias scren='screen'
+
 ## folder listing/traversal
 alias l='ls'
 alias ll='ls -hl'
