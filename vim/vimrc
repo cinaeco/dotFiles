@@ -56,7 +56,6 @@ if has("autocmd")
  
     " if the last window is NERDTree, then close Vim
     "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
- 
 else
     set autoindent on
 endif
@@ -185,12 +184,6 @@ vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 
 " Traverse undo tree with Gundo!
 nnoremap <leader>u :GundoToggle<CR>
-
-" Search under cursor with ack!
-nnoremap <leader>a :Ack <cword><CR>
-nnoremap <leader>A :Ack -a <cword><CR>
-vnoremap <leader>a :Ack <cword><CR>
-vnoremap <leader>A :Ack -a <cword><CR>
 
 
 """"""""
