@@ -228,6 +228,12 @@ endif
 
 let g:gundo_preview_bottom = 1
 
+" Disable tpope's surround
+"let g:loaded_surround = 1
+
+" Disable msander's surrounding, a surround fork
+" (not in bundle, just plugin. Not maintained in 3 years)
+let g:did_surrounding = 1
 
 """"""""
 "" Functions, the Givers of Power (in order of use)
