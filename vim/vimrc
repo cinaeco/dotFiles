@@ -217,23 +217,23 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 "" Plugin options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""" NERDTree
 let g:NERDTreeQuitOnOpen = 1
-
-" Having problems showing NERDTree arrows in OS X
 if s:uname == "Darwin"
-  let g:NERDTreeDirArrows=0 
+  let g:NERDTreeDirArrows=0 " Problems showing NERDTree arrows in OS X
 endif
 
-" let g:SuperTabDefaultCompletionType = 'context'
 
+""""""""" Gundo
+let g:gundo_width = 30
+let g:gundo_preview_height = 12
 let g:gundo_preview_bottom = 1
 
-" Disable tpope's surround
-"let g:loaded_surround = 1
 
-" Disable msander's surrounding, a surround fork
-" (not in bundle, just plugin. Not maintained in 3 years)
-let g:did_surrounding = 1
+""""""""" Surround
+"let g:loaded_surround = 1    " Disable tpope's surround
+let g:did_surrounding = 1    " Disable msander's surrounding (surround fork)
+
 
 """"""""
 "" Functions, the Givers of Power (in order of use)
