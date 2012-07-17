@@ -97,7 +97,7 @@ syntax enable
 colorscheme solarized
 set t_Co=16
 set background=dark
-hi Folded ctermfg=darkred "set colour for folded lines
+hi Folded term=none cterm=none ctermfg=darkred ctermbg=none "set colour for folded lines
 
 
 """"""""
@@ -107,7 +107,7 @@ hi Folded ctermfg=darkred "set colour for folded lines
 set number          " show line numbers
 "set relativenumber " current line always 0 (requires 7.3 and up)
 set laststatus=2    " status line is second last line (not hidden by commands)
-set statusline=%f   " short filepath
+set statusline=%f\  " short filepath
 set statusline+=%h  " help flag
 set statusline+=%w  " preview flag
 set statusline+=%r  " read-only flag
