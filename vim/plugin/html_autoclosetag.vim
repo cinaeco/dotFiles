@@ -5,14 +5,14 @@
 " Description:  Automatically closes HTML tag once you finish typing it with >
 
 if exists('b:mapped_auto_closetag') || &cp | finish | endif
-let b:mapped_auto_closetag = 1
+let g:mapped_auto_closetag = 1
 
 ino <buffer> <silent> < <><left>
 ino <buffer> <silent> > <c-r>=<SID>CloseTag()<cr>
 ino <buffer> <expr> <cr> <SID>Return()
 
 if exists('s:did_auto_closetag') | finish | endif
-let s:did_auto_closetag = 1
+let g:did_auto_closetag = 1
 
 " Gets the current HTML tag by the cursor.
 fun s:GetCurrentTag()

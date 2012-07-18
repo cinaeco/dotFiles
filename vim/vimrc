@@ -231,9 +231,14 @@ let g:gundo_preview_bottom = 1
 
 
 """"""""" Surround
-"let g:loaded_surround = 1    " Disable tpope's surround
-let g:did_surrounding = 1    " Disable msander's surrounding (surround fork)
+"let g:loaded_surround = 1  " Disable tpope's surround
+let g:did_surrounding = 1  " Disable msander's surrounding (surround fork)
 
+
+""""""""" HTML Autoclose Tag
+" We are instead trying out sparkup
+let g:mapped_auto_closetag = 1  " Disable html autoclose plugin
+let g:did_auto_closetag = 1  " Disable html autoclose plugin
 
 """"""""
 "" Functions, the Givers of Power (in order of use)
