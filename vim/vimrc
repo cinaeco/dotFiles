@@ -113,7 +113,7 @@ set statusline+=%w  " preview flag
 set statusline+=%r  " read-only flag
 set statusline+=%m  " modified flag
 set statusline+=%=  " left-right aligned item separator
-"set statusline+=\ \ Chr:%B/%b
+"set statusline+=Chr:%B/%b " character value under cursor
 set statusline+=%{fugitive#statusline()}
 if exists("*strftime")
   set statusline+=\ \ %{strftime('%a\ %d\ %b\ %H:%M')}
@@ -244,10 +244,6 @@ function! FoldText()
     let indent = indent(v:foldstart)
     let indentOnly = strpart(line, 0, indent-1)
     let linecount = v:foldend+1 - v:foldstart
-    let plural = ""
-    if linecount != 1
-        let plural = "s"
-    endif
     let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
     return foldtext
 endfunction
