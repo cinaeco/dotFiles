@@ -34,3 +34,6 @@
 [submodule "vim/bundle/ackmore"]
 	path = vim/bundle/ackmore
 	url = https://github.com/jordansissel/vim-ackmore.git
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
