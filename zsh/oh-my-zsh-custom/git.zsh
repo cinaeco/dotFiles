@@ -7,6 +7,7 @@ alias gl='git log --graph --date=relative --pretty="format:%C(yellow)%h %Cblue[%
 alias gls='git log --graph --stat'
 alias glp='git log -p'
 alias gr='git rebase'
+alias gtrack='git branch --set-upstream $(current_branch) origin/$(current_branch)'
 # useful git plugin built-in ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, ggpull, ggpush
 # ggpull translates into `git pull origin <current branch>`, same for ggpush
