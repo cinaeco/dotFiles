@@ -21,7 +21,6 @@ endif
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-set autoread "Read a file if it's changed from outside of vim
 set splitbelow "New splits appear below current window instead of above
 set splitright "New splits appear right of current window
 set ttyfast "Smooth movement
@@ -239,6 +238,7 @@ let g:did_surrounding = 1  " Disable msander's surrounding (surround fork)
 " We are instead trying out sparkup
 let g:mapped_auto_closetag = 1  " Disable html autoclose plugin
 let g:did_auto_closetag = 1  " Disable html autoclose plugin
+
 
 """"""""
 "" Functions, the Givers of Power (in order of use)
