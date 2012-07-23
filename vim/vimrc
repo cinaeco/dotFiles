@@ -184,6 +184,9 @@ vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 " Traverse undo tree with Gundo!
 nnoremap <leader>u :GundoToggle<CR>
 
+" Git blame with Fugitive!
+nnoremap <leader>b :Gblame<CR>
+
 
 """"""""
 "" Key Remaps - Movement and Windows
