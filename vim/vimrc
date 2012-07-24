@@ -1,9 +1,11 @@
 set nocompatible "Don't have to try to be compatible with old vi
+set encoding=utf-8
 
 """"""""
 "" Plugin Loading with Pathogen
 """""""""""""""""""""""""""""""""""""""""""""""""""
 call pathogen#infect()
+call pathogen#helptags()
 
 
 """"""""
@@ -105,21 +107,13 @@ hi Folded term=none cterm=none ctermfg=darkred ctermbg=none "set colour for fold
 
 set number          " show line numbers
 "set relativenumber " current line always 0 (requires 7.3 and up)
+
+
+""""""""
+"" UI - Statusline (now using powerline)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set laststatus=2    " status line is second last line (not hidden by commands)
-set statusline=%f\  " short filepath
-set statusline+=%h  " help flag
-set statusline+=%w  " preview flag
-set statusline+=%r  " read-only flag
-set statusline+=%m  " modified flag
-set statusline+=%=  " left-right aligned item separator
-"set statusline+=Chr:%B/%b " character value under cursor
-set statusline+=%{fugitive#statusline()}
-if exists("*strftime")
-  set statusline+=\ \ %{strftime('%a\ %d\ %b\ %H:%M')}
-endif
-set statusline+=\ \ %-14(Line:%l/%L%)
-set statusline+=%-11(Col:%c%V%)
-set statusline+=Scroll:%P
 
 
 """"""""
@@ -187,6 +181,8 @@ nnoremap <leader>u :GundoToggle<CR>
 " Git blame with Fugitive!
 nnoremap <leader>b :Gblame<CR>
 
+" Code heirarchy with Tagbar!
+nnoremap <leader>t :TagbarToggle<CR>
 
 """"""""
 "" Key Remaps - Movement and Windows
@@ -243,6 +239,9 @@ let g:mapped_auto_closetag = 1  " Disable html autoclose plugin
 let g:did_auto_closetag = 1  " Disable html autoclose plugin
 
 
+""""""""" Powerline
+let g:Powerline_symbols = 'compatible'
+
 """"""""
 "" Functions, the Givers of Power (in order of use)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -274,6 +273,26 @@ function! ScreenMovement(movement)
     endif
 endfunction
 
+
+""""""""
+"" Graveyard
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Old statusline options
+"set statusline=%f\  " short filepath
+"set statusline+=%h  " help flag
+"set statusline+=%w  " preview flag
+"set statusline+=%r  " read-only flag
+"set statusline+=%m  " modified flag
+"set statusline+=%=  " left-right aligned item separator
+""set statusline+=Chr:%B/%b " character value under cursor
+"set statusline+=%{fugitive#statusline()}
+"if exists("*strftime")
+  "set statusline+=\ \ %{strftime('%a\ %d\ %b\ %H:%M')}
+"endif
+"set statusline+=\ \ %-14(Line:%l/%L%)
+"set statusline+=%-11(Col:%c%V%)
+"set statusline+=Scroll:%P
 
 " Colemak layout for INSERT mode only
 " Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./

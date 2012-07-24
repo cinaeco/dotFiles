@@ -8,7 +8,16 @@ User root
 Host feni
 User root
 
+Host dev4
+User root
+
 Host dev5
+User root
+
+Host dev6
+User root
+
+Host dev7
 User root
 
 Host pavo
