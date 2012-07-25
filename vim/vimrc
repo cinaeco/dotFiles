@@ -242,6 +242,11 @@ let g:did_auto_closetag = 1  " Disable html autoclose plugin
 """"""""" Powerline
 let g:Powerline_symbols = 'compatible'
 
+
+""""""""" Tagbar
+let g:tagbar_autoclose = 1
+
+
 """"""""
 "" Functions, the Givers of Power (in order of use)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,63 +277,3 @@ function! ScreenMovement(movement)
         return a:movement
     endif
 endfunction
-
-
-""""""""
-"" Graveyard
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Old statusline options
-"set statusline=%f\  " short filepath
-"set statusline+=%h  " help flag
-"set statusline+=%w  " preview flag
-"set statusline+=%r  " read-only flag
-"set statusline+=%m  " modified flag
-"set statusline+=%=  " left-right aligned item separator
-""set statusline+=Chr:%B/%b " character value under cursor
-"set statusline+=%{fugitive#statusline()}
-"if exists("*strftime")
-  "set statusline+=\ \ %{strftime('%a\ %d\ %b\ %H:%M')}
-"endif
-"set statusline+=\ \ %-14(Line:%l/%L%)
-"set statusline+=%-11(Col:%c%V%)
-"set statusline+=Scroll:%P
-
-" Colemak layout for INSERT mode only
-" Qwerty  - qwertyuiopasdfghjkl;'zxcvbnm,./
-" Colemak - qwfpgjluy;arstdhneio'zxcvbkm,./
-"inoremap <silent> e f
-"inoremap <silent> r p
-"inoremap <silent> t g
-"inoremap <silent> y j
-"inoremap <silent> u l
-"inoremap <silent> i u
-"inoremap <silent> o y
-"inoremap <silent> p ;
-"inoremap <silent> s r
-"inoremap <silent> d s
-"inoremap <silent> f t
-"inoremap <silent> g d
-"inoremap <silent> j n
-"inoremap <silent> k e
-"inoremap <silent> l i
-"inoremap <silent> ; o
-"inoremap <silent> n k
-
-"inoremap <silent> E F
-"inoremap <silent> R P
-"inoremap <silent> T G
-"inoremap <silent> Y J
-"inoremap <silent> U L
-"inoremap <silent> I U
-"inoremap <silent> O Y
-"inoremap <silent> P :
-"inoremap <silent> S R
-"inoremap <silent> D S
-"inoremap <silent> F T
-"inoremap <silent> G D
-"inoremap <silent> J N
-"inoremap <silent> K E
-"inoremap <silent> L I
-"inoremap <silent> : O
-"inoremap <silent> N K
