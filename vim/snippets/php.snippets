@@ -5,3 +5,7 @@ snippet vardump
 	var_dump($${1:check_variable}); exit;
 snippet logger
 	Logger::debug('${1:description} ' . print_r($${2:variable}, true));
+snippet logmem
+	Logger::debug('Memory Usage: ${1:description} ' . memory_get_usage() / (1024 * 1024) . ' MiB');
+snippet logtime
+	Logger::debug('Time Index: ${1:description} ' . xdebug_time_index() . 's');
