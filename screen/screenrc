@@ -63,10 +63,6 @@ vbell                 on              # default: ???
 # Message to be displayed when the visual bell is triggered.
 vbell_msg             " *beep* "
 
-# Disable nethack error messsages. This gets triggered by the prescence of a
-# .nethackrc or the $NETHACKOPTIONS environmental variable
-nethack off
-
 # Get rid of screen 0
 # http://www.linuxquestions.org/questions/linux-software-2/gnu-screen-start-window-numbering-at-1-keep-window-number-0-from-ever-being-used-772580/
 bind c screen 1
