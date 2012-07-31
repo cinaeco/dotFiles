@@ -3,3 +3,4 @@
 
 # Vim temp files
 *.swp
+.netrwhist
