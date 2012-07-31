@@ -36,25 +36,28 @@ endif
 if has("autocmd")
     " Enable filetype specific features
     filetype plugin indent on
+
     " Clear existing autocmd
     autocmd!
+
     " When editing a file, always jump to the last cursor position
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
 
+    " Any actions on startup
+    autocmd VimEnter * call StartUp()
+
     autocmd WinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 
     " Show trailing white space
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
     " Source the vimrc file after saving it
     autocmd bufwritepost .vimrc source $MYVIMRC
-
-    " A way to specify startup actions
-    autocmd VimEnter * call StartUp()
 
     " if the last window is NERDTree, then close Vim
     "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
