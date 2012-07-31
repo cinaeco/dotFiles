@@ -1,4 +1,4 @@
-set nocompatible "Don't have to try to be compatible with old vi
+set nocompatible    " Don't have to try to be compatible with old vi
 set encoding=utf-8
 
 """"""""
@@ -9,10 +9,9 @@ call pathogen#helptags()
 
 
 """"""""
-"" Environment
+"" Environment - What kind of machine are we on?
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Determine what kind of machine we're on e.g. Linux, Darwin, Win(?)
 if has("unix")
   " remove the newline character from the uname command
   let s:uname = substitute(system("uname"), "\n", "", "")
@@ -23,17 +22,16 @@ endif
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-set splitbelow "New splits appear below current window instead of above
-set splitright "New splits appear right of current window
-set ttyfast "Smooth movement
+set splitbelow    " New splits appear below current window instead of above
+set splitright    " New splits appear right of current window
+set ttyfast       " Smooth movement
+set ttymouse=xterm2
 
 " Persistent undo
 if has("persistent_undo")
     set undofile
     set undodir=~/.vimundo
 endif
-
-set ttymouse=xterm2
 
 if has("autocmd")
     " Enable filetype specific features
@@ -68,9 +66,9 @@ endif
 """"""""
 "" Start Up
 """""""""""""""""""""""""""""""""""""""""""""""""""
+
 function! StartUp()
-    " Stuff in here will be called by autocmd below
-    " example, start NERDTree if vim called with no arguments
+    " start NERDTree if vim called with no arguments
     if 0 == argc()
         NERDTree
     end
@@ -86,10 +84,10 @@ set tabstop=2       " actual tab press distance
 set shiftround      " indent to nearest tabstops
 set shiftwidth=2    " amount to indent with > and <
 set smarttab        " backspace tabs where appropriate even if spaces
-set softtabstop=2   " let backspace delete indent
+set softtabstop=2   " let backspace delete by indents
 set wrap lbr        " wrap long lines of text
 set backspace=eol,start,indent "backspace over everything
-set textwidth=80
+set textwidth=80    " try to keep text within 80 characters
 set colorcolumn=+1  " mark out the limits of the textwidth
 set listchars=trail:_,tab:>.,eol:$
 
@@ -147,13 +145,13 @@ set magic       " enables wildcard searching
 "" Key Remaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let mapleader = "," "Leader key lets you make more kinds of shortcuts!
+let mapleader = ","    " easier to use than \
 
 " More convenient escape
 imap ii <Esc>
 imap II <Esc>
 
-" Yank to end of line, like D
+" Yank to end of line, like D deletes to end of line
 nmap Y y$
 
 " Clear trailing white space
@@ -230,7 +228,7 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""" NERDTree
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 1 " close sidebar after we go to selection
 if s:uname == "Darwin"
   let g:NERDTreeDirArrows=0 " Problems showing NERDTree arrows in OS X
 endif
@@ -247,22 +245,16 @@ let g:gundo_preview_bottom = 1
 let g:did_surrounding = 1  " Disable msander's surrounding (surround fork)
 
 
-""""""""" HTML Autoclose Tag
-" We are instead trying out sparkup
-let g:mapped_auto_closetag = 1  " Disable html autoclose plugin
-let g:did_auto_closetag = 1  " Disable html autoclose plugin
-
-
 """"""""" Powerline
 let g:Powerline_symbols = 'compatible' " alternatives: fancy, unicode
 
 
 """"""""" Tagbar
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 1 " close sidebar after we go to selection
 
 
 """"""""
-"" Functions, the Givers of Power (in order of use)
+"" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! FoldText()
