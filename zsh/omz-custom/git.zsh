@@ -8,8 +8,7 @@ alias gds='git diff --staged'
 alias gcob='git checkout -b'
 alias gf='git fetch'
 
-alias gbd='git branch -d'
-alias gbD='git branch -D'
+alias gbd='git branch -D'
 
 alias gl='git log --graph --date=relative --pretty="format:%C(yellow)%h %Cblue[%cn] %Creset%s... %cd"'
 alias gls='git log --graph --stat'
