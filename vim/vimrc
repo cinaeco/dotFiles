@@ -46,6 +46,11 @@ if has("autocmd")
     \   exe "normal! g'\"" |
     \ endif
 
+    " Maps for Quickfix and Location List windows
+    autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
+    autocmd FileType qf nnoremap <silent> <buffer> o <CR>
+    autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
+
     " Any actions on startup
     autocmd VimEnter * call StartUp()
 
@@ -243,21 +248,16 @@ let g:gundo_preview_height = 12
 let g:gundo_preview_bottom = 1
 
 
-""""""""" Surround
-"let g:loaded_surround = 1  " Disable tpope's surround
-let g:did_surrounding = 1  " Disable msander's surrounding (surround fork)
-
-
-""""""""" Ack
-let g:ackhighlight = 1 " Highlight search word
-
-
 """"""""" Powerline
 let g:Powerline_symbols = 'fancy' " alternatives: fancy, unicode
 
 
 """"""""" Tagbar
 let g:tagbar_autoclose = 1 " close sidebar after we go to selection
+
+
+""""""""" EasyGrep
+let g:EasyGrepJumpToMatch = 0
 
 
 """"""""
