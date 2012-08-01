@@ -52,3 +52,6 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/easygrep"]
+	path = vim/bundle/easygrep
+	url = https://github.com/vim-scripts/EasyGrep.git
