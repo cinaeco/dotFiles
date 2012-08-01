@@ -255,6 +255,7 @@ let g:tagbar_autoclose = 1 " close sidebar after we go to selection
 
 """"""""" EasyGrep
 let g:EasyGrepJumpToMatch = 0
+let g:EasyGrepHighlightQfMatches = 1
 
 
 """"""""
