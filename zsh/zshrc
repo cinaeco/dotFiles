@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/zsh/oh-my-zsh
-ZSH_CUSTOM=$HOME/dotfiles/zsh/oh-my-zsh-custom
+ZSH_CUSTOM=$HOME/dotfiles/zsh/omz-custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -35,37 +35,7 @@ plugins=(git vi-mode ssh-agent)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
-## hosts file
-alias hosts='sudo vim /etc/hosts'
-
-## history
-alias h='history'
-## don't show expansions, just execute, e.g. for !! and !$
-setopt nohistverify
-## don't have the same history across tabs/windows
-setopt nosharehistory
-
-## typos
-alias scren='screen'
-
-## folder listing/traversal
-alias l='ls'
-alias ll='ls -hl'
-alias la='ls -A'
-alias lal="ls -Ahl"
-alias cd..='cd ..';
-alias ..='cd ..'
-alias -g ...="../.."
-alias -g ....="../../.."
-alias -g .....="../../../.."
-
-## file manipulation
-alias mkdir='nocorrect mkdir'
-alias mv='nocorrect mv'
-alias cp='nocorrect cp'
-alias touch='nocorrect touch'
-alias ln='nocorrect ln'
+#  Most customisations are now under ZSH_CUSTOM
 
 ## include settings specific to this machine
 if [[ -r ~/.zshlocal ]]; then

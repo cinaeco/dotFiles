@@ -1,0 +1,2 @@
+## typos
+alias scren='screen'
