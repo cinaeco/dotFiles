@@ -237,9 +237,6 @@ nnoremap <silent> <expr> $ ScreenMovement("$")
 
 """"""""" NERDTree
 let g:NERDTreeQuitOnOpen = 1 " close sidebar after we go to selection
-if s:uname == "Darwin"
-  let g:NERDTreeDirArrows=0 " Problems showing NERDTree arrows in OS X
-endif
 
 
 """"""""" Gundo
