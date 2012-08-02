@@ -37,7 +37,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 #  Most customisations are now under ZSH_CUSTOM
 
-## include settings specific to this machine
+# Load settings specific to this machine
 if [[ -r ~/.zshlocal ]]; then
     source ~/.zshlocal
 fi
