@@ -39,34 +39,39 @@ function git_prompt_info() {
 ## Override the default `git_prompt_status` function
 ## This one will try to print a symbol for each change listed in git status.
 ## The old version only listed if each type existed or not.
+## Status is computed from the short version of git status that lists out
+##     xy filename1
+##     xy filename2
+## where x and y are statuses such as A (added), M (modified). Details in the
+## git-status manpage
 git_prompt_status() {
   INDEX=$(git status -s 2> /dev/null)
   STATUS=""
-  echo $INDEX | while IFS= read line; do
-    if $(echo "$line" | grep '^?? ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED"
-    fi
-    if $(echo "$line" | grep '^A  ' &> /dev/null); then
+  echo $INDEX | while IFS= read LINE; do
+    X=$LINE[1]
+    Y=$LINE[2]
+    [[ $X$Y == '??' ]] && STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
+    if [[ $X == 'A' || $Y == 'A' ]]; then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
-    elif $(echo "$line" | grep '^M. ' &> /dev/null); then
+    elif [[ $X == 'M' ]] then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
     fi
-    if $(echo "$line" | grep '^.M ' &> /dev/null); then
+    if $(echo "$LINE" | grep '^.M ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
-    elif $(echo "$line" | grep '^AM ' &> /dev/null); then
+    elif $(echo "$LINE" | grep '^AM ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
-    elif $(echo "$line" | grep '^ T ' &> /dev/null); then
+    elif $(echo "$LINE" | grep '^ T ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
     fi
-    if $(echo "$line" | grep '^R  ' &> /dev/null); then
+    if $(echo "$LINE" | grep '^R  ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_RENAMED"
     fi
-    if $(echo "$line" | grep '^ D ' &> /dev/null); then
+    if $(echo "$LINE" | grep '^ D ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
-    elif $(echo "$line" | grep '^AD ' &> /dev/null); then
+    elif $(echo "$LINE" | grep '^AD ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
     fi
-    if $(echo "$line" | grep '^UU ' &> /dev/null); then
+    if $(echo "$LINE" | grep '^UU ' &> /dev/null); then
       STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
     fi
   done
