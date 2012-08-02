@@ -48,32 +48,27 @@ function git_prompt_info() {
 ## git-status manpage
 git_prompt_status() {
   INDEX=$(git status -s 2> /dev/null)
-  STATUS=""
-  X_SET=()
-  Y_SET=()
+  X_SET=""
+  Y_SET=""
   UN_SET=""
   echo $INDEX | while IFS= read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
     [[ $X$Y == '??' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
     [[ $X$Y == 'UU' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNMERGED" && continue
-    X_SET=("${X_SET[@]}" "$X")
-    Y_SET=("${Y_SET[@]}" "$Y")
+    X_SET="$X_SET$X"
+    Y_SET="$Y_SET$Y"
   done
-  for i in $X_SET; do
-    [[ $i == ' ' ]] && continue
-    [[ $i == 'M' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_MODIFIED" && continue
-    [[ $i == 'A' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_ADDED" && continue
-    [[ $i == 'D' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_DELETED" && continue
-    [[ $i == 'R' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_RENAMED" && continue
-    [[ $i == 'C' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_COPIED" && continue
-  done
-  for i in $Y_SET; do
-    [[ $i == ' ' ]] && continue
-    [[ $i == 'M' ]] && STATUS="$STATUS$ZSH_THEME_GIT_TREE_MODIFIED" && continue
-    [[ $i == 'D' ]] && STATUS="$STATUS$ZSH_THEME_GIT_TREE_DELETED" && continue
-  done
-  STATUS="$STATUS$UN_SET"
+  X_SET=$(sed "s/[ ]//g" <<< $X_SET)
+  X_SET=$(sed "s/M/$ZSH_THEME_GIT_INDEX_MODIFIED/g" <<< $X_SET)
+  X_SET=$(sed "s/A/$ZSH_THEME_GIT_INDEX_ADDED/g" <<< $X_SET)
+  X_SET=$(sed "s/D/$ZSH_THEME_GIT_INDEX_DELETED/g" <<< $X_SET)
+  X_SET=$(sed "s/R/$ZSH_THEME_GIT_INDEX_RENAMED/g" <<< $X_SET)
+  X_SET=$(sed "s/C/$ZSH_THEME_GIT_INDEX_COPIED/g" <<< $X_SET)
+  Y_SET=$(sed "s/[ ]//g" <<< $Y_SET)
+  Y_SET=$(sed "s/M/$ZSH_THEME_GIT_TREE_MODIFIED/g" <<< $Y_SET)
+  Y_SET=$(sed "s/D/$ZSH_THEME_GIT_TREE_DELETED/g" <<< $Y_SET)
+  STATUS="$X_SET$Y_SET$UN_SET"
   echo $STATUS
 }
 
