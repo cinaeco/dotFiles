@@ -12,6 +12,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}"
+ZSH_THEME_GIT_INFO_MAX=5
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[226]%}U"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[220]%}?"
 ZSH_THEME_GIT_TREE_MODIFIED="%{$FG[124]%}+"
@@ -55,7 +56,8 @@ git_prompt_status() {
     X=$LINE[1]
     Y=$LINE[2]
     [[ $X$Y == '??' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
-    [[ $X$Y == 'UU' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNMERGED" && continue
+    [[ $X == 'U' ]] || [[ $Y == 'U' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNMERGED" && continue
+    [[ $X$Y == 'DD' ]] || [[ $X$Y == 'AA' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNMERGED" && continue
     [[ $Y == 'M' ]] && Y_SET="$Y_SET$ZSH_THEME_GIT_TREE_MODIFIED"
     [[ $Y == 'D' ]] && Y_SET="$Y_SET$ZSH_THEME_GIT_TREE_DELETED"
     [[ $X == 'M' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_MODIFIED" && continue
