@@ -13,13 +13,15 @@ ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}"
-
-ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[082]%}+%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[160]%}+%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DELETED="%{$FG[160]%}x%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$FG[220]%}>%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[082]%}u%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[160]%}?%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[160]%}u"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[244]%}?"
+ZSH_THEME_GIT_INDEX_MODIFIED="%{$FG[076]%}+"
+ZSH_THEME_GIT_INDEX_ADDED="%{$FG[076]%}+"
+ZSH_THEME_GIT_INDEX_DELETED="%{$FG[076]%}x"
+ZSH_THEME_GIT_INDEX_RENAMED="%{$FG[076]%}>"
+ZSH_THEME_GIT_INDEX_COPIED="%{$FG[076]%}c"
+ZSH_THEME_GIT_TREE_MODIFIED="%{$FG[124]%}+"
+ZSH_THEME_GIT_TREE_DELETED="%{$FG[124]%}x"
 
 
 ##############################
@@ -47,34 +49,31 @@ function git_prompt_info() {
 git_prompt_status() {
   INDEX=$(git status -s 2> /dev/null)
   STATUS=""
+  X_SET=()
+  Y_SET=()
+  UN_SET=""
   echo $INDEX | while IFS= read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
-    [[ $X$Y == '??' ]] && STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
-    if [[ $X == 'A' || $Y == 'A' ]]; then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
-    elif [[ $X == 'M' ]] then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ADDED"
-    fi
-    if $(echo "$LINE" | grep '^.M ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
-    elif $(echo "$LINE" | grep '^AM ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
-    elif $(echo "$LINE" | grep '^ T ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MODIFIED"
-    fi
-    if $(echo "$LINE" | grep '^R  ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_RENAMED"
-    fi
-    if $(echo "$LINE" | grep '^ D ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
-    elif $(echo "$LINE" | grep '^AD ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED"
-    fi
-    if $(echo "$LINE" | grep '^UU ' &> /dev/null); then
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
-    fi
+    [[ $X$Y == '??' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
+    [[ $X$Y == 'UU' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNMERGED" && continue
+    X_SET=("${X_SET[@]}" "$X")
+    Y_SET=("${Y_SET[@]}" "$Y")
   done
+  for i in $X_SET; do
+    [[ $i == ' ' ]] && continue
+    [[ $i == 'M' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_MODIFIED" && continue
+    [[ $i == 'A' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_ADDED" && continue
+    [[ $i == 'D' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_DELETED" && continue
+    [[ $i == 'R' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_RENAMED" && continue
+    [[ $i == 'C' ]] && STATUS="$STATUS$ZSH_THEME_GIT_INDEX_COPIED" && continue
+  done
+  for i in $Y_SET; do
+    [[ $i == ' ' ]] && continue
+    [[ $i == 'M' ]] && STATUS="$STATUS$ZSH_THEME_GIT_TREE_MODIFIED" && continue
+    [[ $i == 'D' ]] && STATUS="$STATUS$ZSH_THEME_GIT_TREE_DELETED" && continue
+  done
+  STATUS="$STATUS$UN_SET"
   echo $STATUS
 }
 
