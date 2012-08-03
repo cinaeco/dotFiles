@@ -12,16 +12,16 @@ ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}"
-ZSH_THEME_GIT_INFO_MAX=5
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$FG[226]%}U"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$FG[220]%}?"
-ZSH_THEME_GIT_TREE_MODIFIED="%{$FG[124]%}+"
-ZSH_THEME_GIT_TREE_DELETED="%{$FG[124]%}x"
-ZSH_THEME_GIT_INDEX_MODIFIED="%{$FG[070]%}+"
-ZSH_THEME_GIT_INDEX_ADDED="%{$FG[070]%}+"
-ZSH_THEME_GIT_INDEX_DELETED="%{$FG[070]%}x"
-ZSH_THEME_GIT_INDEX_RENAMED="%{$FG[070]%}r"
-ZSH_THEME_GIT_INDEX_COPIED="%{$FG[070]%}c"
+ZSH_THEME_GIT_STATUS_MAX=20
+ZSH_THEME_GIT_PROMPT_UNMERGED="U"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="?"
+ZSH_THEME_GIT_TREE_MODIFIED="+"
+ZSH_THEME_GIT_TREE_DELETED="x"
+ZSH_THEME_GIT_INDEX_MODIFIED="+"
+ZSH_THEME_GIT_INDEX_ADDED="+"
+ZSH_THEME_GIT_INDEX_DELETED="x"
+ZSH_THEME_GIT_INDEX_RENAMED="r"
+ZSH_THEME_GIT_INDEX_COPIED="c"
 
 ##############################
 # FUNCTIONS
@@ -39,6 +39,7 @@ function git_prompt_info() {
 }
 
 ## Override the default `git_prompt_status` function
+## Preferably only use with multiline prompts
 ## Try to print a each change instead of just indicating if each type exists.
 ## This gives a better visual sense of how much has changed
 ## Status is computed from the short version of git status that lists out
@@ -46,13 +47,15 @@ function git_prompt_info() {
 ##     xy filename2
 ## where x and y are statuses such as A (added), M (modified). Details in the
 ## git-status manpage.
-## Is this as fast as it gets?
+## TODO Is this as fast as it gets? Maybe. The speed of this script appears to
+## be limited by the speed of --porcelain or -s in any given repo.
 git_prompt_status() {
-  INDEX=$(git status -s 2> /dev/null)
+  INDEX=$(git status --porcelain 2> /dev/null)
+  [[ -z $INDEX ]] && return
   X_SET=""
   Y_SET=""
   UN_SET=""
-  echo $INDEX | while IFS= read LINE; do
+  echo $INDEX | while read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
     [[ $X$Y == '??' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue
@@ -66,7 +69,7 @@ git_prompt_status() {
     [[ $X == 'R' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_RENAMED" && continue
     [[ $X == 'C' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_COPIED" && continue
   done
-  STATUS="$X_SET$Y_SET$UN_SET"
+  STATUS="%{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
   echo $STATUS
 }
 
