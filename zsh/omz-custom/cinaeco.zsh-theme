@@ -55,7 +55,7 @@ git_prompt_status() {
   X_SET=""
   Y_SET=""
   UN_SET=""
-  echo $INDEX | while read LINE; do
+  echo $INDEX | while IFS= read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
     [[ $X$Y == '??' ]] && UN_SET="$UN_SET$ZSH_THEME_GIT_PROMPT_UNTRACKED" && continue

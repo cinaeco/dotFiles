@@ -165,6 +165,9 @@ imap II <Esc>
 " Yank to end of line, like D deletes to end of line
 nmap Y y$
 
+" Space as a folding toggle in normal mode.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
 " Clear trailing white space
 nmap <silent> <leader>$    :%s/\s\+$//g<CR>
 
