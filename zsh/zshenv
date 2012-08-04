@@ -20,10 +20,6 @@ export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
 export PATH=/jails/alcatraz/usr/local/www/oars/libraries/lithium/console:$PATH
-export JAVA_HOME=/usr/local/java
-export ANT_HOME=/Developer/Java/Ant
-export CATALINA_HOME=/usr/local/tomcat
-export CLASSPATH=/usr/local/cruisecontrol/lib
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then
