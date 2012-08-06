@@ -75,18 +75,6 @@ endif
 
 
 """"""""
-"" Start Up
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! StartUp()
-    " start NERDTree if vim called with no arguments
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
-
-
-""""""""
 "" Tabs and Text Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -96,7 +84,6 @@ set shiftround      " indent to nearest tabstops
 set shiftwidth=2    " amount to indent with > and <
 set smarttab        " backspace tabs where appropriate even if spaces
 set softtabstop=2   " let backspace delete by indents
-set wrap lbr        " wrap long lines of text
 set backspace=eol,start,indent "backspace over everything
 set textwidth=80    " try to keep text within 80 characters
 set colorcolumn=+1  " mark out the limits of the textwidth
@@ -267,6 +254,13 @@ let g:EasyGrepHighlightQfMatches = 1
 """"""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! StartUp()
+    " start NERDTree if vim called with no arguments
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
 
 function! FoldText()
     let line = getline(v:foldstart)
