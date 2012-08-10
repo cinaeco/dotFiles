@@ -29,48 +29,48 @@ set ttymouse=xterm2
 
 " Persistent undo
 if has("persistent_undo")
-    set undofile
-    set undodir=~/.vimundo
+  set undofile
+  set undodir=~/.vimundo
 endif
 
 if has("autocmd")
-    " Enable filetype specific features
-    filetype plugin indent on
+  " Enable filetype specific features
+  filetype plugin indent on
 
-    " Clear existing autocmd
-    autocmd!
+  " Clear existing autocmd
+  autocmd!
 
-    " When editing a file, always jump to the last cursor position
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
 
-    " Maps for Quickfix and Location List windows
-    autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
-    autocmd FileType qf nnoremap <silent> <buffer> o <CR>
-    autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
+  " Maps for Quickfix and Location List windows
+  autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
+  autocmd FileType qf nnoremap <silent> <buffer> o <CR>
+  autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
 
-    " Any actions on startup
-    autocmd VimEnter * call StartUp()
+  " Any actions on startup
+  autocmd VimEnter * call StartUp()
 
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+  autocmd WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 
-    " Show trailing white space
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  " Show trailing white space
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
-    " Source the vimrc file after saving it
-    autocmd bufwritepost .vimrc source $MYVIMRC
-    autocmd bufwritepost .vimrc call Pl#Load()
-    " Reload Powerline colours after source
-    " https://github.com/Lokaltog/vim-powerline/issues/28
+  " Source the vimrc file after saving it
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost .vimrc call Pl#Load()
+  " Reload Powerline colours after source
+  " https://github.com/Lokaltog/vim-powerline/issues/28
 
-    " if the last window is NERDTree, then close Vim
-    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+  " if the last window is NERDTree, then close Vim
+  "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 else
-    set autoindent on
+  set autoindent on
 endif
 
 
@@ -103,6 +103,9 @@ set background=dark
 highlight Folded term=none cterm=none ctermfg=darkred ctermbg=none
 " show trailing white space
 highlight ExtraWhitespace ctermfg=red ctermbg=red guifg=red guibg=red
+" reverse indent guides highlighting
+highlight IndentGuidesOdd ctermbg=darkgrey
+highlight IndentGuidesEven ctermbg=black
 
 
 """"""""
@@ -252,24 +255,29 @@ let g:EasyGrepJumpToMatch = 0
 let g:EasyGrepHighlightQfMatches = 1
 
 
+""""""""" Indent Guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+
+
 """"""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! StartUp()
-    " start NERDTree if vim called with no arguments
-    if 0 == argc()
-        NERDTree
-    end
+  " start NERDTree if vim called with no arguments
+  if 0 == argc()
+    NERDTree
+  end
 endfunction
 
 function! FoldText()
-    let line = getline(v:foldstart)
-    let indent = indent(v:foldstart)
-    let indentOnly = strpart(line, 0, indent-1)
-    let linecount = v:foldend+1 - v:foldstart
-    let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
-    return foldtext
+  let line = getline(v:foldstart)
+  let indent = indent(v:foldstart)
+  let indentOnly = strpart(line, 0, indent-1)
+  let linecount = v:foldend+1 - v:foldstart
+  let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
+  return foldtext
 endfunction
 
 function! ToggleMouse()
@@ -283,9 +291,9 @@ function! ToggleMouse()
 endfunction
 
 function! ScreenMovement(movement)
-    if &wrap
-        return "g" . a:movement
-    else
-        return a:movement
-    endif
+  if &wrap
+    return "g" . a:movement
+  else
+    return a:movement
+  endif
 endfunction
