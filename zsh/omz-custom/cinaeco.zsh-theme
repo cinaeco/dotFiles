@@ -74,13 +74,12 @@ git_prompt_status() {
 }
 
 ## Override the default `current_repository` function
-## Cope with non-ssh repos by not relying on ':'. Instead, we look for the name
-## suffixed with .git
+## Cope with non-ssh repos by not relying on ':'. Instead, we look for text
+## between a '/' and '.git'.
 ##
 ## We don't need to test if HEAD is a symbolic ref - that gets controlled in
 ## git_prompt_info(). Unlike `current_branch` there are no oh-my-zsh shortcuts
 ## that will be broken if we don't test for this.
-## Is there another way? 4 pipelines seems excessive
 function current_repository() {
-  echo $(git remote -v | head -1 | grep -o '[^/]*\.git' | sed 's/\.git//')
+  echo $(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\.git.*/\1/')
 }
