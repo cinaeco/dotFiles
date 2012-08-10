@@ -55,3 +55,6 @@
 [submodule "vim/bundle/easygrep"]
 	path = vim/bundle/easygrep
 	url = https://github.com/cinaeco/EasyGrep.git
+[submodule "vim/bundle/indentguides"]
+	path = vim/bundle/indentguides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
