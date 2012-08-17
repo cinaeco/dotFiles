@@ -46,12 +46,6 @@ if has("autocmd")
         \   exe "normal! g'\"" |
         \ endif
 
-  " Quickfix window-specific remaps
-  autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
-  autocmd FileType qf nnoremap <silent> <buffer> o <CR>
-  " TODO this doesn't always return to the window in more complex layouts
-  autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
-
   " Any actions on startup
   autocmd VimEnter * call StartUp()
 
@@ -63,13 +57,29 @@ if has("autocmd")
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
   " Source the vimrc file after saving it
-  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc source $MYVIMRC
 
   " Reload Powerline colours after source
   " https://github.com/Lokaltog/vim-powerline/issues/28
-  autocmd bufwritepost .vimrc call Pl#Load()
+  autocmd BufWritePost .vimrc call Pl#Load()
 
-  " Open quickfix window after any grep invocation (Glog and Ggrep)
+  " Local remaps for Quickfix buffer
+  autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
+  autocmd FileType qf nnoremap <silent> <buffer> o <CR>
+  " TODO this doesn't always return to the window in more complex layouts
+  autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
+
+  " Global remaps when QuickFix buffer is opened
+  autocmd BufWinEnter QuickFix
+        \ let g:qfix_win = bufnr("$") |
+        \ call MapQfPrevNext()
+  autocmd BufWinLeave *
+        \ if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win |
+        \   unlet! g:qfix_win |
+        \   call UnmapQfPrefNext() |
+        \ endif
+
+  " Open QuickFix window after any grep invocation (Glog and Ggrep)
   autocmd QuickFixCmdPost *grep* cwindow
 
   " if the last window is NERDTree, then close Vim
@@ -104,10 +114,13 @@ syntax enable
 colorscheme solarized
 set t_Co=16
 set background=dark
+
 " set colour for folded lines
 highlight Folded term=none cterm=none ctermfg=darkred ctermbg=none
+
 " show trailing white space
 highlight ExtraWhitespace ctermfg=red ctermbg=red guifg=red guibg=red
+
 " reverse indent guides highlighting
 highlight IndentGuidesOdd ctermbg=darkgrey
 highlight IndentGuidesEven ctermbg=black
@@ -155,17 +168,11 @@ set magic       " enables wildcard searching
 let mapleader = ","    " easier to use than \
 
 " More convenient escape
-imap ii <Esc>
-imap II <Esc>
+imap ii <ESC>
+imap II <ESC>
 
 " Yank to end of line, like D deletes to end of line
 nmap Y y$
-
-" Space as a folding toggle in normal mode.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
-" Clear trailing white space
-nmap <silent> <leader>$    :%s/\s\+$//g<CR>
 
 " Add extra lines up and down
 nmap <leader>j    o<Esc>k
@@ -173,6 +180,18 @@ nmap <leader>k    O<Esc>j
 
 " Edit .vimrc
 nmap <leader>v    :e $MYVIMRC<CR>
+
+" Clear TRAILING WHITE SPACE
+nmap <silent> <leader>$    :%s/\s\+$//g<CR>
+
+" Convert TABS to SPACES
+nmap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
+
+" Space as a folding toggle in normal mode.
+nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
+
+" Escape to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
+nnoremap <silent> <ESC>    :call ClearSearch()<CR><ESC>
 
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
@@ -214,9 +233,9 @@ nmap <silent> <leader>t    :TagbarToggle<CR>
 nmap H ^
 nmap L $
 
-" jump to the next/previous instance in Quickfix window
-nnoremap <silent> 33 :cprev<CR>:lprev<CR>
-nnoremap <silent> 88 :cnext<CR>:lnext<CR>
+" center current line when moving between searches
+nmap n nzz
+nmap N Nzz
 
 " Smart way to move between windows
 nmap <C-j> <C-W>j
@@ -305,4 +324,21 @@ function! ScreenMovement(movement)
   else
     return a:movement
   endif
+endfunction
+
+function! ClearSearch()
+  if (@/ != "")
+    let @/=""
+  end
+endfunction
+
+function! MapQfPrevNext()
+  " jump to the next/previous instance in Quickfix window
+  exec "nmap <silent> 3 :cprev<CR>zz"
+  exec "nmap <silent> 8 :cnext<CR>zz"
+endfunction
+
+function! UnmapQfPrefNext()
+  exec "nunmap 3"
+  exec "nunmap 8"
 endfunction
