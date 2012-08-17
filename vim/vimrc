@@ -46,9 +46,10 @@ if has("autocmd")
         \   exe "normal! g'\"" |
         \ endif
 
-  " Maps for Quickfix and Location List windows
+  " Quickfix window-specific remaps
   autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
   autocmd FileType qf nnoremap <silent> <buffer> o <CR>
+  " TODO this doesn't always return to the window in more complex layouts
   autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
 
   " Any actions on startup
@@ -212,6 +213,10 @@ nmap <silent> <leader>t    :TagbarToggle<CR>
 " jump to beginning and end of line easier
 nmap H ^
 nmap L $
+
+" jump to the next/previous instance in Quickfix window
+nnoremap <silent> 33 :cprev<CR>:lprev<CR>
+nnoremap <silent> 88 :cnext<CR>:lnext<CR>
 
 " Smart way to move between windows
 nmap <C-j> <C-W>j
