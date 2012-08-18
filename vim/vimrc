@@ -70,7 +70,7 @@ if has("autocmd")
   autocmd FileType qf nnoremap <silent> <buffer> go <CR><C-W><C-W>
 
   " Global remaps when QuickFix buffer is opened
-  autocmd BufWinEnter QuickFix
+  autocmd BufWinEnter quickfix
         \ let g:qfix_win = bufnr("$") |
         \ call MapQfPrevNext()
   autocmd BufWinLeave *
@@ -80,7 +80,7 @@ if has("autocmd")
         \ endif
 
   " Open QuickFix window after any grep invocation (Glog and Ggrep)
-  autocmd QuickFixCmdPost *grep* cwindow
+  autocmd QuickFixCmdPost *grep* cwindow | call MapQfPrevNext()
 
   " if the last window is NERDTree, then close Vim
   "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -220,6 +220,7 @@ nmap <silent> <leader>u    :GundoToggle<CR>
 
 " Git blame with Fugitive!
 nmap <silent> <leader>b    :Gblame<CR>
+nmap <silent> <leader>g    :Glog<CR><CR>
 
 " Code heirarchy with Tagbar!
 nmap <silent> <leader>t    :TagbarToggle<CR>
