@@ -16,7 +16,7 @@ alias glp='git log -p'
 
 alias gr='git rebase'
 
-alias gtrack='git branch --set-upstream $(current_branch) origin/$(current_branch)'
+alias gtrack='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
 
 # useful git plugin built-in ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, ggpull, ggpush
