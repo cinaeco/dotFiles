@@ -330,6 +330,7 @@ endfunction
 function! ClearSearch()
   if (@/ != "")
     let @/=""
+    redraw
   end
 endfunction
 
