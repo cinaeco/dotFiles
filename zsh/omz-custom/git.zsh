@@ -10,11 +10,13 @@ alias gf='git fetch'
 
 alias gbd='git branch -D'
 
-alias gl='git log --graph --date=relative --pretty="format:%C(yellow)%h %Cblue[%cn] %Creset%s... %cd"'
+alias gl='git log --graph --pretty="format:%C(yellow)%h %Cblue[%cn]%Cgreen%d %Creset%s... %C(cyan)%ar"'
 alias gls='git log --graph --stat'
 alias glp='git log -p'
 
-alias gr='git rebase'
+alias grb='git rebase'
+alias grh='git reset --hard'
+alias grs='git reset --soft'
 
 alias gtrack='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
 

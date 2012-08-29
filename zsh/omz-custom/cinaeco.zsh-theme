@@ -8,7 +8,7 @@ RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_colo
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
+ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}"
@@ -28,15 +28,28 @@ ZSH_THEME_GIT_INDEX_COPIED="c"
 ##############################
 
 ## Override the default `git_prompt_info` function
-## We decide if we show nothing, status with no branch (like in submodules) or
-## with a branch using regex comparisons.
-## Is there a better way than relying on error output?
+## Git commit id and mode code taken from:
+## https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
 function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2>&1)
-  [[ $ref =~ "Not a git" ]] && return
-  [[ $ref =~ "not a symbolic" ]] && echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):%{$fg[red]%}no branch$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX $(git_prompt_status)" && return
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX $(git_prompt_status)"
+  GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
+  [[ $GIT_REPO_PATH == "" ]] && return
+
+  GIT_COMMIT_ID=`git rev-parse --short HEAD 2>/dev/null`
+
+  GIT_MODE=""
+  if [[ -e "$GIT_REPO_PATH/BISECT_LOG" ]]; then
+    GIT_MODE=" BISECT"
+  elif [[ -e "$GIT_REPO_PATH/MERGE_HEAD" ]]; then
+    GIT_MODE=" MERGE"
+  elif [[ -e "$GIT_REPO_PATH/rebase" || -e "$GIT_REPO_PATH/rebase-apply" || -e "$GIT_REPO_PATH/rebase-merge" || -e "$GIT_REPO_PATH/../.dotest" ]]; then
+    GIT_MODE=" REBASE"
+  fi
+
+  GIT_BRANCH=$(current_branch)
+  [[ $GIT_BRANCH == '' ]] && GIT_BRANCH="%{$fg[red]%}no branch$(parse_git_dirty)"
+  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX%{$fg[magenta]%}$GIT_MODE $(git_prompt_status)"
 }
+
 
 ## Override the default `git_prompt_status` function
 ## Preferably only use with multiline prompts
