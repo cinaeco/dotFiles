@@ -1,8 +1,18 @@
 # useful for debugging arrays
 snippet ppre
 	print_r('<pre>'); print_r($${1:check_variable}); exit;
-snippet vardump
-	var_dump($${1:check_variable}); exit;
+snippet dump
+	var_dump($${1:variable});
+snippet dumpe
+	var_dump($${1:variable}); exit;
+snippet fordump
+	foreach ($${1:collection} as $${2:item}) {
+		var_dump($${3:variable});
+	}
+snippet fordumpe
+	foreach ($${1:collection} as $${2:item}) {
+		var_dump($${3:variable});
+	} exit;
 snippet logger
 	Logger::debug('${1:description} ' . print_r($${2:variable}, true));
 snippet logmem
