@@ -191,7 +191,8 @@ nmap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
 nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 
 " Escape to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
-nnoremap <silent> <ESC>    :call ClearSearch()<CR><ESC>
+" TODO This messes with escape at the start of vim... any resolution?
+nnoremap <silent> <ESC>    :call ClearSearch()<CR>
 
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
@@ -223,7 +224,7 @@ nmap <silent> <leader>b    :Gblame<CR>
 nmap <silent> <leader>g    :Glog<CR><CR>
 
 " Code heirarchy with Tagbar!
-nmap <silent> <leader>t    :TagbarToggle<CR>
+nmap <silent> <leader>t    :TagbarToggle<CR>gg
 
 
 """"""""
