@@ -58,10 +58,10 @@ termcapinfo           linux           ti@:te@
 termcapinfo           xterm*          ti@:te@
 
 # Use visual bell instead of audio bell.
-vbell                 on              # default: ???
+#vbell                 on              # default: ???
 
 # Message to be displayed when the visual bell is triggered.
-vbell_msg             " *beep* "
+#vbell_msg             " *beep* "
 
 # Get rid of screen 0
 # http://www.linuxquestions.org/questions/linux-software-2/gnu-screen-start-window-numbering-at-1-keep-window-number-0-from-ever-being-used-772580/
