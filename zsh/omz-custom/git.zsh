@@ -23,7 +23,9 @@ alias grb='git rebase'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
 
-alias gtrack='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
+alias gsr='git show --format=raw'
+
+alias track='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
 
 # useful git plugin built-in ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, ggpull, ggpush
