@@ -224,7 +224,7 @@ nmap <silent> <leader>b    :Gblame<CR>
 nmap <silent> <leader>g    :Glog<CR><CR>
 
 " Code heirarchy with Tagbar!
-nmap <silent> <leader>t    :TagbarToggle<CR>gg
+nmap <silent> <leader>t    :TagbarToggle<CR>
 
 
 """"""""
