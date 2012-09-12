@@ -11,9 +11,9 @@ alias gf='git fetch'
 alias gbd='git branch -D'
 
 ## standard log with train tracks
-alias gl='git log --graph --pretty="format:%C(yellow)%h %Cblue[%an]%Cgreen%d %Creset%s... %C(cyan)%ar"'
+alias gl='git log --graph --pretty="format:%C(yellow)%h %Cblue[%an] %Creset%s...%C(cyan)%ar%Cgreen%d"'
 ## concise, branch-only log with train tracks
-alias glb='git log --graph --all --simplify-by-decoration --pretty="format:%C(yellow)%h %Cblue[%an]%Cgreen%d %Creset%s... %C(cyan)%ar"'
+alias glb='git log --graph --all --simplify-by-decoration --pretty="format:%C(yellow)%h %Cblue[%an] %Creset%s... %C(cyan)%ar%Cgreen%d"'
 ## search through history for particular text
 alias glS='git log -S'
 alias glp='git log --patch'
