@@ -192,7 +192,7 @@ nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 
 " Escape to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
 " TODO This messes with escape at the start of vim... any resolution?
-nnoremap <silent> <ESC>    :call ClearSearch()<CR>
+"nnoremap <silent> <ESC>    :call ClearSearch()<CR>
 
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
@@ -341,11 +341,11 @@ endfunction
 
 function! MapQfPrevNext()
   " jump to the next/previous instance in Quickfix window
-  exec "nmap <silent> 3 :cprev<CR>zz"
-  exec "nmap <silent> 8 :cnext<CR>zz"
+  exec "nmap <silent> <TAB> :cprev<CR>zz"
+  exec "nmap <silent> <Bslash> :cnext<CR>zz"
 endfunction
 
 function! UnmapQfPrefNext()
-  exec "nunmap 3"
-  exec "nunmap 8"
+  exec "nunmap <TAB>"
+  exec "nunmap <Bslash>"
 endfunction
