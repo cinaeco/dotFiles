@@ -19,7 +19,7 @@ alias migrate='li3 migration db:migrate'
 alias sqlo='mysql -u oars -p'
 
 # git log made to be a kind-of helpful kali summary in git repositories
-alias kali='git log --author=eiyi --date=short --pretty="format:%C(yellow)[%cd] %Cblue%s %Creset -- %cn %h"'
+alias kali='git log --author=eiyi --date=short --pretty="format:%C(yellow)[%ad] %Cblue%s %Creset -- %an %h"'
 
 ## shortcuts for Jails setup
 #alias guantanamo-start='env -i /usr/sbin/chroot /jails/guantanamo /usr/local/apache2/bin/httpd -k start'
