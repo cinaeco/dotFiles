@@ -74,6 +74,10 @@ ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 mv ~/.screenrc "$BACKUP_DIR"
 ln -s dotfiles/screen/screenrc ~/.screenrc
 
+# Tmux
+mv ~/.tmux.conf "$BACKUP_DIR"
+ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
+
 # Nethack
 mv ~/.nethackrc "$BACKUP_DIR"
 ln -s dotfiles/nethack/nethackrc ~/.nethackrc
