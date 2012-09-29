@@ -1,16 +1,21 @@
 #!/usr/bin/env bash
 #Print the status-left for tmux.
-#
-# The powerline root directory.
-cwd="/Users/acerlouw/dotfiles/tmux/tmux-powerline"
+
+# custom left/right status and segments
+custom_dir=$(dirname $0)
+
+# The powerline root directory. TODO any other neater way of getting fullpath?
+cd ~/dotfiles/tmux/tmux-powerline
+cwd=$(pwd)
 
 # Source global configurations.
-source "${cwd}/config.sh"
+source "${custom_dir}/config.sh"
 
 # Source lib functions.
 source "${cwd}/lib.sh"
 
 segments_path="${cwd}/${segments_dir}"
+custom_segments_path="${custom_dir}/${segments_dir}"
 
 # Mute this statusbar?
 mute_status_check "left"
@@ -46,13 +51,6 @@ wan_ip+=(["background"]="colour24")
 wan_ip+=(["separator"]="${separator_right_thin}")
 wan_ip+=(["separator_fg"]="white")
 register_segment "wan_ip"
-
-declare -A vcs_branch
-vcs_branch+=(["script"]="${segments_path}/vcs_branch.sh")
-vcs_branch+=(["foreground"]="colour88")
-vcs_branch+=(["background"]="colour29")
-vcs_branch+=(["separator"]="${separator_right_bold}")
-register_segment "vcs_branch"
 
 # Print the status line in the order of registration above.
 print_status_line_left
