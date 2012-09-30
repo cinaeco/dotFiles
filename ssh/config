@@ -2,38 +2,17 @@
 #alias niles='ssh weiyi@nile-stage'
 #alias orinocos='ssh weiyi@orinoco-stage'
 
-Host beni
-User root
-
-Host feni
-User root
-
-Host dev4
-User root
-
-Host dev5
-User root
-
-Host dev6
-User root
-
-Host dev7
-User root
-
-Host pavo
-User cinaeco
-
 Host ursa
-User cinaeco
-
-Host parsleygardens.net
 User cinaeco
 
 Host fornax
 User administrator
 
+Host parsleygardens.net
+User cinaeco
+
 ## Keep alive for all hosts
 Host *
-User weiyi
+User root
 ServerAliveCountMax 4
 ServerAliveInterval 15

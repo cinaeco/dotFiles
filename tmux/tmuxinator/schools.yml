@@ -1,0 +1,28 @@
+# ~/.tmuxinator/schools.yml
+# you can make as many tabs as you wish...
+
+project_name: OARS Schools Component
+project_root: /jails/alcatraz/usr/local/www/schools/
+tabs:
+  - home:
+      layout: main-vertical
+      panes:
+        - vim
+        - schools-log
+  - ctrlers_models:
+      layout: main-vertical
+      panes:
+        - cd controllers && vim
+        - cd models && vim
+  - views:
+      layout: main-vertical
+      panes:
+        - cd views && vim
+        - cd views/elements && vim
+  - webroot:
+      layout: main-vertical
+      panes:
+        - cd webroot/js && vim
+        - cd webroot/css && vim
+  - routes: vim config/routes.php
+  - db: mongo
