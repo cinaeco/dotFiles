@@ -53,6 +53,13 @@ time+=(["separator"]="${separator_left_thin}")
 time+=(["separator_fg"]="default")
 register_segment "time"
 
+declare -A wan_ip
+wan_ip+=(["script"]="${segments_path}/wan_ip.sh")
+wan_ip+=(["foreground"]="colour235")
+wan_ip+=(["background"]="colour136")
+wan_ip+=(["separator"]="${separator_left_bold}")
+register_segment "wan_ip"
+
 # Print the status line in the order of registration above.
 print_status_line_right
 
