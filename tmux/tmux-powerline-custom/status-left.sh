@@ -23,7 +23,7 @@ mute_status_check "left"
 # Segments
 
 declare -A tmux_session_info
-tmux_session_info+=(["script"]="${segments_path}/tmux_session_info.sh")
+tmux_session_info+=(["script"]="${custom_segments_path}/tmux_session_info.sh")
 tmux_session_info+=(["foreground"]="colour234")
 tmux_session_info+=(["background"]="colour148")
 tmux_session_info+=(["separator"]="${separator_right_bold}")
