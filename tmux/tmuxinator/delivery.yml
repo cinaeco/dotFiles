@@ -1,14 +1,14 @@
-# ~/.tmuxinator/schools.yml
-# ACER OARS Schools Component Development Environment
+# ~/.tmuxinator/delivery.yml
+# ACER OARS Delivery Component Development Environment
 
-project_name: SCHOOLS
-project_root: /jails/alcatraz/usr/local/www/schools/
+project_name: DELIVERY
+project_root: /jails/alcatraz/usr/local/www/delivery/
 tabs:
   - home:
       layout: even-horizontal
       panes:
         - gs
-        - schoolslog
+        - deliverylog
   - controllers & models:
       layout: even-horizontal
       panes:
