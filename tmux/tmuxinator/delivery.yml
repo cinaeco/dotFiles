@@ -5,24 +5,23 @@ project_name: DELIVERY
 project_root: /jails/alcatraz/usr/local/www/delivery/
 tabs:
   - home:
-      layout: even-horizontal
+      layout: main-horizontal
       panes:
         - gs
         - deliverylog
-  - controllers & models:
-      layout: even-horizontal
-      panes:
-        - cd controllers && vim
-        - cd models && vim
+        - tail -F ../../www-conf/logs/error_log | grep delivery
+  - tests: cd tests && vim
+  - controllers: cd controllers && vim
+  - models: cd models && vim
   - views:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
         - cd views && vim
         - cd views/elements && vim
   - webroot:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
         - cd webroot/js && vim
         - cd webroot/css && vim
   - routes: vim config/routes.php
-  - db: mongo
+  - db: mongo delivery

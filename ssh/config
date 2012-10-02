@@ -15,6 +15,9 @@ Host parsleygardens.net
 Host dev5
   ForwardAgent yes
 
+Host song
+  User weiyi
+
 ## Keep alive for all hosts
 Host *
   User root

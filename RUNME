@@ -51,14 +51,14 @@ mkdir "$BACKUP_DIR"
 
 # Zsh
 mv ~/.zshrc "$BACKUP_DIR"
-ln -s dotfiles/zsh/zshrc ~/.zshrc
 mv ~/.zshenv "$BACKUP_DIR"
+ln -s dotfiles/zsh/zshrc ~/.zshrc
 ln -s dotfiles/zsh/zshenv ~/.zshenv
 
 # Vim
 mv ~/.vim "$BACKUP_DIR"
-ln -s dotfiles/vim ~/.vim
 mv ~/.vimrc "$BACKUP_DIR"
+ln -s dotfiles/vim ~/.vim
 ln -s dotfiles/vim/vimrc ~/.vimrc
 mkdir -p ~/.vimundo # persistent undo directory
 
@@ -76,6 +76,7 @@ ln -s dotfiles/screen/screenrc ~/.screenrc
 
 # Tmux
 mv ~/.tmux.conf "$BACKUP_DIR"
+mv ~/.tmuxinator "$BACKUP_DIR"
 ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -s dotfiles/tmux/tmuxinator ~/.tmuxinator
 
