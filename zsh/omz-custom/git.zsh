@@ -19,9 +19,10 @@ alias glS='git log -S'
 alias glp='git log --patch'
 alias gls='git log --graph --stat'
 
-alias grb='git rebase'
+alias gr='git reset'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
+alias grb='git rebase'
 
 alias gsr='git show --format=raw'
 
