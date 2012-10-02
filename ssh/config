@@ -3,16 +3,20 @@
 #alias orinocos='ssh weiyi@orinoco-stage'
 
 Host ursa
-User cinaeco
+  User cinaeco
+  ForwardAgent yes
 
 Host fornax
-User administrator
+  User administrator
 
 Host parsleygardens.net
-User cinaeco
+  User cinaeco
+
+Host dev5
+  ForwardAgent yes
 
 ## Keep alive for all hosts
 Host *
-User root
-ServerAliveCountMax 4
-ServerAliveInterval 15
+  User root
+  ServerAliveCountMax 4
+  ServerAliveInterval 15
