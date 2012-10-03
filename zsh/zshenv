@@ -29,6 +29,3 @@ if [[ -d /usr/local/man ]];then
     MANPATH=/usr/local/man:$MANPATH
 fi
 export MANPATH
-
-# for esxi perl stuff to not fail
-export PERL_LWP_SSL_VERIFY_HOSTNAME=0
