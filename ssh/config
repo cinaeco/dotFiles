@@ -13,13 +13,11 @@ Host parsleygardens.net
   User cinaeco
 
 Host dev5
+  User root
   ForwardAgent yes
-
-Host song
-  User weiyi
 
 ## Keep alive for all hosts
 Host *
-  User root
+  User weiyi
   ServerAliveCountMax 4
   ServerAliveInterval 15
