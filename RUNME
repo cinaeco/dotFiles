@@ -62,10 +62,6 @@ ln -s dotfiles/vim ~/.vim
 ln -s dotfiles/vim/vimrc ~/.vimrc
 mkdir -p ~/.vimundo # persistent undo directory
 
-# SSH Config
-mv ~/.ssh/config "$BACKUP_DIR"
-ln -s ../dotfiles/ssh/config ~/.ssh/config
-
 # Pentadactyl
 mv ~/.pentadactylrc "$BACKUP_DIR"
 ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
@@ -76,9 +72,7 @@ ln -s dotfiles/screen/screenrc ~/.screenrc
 
 # Tmux
 mv ~/.tmux.conf "$BACKUP_DIR"
-mv ~/.tmuxinator "$BACKUP_DIR"
 ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s dotfiles/tmux/tmuxinator ~/.tmuxinator
 
 # Nethack
 mv ~/.nethackrc "$BACKUP_DIR"

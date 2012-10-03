@@ -1,2 +1,0 @@
-## typos
-alias scren='screen'

@@ -4,3 +4,6 @@
 # Vim temp files
 *.swp
 .netrwhist
+
+# Vim custom snippets directory
+vim/snippets

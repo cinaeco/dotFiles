@@ -20,7 +20,6 @@ export PATH=/usr/local/apache2/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
-export PATH=/jails/alcatraz/usr/local/www/oars/libraries/lithium/console:$PATH
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then
@@ -31,11 +30,5 @@ if [[ -d /usr/local/man ]];then
 fi
 export MANPATH
 
-## csv login
-export CVSROOT=:pserver:weiyi@cvs:/usr/cvsroot
-
 # for esxi perl stuff to not fail
 export PERL_LWP_SSL_VERIFY_HOSTNAME=0
-
-# Homebrew for Mac: move temp files to ramdisk (build directory)
-#export HOMEBREW_TEMP=/Volumes/RamDisk
