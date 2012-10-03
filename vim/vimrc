@@ -190,9 +190,10 @@ nmap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
 " Space as a folding toggle in normal mode.
 nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 
-" Escape to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
-" TODO This messes with escape at the start of vim... any resolution?
-"nnoremap <silent> <ESC>    :call ClearSearch()<CR>
+" Tab to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
+" TODO would love to use <ESC> (more intuitive), but there are issues at vim
+" startup
+nmap <silent> <TAB>    :call ClearSearch()<CR>
 
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
@@ -216,14 +217,14 @@ nmap <silent> <leader>d    :NERDTreeToggle<CR>
 nmap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
 vmap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 
-" Traverse undo tree with Gundo!
+" Traverse undo tree with Gundo
 nmap <silent> <leader>u    :GundoToggle<CR>
 
-" Git blame with Fugitive!
+" Git blame and log with Fugitive
 nmap <silent> <leader>b    :Gblame<CR>
 nmap <silent> <leader>g    :Glog<CR><CR>
 
-" Code heirarchy with Tagbar!
+" Code heirarchy with Tagbar
 nmap <silent> <leader>t    :TagbarToggle<CR>
 
 

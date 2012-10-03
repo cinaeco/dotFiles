@@ -1,6 +1,7 @@
 ## Set tab title to hostname
 print -Pn "\e]1;`hostname | cut -d. -f1`\a"
-## multi line prompt
+
+## Multiline Prompt
 PROMPT='
 %{$fg[cyan]%}[%m]  %{$fg[yellow]%}%3~  $(git_prompt_info)
 %{$fg[magenta]%}%n → %{$reset_color%}'
@@ -27,9 +28,12 @@ ZSH_THEME_GIT_INDEX_COPIED="c"
 # FUNCTIONS
 ##############################
 
-## Override the default `git_prompt_info` function
-## Git commit id and mode code taken from:
-## https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
+# Display Git repo information in prompt (override the default omz function)
+#
+# Displays [repo_name:branch_name:commit_sha] MERGE/BISECT/REBASE x+changes+x
+#
+# Git commit id and mode code taken from:
+# https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
 function git_prompt_info() {
   GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
   [[ $GIT_REPO_PATH == "" ]] && return
@@ -51,17 +55,23 @@ function git_prompt_info() {
 }
 
 
-## Override the default `git_prompt_status` function
-## Preferably only use with multiline prompts
-## Try to print a each change instead of just indicating if each type exists.
-## This gives a better visual sense of how much has changed
-## Status is computed from the short version of git status that lists out
-##     xy filename1
-##     xy filename2
-## where x and y are statuses such as A (added), M (modified). Details in the
-## git-status manpage.
-## TODO Is this as fast as it gets? Maybe. The speed of this script appears to
-## be limited by the speed of --porcelain or -s in any given repo.
+# Git Change Indication (overriding default omz function)
+#
+# !!ONLY USE WITH MULTILINE PROMPTS!! as there can be a lot of symbols
+# (perhaps should limit to 20 or something)
+#
+# Prints symbol for each change instead of just indicating if a type exists.
+# This gives a better visual sense of how much has changed.
+#
+# TODO If you find prompt speed slow, it's because of this section.
+# The limitation is the speed of `git status` in any given repo (it's slower
+# than you'd imagine). The rest of the symbol computation is pretty much
+# instantaneous, even on older CPUs.
+# TODO should we make a way to toggle this on/off on the fly, to deal with
+# performance issues for ridiculous git repos?
+# TODO number of changes in git repo doesn't necessarily mean slow `git status`,
+# neither does it seem to definitely be caused by large number of files. When is
+# `git status` slow?
 git_prompt_status() {
   INDEX=$(git status --porcelain 2> /dev/null)
   [[ -z $INDEX ]] && return
@@ -86,13 +96,12 @@ git_prompt_status() {
   echo $STATUS
 }
 
-## Override the default `current_repository` function
-## Cope with non-ssh repos by not relying on ':'. Instead, we look for text
-## between a '/' and '.git'.
-##
-## We don't need to test if HEAD is a symbolic ref - that gets controlled in
-## git_prompt_info(). Unlike `current_branch` there are no oh-my-zsh shortcuts
-## that will be broken if we don't test for this.
+# Read the current repository (override the default omz function)
+#
+# Cope with non-ssh repos by not relying on ':'. Instead, we look for text
+# between a '/' and '.git'.
+# TODO should expand to search between '/' and space, if '.git' is not present.
+# Some people don't write their remotes properly.
 function current_repository() {
   echo $(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\.git.*/\1/')
 }
