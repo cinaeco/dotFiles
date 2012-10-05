@@ -1,4 +1,33 @@
+""""""""""""""""""""""""
+" Options
+""""""""""""""""""""""""
+
 " pentadactyl gui options
-" right scroll, bottom scroll, Cmdline outside status, Bookmark bar, Tab number, Status bar
 set guioptions=rbCBns
+" In order: right/bottom scrollbars, Cmdline outside status, Bookmark bar,
+" Tab number, Statusbar
+
+" set another default search engine. Need to install a search engine through
+" firefox first
+" http://superuser.com/questions/358935/pentadactyl-with-duckduckgo-as-default-search-engine
 " set defsearch=duckduckgo-ssl
+
+
+""""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""""
+
+map , <leader>
+
+" faster j/k scrolling
+map j 5<C-e>
+map k 5<C-y>
+map J <C-d>
+map K <C-u>
+
+" easier switching of tabs (instead of cmd+shift '[' and ']' )
+map l gt
+map h gT
+
+" reload pentadactylrc
+map <C-r> :source ~/.pentadactylrc<CR>:echo "Configuration Reloaded (~/.pentadactylrc)"<CR>
