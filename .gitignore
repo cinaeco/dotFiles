@@ -7,3 +7,8 @@
 
 # Vim custom snippets directory
 vim/snippets
+
+# Irssi config files
+irssi/config
+irssi/config.autosave
+irssi/*.theme
