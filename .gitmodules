@@ -64,3 +64,6 @@
 [submodule "tmux/tmux-powerline"]
 	path = tmux/tmux-powerline
 	url = https://github.com/erikw/tmux-powerline.git
+[submodule "vim/bundle/vdebug"]
+	path = vim/bundle/vdebug
+	url = https://github.com/joonty/vdebug.git
