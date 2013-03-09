@@ -27,6 +27,8 @@ set splitright    " New splits appear right of current window
 set ttyfast       " Smooth movement
 set ttymouse=xterm2
 set mouse=a
+set scrolloff=10  " keep distance from top and bottom for current line
+set cursorline    " ensure that there is a cursor line
 
 " Persistent undo
 if has("persistent_undo")
@@ -42,6 +44,7 @@ if has("autocmd")
   autocmd!
 
   " When editing a file, always jump to the last cursor position
+  " (from Ubuntu's `/etc/vim/vimrc`)
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
         \   exe "normal! g'\"" |
@@ -233,10 +236,6 @@ nmap <silent> <leader>t    :TagbarToggle<CR>
 nmap H ^
 nmap L $
 
-" center current line when moving between searches
-nmap n nzz
-nmap N Nzz
-
 " Smart way to move between windows
 nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
@@ -339,8 +338,8 @@ endfunction
 
 function! MapQfPrevNext()
   " jump to the next/previous instance in Quickfix window
-  exec "nmap <silent> <TAB> :cprev<CR>zz"
-  exec "nmap <silent> <Bslash> :cnext<CR>zz"
+  exec "nmap <silent> <TAB> :cprev<CR>"
+  exec "nmap <silent> <Bslash> :cnext<CR>"
 endfunction
 
 function! UnmapQfPrefNext()
