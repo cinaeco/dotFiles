@@ -26,6 +26,7 @@ set splitbelow    " New splits appear below current window instead of above
 set splitright    " New splits appear right of current window
 set ttyfast       " Smooth movement
 set ttymouse=xterm2
+set mouse=a
 
 " Persistent undo
 if has("persistent_undo")
