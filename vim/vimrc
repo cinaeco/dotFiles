@@ -60,10 +60,6 @@ if has("autocmd")
   " Source the vimrc file after saving it
   autocmd BufWritePost .vimrc source $MYVIMRC
 
-  " Reload Powerline colours after source
-  " https://github.com/Lokaltog/vim-powerline/issues/28
-  autocmd BufWritePost .vimrc call Pl#Load()
-
   " Local remaps for Quickfix buffer
   autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
   autocmd FileType qf nnoremap <silent> <buffer> o <CR>
@@ -275,7 +271,7 @@ let g:gundo_preview_bottom = 1
 
 
 """"""""" Powerline
-let g:Powerline_symbols = 'fancy' " alternatives: fancy, unicode
+set rtp+=~/dotfiles/powerline/powerline/bindings/vim
 
 
 """"""""" Tagbar
