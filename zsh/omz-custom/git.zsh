@@ -7,7 +7,7 @@ alias gd='git diff'
 alias gds='git diff --staged'
 
 alias gcob='git checkout -b'
-alias gf='git fetch --tags --prune'
+alias gf='git fetch --tags && git fetch --prune'
 
 alias gbd='git branch -D'
 
