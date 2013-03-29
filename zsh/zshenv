@@ -12,13 +12,7 @@ export LESS='-eirMX'
 export EDITOR='vim'
 
 ## paths
-export PATH=/usr/sbin:/usr/bin:~/bin:$PATH
-export PATH=/usr/lib/firefox-3.6:$PATH
-export PATH=/usr/local/bin:/usr/local/git/bin:$PATH
-export PATH=/usr/local/php/bin:/usr/local/php53/bin:$PATH
-export PATH=/usr/local/apache2/bin:$PATH
-export PATH=/usr/local/mysql/bin:$PATH
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/usr/sbin:/usr/bin:/usr/local/bin:~/bin:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
 
 # Add /usr/local manpages
