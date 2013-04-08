@@ -30,10 +30,13 @@ alias grb='git rebase'
 # useful for finding parent commit for a given commit hash
 alias gsr='git show --format=raw'
 
-# useful if you forget to setup tracking for a new branch when checking out.
-alias track='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
+# git submodule management
+alias gsm='git submodule'
 alias gsmup='git submodule sync && git submodule update --init'
 alias gsmpull='git submodule foreach git pull origin master'
+
+# useful if you forget to setup tracking for a new branch when checking out.
+alias track='git branch --set-upstream $(current_branch) origin/$(current_branch) && git fetch'
 
 # useful omz git plugin ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, ggpull, ggpush
