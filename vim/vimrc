@@ -311,6 +311,10 @@ let g:syntastic_auto_jump = 1
 let g:ctrlp_working_path_mode = 'rw'
 
 
+""""""""" Vim Markdown
+let g:vim_markdown_folding_disabled=1
+
+
 """"""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
