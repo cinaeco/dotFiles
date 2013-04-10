@@ -233,9 +233,11 @@ vmap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 " Traverse undo tree with Gundo
 nmap <silent> <leader>u    :GundoToggle<CR>
 
-" Git blame and log with Fugitive
+" Git commands with Fugitive
+nmap <silent> <leader>gs   :Gstatus<CR>
+nmap <silent> <leader>gl   :Glog<CR><CR>
+nmap <silent> <leader>gap  :Git add -p<CR>
 nmap <silent> <leader>b    :Gblame<CR>
-nmap <silent> <leader>g    :Glog<CR><CR>
 
 " Ack with Ctrl-F
 nmap <C-F> :Grep<space>
