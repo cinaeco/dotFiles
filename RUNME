@@ -3,7 +3,6 @@
 # This script pulls extra software and creates appropriate symlinks in the home
 # directory
 # Run from where it's located (within dotfiles directory)
-# A lot of this extra knowledge courtesy of vimcasts.org!
 
 # Make a known_hosts file if none, otherwise zsh throws an error for our .zshrc
 if test -f ~/.ssh/known_hosts; then
@@ -35,13 +34,6 @@ git submodule init
 git submodule update
 echo "dotfiles submodules done..."
 
-# Add more vim plugins from this dotfiles directory, like so:
-#     git submodule add git://github.com/tpope/module.git vim/bundle/module
-#
-# Apart from updating plugins individually, you can update all submodules
-#     git submodule foreach git pull origin master
-
-
 #
 # Thanks to: https://github.com/dangerous/dotfiles
 # for cleaner way of handling symlinking
@@ -50,40 +42,46 @@ BACKUP_DIR="/tmp/$(date)"
 mkdir "$BACKUP_DIR"
 
 # Zsh
-mv ~/.zshrc "$BACKUP_DIR"
-mv ~/.zshenv "$BACKUP_DIR"
+[ -f ~/.zshrc ] && mv ~/.zshrc "$BACKUP_DIR"
+[ -f ~/.zshenv ] && mv ~/.zshenv "$BACKUP_DIR"
 ln -s dotfiles/zsh/zshrc ~/.zshrc
 ln -s dotfiles/zsh/zshenv ~/.zshenv
 
 # Vim
-mv ~/.vim "$BACKUP_DIR"
-mv ~/.vimrc "$BACKUP_DIR"
+[ -d ~/.vim ] && mv ~/.vim "$BACKUP_DIR"
+[ -f ~/.vimrc ] && mv ~/.vimrc "$BACKUP_DIR"
 ln -s dotfiles/vim ~/.vim
 ln -s dotfiles/vim/vimrc ~/.vimrc
 mkdir -p ~/.vimundo # persistent undo directory
 
 # Pentadactyl
-mv ~/.pentadactylrc "$BACKUP_DIR"
+[ -f ~/.pentadactylrc ] && mv ~/.pentadactylrc "$BACKUP_DIR"
 ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 
 # Screen
-mv ~/.screenrc "$BACKUP_DIR"
+[ -f ~/.screenrc ] && mv ~/.screenrc "$BACKUP_DIR"
 ln -s dotfiles/screen/screenrc ~/.screenrc
 
 # Tmux
-mv ~/.tmux.conf "$BACKUP_DIR"
+[ -f ~/.tmux.conf ] && mv ~/.tmux.conf "$BACKUP_DIR"
 ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
 
+# Powerline
+# `.config` is a shared config location, so take more care
+[ -d ~/.config/powerline ] && mv ~/.config/powerline "$BACKUP_DIR"
+[ ! -d ~/.config ] && mkdir ~/.config
+ln -s ../dotfiles/powerline/config ~/.config/powerline
+
 # Nethack
-mv ~/.nethackrc "$BACKUP_DIR"
+[ -f ~/.nethackrc ] && mv ~/.nethackrc "$BACKUP_DIR"
 ln -s dotfiles/nethack/nethackrc ~/.nethackrc
 
 # Irssi
-mv ~/.irssi "$BACKUP_DIR"
+[ -d ~/.irssi ] && mv ~/.irssi "$BACKUP_DIR"
 ln -s dotfiles/irssi ~/.irssi
 
 # Mongo
-mv ~/.mongorc.js "$BACKUP_DIR"
+[ -f ~/.mongorc.js ] && mv ~/.mongorc.js "$BACKUP_DIR"
 ln -s dotfiles/mongo/mongorc.js ~/.mongorc.js
 
 echo "Setup complete!"

@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "powerline/powerline"]
+	path = powerline/powerline
+	url = https://github.com/Lokaltog/powerline.git
