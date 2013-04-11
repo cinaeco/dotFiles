@@ -288,7 +288,7 @@ let g:gundo_preview_bottom = 1
 
 
 """"""""" Powerline
-set rtp+=~/dotfiles/powerline/powerline/bindings/vim
+set rtp+=~/dotfiles/powerline/powerline/powerline/bindings/vim
 
 
 """"""""" Tagbar
