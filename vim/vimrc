@@ -206,7 +206,7 @@ nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 " Tab to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
 " TODO would love to use <ESC> (more intuitive), but there are issues at vim
 " startup
-nmap <silent> <TAB>    :call ClearSearch()<CR>
+nmap <silent> \    :call ClearSearch()<CR>
 
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
@@ -235,7 +235,7 @@ nmap <silent> <leader>u    :GundoToggle<CR>
 
 " Git commands with Fugitive
 nmap <silent> <leader>gs   :Gstatus<CR>
-nmap <silent> <leader>gc   :Gcommit<CR>
+nmap <silent> <leader>gc   :Gcommit -v<CR>
 nmap <silent> <leader>gl   :Glog<CR><CR>
 nmap <silent> <leader>gap  :Git add -p<CR>
 nmap <silent> <leader>b    :Gblame<CR>
@@ -366,11 +366,11 @@ endfunction
 
 function! MapQfPrevNext()
   " jump to the next/previous instance in Quickfix window
-  exec "nmap <silent> <TAB> :cprev<CR>"
-  exec "nmap <silent> <Bslash> :cnext<CR>"
+  exec "nmap <silent> [ :cprev<CR>"
+  exec "nmap <silent> ] :cnext<CR>"
 endfunction
 
 function! UnmapQfPrefNext()
-  exec "nunmap <TAB>"
-  exec "nunmap <Bslash>"
+  exec "nunmap ["
+  exec "nunmap ]"
 endfunction
