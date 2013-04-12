@@ -235,6 +235,7 @@ nmap <silent> <leader>u    :GundoToggle<CR>
 
 " Git commands with Fugitive
 nmap <silent> <leader>gs   :Gstatus<CR>
+nmap <silent> <leader>gc   :Gcommit<CR>
 nmap <silent> <leader>gl   :Glog<CR><CR>
 nmap <silent> <leader>gap  :Git add -p<CR>
 nmap <silent> <leader>b    :Gblame<CR>
