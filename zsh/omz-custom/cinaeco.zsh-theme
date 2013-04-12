@@ -57,23 +57,19 @@ function git_prompt_info() {
 
 # Git Change Indication (overriding default omz function)
 #
-# !!ONLY USE WITH MULTILINE PROMPTS!! as there can be a lot of symbols
-# (perhaps should limit to 20 or something)
-#
-# Prints symbol for each change instead of just indicating if a type exists.
+# Prints symbol for each change instead of just indicating if change type exists.
 # This gives a better visual sense of how much has changed.
 #
 # TODO If you find prompt speed slow, it's because of this section.
 # The limitation is the speed of `git status` in any given repo (it's slower
-# than you'd imagine). The rest of the symbol computation is pretty much
-# instantaneous, even on older CPUs.
-# TODO should we make a way to toggle this on/off on the fly, to deal with
-# performance issues for ridiculous git repos?
-# TODO number of changes in git repo doesn't necessarily mean slow `git status`,
-# neither does it seem to definitely be caused by large number of files. When is
-# `git status` slow?
+# than you'd imagine).
+# This can be countered somewhat by ignoring submodules. We lose reporting of
+# submodule changes in prompt, but the speed is much better.
+# The rest of the status string building is near-instantaneous.
 git_prompt_status() {
-  INDEX=$(git status --porcelain 2> /dev/null)
+  local SUBMODULE_SYNTAX=''
+  [[ $POST_1_7_2_GIT -gt 0 ]] && SUBMODULE_SYNTAX="--ignore-submodules=dirty"
+  INDEX=$(git status --porcelain $SUBMODULE_SYNTAX 2> /dev/null)
   [[ -z $INDEX ]] && return
   X_SET=""
   Y_SET=""
