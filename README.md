@@ -1,17 +1,16 @@
 # Configuration Files For *nix Environments
 
-Required Packages:
+#### Required Packages:
 - vim 7.3+
 - tmux
 - zsh
 
-Optional Packages:
+#### Optional Packages:
 - irssi & screen (for nicklist)
 - nethack
 - mongo
 - Pentadactyl (Firefox plugin)
 
-Best used with iTerm2 (Mac OS X) and ROXTerm (Linux) setup with the
-[Solarized colour scheme][solarized].
+Best used with iTerm2 (Mac OS X) and ROXTerm (Linux) setup with the [Solarized colour scheme][solarized].
 
 [solarized]: http://ethanschoonover.com/solarized
