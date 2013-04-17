@@ -8,7 +8,6 @@
 #
 
 ## don't close less when I am done reading
-export LESS='-eirMX'
 export EDITOR='vim'
 
 ## paths
