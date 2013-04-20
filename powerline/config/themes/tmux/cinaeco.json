@@ -18,20 +18,19 @@
 	"segments": {
     "left" : [
 			{
-				"name": "hostname"
+				"name": "hostname",
+        "args": {
+          "exclude_domain": true
+        }
 			},
 			{
-				"name": "external_ip",
+				"name": "system_load",
 				"priority": 50
 			}
     ],
 		"right": [
 			{
-				"name": "email_imap_alert",
-				"priority": 10
-			},
-			{
-				"name": "system_load",
+				"name": "external_ip",
 				"priority": 50
 			},
 			{
