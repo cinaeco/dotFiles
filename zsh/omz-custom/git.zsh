@@ -13,9 +13,9 @@ alias gf='git fetch --tags && git fetch --prune'
 alias gbd='git branch -D'
 
 # standard log with train tracks
-alias gl='git log --graph --pretty="format:%C(yellow)%h%Cgreen%d %Cblue[%an] %Creset%s... %C(cyan)%ar"'
+alias gl='git log --graph --pretty="format:%C(yellow)%h%Cgreen%d %Cblue[%an] %Creset%s... %C(cyan)%ar%Creset"'
 # concise, branch and tag log with train tracks (some merge commits unavoidable)
-alias glb='git log --all --simplify-by-decoration --pretty="format:%C(yellow)%h%Cgreen%d %Cblue[%an] %Creset%s... %C(cyan)%ar"'
+alias glb='gl --simplify-by-decoration'
 alias glp='git log --patch'
 # useful when you want to have a visual on file changes
 alias gls='git log --graph --stat'
