@@ -27,7 +27,7 @@ set splitright    " New splits appear right of current window
 set ttyfast       " Smooth movement
 set ttymouse=xterm2
 set mouse=a
-set scrolloff=7  " keep distance from top and bottom for current line
+set scrolloff=4  " keep distance from top and bottom for current line
 set cursorline    " ensure that there is a cursor line
 
 " Persistent undo
@@ -328,6 +328,13 @@ let g:ctrlp_user_command = {
     \ 2: ['.hg', 'hg --cwd %s locate -I .']
   \ },
   \ 'fallback': 'find %s -type f'
+\ }
+
+
+""""""""" Vdebug
+let g:vdebug_options = {
+  \ 'break_on_open' : 0,
+  \ 'path_maps' : {"/usr": "/jails/alcatraz/usr"}
 \ }
 
 
