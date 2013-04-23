@@ -9,15 +9,6 @@ defscrollback         5000            # default: 100
 # Detach session on hangup instead of terminating screen completely.
 autodetach            on              # default: on
 
-# Message to display in the status line when activity is detected in a
-# monitored window.
-activity              "activity in %n (%t) [%w:%s]~"
-
-# When a bell character is sent to a background window, screen displays a
-# notification in the message line. The notification message can be re-defined
-# by this command.
-bell_msg              "bell     in %n (%t) [%w:%s]~"
-
 # Select line break behavior for copying.
 crlf                  off             # default: off
 
@@ -58,7 +49,7 @@ termcapinfo           linux           ti@:te@
 termcapinfo           xterm*          ti@:te@
 
 # Use visual bell instead of audio bell.
-#vbell                 on              # default: ???
+vbell                 off              # default: ???
 
 # Message to be displayed when the visual bell is triggered.
 #vbell_msg             " *beep* "
@@ -190,13 +181,4 @@ backtick 1 30 30 sh -c 'screen -ls | grep --color=no -o "$PPID\.[^[:space:]]*" |
 # Is there a way of toggling default windows on/off based on how we start
 # screen?
 #
-screen -t "controllers" 2
-screen -t "views" 3
-screen -t "models" 4
-screen -t "routes" 5
-screen -t "webroot" 6
-screen -t "libraries" 7
-screen -t "logs" 8
-screen -t "db" 9
-screen -t "extra" 10
 screen -t "home" 1
