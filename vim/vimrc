@@ -256,6 +256,8 @@ nmap <silent> <leader>t    :TagbarToggle<CR>
 " jump to beginning and end of line easier
 nmap H ^
 nmap L $
+vmap H ^
+vmap L $
 
 " Smart way to move between windows
 nmap <C-j> <C-W>j
