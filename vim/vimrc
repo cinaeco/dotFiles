@@ -211,6 +211,8 @@ nmap <silent> \    :call ClearSearch()<CR>
 nmap <silent> <leader>n    :set number!<CR>
 nmap <silent> <leader>w    :set wrap!<CR>
 
+nmap <silent> <leader>80   gggqG<C-o><C-o>
+
 " Toggle paste mode - no autoindenting of pasted material
 nmap <silent> <leader>p    :set paste! paste?<CR>
 
