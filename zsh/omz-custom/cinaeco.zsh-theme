@@ -23,9 +23,9 @@ ZSH_THEME_GIT_INDEX_ADDED="±"
 ZSH_THEME_GIT_INDEX_DELETED="x"
 ZSH_THEME_GIT_INDEX_RENAMED="r"
 ZSH_THEME_GIT_INDEX_COPIED="c"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="BEHIND"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="AHEAD"
-ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%}DIVERGED!"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" BEHIND"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" AHEAD"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg[red]%}DIVERGED!"
 
 ##############################
 # FUNCTIONS
@@ -54,7 +54,7 @@ function git_prompt_info() {
 
   GIT_BRANCH=$(current_branch)
   [[ $GIT_BRANCH == '' ]] && GIT_BRANCH="%{$fg[red]%}no branch$(parse_git_dirty)"
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX%{$fg[magenta]%}$GIT_MODE $(git_remote_status) $(git_prompt_status)"
+  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX%{$fg[magenta]%}$GIT_MODE$(git_remote_status)$(git_prompt_status)"
 }
 
 
@@ -91,7 +91,7 @@ git_prompt_status() {
     [[ $X == 'R' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_RENAMED" && continue
     [[ $X == 'C' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_COPIED" && continue
   done
-  STATUS="%{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
+  STATUS=" %{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
   echo $STATUS
 }
 
