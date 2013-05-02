@@ -33,7 +33,7 @@ ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg[red]%}DIVERGED!"
 
 # Display Git repo information in prompt (override the default omz function)
 #
-# Displays [repo_name:branch_name:commit_sha] MERGE/BISECT/REBASE x+changes+x
+# Displays [repo:branch:commit] BISECT/MERGE/REBASE AHEAD/BEHIND/DIVERGED! +±xcrU?
 #
 # Git commit id and mode code taken from:
 # https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
