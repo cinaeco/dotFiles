@@ -43,18 +43,24 @@ function git_prompt_info() {
 
   GIT_COMMIT_ID=`git rev-parse --short HEAD 2>/dev/null`
 
-  GIT_MODE=""
+  GIT_MODE="%{$fg[magenta]%}"
   if [[ -e "$GIT_REPO_PATH/BISECT_LOG" ]]; then
-    GIT_MODE=" BISECT"
+    GIT_MODE="$GIT_MODE BISECT"
   elif [[ -e "$GIT_REPO_PATH/MERGE_HEAD" ]]; then
-    GIT_MODE=" MERGE"
+    GIT_MODE="$GIT_MODE MERGE"
   elif [[ -e "$GIT_REPO_PATH/rebase" || -e "$GIT_REPO_PATH/rebase-apply" || -e "$GIT_REPO_PATH/rebase-merge" || -e "$GIT_REPO_PATH/../.dotest" ]]; then
-    GIT_MODE=" REBASE"
+    GIT_MODE="$GIT_MODE REBASE"
+  fi
+
+  GIT_STASH=""
+  if [[ -e "$GIT_REPO_PATH/refs/stash" ]]; then
+    GIT_STASH=" %{$fg[red]%}STASH"
   fi
 
   GIT_BRANCH=$(current_branch)
   [[ $GIT_BRANCH == '' ]] && GIT_BRANCH="%{$fg[red]%}no branch$(parse_git_dirty)"
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX%{$fg[magenta]%}$GIT_MODE$(git_remote_status)$(git_prompt_status)"
+
+  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
 }
 
 
