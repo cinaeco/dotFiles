@@ -50,9 +50,6 @@ if has("autocmd")
         \   exe "normal! g'\"" |
         \ endif
 
-  " Any actions on startup
-  autocmd VimEnter * call StartUp()
-
   " Show trailing white space
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
@@ -349,13 +346,6 @@ let g:vim_markdown_folding_disabled=1
 """"""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! StartUp()
-  " start NERDTree if vim called with no arguments
-  if 0 == argc()
-    NERDTree
-  end
-endfunction
 
 function! FoldText()
   let line = getline(v:foldstart)
