@@ -1,0 +1,38 @@
+""""""""""""""""""""""""
+" Options
+""""""""""""""""""""""""
+
+" gui options
+set gui=nonavigation,tabs,bookmarks,addons
+
+" don't focus on inputs/textfields when we navigate to a page
+set focuscontent
+
+
+""""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""""
+
+let mapleader = ","
+
+" Insert mode! Focus on first imput
+nmap i gi
+
+" Faster navigation of buffers
+" vim up/down/left/right = half paging and tab switching
+nmap j <C-d>
+nmap k <C-u>
+nmap l gt
+nmap h gT
+
+" Slower page navigation
+nmap J 5<Down>
+nmap K 5<Up>
+nmap L 5<Left>
+nmap H 5<Right>
+
+" screen/tmux-like switch to previous tab
+nmap <C-a><C-a> <C-^>
+
+" reload config
+nmap <C-r> :source ~/.vimperatorrc<CR>:echo "Configuration Reloaded (~/.vimperatorrc)"<CR>

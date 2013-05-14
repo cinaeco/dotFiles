@@ -58,6 +58,10 @@ mkdir -p ~/.vimundo # persistent undo directory
 [ -f ~/.pentadactylrc ] && mv ~/.pentadactylrc "$BACKUP_DIR"
 ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
 
+# Vimperator
+[ -f ~/.vimperatorrc ] && mv ~/.vimperatorrc "$BACKUP_DIR"
+ln -s dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
+
 # Screen
 [ -f ~/.screenrc ] && mv ~/.screenrc "$BACKUP_DIR"
 ln -s dotfiles/screen/screenrc ~/.screenrc

@@ -25,7 +25,7 @@ map k 5<C-y>
 map J <C-d>
 map K <C-u>
 
-" easier switching of tabs (instead of cmd+shift '[' and ']' )
+" easier switching of tabs
 map l gt
 map h gT
 
