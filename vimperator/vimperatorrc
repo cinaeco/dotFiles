@@ -4,6 +4,7 @@
 
 " gui options
 set gui=nonavigation,tabs,bookmarks,addons
+" set status=location
 
 " don't focus on inputs/textfields when we navigate to a page
 set focuscontent

@@ -1,0 +1,46 @@
+""""""""""""""""""""""""""""""""
+" Main background color is an off-black: #222
+" Main text color is an off-white: #ddd
+" Some theme-wide settings can be done in `Normal`
+"
+" Colors used from Solarized:
+" red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+" green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+""""""""""""""""""""""""""""""""
+
+
+" avoid contamination from other colorschemes, setup basic theme
+hi clear
+hi Normal                background: #222; color: #ddd; font-size: 14px;
+
+
+""""""""""""""""""""""""""""""""
+" dark command/status line
+" with current URL more visible
+""""""""""""""""""""""""""""""""
+
+hi CmdLine               background: #222;
+" status Needs `color` set, otherwise `ErrorMsg` overrides when it appears
+hi StatusLine            color: #ddd; text-align: left;
+
+
+""""""""""""""""""""""""""""""""
+" completion lists
+" i.e. section that appears when using `:open` etc.
+""""""""""""""""""""""""""""""""
+
+hi CompTitle             background: #444; " headers
+hi CompTitle>*           background: #444; " header decorations
+hi CompItem[selected]    background: #555; " current item
+hi NonText               color: #dc322f;   " ~'s indicating empty lines
+" match highlighting in completion list
+hi Filter                background: darkgreen; border-radius: 2px; border: 1px solid green;
+
+
+""""""""""""""""""""""""""""""""
+" misc
+""""""""""""""""""""""""""""""""
+
+hi ErrorMsg              color: #dc322f;
+" mouse-click in completion list to see `MoreMsg`
+hi MoreMsg               background: #222; color: green;
