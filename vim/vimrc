@@ -33,7 +33,7 @@ set cursorline    " ensure that there is a cursor line
 " Persistent undo
 if has("persistent_undo")
   set undofile
-  set undodir=~/.vimundo
+  set undodir=~/.vim/undo
 endif
 
 if has("autocmd")

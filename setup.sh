@@ -52,14 +52,12 @@ ln -s dotfiles/zsh/zshenv ~/.zshenv
 [ -f ~/.vimrc ] && mv ~/.vimrc "$BACKUP_DIR"
 ln -s dotfiles/vim ~/.vim
 ln -s dotfiles/vim/vimrc ~/.vimrc
-mkdir -p ~/.vimundo # persistent undo directory
-
-# Pentadactyl
-[ -f ~/.pentadactylrc ] && mv ~/.pentadactylrc "$BACKUP_DIR"
-ln -s dotfiles/pentadactyl/pentadactylrc ~/.pentadactylrc
+mkdir -p ~/.vim/undo # persistent undo folder
 
 # Vimperator
+[ -d ~/.vimperator ] && mv ~/.vimperator "$BACKUP_DIR"
 [ -f ~/.vimperatorrc ] && mv ~/.vimperatorrc "$BACKUP_DIR"
+ln -s dotfiles/vimperator ~/.vimperator
 ln -s dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
 
 # Screen

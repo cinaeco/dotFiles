@@ -5,8 +5,12 @@
 *.swp
 .netrwhist
 
-# Vim custom snippets directory
+# Vim custom snippets and persistent undo folder
 vim/snippets
+vim/undo
+
+# Vimperator info/history/local settings
+vimperator/info
 
 # Irssi config files
 irssi/config
