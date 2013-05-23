@@ -9,6 +9,9 @@ colorscheme cinaeco
 " don't focus on inputs/textfields when we navigate to a page
 set focuscontent
 
+" don't fade out messages, instead just <Esc> to clear
+set messagetimeout=-1
+
 
 """"""""""""""""""""""""
 " Mappings
