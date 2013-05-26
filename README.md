@@ -9,7 +9,7 @@
 - irssi & screen (for nicklist)
 - nethack
 - mongo
-- Pentadactyl (Firefox plugin)
+- Vimperator (Firefox plugin)
 
 Best used with iTerm2 (Mac OS X) and ROXTerm (Linux) setup with the [Solarized colour scheme][solarized].
 
