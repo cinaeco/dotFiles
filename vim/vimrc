@@ -273,11 +273,11 @@ nnoremap <silent> <expr> k ScreenMovement("k")
 nnoremap <silent> <expr> 0 ScreenMovement("0")
 nnoremap <silent> <expr> ^ ScreenMovement("^")
 nnoremap <silent> <expr> $ ScreenMovement("$")
-vnoremap <silent> <expr> j ScreenMovement("j")
-vnoremap <silent> <expr> k ScreenMovement("k")
-vnoremap <silent> <expr> 0 ScreenMovement("0")
-vnoremap <silent> <expr> ^ ScreenMovement("^")
-vnoremap <silent> <expr> $ ScreenMovement("$")
+xnoremap <silent> <expr> j ScreenMovement("j")
+xnoremap <silent> <expr> k ScreenMovement("k")
+xnoremap <silent> <expr> 0 ScreenMovement("0")
+xnoremap <silent> <expr> ^ ScreenMovement("^")
+xnoremap <silent> <expr> $ ScreenMovement("$")
 
 
 """"""""
