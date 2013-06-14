@@ -70,3 +70,18 @@
 [submodule "powerline/powerline"]
 	path = powerline/powerline
 	url = https://github.com/Lokaltog/powerline.git
+[submodule "vim/bundle/vim-multiple-cursors"]
+	path = vim/bundle/vim-multiple-cursors
+	url = ttps://github.com/terryma/vim-multiple-cursors.git
+[submodule "vim/bundle/unite.vim"]
+	path = vim/bundle/unite.vim
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "vim/bundle/vimshell.vim"]
+	path = vim/bundle/vimshell.vim
+	url = https://github.com/Shougo/vimshell.vim.git
+[submodule "vim/bundle/vimproc"]
+	path = vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.git
+[submodule "vim/bundle/neocomplcache.vim"]
+	path = vim/bundle/neocomplcache.vim
+	url = https://github.com/Shougo/neocomplcache.vim.git
