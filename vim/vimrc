@@ -312,6 +312,8 @@ let g:tagbar_autoclose = 1 " close sidebar after we go to selection
 
 """"""""" EasyGrep
 let g:EasyGrepCommand = 1 " don't use the built in vimgrep, which is slow
+" Caveat about using ack: cannot search unsaved changes in buffer, unlike vimgrep
+let g:EasyGrepJumpToMatch = 0
 let g:EasyGrepHighlightQfMatches = 1
 
 
@@ -391,11 +393,11 @@ endfunction
 
 function! MapQfPrevNext()
   " jump to the next/previous instance in Quickfix window
-  exec "nmap <silent> [ :cprev<CR>"
-  exec "nmap <silent> ] :cnext<CR>"
+  exec "nmap <silent> <leader>[ :cprev<CR>"
+  exec "nmap <silent> <leader>] :cnext<CR>"
 endfunction
 
 function! UnmapQfPrefNext()
-  exec "nunmap ["
-  exec "nunmap ]"
+  exec "nunmap <leader>["
+  exec "nunmap <leader>]"
 endfunction
