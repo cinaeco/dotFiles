@@ -86,4 +86,8 @@ ln -s dotfiles/irssi ~/.irssi
 [ -f ~/.mongorc.js ] && mv ~/.mongorc.js "$BACKUP_DIR"
 ln -s dotfiles/mongo/mongorc.js ~/.mongorc.js
 
+# Ack
+[ -f ~/.ackrc ] && mv ~/.ackrc "$BACKUP_DIR"
+ln -s dotfiles/ack/ackrc ~/.ackrc
+
 echo "Setup complete!"
