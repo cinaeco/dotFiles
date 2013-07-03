@@ -351,7 +351,10 @@ let g:vdebug_options = {
 
 
 """"""""" Vim Markdown
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled = 1
+
+""""""""" Sparkup
+let g:sparkupNextMapping = '<leader>n'
 
 
 """"""""
@@ -394,11 +397,11 @@ endfunction
 
 function! MapQfPrevNext()
   " jump to the next/previous instance in Quickfix window
-  exec "nmap <silent> <leader>[ :cprev<CR>"
-  exec "nmap <silent> <leader>] :cnext<CR>"
+  exec "nmap <silent> <tab> :cprev<CR>"
+  exec "nmap <silent> <bslash> :cnext<CR>"
 endfunction
 
 function! UnmapQfPrefNext()
-  exec "nunmap <leader>["
-  exec "nunmap <leader>]"
+  exec "nunmap <tab>"
+  exec "nunmap <bslash>"
 endfunction
