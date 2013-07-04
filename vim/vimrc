@@ -161,6 +161,7 @@ set incsearch   " vim will search as you type!
 set ignorecase  " ignore case for searches
 set smartcase   " well, unless a user puts in uppercase search characters
 set magic       " enables wildcard searching
+
 " use ack for grepping if available
 if executable('ack-grep')
   set grepprg=ack-grep\ --with-filename\ --nocolor\ --nogroup
@@ -215,6 +216,9 @@ nmap <silent> <leader>p    :set paste! paste?<CR>
 
 " Toggle visible whitespace characters
 nmap <silent> <leader>l    :set list!<CR>
+
+" Toggle keyboard layout
+nmap <silent> <leader>k    :call CycleKeymap()<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
 nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
@@ -392,7 +396,24 @@ function! ClearSearch()
   if (@/ != "")
     let @/=""
     redraw
-  end
+  endif
+endfunction
+
+function! CycleKeymap()
+  if has('keymap')
+    if (&keymap == '')
+      set keymap=colemak
+      echo "Colemak keymap selected"
+    elseif (&keymap == 'colemak')
+      set keymap=dvorak
+      echo "Dvorak keymap selected"
+    else
+      set keymap=
+      echo "Qwerty keymap selected"
+    endif
+  else
+    echo "Keymaps not supported"
+  endif
 endfunction
 
 function! MapQfPrevNext()
