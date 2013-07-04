@@ -218,7 +218,7 @@ nmap <silent> <leader>p    :set paste! paste?<CR>
 nmap <silent> <leader>l    :set list!<CR>
 
 " Toggle keyboard layout
-nmap <silent> <leader>k    :call CycleKeymap()<CR>
+nmap <silent> <leader><space>    :call CycleKeymap()<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
 nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
