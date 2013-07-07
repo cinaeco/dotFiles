@@ -358,7 +358,7 @@ let g:vdebug_options = {
 let g:vim_markdown_folding_disabled = 1
 
 """"""""" Sparkup
-let g:sparkupNextMapping = '<leader>n'
+let g:sparkupNextMapping = '<leader>n' " resolve conflict with vim-multiple-cursors
 
 
 """"""""
