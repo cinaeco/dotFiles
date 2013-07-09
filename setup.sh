@@ -19,9 +19,8 @@ if test -f ~/bin/ack; then
   echo "ack found..."
 else
   mkdir -p ~/bin
-  curl http://betterthangrep.com/ack-standalone > ~/bin/ack
-  chmod 0755 ~/bin/ack
-  echo "ack installed from betterthangrep.com..."
+  curl http://beyondgrep.com/ack-2.04-single-file > ~/bin/ack && chmod 0755 ~/bin/ack
+  echo "ack installed from beyondgrep.com..."
 fi
 
 # color for git! Some machines don't have it.
