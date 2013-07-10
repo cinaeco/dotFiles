@@ -179,8 +179,8 @@ set shellpipe=&>  " don't display ack/grep terminal output. NOTE: not reliable
 let mapleader = ","    " easier to use than \
 
 " More convenient escape
-imap ii <ESC>
-imap II <ESC>
+imap kj <ESC>
+imap jk <ESC>
 
 " Yank to end of line, like D deletes to end of line
 nmap Y y$
