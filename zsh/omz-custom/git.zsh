@@ -1,5 +1,33 @@
 # preferred git shortcuts, not in the git plugin
 
+#compare the provided version of git to the version installed and on path
+#prints 1 if input version <= installed version
+#prints -1 otherwise
+function git_compare_version() {
+  local INPUT_GIT_VERSION=$1;
+  local INSTALLED_GIT_VERSION
+  INPUT_GIT_VERSION=(${(s/./)INPUT_GIT_VERSION});
+  INSTALLED_GIT_VERSION=($(command git --version 2>/dev/null));
+  INSTALLED_GIT_VERSION=(${(s/./)INSTALLED_GIT_VERSION[3]});
+
+  for i in {1..3}; do
+    if [[ $INSTALLED_GIT_VERSION[$i] -lt $INPUT_GIT_VERSION[$i] ]]; then
+      echo -1
+      return 0
+    fi
+  done
+  echo 1
+}
+POST_1_8_3_GIT=$(git_compare_version "1.8.3")
+unset -f git_compare_version
+
+if [[ $POST_1_8_3_GIT -gt 0 ]]; then
+  DECO_COLOUR='%C(auto)'
+else
+  DECO_COLOUR='%Cgreen'
+fi
+GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%s"'
+
 alias ga.='git add .'
 alias gap='git add -p'
 
@@ -11,9 +39,8 @@ alias gcob='git checkout -b'
 alias gf='git fetch --tags && git fetch --prune'
 
 alias gbd='git branch -D'
-
 # standard log with train tracks
-alias gl='git log --graph --pretty="format:%C(yellow)%h%Cgreen%d %Cblue[%an] %Creset%s... %C(cyan)%ar%Creset"'
+alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
 # concise, branch and tag log with train tracks (some merge commits unavoidable)
 alias glb='gl --simplify-by-decoration'
 alias glp='git log --patch'
