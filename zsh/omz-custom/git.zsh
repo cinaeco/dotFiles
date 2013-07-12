@@ -28,7 +28,7 @@ else
 fi
 GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%s"'
 
-alias ga.='git add .'
+alias ga.='git add -A .'
 alias gap='git add -p'
 
 alias gs='git status'
@@ -36,7 +36,7 @@ alias gd='git diff'
 alias gds='git diff --staged'
 
 alias gcob='git checkout -b'
-alias gf='git fetch --tags && git fetch --prune'
+alias gf='git fetch --all --tags && git fetch --all --prune'
 
 alias gbd='git branch -D'
 # standard log with train tracks
