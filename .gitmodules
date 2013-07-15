@@ -76,3 +76,6 @@
 [submodule "vim/bundle/vim-autoclose"]
 	path = vim/bundle/vim-autoclose
 	url = https://github.com/Townk/vim-autoclose.git
+[submodule "mongo/mongo-hacker"]
+	path = mongo/mongo-hacker
+	url = https://github.com/TylerBrock/mongo-hacker.git
