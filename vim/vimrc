@@ -55,7 +55,7 @@ if has("autocmd")
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
   " Source the vimrc file after saving it
-  autocmd BufWritePost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc nested source $MYVIMRC
 
   " Things for Quickfix buffers
 
@@ -133,7 +133,6 @@ highlight IndentGuidesEven ctermbg=black
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set number          " show line numbers
-"set relativenumber " current line always 0 (requires 7.3 and up)
 
 
 """"""""
@@ -179,75 +178,73 @@ set shellpipe=&>  " don't display ack/grep terminal output. NOTE: not reliable
 let mapleader = ","    " easier to use than \
 
 " More convenient escape
-imap kj <ESC>
-imap jk <ESC>
+inoremap kj <ESC>
+inoremap jk <ESC>
 
 " Yank to end of line, like D deletes to end of line
-nmap Y y$
+nnoremap Y y$
 
 " Add extra lines up and down
-nmap <leader>j    o<Esc>k
-nmap <leader>k    O<Esc>j
+nnoremap <leader>j    o<Esc>k
+nnoremap <leader>k    O<Esc>j
 
 " Edit .vimrc
-nmap <leader>v    :e $MYVIMRC<CR>
+nnoremap <leader>v    :e $MYVIMRC<CR>
 
-" Clear TRAILING WHITE SPACE
-nmap <silent> <leader>$    :%s/\s\+$//g<CR>
+" Clear trailing white space
+nnoremap <silent> <leader>$    :%s/\s\+$//g<CR>
 
-" Convert TABS to SPACES
-nmap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
+" Convert tabs to spaces
+nnoremap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
 
-" Space as a folding toggle in normal mode.
-nmap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
+" Space as a Folding toggle in normal mode.
+nnoremap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 
-" Tab to CLEAR CURRENT SEARCH (and stop highlighting) in normal mode
-" TODO would love to use <ESC> (more intuitive), but there are issues at vim
-" startup
-nmap <silent> \    :call ClearSearch()<CR>
+" Backspace to clear current search (and stop highlighting)
+nnoremap <silent> <backspace>    :call ClearSearch()<CR>
 
-nmap <silent> <leader>n    :set number!<CR>
-nmap <silent> <leader>w    :set wrap!<CR>
+nnoremap <silent> <leader>n    :set number!<CR>
+nnoremap <silent> <leader>w    :set wrap!<CR>
 
-nmap <silent> <leader>80   gggqG<C-o><C-o>
+nnoremap <silent> <leader>80   gggqG<C-o><C-o>
 
 " Toggle paste mode - no autoindenting of pasted material
-nmap <silent> <leader>p    :set paste! paste?<CR>
+nnoremap <silent> <leader>p    :set paste! paste?<CR>
 
 " Toggle visible whitespace characters
-nmap <silent> <leader>l    :set list!<CR>
+nnoremap <silent> <leader>l    :set list!<CR>
 
 " Toggle keyboard layout
-nmap <silent> <leader><space>    :call CycleKeymap()<CR>
+nnoremap <silent> <leader><space>    :call CycleKeymap()<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
-nmap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
+nnoremap <silent> <leader>s    :set scrollbind! scrollbind?<CR>
 
 " Toggle mouse support.
-nmap <silent> <leader>m    :call ToggleMouse()<CR>
+nnoremap <silent> <leader>m    :call ToggleMouse()<CR>
 
 " Toggle NERDTree file browser
-nmap <silent> <leader>d    :NERDTreeToggle<CR>
+nnoremap <silent> <leader>d    :NERDTreeToggle<CR>
 
 " Toggle Commenting out lines with NERDCommenter
-nmap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
-vmap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
+nnoremap <silent> <leader>,    :call NERDComment("n", "toggle")<CR>
+vnoremap <silent> <leader>,    <ESC>:call NERDComment("x", "toggle")<CR>
 
 " Traverse undo tree with Gundo
-nmap <silent> <leader>u    :GundoToggle<CR>
+nnoremap <silent> <leader>u    :GundoToggle<CR>
 
 " Git commands with Fugitive
-nmap <silent> <leader>gs   :Gstatus<CR>
-nmap <silent> <leader>gc   :Gcommit -v<CR>
-nmap <silent> <leader>gl   :Glog<CR><CR>
-nmap <silent> <leader>gap  :Git add -p<CR>
-nmap <silent> <leader>b    :Gblame<CR>
+nnoremap <silent> <leader>gs   :Gstatus<CR>
+nnoremap <silent> <leader>gc   :Gcommit -v<CR>
+nnoremap <silent> <leader>gl   :Glog<CR><CR>
+nnoremap <silent> <leader>gap  :Git add -p<CR>
+nnoremap <silent> <leader>b    :Gblame<CR>
 
 " Ack with Ctrl-F
-nmap <C-F> :Grep<space>
+nnoremap <C-F> :Grep<space>
 
 " Code heirarchy with Tagbar
-nmap <silent> <leader>t    :TagbarToggle<CR>
+nnoremap <silent> <leader>t    :TagbarToggle<CR>
 
 " Unite settings
 "
@@ -262,16 +259,16 @@ nmap <silent> <leader>t    :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " jump to beginning and end of line easier
-nmap H ^
-nmap L $
-vmap H ^
-vmap L $
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
 
 " Smart way to move between windows
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " mapping to make movements operate on 1 screen line in wrap mode
 onoremap <silent> <expr> j ScreenMovement("j")
