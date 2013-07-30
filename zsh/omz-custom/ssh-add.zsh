@@ -3,6 +3,6 @@
 #
 # We silence error output for when we're sshing to a machine that we don't want
 # to use ssh-agent forwarding for.
-if [[ `ssh-add -L | grep "^ssh-" | wc -l` == 0 ]]; then
+if [[ `ssh-add -L | grep "^ssh-" | wc -l` -eq 0 ]]; then
   ssh-add 2> /dev/null
 fi
