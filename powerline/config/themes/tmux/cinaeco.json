@@ -1,45 +1,41 @@
 {
-	"default_module": "powerline.segments.common",
-	"segment_data": {
-		"uptime": {
-			"before": "⇑  "
-		},
-		"external_ip": {
-			"before": "ⓦ  "
-		},
-		"email_imap_alert": {
-			"before": "✉ ",
-			"args": {
-				"username": "",
-				"password": ""
-			}
-		}
-	},
-	"segments": {
+  "default_module": "powerline.segments.common",
+  "segment_data": {
+    "uptime": {
+      "before": "⇑  "
+    },
+    "external_ip": {
+      "before": "ⓦ  "
+    },
+    "email_imap_alert": {
+      "before": "✉ ",
+      "args": {
+        "username": "",
+        "password": ""
+      }
+    }
+  },
+  "segments": {
     "left" : [
-			{
-				"name": "hostname",
+      {
+        "name": "hostname",
         "args": {
           "exclude_domain": true
         }
-			},
-			{
-				"name": "system_load",
-				"priority": 50
-			}
+      },
+      {
+        "name": "external_ip",
+        "priority": 50
+      }
     ],
-		"right": [
-			{
-				"name": "external_ip",
-				"priority": 50
-			},
-			{
-				"name": "date",
-				"args": {
-					"format": "%H:%M %Z %d %b %Y",
-					"istime": true
-				}
-			}
-		]
-	}
+    "right": [
+      {
+        "name": "date",
+        "args": {
+          "format": "%H:%M %e/%m/%Y",
+          "istime": true
+        }
+      }
+    ]
+  }
 }
