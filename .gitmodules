@@ -71,8 +71,9 @@
   path = powerline/powerline
   url = https://github.com/Lokaltog/powerline.git
 [submodule "vim/bundle/vim-multiple-cursors"]
-  path = vim/bundle/vim-multiple-cursors
-  url = https://github.com/terryma/vim-multiple-cursors.git
+	path = vim/bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
+  ignore = dirty
 [submodule "vim/bundle/vim-autoclose"]
   path = vim/bundle/vim-autoclose
   url = https://github.com/Townk/vim-autoclose.git
@@ -80,5 +81,13 @@
   path = mongo/mongo-hacker
   url = https://github.com/TylerBrock/mongo-hacker.git
 [submodule "powerline/rainbarf"]
-  path = powerline/rainbarf
-  url = https://github.com/creaktive/rainbarf.git
+	path = powerline/rainbarf
+	url = https://github.com/creaktive/rainbarf.git
+[submodule "vim/bundle/vim-autocomplpop"]
+	path = vim/bundle/vim-autocomplpop
+	url = https://github.com/othree/vim-autocomplpop.git
+  ignore = dirty
+[submodule "vim/bundle/L9"]
+	path = vim/bundle/L9
+	url = https://github.com/vim-scripts/L9.git
+  ignore = dirty

@@ -2,7 +2,7 @@
 
 #### Required Packages:
 - vim 7.3+
-- tmux
+- tmux 1.8
 - zsh
 
 #### Optional Packages:
