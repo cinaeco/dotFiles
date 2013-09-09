@@ -21,6 +21,8 @@ function git_compare_version() {
 POST_1_8_3_GIT=$(git_compare_version "1.8.3")
 unset -f git_compare_version
 
+# As of git 1.8.3 decorations can be coloured automatically according to what
+# they are i.e. tags, branches, etc.
 if [[ $POST_1_8_3_GIT -gt 0 ]]; then
   DECO_COLOUR='%C(auto)'
 else
@@ -39,12 +41,16 @@ alias gcob='git checkout -b'
 alias gf='git fetch --all --tags && git fetch --all --prune'
 
 alias gbd='git branch -D'
+alias gbv='git branch -v'
+alias gbav='git branch -av'
+
 # standard log with train tracks
 alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
 alias gla='gl --all'
 # concise, branch and tag log with train tracks (some merge commits unavoidable)
 alias glb='gl --simplify-by-decoration'
-alias glp='git log --patch'
+alias glh='gl | head'
+alias glp='gl --patch'
 # useful when you want to have a visual on file changes
 alias gls='git log --graph --stat'
 # search through history for particular text
