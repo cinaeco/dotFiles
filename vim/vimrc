@@ -9,16 +9,6 @@ call pathogen#helptags()
 
 
 """"""""
-"" Environment - What kind of machine are we on?
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-if has("unix")
-  " remove the newline character from the uname command
-  let s:uname = substitute(system("uname"), "\n", "", "")
-endif
-
-
-""""""""
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -35,6 +25,11 @@ if has("persistent_undo")
   set undofile
   set undodir=~/.vim/undo
 endif
+
+
+""""""""
+"" Autocommands
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("autocmd")
   " Enable filetype specific features
@@ -57,13 +52,15 @@ if has("autocmd")
   " Source the vimrc file after saving it
   autocmd BufWritePost .vimrc nested source $MYVIMRC
 
-  " Things for Quickfix buffers
-
-  " Local remaps for all Quickfix buffers
+  " QuickFix - Local remaps:
+  "            - `q` to close qf buffer
+  "            - `o` to open location entry under cursor
   autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
   autocmd FileType qf nnoremap <silent> <buffer> o <CR>
 
-  " Global remaps for all QuickFix buffers
+  " QuickFix - Global remaps:
+  "            - `<TAB>` and `\` for previous and next location entry
+  "            - unmaps when qf buffer is closed.
   autocmd BufWinEnter quickfix
         \ setlocal nocursorline |
         \ let g:qfix_win = bufnr("$") |
@@ -74,7 +71,7 @@ if has("autocmd")
         \   call UnmapQfPrefNext() |
         \ endif
 
-  " Open QuickFix window after any grep invocation (Glog and Ggrep)
+  " QuickFix - Open window after any grep invocation (Glog and Ggrep)
   autocmd QuickFixCmdPost *grep* cwindow |
         \ setlocal nocursorline |
         \ let g:qfix_win = bufnr("$") |
@@ -88,6 +85,12 @@ if has("autocmd")
 
   " Fugitive - Delete buffers when they are not active
   autocmd BufReadPost fugitive://* set bufhidden=delete
+
+  " PHP - Offline docs, manpage-style, using `K`.
+  " - needs pman installed through PEAR: `pear install doc.php.net/pman`
+  if executable('pman')
+    autocmd FileType php set keywordprg=pman
+  endif
 
 else
   set autoindent on
@@ -250,12 +253,6 @@ nnoremap <C-F> :Grep<space>
 " Code heirarchy with Tagbar
 nnoremap <silent> <leader>t    :TagbarToggle<CR>
 
-" Unite settings
-"nnoremap <C-F> :Unite file_rec/async:! -prompt=Goto\ File\ >\  -buffer-name=Files -resume<CR>
-"let g:unite_enable_start_insert = 1
-"call unite#custom_source('file_rec/async', 'matchers', 'matcher_fuzzy')
-"call unite#custom_source('file_rec/async', 'sorters', 'sorter_rank')
-
 
 """"""""
 "" Key Remaps - Movement and Windows
@@ -357,6 +354,7 @@ let g:vdebug_options = {
 """"""""" Vim Markdown
 let g:vim_markdown_folding_disabled = 1
 
+
 """"""""" Sparkup
 let g:sparkupNextMapping = '<leader>n' " resolve conflict with vim-multiple-cursors
 
@@ -417,7 +415,6 @@ function! CycleKeymap()
 endfunction
 
 function! MapQfPrevNext()
-  " jump to the next/previous instance in Quickfix window
   exec "nmap <silent> <tab> :cprev<CR>"
   exec "nmap <silent> <bslash> :cnext<CR>"
 endfunction
