@@ -1,9 +1,9 @@
 set nocompatible    " Don't have to try to be compatible with old vi
-set encoding=utf-8
 
 """"""""
 "" Plugin Loading with Pathogen
 """""""""""""""""""""""""""""""""""""""""""""""""""
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -12,6 +12,7 @@ call pathogen#helptags()
 "" General Behaviours
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
+set encoding=utf-8
 set splitbelow    " New splits appear below current window instead of above
 set splitright    " New splits appear right of current window
 set ttyfast       " Smooth movement
@@ -357,6 +358,14 @@ let g:vim_markdown_folding_disabled = 1
 
 """"""""" Sparkup
 let g:sparkupNextMapping = '<leader>n' " resolve conflict with vim-multiple-cursors
+
+
+""""""""" MatchIt
+" matchit.vim included in vim since 6.0. Load it if there isn't a newer version.
+" (from sensible.vim)
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
 
 """"""""
