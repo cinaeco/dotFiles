@@ -113,6 +113,7 @@ set backspace=eol,start,indent "backspace over everything
 set textwidth=80    " try to keep text within 80 characters
 set colorcolumn=+1  " mark out the limits of the textwidth
 set listchars=trail:_,tab:>.,eol:$
+set fillchars=fold:.
 
 
 """"""""
@@ -260,10 +261,10 @@ nnoremap <silent> <leader>t    :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " jump to beginning and end of line easier
-nnoremap H ^
-nnoremap L $
-vnoremap H ^
-vnoremap L $
+nmap H ^
+nmap L $
+vmap H ^
+vmap L $
 
 " Smart way to move between windows
 nnoremap <C-j> <C-W>j
