@@ -18,8 +18,9 @@ set splitright    " New splits appear right of current window
 set ttyfast       " Smooth movement
 set ttymouse=xterm2
 set mouse=a
-set scrolloff=4  " keep distance from top and bottom for current line
+set scrolloff=4   " keep distance from top and bottom for current line
 set cursorline    " ensure that there is a cursor line
+set noswapfile    " don't use swap files. We save often & have persistent undo.
 
 " Persistent undo
 if has("persistent_undo")
@@ -249,8 +250,8 @@ nnoremap <silent> <leader>gap  :Git add -p<CR>
 nnoremap <silent> <leader>b    :Gblame<CR>
 nnoremap <silent> <leader>gd   :Gdiff<CR>
 
-" Ack with Ctrl-F
-nnoremap <C-F> :Grep<space>
+" Function definition jumping with CtrlP's Funky plugin
+nnoremap <C-F> :CtrlPFunky<CR>
 
 " Code heirarchy with Tagbar
 nnoremap <silent> <leader>t    :TagbarToggle<CR>
@@ -343,6 +344,7 @@ let g:ctrlp_user_command = {
   \ },
   \ 'fallback': 'find %s -type f'
 \ }
+let g:ctrlp_extensions = ['funky']
 
 
 """"""""" Vdebug
