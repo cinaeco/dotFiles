@@ -1,97 +1,15 @@
-[submodule "vim/bundle/vim-pathogen"]
-  path = vim/bundle/vim-pathogen
-  url = https://github.com/tpope/vim-pathogen.git
-[submodule "vim/bundle/nerdtree"]
-  path = vim/bundle/nerdtree
-  url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/nerdcommenter"]
-  path = vim/bundle/nerdcommenter
-  url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/supertab"]
-  path = vim/bundle/supertab
-  url = https://github.com/ervandew/supertab.git
-[submodule "vim/bundle/solarized"]
-  path = vim/bundle/solarized
-  url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "zsh/oh-my-zsh"]
   path = zsh/oh-my-zsh
   url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "vim/bundle/gundo"]
-  path = vim/bundle/gundo
-  url = https://github.com/sjl/gundo.vim.git
-[submodule "vim/bundle/surround"]
-  path = vim/bundle/surround
-  url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/fugitive"]
-  path = vim/bundle/fugitive
-  url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/repeat"]
-  path = vim/bundle/repeat
-  url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/sparkup"]
-  path = vim/bundle/sparkup
-  url = https://github.com/bingaman/vim-sparkup.git
-[submodule "vim/bundle/snipmate"]
-  path = vim/bundle/snipmate
-  url = https://github.com/garbas/vim-snipmate.git
-[submodule "vim/bundle/tlib"]
-  path = vim/bundle/tlib
-  url = https://github.com/tomtom/tlib_vim.git
-[submodule "vim/bundle/mw-utils"]
-  path = vim/bundle/mw-utils
-  url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "vim/bundle/tagbar"]
-  path = vim/bundle/tagbar
-  url = https://github.com/majutsushi/tagbar.git
-[submodule "vim/bundle/syntastic"]
-  path = vim/bundle/syntastic
-  url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/easygrep"]
-  path = vim/bundle/easygrep
-  url = https://github.com/cinaeco/EasyGrep.git
-[submodule "vim/bundle/indentguides"]
-  path = vim/bundle/indentguides
-  url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "tmux/tmux-colors-solarized"]
   path = tmux/tmux-colors-solarized
   url = https://github.com/seebi/tmux-colors-solarized.git
-[submodule "vim/bundle/vdebug"]
-  path = vim/bundle/vdebug
-  url = https://github.com/joonty/vdebug.git
-[submodule "vim/bundle/ctrlp"]
-  path = vim/bundle/ctrlp
-  url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/vim-snippets"]
-  path = vim/bundle/vim-snippets
-  url = https://github.com/honza/vim-snippets.git
-[submodule "vim/bundle/vim-markdown"]
-  path = vim/bundle/vim-markdown
-  url = https://github.com/plasticboy/vim-markdown.git
 [submodule "powerline/powerline"]
   path = powerline/powerline
   url = https://github.com/Lokaltog/powerline.git
-[submodule "vim/bundle/vim-multiple-cursors"]
-	path = vim/bundle/vim-multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors.git
-  ignore = dirty
-[submodule "vim/bundle/vim-autoclose"]
-  path = vim/bundle/vim-autoclose
-  url = https://github.com/Townk/vim-autoclose.git
 [submodule "mongo/mongo-hacker"]
   path = mongo/mongo-hacker
   url = https://github.com/TylerBrock/mongo-hacker.git
 [submodule "powerline/rainbarf"]
-	path = powerline/rainbarf
-	url = https://github.com/creaktive/rainbarf.git
-[submodule "vim/bundle/vim-autocomplpop"]
-	path = vim/bundle/vim-autocomplpop
-	url = https://github.com/cinaeco/vim-autocomplpop.git
-  ignore = dirty
-[submodule "vim/bundle/L9"]
-	path = vim/bundle/L9
-	url = https://github.com/vim-scripts/L9.git
-  ignore = dirty
-[submodule "vim/bundle/ctrlp-funky"]
-	path = vim/bundle/ctrlp-funky
-	url = https://github.com/tacahiroy/ctrlp-funky.git
-  ignore = dirty
+  path = powerline/rainbarf
+  url = https://github.com/creaktive/rainbarf.git
