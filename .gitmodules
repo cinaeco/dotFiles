@@ -13,3 +13,6 @@
 [submodule "powerline/rainbarf"]
   path = powerline/rainbarf
   url = https://github.com/creaktive/rainbarf.git
+[submodule "vim/spf13-vim"]
+	path = vim/spf13-vim
+	url = https://github.com/spf13/spf13-vim.git
