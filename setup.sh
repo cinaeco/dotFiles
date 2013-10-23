@@ -47,6 +47,8 @@ ln -s dotfiles/zsh/zshrc ~/.zshrc
 ln -s dotfiles/zsh/zshenv ~/.zshenv
 
 # Vim
+[ -d ~/.vim ] && mv ~/.vim "$BACKUP_DIR"
+[ -f ~/.vimrc ] && mv ~/.vimrc "$BACKUP_DIR"
 ln -s dotfiles/vim/vimrc.local ~/.vimrc.local
 ln -s dotfiles/vim/vimrc.before.local ~/.vimrc.before.local
 ln -s dotfiles/vim/vimrc.bundles.local ~/.vimrc.bundles.local

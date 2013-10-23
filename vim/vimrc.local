@@ -1,23 +1,3 @@
-"""""""
-"" Remove Unwanted Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" We use our own powerline install
-UnBundle 'bling/vim-airline'
-
-" Great, but is slow when you work through tunnels, which I do a LOT.
-UnBundle 'airblade/vim-gitgutter'
-
-" This is not a fantastic idea, and is slow when working through tunnels.
-UnBundle 'myusuf3/numbers.vim'
-
-" Never go used to this
-UnBundle 'Lokaltog/vim-easymotion'
-
-" Don't care about gvim... yet.
-UnBundle 'godlygeek/csapprox'
-
-
 if has("autocmd")
 
   " Show trailing white space
@@ -27,31 +7,6 @@ if has("autocmd")
   " Source the vimrc file after saving it
   autocmd BufWritePost .vimrc.local nested source $MYVIMRC
 
-  " QuickFix - Local remaps:
-  "            - `q` to close qf buffer
-  "            - `o` to open location entry under cursor
-  autocmd FileType qf nnoremap <silent> <buffer> q :ccl<CR>:lcl<CR>
-  autocmd FileType qf nnoremap <silent> <buffer> o <CR>
-
-  " QuickFix - Global remaps:
-  "            - `<TAB>` and `\` for previous and next location entry
-  "            - unmaps when qf buffer is closed.
-  autocmd BufWinEnter quickfix
-        \ setlocal nocursorline |
-        \ let g:qfix_win = bufnr("$") |
-        \ call MapQfPrevNext()
-  autocmd BufWinLeave *
-        \ if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win |
-        \   unlet! g:qfix_win |
-        \   call UnmapQfPrefNext() |
-        \ endif
-
-  " QuickFix - Open window after any grep invocation (Glog and Ggrep)
-  autocmd QuickFixCmdPost *grep* cwindow |
-        \ setlocal nocursorline |
-        \ let g:qfix_win = bufnr("$") |
-        \ call MapQfPrevNext()
-
   " Fugitive - Go up to previous tree object while exploring git tree with '..'
   autocmd User fugitive
     \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
@@ -60,12 +15,6 @@ if has("autocmd")
 
   " Fugitive - Delete buffers when they are not active
   autocmd BufReadPost fugitive://* set bufhidden=delete
-
-  " PHP - Offline docs, manpage-style, using `K`.
-  " - needs pman installed through PEAR: `pear install doc.php.net/pman`
-  if executable('pman')
-    autocmd FileType php set keywordprg=pman
-  endif
 
 endif
 
@@ -81,7 +30,6 @@ set smarttab        " backspace tabs where appropriate even if spaces
 set softtabstop=2   " let backspace delete by indents
 set textwidth=80    " try to keep text within 80 characters
 set colorcolumn=+1  " mark out the limits of the textwidth
-set fillchars=fold:.
 
 
 """"""""
@@ -89,9 +37,6 @@ set fillchars=fold:.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set t_Co=16
-
-" set colour for folded lines
-highlight Folded term=none cterm=none ctermfg=darkred ctermbg=none
 
 " show trailing white space
 highlight ExtraWhitespace ctermfg=red ctermbg=red guifg=red guibg=red
@@ -111,7 +56,6 @@ highlight IndentGuidesEven ctermbg=black
 
 set foldmethod=indent
 set foldlevel=10
-set foldtext=FoldText()
 
 
 """"""""
@@ -134,9 +78,6 @@ nnoremap <silent> <leader>$    :%s/\s\+$//g<CR>
 
 " Convert tabs to spaces
 nnoremap <silent> <leader><TAB>    :%s/<TAB>/  /g<CR>
-
-" Space as a Folding toggle in normal mode.
-nnoremap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
 
 " Backspace to clear current search (and stop highlighting)
 nnoremap <silent> <backspace>    :call ClearSearch()<CR>
@@ -254,15 +195,6 @@ let g:sparkupNextMapping = '<leader>n' " resolve conflict with vim-multiple-curs
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! FoldText()
-  let line = getline(v:foldstart)
-  let indent = indent(v:foldstart)
-  let indentOnly = strpart(line, 0, indent-1)
-  let linecount = v:foldend+1 - v:foldstart
-  let foldtext = '+'.indentOnly.'... ('.linecount.' More lines)'
-  return foldtext
-endfunction
-
 function! ToggleMouse()
   if &mouse == 'a'
     set mouse=
@@ -305,12 +237,6 @@ function! CycleKeymap()
   endif
 endfunction
 
-function! MapQfPrevNext()
-  exec "nmap <silent> <tab> :cprev<CR>"
-  exec "nmap <silent> <bslash> :cnext<CR>"
-endfunction
-
-function! UnmapQfPrefNext()
-  exec "nunmap <tab>"
-  exec "nunmap <bslash>"
-endfunction
+for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')
+  execute 'source' filePath
+endfor
