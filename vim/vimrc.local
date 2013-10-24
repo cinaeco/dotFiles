@@ -191,6 +191,9 @@ let g:vim_markdown_folding_disabled = 1
 """"""""" Sparkup
 let g:sparkupNextMapping = '<leader>n' " resolve conflict with vim-multiple-cursors
 
+""""""""" PIV
+let g:DisableAutoPHPFolding = 1
+
 """"""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
