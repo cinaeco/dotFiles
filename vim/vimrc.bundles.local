@@ -21,13 +21,20 @@
 
 " Add Wanted Bundles {
   Bundle 'tacahiroy/ctrlp-funky'
+  Bundle 'joonty/vdebug'
+  Bundle 'tpope/vim-repeat'
 " }"
 
 " Remove Unwanted Bundles {
 
   " Keep all other spf13-vim sections except 'general'.
   if !exists('g:spf13_bundle_groups')
-    let g:spf13_bundle_groups=['neocomplcache', 'programming', 'php', 'ruby', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+    if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
+      let autoCompLibrary = 'neocomplete'
+    else
+      let autoCompLibrary = 'neocomplcache'
+    end
+    let g:spf13_bundle_groups=[autoCompLibrary, 'programming', 'php', 'ruby', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
   endif
 
   " General {
