@@ -36,18 +36,29 @@ set colorcolumn=+1  " mark out the limits of the textwidth
 """"""""
 "" UI - Mouse & Cursor
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-set virtualedit=block " Freedom of movement in visual block mode
 
+set virtualedit=block " Freedom of movement in visual block mode
 " The following two settings are related to how vim reacts to the incoming $TERM
 " value from either the terminal emulator (e.g. iTerm2) or tmux. In the best
 " case, both of these should be set to xterm-256color. This will result in vim
 " reacting with the settings below:
-"set t_Co=256
 "set ttymouse=xterm2 " Needed to allow mouse support to resize windows
 "set ttyfast " Allows for instantaneous refresh when using the mouse to select
 
-" Have not gotten solarized to work properly yet highlighting of cursor,
-" width limit line and number and fold columns are wrong.
+
+""""""""
+"" UI - Solarized Fix
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Fix solarized scheme in spf13-vim. The config sets up to use the degraded
+" 256-color mode for sake of some terminal emulators? (see
+" https://github.com/spf13/spf13-vim/issues/113).
+"
+" These two lines Must come in this order or they won't work: number and fold
+" columns and cursor line come out brownish (dark scheme) or black (light
+" scheme).
+let g:solarized_termcolors=16
+set t_Co=16
 
 
 """"""""
