@@ -7,13 +7,12 @@
 # output or assume the shell is attached to a tty.
 #
 
-## don't close less when I am done reading
 export EDITOR='vim'
 
 ## paths
-export PATH=/usr/local/bin:~/bin:/usr/sbin:/usr/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH # Take user executables before the system's.
+export PATH=$HOME/dotfiles/powerline/powerline/scripts:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
-export PATH=~/dotfiles/powerline/powerline/scripts:$PATH
 
 # Add /usr/local manpages
 if [[ -d /usr/local/share/man ]];then
