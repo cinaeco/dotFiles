@@ -90,4 +90,8 @@ ln -s dotfiles/mongo/mongorc.js ~/.mongorc.js
 [ -f ~/.ackrc ] && mv ~/.ackrc "$BACKUP_DIR"
 ln -s dotfiles/ack/ackrc ~/.ackrc
 
+# Emacs
+[ -f ~/.emacs ] && mv ~/.emacs "$BACKUP_DIR"
+ln -s dotfiles/emacs/emacs ~/.emacs
+
 echo "Setup complete!"
