@@ -245,9 +245,13 @@ let g:vim_markdown_folding_disabled = 1
 """"""""" PIV
 let g:DisableAutoPHPFolding = 1
 
-""""""""
-"" Functions
 
+""""""""" Remove completion omni in the event that it is too slow
+"let g:neocomplete#sources#omni#input_patterns = {}
+"let g:neocomplcache_omni_patterns = {}
+
+
+""""""""" Source local scripts/plugins
 for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')
   execute 'source' filePath
 endfor

@@ -34,7 +34,7 @@
     else
       let autoCompLibrary = 'neocomplcache'
     end
-    let g:spf13_bundle_groups=[autoCompLibrary, 'programming', 'php', 'ruby', 'python', 'go', 'twig', 'javascript', 'haskell', 'html', 'misc', 'scala']
+    let g:spf13_bundle_groups=[autoCompLibrary, 'programming', 'php', 'ruby', 'python', 'javascript', 'haskell', 'html', 'misc']
   endif
 
   " General {
@@ -45,7 +45,7 @@
   Bundle 'spf13/vim-autoclose'
   Bundle 'kien/ctrlp.vim'
   Bundle 'terryma/vim-multiple-cursors'
-  Bundle 'vim-scripts/sessionman.vim'
+  "Bundle 'vim-scripts/sessionman.vim'
   Bundle 'matchit.zip'
 
   " Removed: We use our own powerline install, which comes with our dotfiles.
@@ -70,8 +70,9 @@
   "Bundle 'godlygeek/csapprox'
   "
   Bundle 'jistr/vim-nerdtree-tabs'
-  Bundle 'flazz/vim-colorschemes'
-  Bundle 'mbbill/undotree'
+  "Bundle 'flazz/vim-colorschemes'
+  "Bundle 'mbbill/undotree'
+  Bundle 'sjl/gundo.vim'
 
   " Removed: This is not a fantastic idea, and is slow when working through tunnels.
   "Bundle 'myusuf3/numbers.vim'
