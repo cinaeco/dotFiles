@@ -50,7 +50,7 @@ alias gla='gl --all'
 # concise, branch and tag log with train tracks (some merge commits unavoidable)
 alias glb='gl --simplify-by-decoration'
 alias glh='gl | head'
-alias glp='gl --patch'
+alias glp='git log --graph --patch'
 # useful when you want to have a visual on file changes
 alias gls='git log --graph --stat'
 # search through history for particular text
