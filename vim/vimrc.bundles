@@ -1,0 +1,79 @@
+" Bundles - Modeline and Notes {{{
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
+"
+"   Vim Plugins are managed using Vundle.
+"
+" }}}
+
+" Setup Bundle Support {{{
+" Ensure that the ~/.vim/bundle/ system works
+set nocompatible
+filetype on
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+" }}}
+
+" Bundles {{{
+
+" Vundle managing itself!
+Bundle 'gmarik/vundle'
+
+if executable('ack-grep')
+  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+  Bundle 'mileszs/ack.vim'
+elseif executable('ack')
+  Bundle 'mileszs/ack.vim'
+elseif executable('ag')
+  Bundle 'mileszs/ack.vim'
+  let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+endif
+
+Bundle 'kien/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'joonty/vdebug'
+Bundle 'tpope/vim-repeat'
+
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'altercation/vim-colors-solarized'
+
+Bundle 'tpope/vim-surround'
+Bundle 'spf13/vim-autoclose'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'matchit.zip'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-abolish.git'
+Bundle 'scrooloose/syntastic'
+Bundle 'mattn/webapi-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mattn/gist-vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'godlygeek/tabular'
+
+" File Browser {{{
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+" }}}
+
+" Code Browser {{{
+if executable('ctags')
+  Bundle 'majutsushi/tagbar'
+endif
+" }}}
+
+" Completion and Snippets {{{
+Bundle 'ervandew/supertab'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+" Source support_function.vim to support vim-snippets.
+if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
+  source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
+endif
+" }}}
+
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-cucumber'
+Bundle 'quentindecock/vim-cucumber-align-pipes'
+" }}}

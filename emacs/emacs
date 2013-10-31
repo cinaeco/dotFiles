@@ -1,7 +1,26 @@
-;; Include the MELPA repository, for more plugin goodness. Particularly Evil.
+(package-initialize)
+
+
+;;; Repositories
+
+;; MELPA. For more plugin goodness, particularly evil-mode.
 (require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") ))
+
+
+;;; Setup
+
+;; Vim-bindings with Evil-Mode
+(setq evil-want-C-u-scroll t) ; <C-u> for "up" to match <C-d> for "down"
+(require 'evil)
+(evil-mode 1)
+
+;; Mouse mode for iTerm2
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
+
+;; Solarized: How do we set this up properly?
