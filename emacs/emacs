@@ -15,12 +15,32 @@
 
 ;; Vim-bindings with Evil-Mode
 (setq evil-want-C-u-scroll t) ; <C-u> for "up" to match <C-d> for "down"
+
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "e" 'find-file
+  "b" 'switch-to-buffer
+  "k" 'kill-buffer
+  "d" 'dired)
+
 (require 'evil)
 (evil-mode 1)
 
-;; Mouse mode for iTerm2
-(require 'mouse)
-(xterm-mouse-mode t)
-(defun track-mouse (e))
+
+;; Mouse support for Terminal Emulators. Particularly iTerm2. With mouse wheel scrolling.
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] '(lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+                              (interactive)
+                              (scroll-up 1)))
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t))
+
 
 ;; Solarized: How do we set this up properly?
