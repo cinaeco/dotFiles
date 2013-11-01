@@ -293,6 +293,10 @@ let g:vdebug_options = {
 \ }
 
 
+""""""""" Supertab
+let g:SuperTabDefaultCompletionType = 'context'
+
+
 """"""""" Vim Markdown
 let g:vim_markdown_folding_disabled = 1
 
@@ -301,12 +305,12 @@ let g:vim_markdown_folding_disabled = 1
 "let g:neocomplete#sources#omni#input_patterns = {}
 "let g:neocomplcache_omni_patterns = {}
 
-    " Find merge conflict markers
-    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
-    " Allow using the repeat operator with a visual selection (!)
-    " http://stackoverflow.com/a/8064607/127816
-    vnoremap . :normal .<CR>
+" Allow using the repeat operator with a visual selection (!)
+" http://stackoverflow.com/a/8064607/127816
+vnoremap . :normal .<CR>
 
 """"""""" Source local scripts/plugins
 for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')

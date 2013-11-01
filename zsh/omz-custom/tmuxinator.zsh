@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Completion of tmuxinator project names
 if [[ ! -o interactive ]]; then
     return

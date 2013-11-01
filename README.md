@@ -1,7 +1,7 @@
 # Configuration Files For *nix Environments
 
 #### Software:
-- vim 7.3+
+- vim 7.4
 - emacs 24
 - tmux 1.8
 - zsh
