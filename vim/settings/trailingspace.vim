@@ -12,7 +12,7 @@ if has("autocmd")
 
   " Are there really any files we care about that Need trailing white space?
   "autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml
-  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+  autocmd BufWritePre * call StripTrailingWhitespace()
 
   function! StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
