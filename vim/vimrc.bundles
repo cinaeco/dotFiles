@@ -58,6 +58,9 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " Code Browser {{{
 if executable('ctags')
   Bundle 'majutsushi/tagbar'
+  if executable('phpctags')
+    Bundle 'vim-php/tagbar-phpctags.vim'
+  endif
 endif
 " }}}
 
@@ -73,8 +76,12 @@ if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vi
 endif
 " }}}
 
+" Coding Language Support {{{
+Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-cucumber'
 Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'kchmck/vim-coffee-script'
+" }}}
+
 " }}}
