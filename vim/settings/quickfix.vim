@@ -34,7 +34,6 @@ if has("autocmd")
         \ setlocal nocursorline |
         \ let g:qfix_win = bufnr("$") |
         \ call MapQfPrevNext()
-        \ endif
   " }}}
 
   " Global map removal on qf window close. {{{

@@ -36,6 +36,7 @@ Bundle 'tpope/vim-repeat'
 
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'cinaeco/EasyGrep'
 
 Bundle 'tpope/vim-surround'
 Bundle 'spf13/vim-autoclose'

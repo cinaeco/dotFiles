@@ -5,7 +5,7 @@ print -Pn "\e]1;`hostname | cut -d. -f1`\a"
 PROMPT='
 %{$fg[cyan]%}[%m]  %{$fg[yellow]%}%3~  $(git_prompt_info)
 %{$fg[magenta]%}%n → %{$reset_color%}'
-RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
+RPROMPT='$(background_job_info) $(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
@@ -80,9 +80,9 @@ git_prompt_status() {
   [[ $POST_1_7_2_GIT -gt 0 ]] && SUBMODULE_SYNTAX="--ignore-submodules=dirty"
   INDEX=$(git status --porcelain $SUBMODULE_SYNTAX 2> /dev/null)
   [[ -z $INDEX ]] && return
-  X_SET=""
-  Y_SET=""
-  UN_SET=""
+  local X_SET=""
+  local Y_SET=""
+  local UN_SET=""
   echo $INDEX | while IFS= read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
@@ -97,7 +97,7 @@ git_prompt_status() {
     [[ $X == 'R' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_RENAMED" && continue
     [[ $X == 'C' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_COPIED" && continue
   done
-  STATUS=" %{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
+  local STATUS=" %{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
   echo $STATUS
 }
 
@@ -109,4 +109,9 @@ git_prompt_status() {
 # Some people don't write their remotes properly.
 function current_repository() {
   echo $(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\.git.*/\1/')
+}
+
+function background_job_info() {
+  local JOBS="%(1j.%{$fg[green]%}bg-jobs: %{$fg[red]%}%j%{$reset_color%}.)"
+  echo $JOBS
 }
