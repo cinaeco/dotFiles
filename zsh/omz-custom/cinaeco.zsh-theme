@@ -3,9 +3,9 @@ print -Pn "\e]1;`hostname | cut -d. -f1`\a"
 
 ## Multiline Prompt
 PROMPT='
-%{$fg[cyan]%}[%m]  %{$fg[yellow]%}%3~  $(git_prompt_info)
+$(host_name)$(current_folder)$(git_prompt_info)$(background_job_info)
 %{$fg[magenta]%}%n → %{$reset_color%}'
-RPROMPT='$(background_job_info) $(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
+RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
@@ -30,6 +30,18 @@ ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg[red]%}DIVERGED!"
 ##############################
 # FUNCTIONS
 ##############################
+
+function host_name() {
+  echo "%{$fg[cyan]%}[%m]"
+}
+
+function current_folder() {
+  echo "  %{$fg[yellow]%}%3~"
+}
+
+function background_job_info() {
+  echo "  %(1j.%{$FG[063]%}[jobs]: %{$fg[red]%}%j%{$reset_color%}.)"
+}
 
 # Display Git repo information in prompt (override the default omz function)
 #
@@ -60,9 +72,8 @@ function git_prompt_info() {
   GIT_BRANCH=$(current_branch)
   [[ $GIT_BRANCH == '' ]] && GIT_BRANCH="%{$fg[red]%}no branch$(parse_git_dirty)"
 
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
+  echo "  $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
 }
-
 
 # Git Change Indication (overriding default omz function)
 #
@@ -109,9 +120,4 @@ git_prompt_status() {
 # Some people don't write their remotes properly.
 function current_repository() {
   echo $(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\.git.*/\1/')
-}
-
-function background_job_info() {
-  local JOBS="%(1j.%{$fg[green]%}bg-jobs: %{$fg[red]%}%j%{$reset_color%}.)"
-  echo $JOBS
 }
