@@ -48,7 +48,9 @@ nmap <C-r> :source ~/.vimperatorrc<CR>:echo "Configuration Reloaded (~/.vimperat
 
 let autochanger_proxy_enabled = "true"
 let autochanger_proxy_settings = "["
-let autochanger_proxy_settings += "{ name:'disable', usage: 'direct connection', proxy: { type: 0 } },"
+let autochanger_proxy_settings += "{ name: 'disable', usage: 'direct connection', proxy: { type: 0 } },"
 let autochanger_proxy_settings += "{ name: 'acer', usage: 'ACER proxy by IP', proxy: { type: 1, http: '192.168.1.248', http_port: 3128 } },"
-let autochanger_proxy_settings += "{ name: 'dev', usage: 'ACER dev proxy config', proxy: { type: 2, http: 'http://proxy.dev' } }"
+let autochanger_proxy_settings += "{ name: 'dev', usage: 'ACER dev proxy config', proxy: { type: 2, autoconfig_url: 'http://proxy.dev' } },"
+let autochanger_proxy_settings += "{ name: 'auto', usage: 'Autodetect proxy settings', proxy: { type: 4 } },"
+let autochanger_proxy_settings += "{ name: 'system', usage: 'Use System proxy settings', proxy: { type: 5 } },"
 let autochanger_proxy_settings += "]"

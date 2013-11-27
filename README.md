@@ -13,5 +13,6 @@
 Installs a user `ack` binary.
 
 Best used with iTerm2 (Mac OS X) and ROXTerm (Linux) setup with the [Solarized colour scheme][solarized].
+Prefered font: Meslo (Menlo patched for powerline).
 
 [solarized]: http://ethanschoonover.com/solarized
