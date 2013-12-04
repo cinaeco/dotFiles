@@ -1,9 +1,7 @@
-" Trailing Space - Modeline and Notes {{{
+" White Space - Modeline and Notes {{{
 " vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
 "
-"   cinaeco/dotfiles Trailing space removal
-"
-"   Taken from spf13-vim
+"   cinaeco/dotfiles functions to do with manipulation of white space
 "
 " }}}
 
@@ -27,4 +25,17 @@ if has("autocmd")
   endfunction
 
 endif
+" }}}
+
+" Mappings {{{
+
+  " Add extra lines up and down {{{
+  nnoremap <leader>j o<Esc>k
+  nnoremap <leader>k O<Esc>j
+  " }}}
+
+  " Convert tabs to spaces {{{
+  nnoremap <silent> <leader><TAB> :%s/<TAB>/  /g<CR>
+  " }}}
+
 " }}}

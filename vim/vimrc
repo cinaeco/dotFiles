@@ -6,44 +6,11 @@ if has("autocmd")
   autocmd!
 endif
 
-" Initialize directories {
-function! InitializeDirectories()
-  let parent = $HOME
-  let prefix = 'vim'
-  let dir_list = {
-        \ 'backup': 'backupdir',
-        \ 'swap': 'directory' }
-
-  if has('persistent_undo')
-    let dir_list['undo'] = 'undodir'
-  endif
-
-  let common_dir = parent . '/.' . prefix
-
-  for [dirname, settingname] in items(dir_list)
-    let directory = common_dir . dirname . '/'
-    if exists("*mkdir")
-      if !isdirectory(directory)
-        call mkdir(directory)
-      endif
-    endif
-    if !isdirectory(directory)
-      echo "Warning: Unable to create backup directory: " . directory
-      echo "Try: mkdir -p " . directory
-    else
-      let directory = substitute(directory, " ", "\\\\ ", "g")
-      exec "set " . settingname . "=" . directory
-    endif
-  endfor
-endfunction
-call InitializeDirectories()
-" }
-
-" Use bundles config {
+" Use bundles config {{{
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
-" }
+" }}}
 
 filetype plugin indent on   " Automatically detect file types.
 
@@ -60,8 +27,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax on                   " Syntax highlighting
-set background=dark         " Assume a dark background
-colorscheme solarized
 
 set nowrap
 set cursorline      " Highlight current line
@@ -93,8 +58,7 @@ set modeline                    " Support vim modelines at the top of files
 "set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
+set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
@@ -104,41 +68,6 @@ if has('persistent_undo')
   set undolevels=1000         " Maximum number of changes that can be undone
   set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
-
-""""""""
-"" UI - Mouse & Cursor
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" The following two settings are related to how vim reacts to the incoming $TERM
-" value from either the terminal emulator (e.g. iTerm2) or tmux. In the best
-" case, both of these should be set to xterm-256color. This will result in vim
-" reacting with the settings below:
-"set ttymouse=xterm2 " Needed to allow mouse support to resize windows
-"set ttyfast " Allows for instantaneous refresh when using the mouse to select
-
-
-""""""""
-"" UI - Solarized Fix
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Fix solarized scheme in spf13-vim. The config sets up to use the degraded
-" 256-color mode for sake of some terminal emulators? (see
-" https://github.com/spf13/spf13-vim/issues/113).
-"
-" These two lines Must come in this order or they won't work: number and fold
-" columns and cursor line come out brownish (dark scheme) or black (light
-" scheme).
-"let g:solarized_termcolors=16
-"set t_Co=16
-
-
-""""""""
-"" UI - Code Folding
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set foldmethod=indent
-set foldlevel=10
-
 
 """"""""
 "" Key Remaps
@@ -153,12 +82,16 @@ inoremap jk <ESC>
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
-" Add extra lines up and down
-nnoremap <leader>j o<Esc>k
-nnoremap <leader>k O<Esc>j
+nnoremap <silent> <leader>w :set wrap!<CR>
 
-" Convert tabs to spaces
-nnoremap <silent> <leader><TAB> :%s/<TAB>/  /g<CR>
+" Toggle paste mode - no autoindenting of pasted material
+nnoremap <silent> <leader>p :set paste! paste?<CR>
+
+" Toggle visible whitespace characters
+nnoremap <silent> <leader>l :set list!<CR>
+
+" Toggle scrollbind for moving multiple splits in sync together
+nnoremap <silent> <leader>s :set scrollbind! scrollbind?<CR>
 
 " Backspace to clear current search (and stop highlighting)
 nnoremap <silent> <backspace> :call ClearSearch()<CR>
@@ -169,159 +102,6 @@ function! ClearSearch()
     redraw
   endif
 endfunction
-
-nnoremap <silent> <leader>w :set wrap!<CR>
-
-" Toggle paste mode - no autoindenting of pasted material
-nnoremap <silent> <leader>p :set paste! paste?<CR>
-
-" Toggle visible whitespace characters
-nnoremap <silent> <leader>l :set list!<CR>
-
-" Toggle keyboard layout
-"nnoremap <silent> <leader><space> :call CycleKeymap()<CR>
-
-"function! CycleKeymap()
-  "if has('keymap')
-    "if (&keymap == '')
-      "set keymap=colemak
-      "echo 'Colemak keymap selected'
-    "elseif (&keymap == 'colemak')
-      "set keymap=dvorak
-      "echo 'Dvorak keymap selected'
-    "else
-      "set keymap=
-      "echo 'Qwerty keymap selected'
-    "endif
-  "else
-    "echo 'Keymaps not supported'
-  "endif
-"endfunction
-
-" Toggle scrollbind for moving multiple splits in sync together
-nnoremap <silent> <leader>sb :set scrollbind! scrollbind?<CR>
-
-" Toggle mouse support.
-nnoremap <silent> <leader>m :call ToggleMouse()<CR>
-
-function! ToggleMouse()
-  if &mouse == 'a'
-    set mouse=
-    echo 'Mouse usage disabled'
-  else
-    set mouse=a
-    echo 'Mouse usage enabled'
-  endif
-endfunction
-
-" Toggle NERDTree file browser
-nnoremap <silent> <leader>d :NERDTreeMirrorToggle<CR>
-let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let g:NERDTreeChDirMode=0
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeMouseMode=2
-let g:NERDTreeShowHidden=1
-let g:NERDTreeKeepTreeInNewTab=1
-
-" Toggle Commenting out lines with NERDCommenter
-nnoremap <silent> <leader>, :call NERDComment("n", "toggle")<CR>
-vnoremap <silent> <leader>, <ESC>:call NERDComment("x", "toggle")<CR>
-
-" Git commands with Fugitive
-nnoremap <silent> <leader>gc :Gcommit -v<CR>
-nnoremap <silent> <leader>gl :Glog<CR><CR>
-nnoremap <silent> <leader>gap :Git add -p<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-if has("autocmd")
-  " Fugitive - Go up to previous tree object while exploring git tree with '..'
-  autocmd User fugitive
-    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-    \   nnoremap <buffer> .. :edit %:h<CR> |
-    \ endif
-
-  " Fugitive - Delete buffers when they are not active
-  autocmd BufReadPost fugitive://* set bufhidden=delete
-
-endif
-
-" Gundo
-nnoremap <silent> <leader>u :GundoToggle<CR>
-" Tagbar
-nnoremap <silent> <leader>t :TagbarToggle<CR>
-
-""""""""" CtrlP
-" Function definition jumping with CtrlP's Funky plugin
-nnoremap <silent> <C-F> :CtrlPFunky<CR>
-"let g:ctrlp_working_path_mode = 'rw' let's try out ra
-let g:ctrlp_user_command = {
-    \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': 'find %s -type f'
-\ }
-let g:ctrlp_extensions = ['funky']
-
-""""""""" Powerline
-set laststatus=2
-set rtp+=~/dotfiles/powerline/powerline/powerline/bindings/vim
-set noshowmode " don't show e.g. --INSERT-- since we're using powerline
-
-
-""""""""" Tagbar
-let g:tagbar_autoclose = 1 " close sidebar after we go to selection
-
-
-""""""""" Indent Guides
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-" reverse indent guides highlighting
-"highlight IndentGuidesOdd ctermbg=grey
-highlight IndentGuidesEven ctermbg=black
-
-
-""""""""" Syntastic
-let g:syntastic_auto_jump = 1
-
-
-""""""""" Vdebug
-let g:vdebug_options = {
-  \ 'break_on_open' : 0,
-  \ 'watch_window_style' : 'compact',
-  \ 'path_maps' : {"/usr": "/jails/alcatraz/usr"}
-\ }
-
-
-""""""""" Supertab
-let g:SuperTabDefaultCompletionType = 'context'
-
-
-""""""""" Vim Markdown
-let g:vim_markdown_folding_disabled = 1
-
-""""""""" EasyGrep
-let g:EasyGrepRecursive = 1
-let g:EasyGrepHighlightQfMatches = 1
-let g:EasyGrepReplaceWindowMode = 2  " Edit and save in place (no new tabs/splits)
-" use ack for grepping if available
-if executable('ack-grep')
-  set grepprg=ack-grep\ --with-filename\ --nocolor\ --nogroup
-elseif executable('ack')
-  set grepprg=ack\ --with-filename\ --nocolor\ --nogroup
-endif
-set shellpipe=&>  " don't display ack/grep terminal output. NOTE: not reliable
-                  " https://github.com/mileszs/ack.vim/issues/18
-
-
-
-""""""""" Remove completion omni in the event that it is too slow
-"let g:neocomplete#sources#omni#input_patterns = {}
-"let g:neocomplcache_omni_patterns = {}
-
-" Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816

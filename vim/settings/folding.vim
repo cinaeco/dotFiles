@@ -28,6 +28,11 @@
 
 if has('folding')
 
+  " Default Settings {{{
+  set foldmethod=indent
+  set foldlevel=10
+  " }}}
+
   " Keyboard Shortcuts {{{
   " Space as a Folding toggle in normal mode.
   nnoremap <silent> <space>     @=(foldlevel('.')?'za':"\<space>")<CR>
