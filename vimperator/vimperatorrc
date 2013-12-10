@@ -22,12 +22,16 @@ let mapleader = ","
 " Insert mode! Focus on first imput
 nmap i gi
 
-" Faster navigation of buffers
+" Faster page navigation
 " vim up/down/left/right = half paging and tab switching
 nmap j <C-d>
 nmap k <C-u>
 nmap l gt
 nmap h gT
+
+" Tab moving
+nmap <C-h> :tabmove! -1<CR>
+nmap <C-l> :tabmove! +1<CR>
 
 " Slower page navigation
 nmap J 5<Down>
