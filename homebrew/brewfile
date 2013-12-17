@@ -1,0 +1,45 @@
+# Taps are additional repositories with brew formulae
+tap homebrew/dupes
+tap homebrew/games
+
+# Basic essentials
+install ansible
+install emacs
+install git
+install node
+install the_silver_searcher
+install tmux
+install vim
+
+# More up-to-date version of php for local development
+tap josegonzalez/php
+install php55
+
+# Application management through brew-casks
+tap phinze/cask
+install brew-cask
+cask install anki
+cask install bettertouchtool
+cask install cord
+cask install dropbox
+cask install emacs
+cask install f-lux
+cask install filezilla
+cask install firefox
+cask install gfxcardstatus
+cask install google-chrome
+cask install grandperspective
+cask install handbrake
+cask install iterm2
+cask install keepassx
+cask install keyremap4macbook
+cask install light-table
+cask install menumeters
+cask install quicksilver
+cask install skype
+cask install smcfancontrol
+cask install steam
+cask install teamviewer
+cask install tunnelblick
+cask install virtualbox
+cask install vlc
