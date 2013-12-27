@@ -3,7 +3,7 @@
 """"""""""""""""""""""""
 
 " gui options
-set gui=nonavigation,tabs,bookmarks,addons
+set gui=nonavigation,tabs,nobookmarks,addons
 colorscheme cinaeco
 
 " don't focus on inputs/textfields when we navigate to a page
@@ -48,13 +48,20 @@ nmap <C-r> :source ~/.vimperatorrc<CR>:echo "Configuration Reloaded (~/.vimperat
 
 """"""""""""""""""""""""
 " Proxy Settings
+"
+" Check what options are available by checking in vimperator:
+"
+"     :javascript options.getPref('network.proxy...')
+"
 """"""""""""""""""""""""
 
-let autochanger_proxy_enabled = "true"
-let autochanger_proxy_settings = "["
-let autochanger_proxy_settings += "{ name: 'disable', usage: 'direct connection', proxy: { type: 0 } },"
-let autochanger_proxy_settings += "{ name: 'acer', usage: 'ACER proxy by IP', proxy: { type: 1, http: '192.168.1.248', http_port: 3128 } },"
-let autochanger_proxy_settings += "{ name: 'dev', usage: 'ACER dev proxy config', proxy: { type: 2, autoconfig_url: 'http://proxy.dev' } },"
-let autochanger_proxy_settings += "{ name: 'auto', usage: 'Autodetect proxy settings', proxy: { type: 4 } },"
-let autochanger_proxy_settings += "{ name: 'system', usage: 'Use System proxy settings', proxy: { type: 5 } },"
-let autochanger_proxy_settings += "]"
+" Not using right now as authentication on proxies doesn't work. There is no where to supply username and password.
+" let autochanger_proxy_enabled = "true"
+" let autochanger_proxy_settings = "["
+" let autochanger_proxy_settings += "{ name: 'disable', usage: 'direct connection', proxy: { type: 0 } },"
+" let autochanger_proxy_settings += "{ name: 'acer', usage: 'ACER proxy by IP', proxy: { type: 1, http: '192.168.1.248', http_port: 3128 } },"
+" let autochanger_proxy_settings += "{ name: 'dev', usage: 'ACER dev proxy config', proxy: { type: 2, autoconfig_url: 'http://proxy.dev' } },"
+" let autochanger_proxy_settings += "{ name: 'auto', usage: 'Autodetect proxy settings', proxy: { type: 4 } },"
+" let autochanger_proxy_settings += "{ name: 'system', usage: 'Use System proxy settings', proxy: { type: 5 } },"
+" let autochanger_proxy_settings += "{ name: 'pgs', usage: 'Parsley Gardens US proxy', proxy: { type: 1, http: '64.191.99.119', http_port: 3128 } },"
+" let autochanger_proxy_settings += "]"
