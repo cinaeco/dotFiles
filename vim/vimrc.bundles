@@ -50,6 +50,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
+Bundle 'tristen/vim-sparkup'
 
 " File Browser {{{
 Bundle 'scrooloose/nerdtree'
