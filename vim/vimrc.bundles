@@ -84,6 +84,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-cucumber'
 Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mintplant/vim-literate-coffeescript'
 " }}}
 
 " }}}
