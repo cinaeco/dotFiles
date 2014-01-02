@@ -211,6 +211,12 @@ ln -s dotfiles/mongo/mongorc.js ~/.mongorc.js
 success "Mongo config linked"
 # }}}
 
+# Sqlite {{{
+[ -f ~/.sqliterc ] && mv ~/.sqliterc "$BACKUP_DIR"
+ln -s dotfiles/sqlite/sqliterc ~/.sqliterc
+success "Sqlite config linked"
+# }}}
+
 # Ack {{{
 [ -f ~/.ackrc ] && mv ~/.ackrc "$BACKUP_DIR"
 ln -s dotfiles/ack/ackrc ~/.ackrc
