@@ -36,8 +36,8 @@ nmap <C-l> :tabmove! +1<CR>
 " Slower page navigation
 nmap J 5<Down>
 nmap K 5<Up>
-nmap L 5<Left>
-nmap H 5<Right>
+nmap H 5<Left>
+nmap L 5<Right>
 
 " screen/tmux-like switch to previous tab
 nmap <C-a><C-a> <C-^>
