@@ -34,7 +34,6 @@ alias ga.='git add -A .'
 alias gap='git add -p'
 
 alias gs='git status'
-alias gd='git diff'
 alias gds='git diff --staged'
 
 alias gcob='git checkout -b'
@@ -49,7 +48,7 @@ alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
 alias gla='gl --all'
 # concise, branch and tag log with train tracks (some merge commits unavoidable)
 alias glb='gl --simplify-by-decoration'
-alias glh='gl | head'
+alias glh='gl --max-count=15'
 alias glp='git log --graph --decorate --patch'
 # useful when you want to have a visual on file changes
 alias gls='git log --graph --decorate --stat'

@@ -1,6 +1,5 @@
 # Don't suggest corrections for these commands, in inclusion to omz's defaults
 alias cp='nocorrect cp'
-alias mv='nocorrect mv'
 alias ln='nocorrect ln'
 alias touch='nocorrect touch'
 
