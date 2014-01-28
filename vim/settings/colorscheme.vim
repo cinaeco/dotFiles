@@ -13,3 +13,6 @@
 "set t_Co=16
 set background=dark         " Assume a dark background
 colorscheme solarized
+
+" Remove strange grey highlight in solarized terminal.
+highlight SignColumn ctermbg=8

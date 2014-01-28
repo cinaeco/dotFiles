@@ -33,6 +33,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'joonty/vdebug'
 Bundle 'tpope/vim-repeat'
+Bundle 'kshenoy/vim-signature'
 
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'altercation/vim-colors-solarized'
