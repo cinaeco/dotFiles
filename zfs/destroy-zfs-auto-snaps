@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# From http://pastebin.com/3pLJZa2E
+
+if [ -n "${1}" ]
+then
+  echo "This will *RECURSIVELY* destroy all ZFS auto snapshots (not your manually created snaps). "
+  echo "Parent and child filesystem snapshots to be destroyed: ${1}"
+  echo "Continue? (y/n)"
+  read ANS
+
+  if [ $ANS == "y" ]
+  then
+    echo "Listing snapshots to be destroyed..."
+    for ii in $(zfs list -r -t snapshot -o name ${1} | grep @zfs-auto-snap); do echo $ii; done
+    echo "The above snapshots will be destroyed, sound like a plan? (y/n)"
+    read PLAN
+    if [ $PLAN == "y" ]
+    then
+      for ii in $(zfs list -r -t snapshot -o name ${1} | grep @zfs-auto-snap); do echo $ii; zfs destroy $ii; done
+      echo "ZFS Auto snaps for ${1} destroyed!"
+    else
+      echo "Not a plan then... exiting."
+    fi
+
+  else
+    echo "Not destroying... exit."
+  fi
+
+  echo "Done."
+else
+  echo "Exiting. You did not provide a ZFS filesystem.  (destroy-zfs-auto-snaps-for-fs.sh zpool/some/fs)"
+fi

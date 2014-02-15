@@ -229,6 +229,12 @@ ln -s dotfiles/emacs/emacs ~/.emacs
 success "Emacs config linked"
 # }}}
 
+# ZFS {{{
+[ -f ~/bin/destroy-zfs-auto-snaps ] && mv ~/.vimrc "$BACKUP_DIR"
+ln -s ../dotfiles/zfs/destroy-zfs-auto-snaps ~/bin
+success "ZFS utilities installed"
+# }}}
+
 # Vim {{{
 [ -d ~/.vim ] && mv ~/.vim "$BACKUP_DIR"
 [ -f ~/.vimrc ] && mv ~/.vimrc "$BACKUP_DIR"
