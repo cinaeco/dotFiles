@@ -12,6 +12,9 @@ set focuscontent
 " don't fade out messages, instead just <Esc> to clear
 set messagetimeout=-1
 
+" use DuckDuckGo plugin
+set defsearch=duckduckgo
+
 
 """"""""""""""""""""""""
 " Mappings
