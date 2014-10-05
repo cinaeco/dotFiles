@@ -1,38 +1,24 @@
 {
   "default_module": "powerline.segments.common",
   "segment_data": {
-    "uptime": {
-      "before": "⇑  "
-    },
     "external_ip": {
       "before": "ⓦ  "
-    },
-    "email_imap_alert": {
-      "before": "✉ ",
-      "args": {
-        "username": "",
-        "password": ""
-      }
     }
   },
   "segments": {
     "left" : [
       {
-        "name": "hostname",
+        "function": "hostname",
         "args": {
           "exclude_domain": true
         }
-      },
-      {
-        "name": "external_ip",
-        "priority": 50
       }
     ],
     "right": [
       {
-        "name": "date",
+        "function": "date",
         "args": {
-          "format": "%H:%M %e/%m/%Y",
+          "format": "%H:%M",
           "istime": true
         }
       }
