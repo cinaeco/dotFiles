@@ -1,6 +1,12 @@
 " Do not try to be compatible with vi
 set nocompatible
 
+" Formatting for JSON files
+au FileType json setlocal equalprg=python\ -m\ json.tool
+
+" Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
+nnoremap <C-b> <C-a>
+
 if has("autocmd")
   " Clear existing autocmd
   autocmd!
@@ -38,6 +44,7 @@ set shiftwidth=2    " amount to indent with > and <
 set smarttab        " backspace tabs where appropriate even if spaces
 set textwidth=80    " try to keep text within 80 characters
 set colorcolumn=+1  " mark out the limits of the textwidth
+set hidden
 
 set mouse=a
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
@@ -93,16 +100,6 @@ nnoremap <silent> <leader>l :set list!<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
 nnoremap <silent> <leader>s :set scrollbind! scrollbind?<CR>
-
-" Backspace to clear current search (and stop highlighting)
-nnoremap <silent> <backspace> :call ClearSearch()<CR>
-
-function! ClearSearch()
-  if (@/ != "")
-    let @/=""
-    redraw
-  endif
-endfunction
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816

@@ -19,15 +19,15 @@ call vundle#rc()
 " Vundle managing itself!
 Bundle 'gmarik/vundle'
 
-if executable('ack-grep')
-  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-  Bundle 'mileszs/ack.vim'
-elseif executable('ack')
-  Bundle 'mileszs/ack.vim'
-elseif executable('ag')
-  Bundle 'mileszs/ack.vim'
-  let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-endif
+"if executable('ack-grep')
+  "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+  "Bundle 'mileszs/ack.vim'
+"elseif executable('ack')
+  "Bundle 'mileszs/ack.vim'
+"elseif executable('ag')
+  "Bundle 'mileszs/ack.vim'
+  "let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+"endif
 
 Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
@@ -37,21 +37,32 @@ Bundle 'kshenoy/vim-signature'
 
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'cinaeco/EasyGrep'
+"Bundle 'cinaeco/EasyGrep'
 
 Bundle 'tpope/vim-surround'
-Bundle 'spf13/vim-autoclose'
+"Bundle 'spf13/vim-autoclose'
+Bundle 'Raimondi/delimitMate'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'matchit.zip'
-Bundle 'sjl/gundo.vim'
+"Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-abolish.git'
+Bundle 'tpope/vim-unimpaired.git'
 Bundle 'scrooloose/syntastic'
-Bundle 'mattn/webapi-vim'
+"Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/gist-vim'
+"Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'tristen/vim-sparkup'
+Bundle 'haya14busa/incsearch.vim'
+Bundle 'katono/rogue.vim'
+
+" Text Objects {{{
+Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-entire'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'vim-scripts/argtextobj.vim'
+" }}}
 
 " File Browser {{{
 Bundle 'scrooloose/nerdtree'
@@ -87,6 +98,7 @@ Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'groenewege/vim-less'
+Bundle 'elzr/vim-json'
 " }}}
 
 " }}}
