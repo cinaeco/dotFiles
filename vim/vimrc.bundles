@@ -66,9 +66,7 @@ Bundle 'bkad/CamelCaseMotion'
 Bundle 'vim-scripts/argtextobj.vim'
 " }}}
 "
-Bundle 'elzr/vim-json'
 Bundle 'vim-scripts/yaml.vim'
-Bundle 'tpope/vim-unimpaired'
 
 " File Browser {{{
 Bundle 'scrooloose/nerdtree'
