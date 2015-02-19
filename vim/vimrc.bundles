@@ -34,14 +34,16 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'joonty/vdebug'
 Bundle 'tpope/vim-repeat'
 Bundle 'kshenoy/vim-signature'
+Bundle 'itchyny/lightline.vim'
+Bundle 'haya14busa/vim-asterisk'
 
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'cinaeco/EasyGrep'
-
+Bundle 'cinaeco/EasyGrep'
 Bundle 'tpope/vim-surround'
 "Bundle 'spf13/vim-autoclose'
 Bundle 'Raimondi/delimitMate'
+Bundle 'deris/vim-shot-f'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'matchit.zip'
 "Bundle 'sjl/gundo.vim'
@@ -55,7 +57,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'tristen/vim-sparkup'
 Bundle 'haya14busa/incsearch.vim'
-Bundle 'katono/rogue.vim'
+"Bundle 'katono/rogue.vim'
 
 " Text Objects {{{
 Bundle 'kana/vim-textobj-user'
@@ -63,6 +65,10 @@ Bundle 'kana/vim-textobj-entire'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'vim-scripts/argtextobj.vim'
 " }}}
+"
+Bundle 'elzr/vim-json'
+Bundle 'vim-scripts/yaml.vim'
+Bundle 'tpope/vim-unimpaired'
 
 " File Browser {{{
 Bundle 'scrooloose/nerdtree'
@@ -79,15 +85,16 @@ endif
 " }}}
 
 " Completion and Snippets {{{
-Bundle 'ervandew/supertab'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-" Source support_function.vim to support vim-snippets.
-if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
-  source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
-endif
+"Bundle 'ervandew/supertab'
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+"Bundle 'honza/vim-snippets'
+"" Source support_function.vim to support vim-snippets.
+"if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
+  "source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
+"endif
+Bundle 'ajh17/VimCompletesMe'
 " }}}
 
 " Coding Language Support {{{
