@@ -95,7 +95,7 @@ clone_vundle() {
 setup_vundle() {
   system_shell="$SHELL"
   export SHELL='/bin/sh'
-  vim -u "$HOME/.vimrc.bundles" +BundleInstall! +BundleClean +qall
+  vim -u "$HOME/.vimrc.bundles" +PluginInstall! +PluginClean! +qall
   export SHELL="$system_shell"
 
   success "$1"
