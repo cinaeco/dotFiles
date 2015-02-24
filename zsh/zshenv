@@ -9,8 +9,7 @@
 
 export EDITOR='vim'
 
-## paths
-export PATH=$HOME/bin:/usr/local/bin:$PATH # Take user executables before the system's.
+# Paths
 export PATH=$HOME/dotfiles/powerline/powerline/scripts:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
 
