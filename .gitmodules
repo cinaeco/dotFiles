@@ -7,9 +7,6 @@
 [submodule "powerline/powerline"]
   path = powerline/powerline
   url = https://github.com/Lokaltog/powerline.git
-[submodule "mongo/mongo-hacker"]
-  path = mongo/mongo-hacker
-  url = https://github.com/TylerBrock/mongo-hacker.git
 [submodule "powerline/rainbarf"]
   path = powerline/rainbarf
   url = https://github.com/creaktive/rainbarf.git

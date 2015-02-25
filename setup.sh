@@ -18,10 +18,35 @@
 #
 debug_mode='0'
 
+# Backup Folder for old configuration files {{{
+#
+#   The setup script is non-destructive, and can be run repeatedly - all old
+#   config files or symlinks from previous runs can be recovered from
+#   timestamped temp folders.
+#
+BACKUP_DIR="/tmp/$(date)"
+mkdir "$BACKUP_DIR"
+# }}}
+
+# Symlink Attempt
 lnif() {
   if [ -e "$1" ]; then
     ln -sf "$1" "$2"
   fi
+  ret="$?"
+  debug
+}
+
+# Backup files to backup folder
+backup() {
+  [ -f "$1" ] && mv "$1" "$BACKUP_DIR"
+  ret="$?"
+  debug
+}
+
+# Backup directories to backup folder
+backup_dir() {
+  [ -d "$1" ] && mv "$1" "$BACKUP_DIR"
   ret="$?"
   debug
 }
@@ -32,13 +57,13 @@ msg() {
 
 success() {
   if [ "$ret" -eq '0' ]; then
-    msg "\e[32m[✔]\e[0m ${1}${2}"
+    msg "\e[32m[+]\e[0m ${1}${2}"
   fi
 }
 
 debug() {
   if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
-    msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}"
   fi
 }
 
@@ -63,18 +88,18 @@ upgrade_repo() {
 create_vimlinks() {
   dotfilesvim="$HOME/dotfiles/vim"
 
-  if [ ! -d "$HOME/.cinaeco-vim" ]; then
-    mkdir -p "$HOME/.cinaeco-vim"
+  if [ ! -d "$HOME/.tmp-vim" ]; then
+    mkdir -p "$HOME/.tmp-vim"
   fi
-  endpath="$HOME/.cinaeco-vim"
+  vimfolder="$HOME/.tmp-vim"
 
-  if [ ! -d "$endpath/.vim/bundle" ]; then
-    mkdir -p "$endpath/.vim/bundle"
+  if [ ! -d "$vimfolder/.vim/bundle" ]; then
+    mkdir -p "$vimfolder/.vim/bundle"
   fi
 
   lnif "$dotfilesvim/vimrc"              "$HOME/.vimrc"
   lnif "$dotfilesvim/vimrc.bundles"      "$HOME/.vimrc.bundles"
-  lnif "$endpath/.vim"                    "$HOME/.vim"
+  lnif "$vimfolder/.vim"                    "$HOME/.vim"
 
   ret="$?"
   success "$1"
@@ -85,7 +110,7 @@ clone_vundle() {
   if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
     git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
   else
-    upgrade_repo "vundle"   "Successfully updated vundle"
+    upgrade_repo "vundle" "Successfully updated vundle"
   fi
   ret="$?"
   success "$1"
@@ -143,102 +168,75 @@ success "Git colour and editor setup"
 # }}}
 
 # Initialise and clone any submodules {{{
-git submodule init
-git submodule update
+git submodule sync
+git submodule update --init
 success "Submodules done"
 # }}}
 
-# Setup Backup Folder for old configuration files {{{
-#
-#   This way the setup script is pretty non-destructive, and can be run
-#   repeatedly without bad side effects.
-#
-BACKUP_DIR="/tmp/$(date)"
-mkdir "$BACKUP_DIR"
-# }}}
-
 # Zsh {{{
-[ -f ~/.zshrc ] && mv ~/.zshrc "$BACKUP_DIR"
-[ -f ~/.zshenv ] && mv ~/.zshenv "$BACKUP_DIR"
-ln -s dotfiles/zsh/zshrc ~/.zshrc
-ln -s dotfiles/zsh/zshenv ~/.zshenv
+backup ~/.zshrc
+backup ~/.zshenv
+lnif ~/dotfiles/zsh/zshrc ~/.zshrc
+lnif ~/dotfiles/zsh/zshenv ~/.zshenv
 success "Zsh config linked"
 # }}}
 
 # Vimperator {{{
-[ -d ~/.vimperator ] && mv ~/.vimperator "$BACKUP_DIR"
-[ -f ~/.vimperatorrc ] && mv ~/.vimperatorrc "$BACKUP_DIR"
-ln -s dotfiles/vimperator ~/.vimperator
-ln -s dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
+backup_dir ~/.vimperator
+backup ~/.vimperatorrc
+lnif ~/dotfiles/vimperator ~/.vimperator
+lnif ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
 success "Vimperator config linked"
 # }}}
 
 # Screen {{{
-[ -f ~/.screenrc ] && mv ~/.screenrc "$BACKUP_DIR"
-ln -s dotfiles/screen/screenrc ~/.screenrc
+backup ~/.screenrc
+lnif ~/dotfiles/screen/screenrc ~/.screenrc
 success "Screen config linked"
 # }}}
 
 # Tmux {{{
-[ -f ~/.tmux.conf ] && mv ~/.tmux.conf "$BACKUP_DIR"
-ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
+backup ~/.tmux.conf
+lnif ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 success "Tmux config linked"
 # }}}
 
 # Powerline {{{
 # `.config` is a shared config location, so take more care
-[ -d ~/.config/powerline ] && mv ~/.config/powerline "$BACKUP_DIR"
+backup_dir ~/.config/powerline
 [ ! -d ~/.config ] && mkdir ~/.config
-ln -s ../dotfiles/powerline/config ~/.config/powerline
+lnif ~/dotfiles/powerline/config ~/.config/powerline
 success "Powerline config linked"
 # }}}
 
-# Nethack {{{
-[ -f ~/.nethackrc ] && mv ~/.nethackrc "$BACKUP_DIR"
-ln -s dotfiles/nethack/nethackrc ~/.nethackrc
-success "Nethack config linked"
-# }}}
-
 # Irssi {{{
-[ -d ~/.irssi ] && mv ~/.irssi "$BACKUP_DIR"
-ln -s dotfiles/irssi ~/.irssi
+backup_dir ~/.irssi
+lnif ~/dotfiles/irssi ~/.irssi
 success "Irssi config linked"
 # }}}
 
-# Mongo {{{
-[ -f ~/.mongorc.js ] && mv ~/.mongorc.js "$BACKUP_DIR"
-ln -s dotfiles/mongo/mongorc.js ~/.mongorc.js
-success "Mongo config linked"
-# }}}
-
-# Sqlite {{{
-[ -f ~/.sqliterc ] && mv ~/.sqliterc "$BACKUP_DIR"
-ln -s dotfiles/sqlite/sqliterc ~/.sqliterc
-success "Sqlite config linked"
-# }}}
-
 # Ack {{{
-[ -f ~/.ackrc ] && mv ~/.ackrc "$BACKUP_DIR"
-ln -s dotfiles/ack/ackrc ~/.ackrc
+backup ~/.ackrc
+lnif ~/dotfiles/ack/ackrc ~/.ackrc
 success "Ack config linked"
 # }}}
 
 # Emacs {{{
-[ -f ~/.emacs ] && mv ~/.emacs "$BACKUP_DIR"
-ln -s dotfiles/emacs/emacs ~/.emacs
+backup ~/.emacs
+lnif ~/dotfiles/emacs/emacs ~/.emacs
 success "Emacs config linked"
 # }}}
 
 # ZFS {{{
-[ -f ~/bin/destroy-zfs-auto-snaps ] && mv ~/.vimrc "$BACKUP_DIR"
-ln -s ../dotfiles/zfs/destroy-zfs-auto-snaps ~/bin
+backup ~/bin/destroy-zfs-auto-snaps
+lnif ~/dotfiles/zfs/destroy-zfs-auto-snaps ~/bin
 success "ZFS utilities installed"
 # }}}
 
 # Vim {{{
-[ -d ~/.vim ] && mv ~/.vim "$BACKUP_DIR"
-[ -f ~/.vimrc ] && mv ~/.vimrc "$BACKUP_DIR"
-[ -f ~/.vimrc.bundles ] && mv ~/.vimrc.bundles "$BACKUP_DIR"
+backup_dir ~/.vim
+backup ~/.vimrc
+backup ~/.vimrc.bundles
 create_vimlinks "Setting up vim symlinks"
 clone_vundle    "Successfully cloned vundle"
 setup_vundle    "Now updating/installing plugins using Vundle"
