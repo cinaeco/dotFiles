@@ -3,7 +3,7 @@
 """"""""""""""""""""""""
 
 " gui options
-set gui=nonavigation,tabs,nobookmarks,addons
+set gui=navigation,tabs,nobookmarks,addons
 colorscheme cinaeco
 
 " don't focus on inputs/textfields when we navigate to a page
