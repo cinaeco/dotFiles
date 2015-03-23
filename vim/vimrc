@@ -4,9 +4,6 @@ set nocompatible
 " Formatting for JSON files
 au FileType json setlocal equalprg=python\ -m\ json.tool
 
-" Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
-nnoremap <C-b> <C-a>
-
 if has("autocmd")
   " Clear existing autocmd
   autocmd!
@@ -89,6 +86,9 @@ inoremap jk <ESC>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
+
+" Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
+nnoremap <C-b> <C-a>
 
 nnoremap <silent> <leader>w :set wrap!<CR>
 

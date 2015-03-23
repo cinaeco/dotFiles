@@ -8,7 +8,6 @@
 " Setup Bundle Support {{{
 " Ensure that the ~/.vim/bundle/ system works
 set nocompatible
-filetype on
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
