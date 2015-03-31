@@ -33,7 +33,7 @@ if [[ $POST_1_8_3_GIT -gt 0 ]]; then
 else
   DECO_COLOUR='%Cgreen'
 fi
-GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%s"'
+GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%<(58,trunc)%s"'
 
 alias ga.='git add -A .'
 alias gap='git add -p'
@@ -51,13 +51,14 @@ alias gbav='git branch -av'
 # standard log with train tracks
 alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
 alias gla='gl --all'
-# concise, branch and tag log with train tracks (some merge commits unavoidable)
-alias glb='gl --simplify-by-decoration'
 alias glh='gl --max-count=15'
+# concise branch and tag log with train tracks (some merge commits unavoidable)
+alias glb='gl --simplify-by-decoration'
 alias glp='git log --graph --decorate --patch'
 # useful when you want to have a visual on file changes
 alias gls='git log --graph --decorate --stat'
-# search through history for particular text
+# search through commit DIFFs for particular text (pick ax)
+# does NOT search commit MESSAGES - use `--grep` for that.
 alias glS='git log -S'
 
 alias gr='git reset'
