@@ -55,7 +55,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'tristen/vim-sparkup'
-Bundle 'haya14busa/incsearch.vim'
+"Bundle 'haya14busa/incsearch.vim'
 "Bundle 'katono/rogue.vim'
 
 " Text Objects {{{

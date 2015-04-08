@@ -101,6 +101,16 @@ nnoremap <silent> <leader>l :set list!<CR>
 " Toggle scrollbind for moving multiple splits in sync together
 nnoremap <silent> <leader>s :set scrollbind! scrollbind?<CR>
 
+" Backspace to clear current search (and stop highlighting)
+nnoremap <silent> <backspace> :call ClearSearch()<CR>
+
+function! ClearSearch()
+  if (@/ != "")
+    let @/=""
+    redraw
+  endif
+endfunction
+
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
