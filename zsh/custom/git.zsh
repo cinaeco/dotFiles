@@ -33,7 +33,7 @@ if [[ $POST_1_8_3_GIT -gt 0 ]]; then
 else
   DECO_COLOUR='%Cgreen'
 fi
-GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%<(58,trunc)%s"'
+GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%s"'
 
 alias ga.='git add -A .'
 alias gap='git add -p'
