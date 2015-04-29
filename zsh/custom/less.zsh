@@ -4,4 +4,5 @@
 # i = searches ignore case, unless there are upper case characters
 # r = display raw control characters (Ctrl-A is ^A)
 # M = verbose `less` prompt
-export LESS='-iRM'
+# X = disable termcap init/deinit strings - sometimes these clear the screen.
+export LESS='-iRMX'
