@@ -40,23 +40,20 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'cinaeco/EasyGrep'
 Bundle 'tpope/vim-surround'
-"Bundle 'spf13/vim-autoclose'
 Bundle 'Raimondi/delimitMate'
-Bundle 'deris/vim-shot-f'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'matchit.zip'
-"Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-abolish.git'
 Bundle 'tpope/vim-unimpaired.git'
 Bundle 'scrooloose/syntastic'
-"Bundle 'mattn/webapi-vim'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'tristen/vim-sparkup'
-"Bundle 'haya14busa/incsearch.vim'
+"Bundle 'sjl/gundo.vim'
 "Bundle 'katono/rogue.vim'
+"Bundle 'haya14busa/incsearch.vim' - interferes with macros
+"Bundle 'deris/vim-shot-f' - interferes with macro
 
 " Text Objects {{{
 Bundle 'kana/vim-textobj-user'
@@ -64,8 +61,6 @@ Bundle 'kana/vim-textobj-entire'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'vim-scripts/argtextobj.vim'
 " }}}
-"
-Bundle 'vim-scripts/yaml.vim'
 
 " File Browser {{{
 Bundle 'scrooloose/nerdtree'
@@ -103,6 +98,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'groenewege/vim-less'
 Bundle 'elzr/vim-json'
+Bundle 'vim-scripts/yaml.vim'
 " }}}
 
 " }}}
