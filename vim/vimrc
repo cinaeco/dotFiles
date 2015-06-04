@@ -90,13 +90,13 @@ nnoremap Y y$
 " Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
 nnoremap <C-b> <C-a>
 
-nnoremap <silent> <leader>w :set wrap!<CR>
+nnoremap <silent> <leader>w :set wrap! wrap?<CR>
 
 " Toggle paste mode - no autoindenting of pasted material
 nnoremap <silent> <leader>p :set paste! paste?<CR>
 
 " Toggle visible whitespace characters
-nnoremap <silent> <leader>l :set list!<CR>
+nnoremap <silent> <leader>l :set list! list?<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
 nnoremap <silent> <leader>s :set scrollbind! scrollbind?<CR>
