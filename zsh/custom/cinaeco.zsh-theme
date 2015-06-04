@@ -94,6 +94,8 @@ git_prompt_status() {
   local X_SET=""
   local Y_SET=""
   local UN_SET=""
+  local END=""
+  local COUNT=0
   echo $INDEX | while IFS= read LINE; do
     X=$LINE[1]
     Y=$LINE[2]
@@ -107,8 +109,10 @@ git_prompt_status() {
     [[ $X == 'D' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_DELETED" && continue
     [[ $X == 'R' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_RENAMED" && continue
     [[ $X == 'C' ]] && X_SET="$X_SET$ZSH_THEME_GIT_INDEX_COPIED" && continue
+    ((COUNT+=1))
+    ((COUNT >= 20)) && END="%{$reset_color%}..." && break
   done
-  local STATUS=" %{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET"
+  local STATUS=" %{$FG[070]%}$X_SET%{$FG[124]%}$Y_SET%{$FG[220]%}$UN_SET$END"
   echo $STATUS
 }
 
