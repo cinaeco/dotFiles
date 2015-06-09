@@ -37,50 +37,38 @@ GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Cres
 
 alias ga.='git add -A .'
 alias gap='git add -p'
-
-alias gs='git status'
-alias gds='git diff --staged'
-
-alias gcob='git checkout -b'
-alias gf='git fetch --all --tags && git fetch --all --prune'
-
+alias gbav='git branch -av'
 alias gbd='git branch -D'
 alias gbv='git branch -v'
-alias gbav='git branch -av'
-
-# standard log with train tracks
+alias gcob='git checkout -b'
+alias gds='git diff --staged'
+alias gf='git fetch --all --tags && git fetch --all --prune'
+alias ggpush='ggp'
+# standard log with train tracks.
 alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
-alias gla='gl --all'
-alias glh='gl --max-count=15'
-# concise branch and tag log with train tracks (some merge commits unavoidable)
-alias glb='gl --simplify-by-decoration'
-alias glp='git log --graph --decorate --patch'
-# useful when you want to have a visual on file changes
-alias gls='git log --graph --decorate --stat'
 # search through commit DIFFs for particular text (pick ax)
 # does NOT search commit MESSAGES - use `--grep` for that.
 alias glS='git log -S'
-
+alias gla='gl --all'
+# concise branch and tag log with train tracks.
+alias glb='gl --simplify-by-decoration'
+alias glh='gl --max-count=15'
+alias glp='git log --graph --decorate --patch'
+alias gls='git log --graph --decorate --stat'
 alias gr='git reset'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
-alias grb='git rebase'
-
-# useful for finding parent commit for a given commit hash
-alias gsr='git show --format=raw'
-
+alias gs='git status'
 # git submodule management
 alias gsm='git submodule'
+alias gsmpull='git submodule foreach git pull'
 alias gsmup='git submodule sync && git submodule update --init'
-alias gsmpull='git submodule foreach git pull origin master'
-
-# useful if you forget to setup tracking for a new branch when checking out.
+# useful for finding parent commit for a given commit hash
+alias gsr='git show --format=raw'
+# setup tracking for origin.
 alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
 
 # useful omz git plugin ones include:
-#   ga, gc, gco, gb, gba, gm, grhh, ggpull, ggpush
+#   ga, gc, gco, gb, gba, gm, grhh, grb, gwip, gunwip
 #
-# ggpull translates into `git pull origin <current branch>`, same for ggpush
-#
-# Note: both the gg's are extremely convenient! And safe, because you never know
-# if tracking has been setup properly on a branch.
+# ggpush translates into `git push origin <current branch>`.
