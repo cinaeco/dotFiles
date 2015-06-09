@@ -9,11 +9,10 @@ if has("autocmd")
   autocmd!
 endif
 
-" Use bundles config {{{
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+" Register plugins
+if filereadable(expand("~/dotfiles/vim/plugins.vim"))
+  source ~/dotfiles/vim/plugins.vim
 endif
-" }}}
 
 filetype plugin indent on   " Automatically detect file types.
 
