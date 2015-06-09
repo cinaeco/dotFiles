@@ -1,11 +1,8 @@
-" Do not try to be compatible with vi
+" Being vi-compatible disables more advanced features
 set nocompatible
 
-" Formatting for JSON files
-au FileType json setlocal equalprg=python\ -m\ json.tool
-
+" Clear all existing autocommands first to avoid unwanted side effects
 if has("autocmd")
-  " Clear existing autocmd
   autocmd!
 endif
 
@@ -14,56 +11,47 @@ if filereadable(expand("~/dotfiles/vim/plugins.vim"))
   source ~/dotfiles/vim/plugins.vim
 endif
 
-filetype plugin indent on   " Automatically detect file types.
+" Automatically detect file types.
+filetype plugin indent on
 
-if has("autocmd")
-
-  " Source the vimrc file after saving it
-  autocmd BufWritePost .vimrc nested source $MYVIMRC
-
-endif
-
+" Syntax highlighting.
+syntax on
 
 """"""""
 "" Tabs and Text Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on                   " Syntax highlighting
-
 set nowrap
-set cursorline      " Highlight current line
-set expandtab       " convert tab characters into spaces
-set tabstop=2       " actual tab press distance
-set softtabstop=2   " let backspace delete by indents
-set shiftround      " indent to nearest tabstops
-set shiftwidth=2    " amount to indent with > and <
-set smarttab        " backspace tabs where appropriate even if spaces
-set textwidth=80    " try to keep text within 80 characters
-set colorcolumn=+1  " mark out the limits of the textwidth
-set hidden
+set cursorline     " Highlight current line
+set expandtab      " convert tab characters into spaces
+set tabstop=2      " actual tab press distance
+set softtabstop=2  " let backspace delete by indents
+set shiftround     " indent to nearest tabstops
+set shiftwidth=2   " amount to indent with > and <
+set smarttab       " backspace tabs where appropriate even if spaces
+set textwidth=80   " try to keep text within 80 characters
+set colorcolumn=+1 " mark out the limits of the textwidth
+set hidden         " allow changing buffers without unsaved-warnings e.g. for argdo
 
-set mouse=a
-set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set splitright                  " Puts new vsplit windows to the right of the current
-set splitbelow                  " Puts new split windows to the bottom of the current
-
-set backspace=indent,eol,start  " Backspace for dummies
-set linespace=0                 " No extra spaces between rows
-set number                      " Line numbers on
+set nojoinspaces               " Prevents inserting two spaces after punctuation on a join (J)
+set splitright                 " Puts new vsplit windows to the right of the current
+set splitbelow                 " Puts new split windows to the bottom of the current
+set backspace=indent,eol,start " Backspace for dummies
+set linespace=0                " No extra spaces between rows
+set number                     " Line numbers on
 set relativenumber
-set showmatch                   " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
-set winminheight=0              " Windows can be 0 line high
-set ignorecase                  " Case insensitive search
-set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
-set modeline                    " Support vim modelines at the top of files
-"set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-set scrolloff=5                 " Minimum lines to keep above and below cursor
-set foldenable                  " Auto fold code
+set showmatch                  " Show matching brackets/parenthesis
+set incsearch                  " Find as you type search
+set hlsearch                   " Highlight search terms
+set winminheight=0             " Windows can be 0 line high
+set ignorecase                 " Case insensitive search
+set smartcase                  " Case sensitive when uc present
+set wildmenu                   " Show list instead of just completing
+set modeline                   " Support vim modelines at the top of files
+set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
+set shortmess+=filmnrxoOtT     " Abbrev. of messages (avoids 'hit enter')
+set scrolloff=5                " Minimum lines to keep above and below cursor
+
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
@@ -75,7 +63,7 @@ endif
 
 """"""""
 "" Key Remaps
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = ','
 
@@ -89,32 +77,14 @@ nnoremap Y y$
 " Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
 nnoremap <C-b> <C-a>
 
-nnoremap <silent> <leader>w :set wrap! wrap?<CR>
-
-" Toggle paste mode - no autoindenting of pasted material
-nnoremap <silent> <leader>p :set paste! paste?<CR>
-
-" Toggle visible whitespace characters
-nnoremap <silent> <leader>l :set list! list?<CR>
-
-" Toggle scrollbind for moving multiple splits in sync together
-nnoremap <silent> <leader>s :set scrollbind! scrollbind?<CR>
-
-" Backspace to clear current search (and stop highlighting)
-nnoremap <silent> <backspace> :call ClearSearch()<CR>
-
-function! ClearSearch()
-  if (@/ != "")
-    let @/=""
-    redraw
-  endif
-endfunction
-
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-""""""""" Source local scripts/plugins
+""""""""
+"" Load Settings Files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')
   execute 'source' filePath
 endfor

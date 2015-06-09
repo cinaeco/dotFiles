@@ -9,6 +9,9 @@
 "set ttymouse=xterm2 " Needed to allow mouse support to resize windows
 "set ttyfast " Allows for instantaneous refresh when using the mouse to select
 
+" Mouse support enabled.
+set mouse=a
+
 " Toggle mouse support.
 nnoremap <silent> <leader>m :call ToggleMouse()<CR>
 
@@ -21,4 +24,3 @@ function! ToggleMouse()
     echo 'Mouse usage enabled'
   endif
 endfunction
-

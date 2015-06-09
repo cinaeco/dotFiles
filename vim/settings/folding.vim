@@ -29,6 +29,7 @@
 if has('folding')
 
   " Default Settings {{{
+  set foldenable
   set foldmethod=indent
   set foldlevel=10
   " }}}
