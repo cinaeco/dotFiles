@@ -11,5 +11,5 @@
   path = powerline/rainbarf
   url = https://github.com/creaktive/rainbarf.git
 [submodule "tmux/rainbarf"]
-	path = tmux/rainbarf
-	url = https://github.com/creaktive/rainbarf.git
+  path = tmux/rainbarf
+  url = https://github.com/creaktive/rainbarf.git

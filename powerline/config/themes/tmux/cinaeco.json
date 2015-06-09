@@ -1,14 +1,8 @@
 {
-  "default_module": "powerline.segments.common",
-  "segment_data": {
-    "external_ip": {
-      "before": "ⓦ  "
-    }
-  },
   "segments": {
-    "left" : [
+    "left": [
       {
-        "function": "hostname",
+        "function": "powerline.segments.common.net.hostname",
         "args": {
           "exclude_domain": true
         }
@@ -16,7 +10,11 @@
     ],
     "right": [
       {
-        "function": "date",
+        "function": "powerline.segments.common.time.date"
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "name": "time",
         "args": {
           "format": "%H:%M",
           "istime": true
