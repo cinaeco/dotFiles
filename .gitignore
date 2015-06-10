@@ -1,10 +1,10 @@
 # Vim plugin
 vim/plugged
+vim/spell
 
 # Vimperator info/history/local settings
 vimperator/info
 
 # Irssi config files
-irssi/config
-irssi/config.autosave
+irssi/config*
 irssi/*.theme
