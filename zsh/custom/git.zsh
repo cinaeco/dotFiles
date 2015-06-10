@@ -43,7 +43,8 @@ alias gbv='git branch -v'
 alias gcob='git checkout -b'
 alias gds='git diff --staged'
 alias gf='git fetch --all --tags && git fetch --all --prune'
-alias ggpush='ggp'
+alias ggpush='git push origin $(current_branch)'
+compdef ggpush=git
 # standard log with train tracks.
 alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
 # search through commit DIFFs for particular text (pick ax)
@@ -71,4 +72,5 @@ alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
 # useful omz git plugin ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, grb, gwip, gunwip
 #
+# ggpush has been removed from oh-my-zsh!
 # ggpush translates into `git push origin <current branch>`.
