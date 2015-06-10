@@ -20,7 +20,6 @@ call plug#begin('~/.vim/plugged')
   "let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 "endif
 
-Plug 'junegunn/vim-plug'
 Plug 'kien/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'joonty/vdebug'

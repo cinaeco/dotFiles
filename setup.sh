@@ -28,27 +28,10 @@ linkup() {
   ln -s "$1" "$2"
 }
 
-# Download vim-plug, a vim plugin manager.
-#
-# Also place vim-plug where it can be auto-loaded.
-download_vim_plug() {
-  folder=~/.vim/plugged/vim-plug
-  if [ ! -e $folder ]; then
-    echo "Vim Plugin Manager cloning"
-    git clone https://github.com/junegunn/vim-plug.git $folder --depth 1
-  else
-    echo "Vim Plugin Manager updating"
-    cd $folder && git pull
-  fi
-  mkdir -p ~/.vim/autoload
-  linkup "$folder/plug.vim" ~/.vim/autoload/plug.vim
-}
-
 # Run vim-plug's install process.
-#
-# Vim is loaded with only the registry of plugins and the `nocompatible` flag.
+# Vim starts with just a registry of plugins and the `nocompatible` flag.
 install_vim_plugins() {
-  vim -u ~/dotfiles/vim/plugins.vim -N +PlugInstall +PlugClean +qall
+  vim -u ~/dotfiles/vim/plugins.vim -N +PlugUpgrade +PlugUpdate! +PlugClean! +qall!
 }
 
 # }}}
@@ -61,6 +44,7 @@ echo "We touched all the known hosts."
 # Git config
 git config --global color.ui true
 git config --global core.editor "vim"
+git config --global core.excludesfiles ~/dotfiles/git/globalignore
 echo "Git config done."
 
 # Initialise and clone any submodules
@@ -102,10 +86,8 @@ echo "Powerline linked."
 # Vim (and NeoVim)
 linkup ~/dotfiles/vim/vimrc ~/.vimrc
 linkup ~/dotfiles/vim/vimrc ~/.nvimrc
-mkdir -p ~/.vim-tmp
-linkup ~/.vim-tmp ~/.vim
-linkup ~/.vim-tmp ~/.nvim
-download_vim_plug
+linkup ~/dotfiles/vim ~/.vim
+linkup ~/dotfiles/vim ~/.nvim
 install_vim_plugins
 echo "Vim linked."
 

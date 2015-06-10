@@ -1,13 +1,5 @@
-# Mac OS X files
-.DS_Store
-
-# Vim temp files
-*.swp
-.netrwhist
-
-# Vim custom snippets and persistent undo folder
-vim/snippets
-vim/undo
+# Vim plugin
+vim/plugged
 
 # Vimperator info/history/local settings
 vimperator/info
