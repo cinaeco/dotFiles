@@ -26,6 +26,7 @@ ZSH_THEME_GIT_INDEX_COPIED="c"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" BEHIND"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" AHEAD"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg[red]%}DIVERGED!"
+DISABLE_UNTRACKED_FILES_DIRTY="false"
 
 ##############################
 # FUNCTIONS
@@ -43,6 +44,18 @@ function background_job_info() {
   echo "  %(1j.%{$FG[063]%}[jobs]: %{$fg[red]%}%j%{$reset_color%}.)"
 }
 
+# Set Up List of Git Status Indicators
+#
+# This function retrieves a porcelain `git status` for use in other functions,
+# `git_prompt_status` and `parse_git_dirty`.
+get_git_status() {
+  local FLAGS
+  FLAGS=("--porcelain")
+  [[ $POST_1_7_2_GIT -gt 0 ]] && FLAGS+="--ignore-submodules=dirty"
+  [[ $DISABLE_UNTRACKED_FILES_DIRTY == "true" ]] && FLAGS+="--untracked-files=no"
+  INDEX=$(git status $FLAGS 2> /dev/null)
+}
+
 # Display Git repo information in prompt (override the default omz function)
 #
 # Displays [repo:branch:commit] BISECT/MERGE/REBASE AHEAD/BEHIND/DIVERGED! +±xcrU?
@@ -50,12 +63,12 @@ function background_job_info() {
 # Git commit id and mode code taken from:
 # https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
 function git_prompt_info() {
-  GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
+  local GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
   [[ $GIT_REPO_PATH == "" ]] && return
 
-  GIT_COMMIT_ID=`git rev-parse --short HEAD 2>/dev/null`
+  local GIT_COMMIT_ID=`git rev-parse --short HEAD 2>/dev/null`
 
-  GIT_MODE="%{$fg[magenta]%}"
+  local GIT_MODE="%{$fg[magenta]%}"
   if [[ -e "$GIT_REPO_PATH/BISECT_LOG" ]]; then
     GIT_MODE="$GIT_MODE BISECT"
   elif [[ -e "$GIT_REPO_PATH/MERGE_HEAD" ]]; then
@@ -64,15 +77,14 @@ function git_prompt_info() {
     GIT_MODE="$GIT_MODE REBASE"
   fi
 
-  GIT_STASH=""
+  local GIT_STASH=""
   if [[ -e "$GIT_REPO_PATH/refs/stash" ]]; then
     GIT_STASH=" %{$fg[red]%}STASH"
   fi
 
-  GIT_BRANCH=$(current_branch)
-  [[ $GIT_BRANCH == '' ]] && GIT_BRANCH="%{$fg[red]%}no branch$(parse_git_dirty)"
+  get_git_status
 
-  echo "  $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$GIT_BRANCH:$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
+  echo "  $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$(current_branch):$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
 }
 
 # Git Change Indication (overriding default omz function)
@@ -80,17 +92,15 @@ function git_prompt_info() {
 # Prints symbol for each change instead of just indicating if change type exists.
 # This gives a better visual sense of how much has changed.
 #
-# TODO If you find prompt speed slow, it's because of this section.
-# The limitation is the speed of `git status` in any given repo (it's slower
-# than you'd imagine).
-# This can be countered somewhat by ignoring submodules. We lose reporting of
-# submodule changes in prompt, but the speed is much better.
-# The rest of the status string building is near-instantaneous.
+# As big as it looks, this function's status-string building is
+# near-instantaneous. It's just string manipulation after all.
+#
+# If you find prompt speed slow, it's because of the speed of `git status` in
+# any given repo: it's slower than you'd imagine.
 git_prompt_status() {
-  local SUBMODULE_SYNTAX=''
-  [[ $POST_1_7_2_GIT -gt 0 ]] && SUBMODULE_SYNTAX="--ignore-submodules=dirty"
-  INDEX=$(git status --porcelain $SUBMODULE_SYNTAX 2> /dev/null)
   [[ -z $INDEX ]] && return
+  local X
+  local Y
   local X_SET=""
   local Y_SET=""
   local UN_SET=""
@@ -119,9 +129,21 @@ git_prompt_status() {
 # Read the current repository (override the default omz function)
 #
 # Cope with non-ssh repos by not relying on ':'. Instead, we look for text
-# between a '/' and '.git'.
-# TODO should expand to search between '/' and space, if '.git' is not present.
-# Some people don't write their remotes properly.
+# between a '/' and whitespace. '.git' is removed.
 function current_repository() {
-  echo $(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\.git.*/\1/')
+  local repo=$(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\ .*/\1/')
+  echo ${repo%.git}
+}
+
+# Check if a repo is modified (override the default omz function)
+#
+# This function is modifed to no longer run `git status`, and to instead rely on
+# the output of the single invocation in `get_git_status`. This way, we
+# hopefully reduce the time taken to produce a prompt in messy repos.
+parse_git_dirty() {
+  if [[ -n $INDEX ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
 }
