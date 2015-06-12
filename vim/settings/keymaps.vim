@@ -1,5 +1,5 @@
 " Toggle keyboard layout
-"nnoremap <silent> <leader><space> :call CycleKeymap()<CR>
+"nnoremap <silent> <Leader><Space> :call CycleKeymap()<CR>
 
 "function! CycleKeymap()
   "if has('keymap')

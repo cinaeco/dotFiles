@@ -13,7 +13,7 @@
 set mouse=a
 
 " Toggle mouse support.
-nnoremap <silent> <leader>m :call ToggleMouse()<CR>
+nnoremap <silent> <Leader>m :call ToggleMouse()<CR>
 
 function! ToggleMouse()
   if &mouse == 'a'

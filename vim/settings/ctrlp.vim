@@ -1,5 +1,4 @@
-" Function definition jumping with CtrlP's Funky plugin
-nnoremap <silent> <C-F> :CtrlPFunky<CR>
+let g:ctrlp_map = '<Leader>p'
 
 "let g:ctrlp_working_path_mode = 'rw' let's try out ra
 let g:ctrlp_user_command = {
@@ -9,4 +8,8 @@ let g:ctrlp_user_command = {
     \ },
     \ 'fallback': 'find %s -type f'
 \ }
+
 let g:ctrlp_extensions = ['funky']
+
+" Function definition jumping with CtrlP's Funky plugin
+nnoremap <silent> <Leader>f :CtrlPFunky<CR>

@@ -11,12 +11,12 @@ if has("autocmd")
 endif
 
 " Search for conflict markers
-nnoremap <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+nnoremap <Leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 " Git commands with Fugitive
-nnoremap <silent> <leader>gc :Gcommit -v<CR>
-nnoremap <silent> <leader>gl :Glog<CR><CR>
-nnoremap <silent> <leader>gap :Git add -p<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>gc :Gcommit -v<CR>
+nnoremap <silent> <Leader>gl :Glog<CR><CR>
+nnoremap <silent> <Leader>gap :Git add -p<CR>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>

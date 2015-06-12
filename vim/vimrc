@@ -65,11 +65,14 @@ endif
 "" Key Remaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let mapleader = ','
+let mapleader = ' '
+
+" Save changes to a file
+nmap <silent> <Leader>w :up<CR>
 
 " More convenient escape
-inoremap kj <ESC>
-inoremap jk <ESC>
+inoremap kj <Esc>
+inoremap jk <Esc>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$

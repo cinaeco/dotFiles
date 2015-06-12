@@ -1,2 +1,2 @@
 " Gundo
-"nnoremap <silent> <leader>u :GundoToggle<CR>
+"nnoremap <silent> <Leader>u :GundoToggle<CR>

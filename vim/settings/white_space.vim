@@ -19,8 +19,8 @@ if has("autocmd")
 endif
 
 " Add extra lines up and down
-nnoremap <leader>j o<Esc>k
-nnoremap <leader>k O<Esc>j
+nnoremap <Leader>j o<Esc>k
+nnoremap <Leader>k O<Esc>j
 
 " Convert tabs to spaces
-nnoremap <silent> <leader><TAB> :%s/<TAB>/  /g<CR>
+nnoremap <silent> <Leader><Tab> :%s/<Tab>/  /g<CR>

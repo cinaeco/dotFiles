@@ -11,10 +11,10 @@
 set virtualedit=block
 
 " Smart way to move between windows, with vertical maximisation (spf13-vim).
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
+map <C-j> <C-w>j<C-w>_
+map <C-k> <C-w>k<C-w>_
+map <C-l> <C-w>l<C-w>_
+map <C-h> <C-w>h<C-w>_
 
 " Smart way to move between windows, without vertical maximisation.
 "noremap <C-j> <C-w>j

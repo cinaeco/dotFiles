@@ -7,7 +7,7 @@
 "    - 'q' to close quickfix and location list windows.
 "    - 'o' to open quickfix and location list entries.
 "      (not all plugins have these maps)
-"    - <TAB> and <BSLASH> for previous and next entries, so long as quickfix
+"    - <Tab> and <Bslash> for previous and next entries, so long as quickfix
 "    is open.
 "      (maps are cleared when quickfix is closed)
 "    - quickfix should open after any grep invocation e.g. :Glog
@@ -27,8 +27,8 @@ if has("autocmd")
   autocmd FileType qf nnoremap <silent> <buffer> o <CR>
   " }}}
 
-  " Global maps on qf window open, '<TAB>' and '<BSLASH>'. {{{
-  "  - `<TAB>` and `<BSLASH>` for going to previous and next entry
+  " Global maps on qf window open, '<Tab>' and '<Bslash>'. {{{
+  "  - `<Tab>` and `<Bslash>` for going to previous and next entry
   "  - unmaps when qf buffer is closed.
   autocmd BufWinEnter quickfix
         \ setlocal nocursorline |
@@ -51,14 +51,14 @@ if has("autocmd")
         \ call MapQfPrevNext()
   " }}}
 
-  " <TAB> and <BSLASH> map adding helper. {{{
+  " <Tab> and <Bslash> map adding helper. {{{
   function! MapQfPrevNext()
     exec "nmap <silent> <tab> :cprev<CR>"
     exec "nmap <silent> <bslash> :cnext<CR>"
   endfunction
   " }}}
 
-  " <TAB> and <BSLASH> map removal helper. {{{
+  " <Tab> and <Bslash> map removal helper. {{{
   function! UnmapQfPrefNext()
     exec "nunmap <tab>"
     exec "nunmap <bslash>"

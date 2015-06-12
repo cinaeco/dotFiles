@@ -1,5 +1,5 @@
 " Toggle NERDTree file browser
-nnoremap <silent> <leader>d :NERDTreeMirrorToggle<CR>
+nnoremap <silent> <Leader>d :NERDTreeMirrorToggle<CR>
 let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let g:NERDTreeChDirMode=0
 let g:NERDTreeQuitOnOpen=1
