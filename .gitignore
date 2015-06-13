@@ -1,6 +1,7 @@
 # Vim plugin
 vim/plugged
 vim/spell
+vim/.netrwhist
 vim/autoload/plug.vim.old
 
 # Vimperator info/history/local settings
