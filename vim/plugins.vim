@@ -91,6 +91,7 @@ Plug 'mintplant/vim-literate-coffeescript'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'vim-scripts/yaml.vim'
+Plug 'LnL7/vim-nix'
 " }}}
 
 call plug#end()
