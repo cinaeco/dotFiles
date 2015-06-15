@@ -70,6 +70,9 @@ let mapleader = ' '
 " Save changes to a file
 nmap <silent> <Leader>w :up<CR>
 
+" Close a file
+nmap <silent> <Leader>q :q<CR>
+
 " More convenient escape
 inoremap kj <Esc>
 inoremap jk <Esc>
