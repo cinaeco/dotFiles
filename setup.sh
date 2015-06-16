@@ -19,13 +19,13 @@ mkdir "$backup_dir"
 
 # Backup a given file.
 backup() {
-  [ -e "$1" ] && mv "$1" "$backup_dir"
+  [[ -e "$1" ]] && mv "$1" "$backup_dir"
 }
 
 # Create links after backing up.
 linkup() {
   backup "$2"
-  ln -s "$1" "$2"
+  ln -sf "$1" "$2"
 }
 
 # Run vim-plug's install process.
