@@ -7,8 +7,6 @@ $(host_name)$(current_folder)$(git_prompt_info)$(background_job_info)
 %{$fg[magenta]%}%n - %{$reset_color%}'
 RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_color%}'
 
-MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
-
 ZSH_THEME_GIT_PROMPT="on"
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
@@ -28,6 +26,7 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" BEHIND"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" AHEAD"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE=" %{$fg[red]%}DIVERGED!"
 DISABLE_UNTRACKED_FILES_DIRTY="false"
+MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
 ##############################
 # FUNCTIONS
@@ -48,18 +47,6 @@ function background_job_info() {
 # Toggle the display of git information in the prompt. Defaults to "on".
 function toggle_git_prompt() {
   [[ $ZSH_THEME_GIT_PROMPT == "on" ]] && ZSH_THEME_GIT_PROMPT="off" || ZSH_THEME_GIT_PROMPT="on"
-}
-
-# Set Up List of Git Status Indicators
-#
-# This function retrieves a porcelain `git status` for use in other functions,
-# `git_prompt_status` and `parse_git_dirty`.
-function get_git_status() {
-  local FLAGS
-  FLAGS=("--porcelain")
-  [[ $POST_1_7_2_GIT -gt 0 ]] && FLAGS+="--ignore-submodules=dirty"
-  [[ $DISABLE_UNTRACKED_FILES_DIRTY == "true" ]] && FLAGS+="--untracked-files=no"
-  INDEX=$(git status $FLAGS 2> /dev/null)
 }
 
 # Display Git repo information in prompt (override the default omz function)
@@ -92,6 +79,18 @@ function git_prompt_info() {
   get_git_status
 
   echo "  $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_repository):$(current_branch):$GIT_COMMIT_ID$ZSH_THEME_GIT_PROMPT_SUFFIX$GIT_MODE$(git_remote_status)$GIT_STASH$(git_prompt_status)"
+}
+
+# Set Up List of Git Status Indicators
+#
+# This function retrieves a porcelain `git status` for use in other functions,
+# `git_prompt_status` and `parse_git_dirty`.
+function get_git_status() {
+  local FLAGS
+  FLAGS=("--porcelain")
+  [[ $POST_1_7_2_GIT -gt 0 ]] && FLAGS+="--ignore-submodules=dirty"
+  [[ $DISABLE_UNTRACKED_FILES_DIRTY == "true" ]] && FLAGS+="--untracked-files=no"
+  INDEX=$(git status $FLAGS 2> /dev/null)
 }
 
 # Git Change Indication (overriding default omz function)
@@ -147,7 +146,7 @@ function current_repository() {
 # This function is modifed to no longer run `git status`, and to instead rely on
 # the output of the single invocation in `get_git_status`. This way, we
 # hopefully reduce the time taken to produce a prompt in messy repos.
-parse_git_dirty() {
+function parse_git_dirty() {
   if [[ -n $INDEX ]]; then
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
