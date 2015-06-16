@@ -19,7 +19,7 @@ mkdir "$backup_dir"
 
 # Backup a given file.
 backup() {
-  [[ -e "$1" ]] && mv "$1" "$backup_dir"
+  [ -e "$1" ] && mv "$1" "$backup_dir"
 }
 
 # Create links after backing up.
