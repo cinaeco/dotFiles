@@ -9,6 +9,7 @@ RPROMPT='$(vi_mode_prompt_info) %{$reset_color%}%T %{$fg[white]%}%h%{$reset_colo
 
 MODE_INDICATOR="%{$fg[green]%}vi-mode%{$reset_color%}"
 
+ZSH_THEME_GIT_PROMPT="on"
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
@@ -44,11 +45,16 @@ function background_job_info() {
   echo "  %(1j.%{$FG[063]%}[jobs]: %{$fg[red]%}%j%{$reset_color%}.)"
 }
 
+# Toggle the display of git information in the prompt. Defaults to "on".
+function toggle_git_prompt() {
+  [[ $ZSH_THEME_GIT_PROMPT == "on" ]] && ZSH_THEME_GIT_PROMPT="off" || ZSH_THEME_GIT_PROMPT="on"
+}
+
 # Set Up List of Git Status Indicators
 #
 # This function retrieves a porcelain `git status` for use in other functions,
 # `git_prompt_status` and `parse_git_dirty`.
-get_git_status() {
+function get_git_status() {
   local FLAGS
   FLAGS=("--porcelain")
   [[ $POST_1_7_2_GIT -gt 0 ]] && FLAGS+="--ignore-submodules=dirty"
@@ -63,6 +69,7 @@ get_git_status() {
 # Git commit id and mode code taken from:
 # https://github.com/benhoskings/dot-files/blob/master/files/bin/git_cwd_info
 function git_prompt_info() {
+  [[ $ZSH_THEME_GIT_PROMPT == "off" ]] && return
   local GIT_REPO_PATH=$(git rev-parse --git-dir 2>/dev/null)
   [[ $GIT_REPO_PATH == "" ]] && return
 
@@ -97,7 +104,7 @@ function git_prompt_info() {
 #
 # If you find prompt speed slow, it's because of the speed of `git status` in
 # any given repo: it's slower than you'd imagine.
-git_prompt_status() {
+function git_prompt_status() {
   [[ -z $INDEX ]] && return
   local X
   local Y
