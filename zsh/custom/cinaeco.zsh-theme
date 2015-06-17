@@ -153,3 +153,10 @@ function parse_git_dirty() {
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
 }
+
+# Show if a prompt is in vi command mode.
+#
+# Relies on ZLE widget `zle-keymap-select` in `keybindings.zsh`.
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
