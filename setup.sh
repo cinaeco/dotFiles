@@ -43,8 +43,9 @@ echo "We touched all the known hosts."
 
 # Git config
 git config --global color.ui true
-git config --global core.editor "vim"
+git config --global core.editor vim
 git config --global core.excludesfiles ~/dotfiles/git/globalignore
+git config --global diff.mnemonicPrefix true
 echo "Git config done."
 
 # Initialise and clone any submodules
