@@ -48,13 +48,13 @@ function start_sshagent() {
 # Also, if the socket in the environment is a symlink, try to get to the actual
 # socket itself.
 function linksocket() {
-  local sock="/tmp/ssh-agent-$USER-tmux"
-  if [[ ! -z $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $sock ]]; then
+  local link="/tmp/ssh-agent-$USER-tmux"
+  if [[ ! -z $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $link ]]; then
     local target=$SSH_AUTH_SOCK
     [[ -L $SSH_AUTH_SOCK ]] && target=`readlink $SSH_AUTH_SOCK`
-    ln -sf $target $sock &> /dev/null
+    [[ -e $target ]] && ln -sf $target $link &> /dev/null
   fi
-  export SSH_AUTH_SOCK=$sock
+  export SSH_AUTH_SOCK=$link
 }
 
 # If we detect sudo, try to link the current user (usually root) to the sudo
@@ -64,11 +64,11 @@ function linksocket() {
 # has super privileges. They can, however reach that socket directly, so a
 # personal symlink is attempted.
 function linksocket_sudo() {
-  local socksudo="/tmp/ssh-agent-$SUDO_USER-tmux"
-  if [[ ! -z $SUDO_USER && -L $socksudo ]]; then
-    local sock="/tmp/ssh-agent-$USER-tmux"
-    ln -sf `readlink $socksudo` $sock &> /dev/null
-    export SSH_AUTH_SOCK=$sock
+  local linksudo="/tmp/ssh-agent-$SUDO_USER-tmux"
+  if [[ ! -z $SUDO_USER && -L $linksudo ]]; then
+    local link="/tmp/ssh-agent-$USER-tmux"
+    ln -sf `readlink $linksudo` $link &> /dev/null
+    export SSH_AUTH_SOCK=$link
   fi
 }
 
