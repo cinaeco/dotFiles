@@ -32,8 +32,6 @@ map zh zH
 " Easier jumping to beginning and end of line
 map H ^
 map L $
-map H ^
-map L $
 
 " Make movements operate on 1 screen line in wrap mode
 nnoremap <silent> <expr> j ScreenMovement("j")

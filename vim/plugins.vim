@@ -20,8 +20,6 @@ call plug#begin('~/.vim/plugged')
   "let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 "endif
 
-Plug 'kien/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'joonty/vdebug'
 Plug 'tpope/vim-repeat'
 Plug 'kshenoy/vim-signature'
@@ -30,11 +28,11 @@ Plug 'haya14busa/vim-asterisk'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'altercation/vim-colors-solarized'
-Plug 'cinaeco/EasyGrep'
+
 Plug 'tpope/vim-surround'
+Plug 'matchit.zip'
 Plug 'Raimondi/delimitMate'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'matchit.zip'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/syntastic'
@@ -42,10 +40,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'tristen/vim-sparkup'
-"Plug 'sjl/gundo.vim'
-"Plug 'katono/rogue.vim'
-"Plug 'haya14busa/incsearch.vim' - interferes with macros
-"Plug 'deris/vim-shot-f' - interferes with macro
+Plug 'sjl/gundo.vim'
+Plug 'katono/rogue.vim'
 
 " Text Objects {{{
 Plug 'kana/vim-textobj-user'
@@ -55,11 +51,12 @@ Plug 'vim-scripts/argtextobj.vim'
 " }}}
 
 " File Browser {{{
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-vinegar'
+Plug 'kien/ctrlp.vim'
 " }}}
 
 " Code Browser {{{
+Plug 'tacahiroy/ctrlp-funky'
 if executable('ctags')
   Plug 'majutsushi/tagbar'
   if executable('phpctags')
@@ -69,15 +66,6 @@ endif
 " }}}
 
 " Completion and Snippets {{{
-"Plug 'ervandew/supertab'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
-"Plug 'honza/vim-snippets'
-"" Source support_function.vim to support vim-snippets.
-"if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
-  "source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
-"endif
 Plug 'ajh17/VimCompletesMe'
 " }}}
 
@@ -92,6 +80,18 @@ Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'vim-scripts/yaml.vim'
 Plug 'LnL7/vim-nix'
+" }}}
+
+" Discarded {{{
+"Plug 'haya14busa/incsearch.vim' - interferes with macros
+"Plug 'deris/vim-shot-f' - interferes with macro
+"Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
+"
+"Plug 'ervandew/supertab' ------------\
+"Plug 'MarcWeber/vim-addon-mw-utils' -|
+"Plug 'tomtom/tlib_vim' --------------+ ancient and messy completion system.
+"Plug 'garbas/vim-snipmate' ----------|
+"Plug 'honza/vim-snippets' -----------/
 " }}}
 
 call plug#end()
