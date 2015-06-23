@@ -74,3 +74,17 @@ alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
 #
 # ggpush has been removed from oh-my-zsh!
 # ggpush translates into `git push origin <current branch>`.
+
+# Recover indexed/staged changes that were lost.
+#
+# By a careless reset, for example. This function locates all dangling/orphaned
+# blobs and puts them in text files. These files can then be checked for the
+# lost changes.
+#
+# Most tidy method found so far:
+# http://blog.ctp.com/2013/11/21/git-recovering-from-mistakes/
+function git_retrieve_discarded_index_changes() {
+  for blob in $(git fsck --lost-found | awk '$2 == "blob" { print $3 }'); do
+    git cat-file -p $blob > $blob.txt;
+  done
+}
