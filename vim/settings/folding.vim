@@ -6,10 +6,6 @@
 "   These are settings to make folding easier to use and look at:
 "    - Indented Folds to match their first line.
 "    - Statbox to right displays line count and fold level.
-"    - Coloured distinctly red!
-"        (sounds harsh, but actually works well with solarized-dark!)
-"    - Fillchar is forced to '.' rather than '-'.
-"        (easier on eyes)
 "    - SpaceBar toggles folds, if any.
 "        (much more convenient than the 'z' commands)
 "    - SPF13-VIM provides quick foldlevel setting map: <Leader>f[0-9]
@@ -75,7 +71,7 @@ if has('folding')
     if (&number || &relativenumber)
       let displayWidth -= &numberwidth
     endif
-    let foldChar = '┄'
+    let foldChar = '-'
     " }}}
 
     " Set fold fillchar {{{
@@ -107,7 +103,7 @@ if has('folding')
 
       " Prepare fold indent and indicator {{{
       "  - If indent allows, build the indicator into it.
-      let foldIndicator = '▸ '
+      let foldIndicator = '+ '
       let indLen = strdisplaywidth(foldIndicator)
       if indent(v:foldstart) >= indLen
         let indent = repeat(' ', indent(v:foldstart) - indLen) . foldIndicator
