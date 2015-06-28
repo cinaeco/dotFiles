@@ -20,39 +20,33 @@ call plug#begin('~/.vim/plugged')
   "let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 "endif
 
-Plug 'joonty/vdebug'
-Plug 'tpope/vim-repeat'
-Plug 'kshenoy/vim-signature'
-Plug 'itchyny/lightline.vim'
-Plug 'haya14busa/vim-asterisk'
-
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'altercation/vim-colors-solarized'
-
-Plug 'tpope/vim-surround'
-Plug 'matchit.zip'
 Plug 'Raimondi/delimitMate'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-unimpaired'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
+Plug 'altercation/vim-colors-solarized'
 Plug 'godlygeek/tabular'
-Plug 'tristen/vim-sparkup'
+Plug 'haya14busa/vim-asterisk'
+Plug 'itchyny/lightline.vim'
+Plug 'joonty/vdebug'
+Plug 'kshenoy/vim-signature'
+Plug 'matchit.zip'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
-Plug 'katono/rogue.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " Text Objects {{{
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
 Plug 'bkad/CamelCaseMotion'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-user'
 Plug 'vim-scripts/argtextobj.vim'
 " }}}
 
 " File Browser {{{
-Plug 'tpope/vim-vinegar'
 Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-vinegar'
 " }}}
 
 " Code Browser {{{
@@ -70,28 +64,33 @@ Plug 'ajh17/VimCompletesMe'
 " }}}
 
 " Coding Language Support {{{
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-cucumber'
-Plug 'quentindecock/vim-cucumber-align-pipes'
+Plug 'LnL7/vim-nix'
+Plug 'elzr/vim-json'
+Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mintplant/vim-literate-coffeescript'
-Plug 'groenewege/vim-less'
-Plug 'elzr/vim-json'
+Plug 'quentindecock/vim-cucumber-align-pipes'
+Plug 'scrooloose/syntastic'
+Plug 'shawncplus/phpcomplete.vim'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-markdown'
 Plug 'vim-scripts/yaml.vim'
-Plug 'LnL7/vim-nix'
+" }}}
+
+" Games. Why not {{{
+Plug 'katono/rogue.vim'
 " }}}
 
 " Discarded {{{
-"Plug 'haya14busa/incsearch.vim' - interferes with macros
 "Plug 'deris/vim-shot-f' - interferes with macro
+"Plug 'haya14busa/incsearch.vim' - interferes with macros
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
 "
-"Plug 'ervandew/supertab' ------------\
-"Plug 'MarcWeber/vim-addon-mw-utils' -|
-"Plug 'tomtom/tlib_vim' --------------+ ancient and messy completion system.
-"Plug 'garbas/vim-snipmate' ----------|
-"Plug 'honza/vim-snippets' -----------/
+"Plug 'MarcWeber/vim-addon-mw-utils' -\
+"Plug 'ervandew/supertab' ------------|
+"Plug 'garbas/vim-snipmate' ----------+ ancient and messy completion system.
+"Plug 'honza/vim-snippets' -----------|
+"Plug 'tomtom/tlib_vim' --------------/
 " }}}
 
 call plug#end()
