@@ -10,37 +10,33 @@
 
 call plug#begin('~/.vim/plugged')
 
-"if executable('ack-grep')
-  "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-  "Plug 'mileszs/ack.vim'
-"elseif executable('ack')
-  "Plug 'mileszs/ack.vim'
-"elseif executable('ag')
-  "Plug 'mileszs/ack.vim'
-  "let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-"endif
-
+" General {{{
 Plug 'Raimondi/delimitMate'
-Plug 'altercation/vim-colors-solarized'
+Plug 'dkprice/vim-easygrep'
 Plug 'godlygeek/tabular'
 Plug 'haya14busa/vim-asterisk'
-Plug 'itchyny/lightline.vim'
 Plug 'joonty/vdebug'
-Plug 'kshenoy/vim-signature'
 Plug 'matchit.zip'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+" }}}
+
+" Visual {{{
+Plug 'altercation/vim-colors-solarized'
+Plug 'itchyny/lightline.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'nathanaelkane/vim-indent-guides'
+" }}}
 
 " Text Objects {{{
 Plug 'bkad/CamelCaseMotion'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-user'
+Plug 'tpope/vim-surround'
 Plug 'vim-scripts/argtextobj.vim'
 " }}}
 
@@ -66,25 +62,21 @@ Plug 'ajh17/VimCompletesMe'
 " Coding Language Support {{{
 Plug 'LnL7/vim-nix'
 Plug 'elzr/vim-json'
-Plug 'groenewege/vim-less'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mintplant/vim-literate-coffeescript'
-Plug 'quentindecock/vim-cucumber-align-pipes'
 Plug 'scrooloose/syntastic'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-markdown'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/yaml.vim'
 " }}}
 
 " Games. Why not {{{
 Plug 'katono/rogue.vim'
+Plug 'jmanoel7/vim-games'
 " }}}
 
 " Discarded {{{
 "Plug 'deris/vim-shot-f' - interferes with macro
 "Plug 'haya14busa/incsearch.vim' - interferes with macros
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
+"Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
 "
 "Plug 'MarcWeber/vim-addon-mw-utils' -\
 "Plug 'ervandew/supertab' ------------|

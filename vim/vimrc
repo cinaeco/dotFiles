@@ -4,18 +4,19 @@ set nocompatible
 " Clear all existing autocommands first to avoid unwanted side effects
 if has("autocmd")
   autocmd!
+  " Automatically detect file types.
+  filetype plugin indent on
+endif
+
+" Syntax highlighting.
+if has("syntax")
+  syntax enable
 endif
 
 " Register plugins
 if filereadable(expand("~/dotfiles/vim/plugins.vim"))
   source ~/dotfiles/vim/plugins.vim
 endif
-
-" Automatically detect file types.
-filetype plugin indent on
-
-" Syntax highlighting.
-syntax on
 
 """"""""
 "" Tabs and Text Formatting
@@ -33,32 +34,39 @@ set textwidth=80   " try to keep text within 80 characters
 set colorcolumn=+1 " mark out the limits of the textwidth
 set hidden         " allow changing buffers without unsaved-warnings e.g. for argdo
 
-set nojoinspaces               " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                 " Puts new vsplit windows to the right of the current
 set splitbelow                 " Puts new split windows to the bottom of the current
 set backspace=indent,eol,start " Backspace for dummies
 set linespace=0                " No extra spaces between rows
-set number                     " Line numbers on
-set relativenumber
+set relativenumber             " Show line numbers relative to current line, and
+set number                     " Show the actual line number on current line.
 set showmatch                  " Show matching brackets/parenthesis
 set incsearch                  " Find as you type search
 set hlsearch                   " Highlight search terms
-set winminheight=0             " Windows can be 0 line high
 set ignorecase                 " Case insensitive search
 set smartcase                  " Case sensitive when uc present
+set winminheight=0             " Windows can be 0 line high
 set wildmenu                   " Show list instead of just completing
 set modeline                   " Support vim modelines at the top of files
 set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
 set shortmess+=filmnrxoOtT     " Abbrev. of messages (avoids 'hit enter')
-set scrolloff=5                " Minimum lines to keep above and below cursor
+set scrolloff=10               " Minimum lines to keep above and below cursor
+set sidescroll=1
+set sidescrolloff=15
 
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:>\ ,trail:.,extends:#,nbsp:#
 
 if has('persistent_undo')
   set undofile                " So is persistent undo ...
   set undolevels=1000         " Maximum number of changes that can be undone
   set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+endif
+
+" Join (J) options
+set nojoinspaces        " Prevents inserting two spaces after punctuation
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j  " Remove comment characters when joining comment lines.
 endif
 
 """"""""

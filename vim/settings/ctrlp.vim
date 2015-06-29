@@ -1,15 +1,19 @@
 let g:ctrlp_map = '<Leader>p'
 
-"let g:ctrlp_working_path_mode = 'rw' let's try out ra
-let g:ctrlp_user_command = {
-    \ 'types': {
-        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': 'find %s -type f'
-\ }
+" Use `ag` as fallback if available.
+if executable('ag')
+  let s:fallback = 'ag %s -l --nocolor -g ""'
+else
+  let s:fallback = 'find %s -type f'
+endif
+
+let g:ctrlp_user_command = [
+  \ '.git',
+  \ 'cd %s && git ls-files . -co --exclude-standard',
+  \ s:fallback
+\]
 
 let g:ctrlp_extensions = ['funky']
 
-" Function definition jumping with CtrlP's Funky plugin
+" Function definition jumping with CtrlP's Funky plugin.
 nnoremap <silent> <Leader>f :CtrlPFunky<CR>
