@@ -30,6 +30,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 " }}}
 
 " Text Objects {{{

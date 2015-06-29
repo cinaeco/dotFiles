@@ -53,6 +53,7 @@ set shortmess+=filmnrxoOtT     " Abbrev. of messages (avoids 'hit enter')
 set scrolloff=10               " Minimum lines to keep above and below cursor
 set sidescroll=1
 set sidescrolloff=15
+set linebreak                  " Break on words when wrapping.
 
 set list
 set listchars=tab:>\ ,trail:.,extends:#,nbsp:#
