@@ -30,6 +30,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Sclarki/neonwave.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " }}}
