@@ -43,7 +43,7 @@ alias gbv='git branch -v'
 alias gcob='git checkout -b'
 alias gds='git diff --staged'
 alias gf='git fetch --all --tags && git fetch --all --prune'
-alias ggpush='git push origin $(current_branch)'
+alias ggpush='git push -u origin $(current_branch)'
 compdef ggpush=git
 # standard log with train tracks.
 alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
@@ -66,8 +66,12 @@ alias gsmpull='git submodule foreach git pull'
 alias gsmup='git submodule sync && git submodule update --init'
 # useful for finding parent commit for a given commit hash
 alias gsr='git show --format=raw'
-# setup tracking for origin.
+# fix tracking for origin if not there.
 alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
+# autosquashing for simple fixups.
+alias grbi='git rebase -i --autosquash'
+alias gcf='git commit --fixup'
+alias gcs='git commit --squash'
 
 # useful omz git plugin ones include:
 #   ga, gc, gco, gb, gba, gm, grhh, grb, gwip, gunwip
