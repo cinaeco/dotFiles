@@ -34,6 +34,7 @@ set textwidth=80   " try to keep text within 80 characters
 set colorcolumn=+1 " mark out the limits of the textwidth
 set hidden         " allow changing buffers without unsaved-warnings e.g. for argdo
 
+set mouse=a                    " Mouse support enabled.
 set splitright                 " Puts new vsplit windows to the right of the current
 set splitbelow                 " Puts new split windows to the bottom of the current
 set backspace=indent,eol,start " Backspace for dummies
