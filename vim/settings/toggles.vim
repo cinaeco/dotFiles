@@ -10,3 +10,6 @@ nnoremap <silent> <Leader>l :set list! list?<CR>
 
 " Toggle scrollbind for moving multiple splits in sync together
 nnoremap <silent> <Leader>s :set scrollbind! scrollbind?<CR>
+
+" Toggle line numbers
+nnoremap <silent> <Leader>n :set number! relativenumber! relativenumber?<CR>
