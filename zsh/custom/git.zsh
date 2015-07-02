@@ -44,15 +44,9 @@ alias gcob='git checkout -b'
 alias gds='git diff --staged'
 alias gf='git fetch --all --tags && git fetch --all --prune'
 alias ggpush='git push -u origin $(current_branch)'
-compdef ggpush=git
-# standard log with train tracks.
-alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT
-# search through commit DIFFs for particular text (pick ax)
-# does NOT search commit MESSAGES - use `--grep` for that.
-alias glS='git log -S'
-alias gla='gl --all'
-# concise branch and tag log with train tracks.
-alias glb='gl --simplify-by-decoration'
+alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT # log with train tracks.
+alias gla='gl --all' # show all refs, not just current branch history.
+alias glb='gl --simplify-by-decoration' # concise branch and tag log.
 alias glh='gl --max-count=15'
 alias glp='git log --graph --decorate --patch'
 alias gls='git log --graph --decorate --stat'
@@ -60,14 +54,22 @@ alias gr='git reset'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
 alias gs='git status'
-# git submodule management
+alias gsr='git show --format=raw' # all info about a commmit.
+compdef ggpush=git
+
+# searching history.
+alias glG='git log --stat -G' # Search DIFFS - changes with given text.
+alias glS='git log --stat -S' # Search DIFFS - changes in number of given text.
+alias glg='git log --grep' # search commit MESSAGES.
+
+# git submodule management.
 alias gsm='git submodule'
 alias gsmpull='git submodule foreach git pull'
 alias gsmup='git submodule sync && git submodule update --init'
-# useful for finding parent commit for a given commit hash
-alias gsr='git show --format=raw'
+
 # fix tracking for origin if not there.
 alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
+
 # autosquashing for simple fixups.
 alias grbi='git rebase -i --autosquash'
 alias gcf='git commit --fixup'
