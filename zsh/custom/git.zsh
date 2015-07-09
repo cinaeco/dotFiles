@@ -65,7 +65,7 @@ alias glg='git log --grep' # search commit MESSAGES.
 # git submodule management.
 alias gsm='git submodule'
 alias gsmpull='git submodule foreach git pull'
-alias gsmup='git submodule sync && git submodule update --init'
+alias gsmup='git submodule sync && git submodule update --init --recursive'
 
 # fix tracking for origin if not there.
 alias track='git branch --set-upstream-to origin/$(current_branch) && git fetch'
