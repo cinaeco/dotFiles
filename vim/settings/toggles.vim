@@ -13,3 +13,6 @@ nnoremap <silent> <Leader>s :set scrollbind! scrollbind?<CR>
 
 " Toggle line numbers
 nnoremap <silent> <Leader>n :set number! relativenumber! relativenumber?<CR>
+
+" Toggle Undotree
+nnoremap <silent> <Leader>u :UndotreeToggle<CR>
