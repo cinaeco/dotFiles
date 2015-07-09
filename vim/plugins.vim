@@ -28,14 +28,15 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " }}}
 
 " Visual {{{
+Plug 'Sclarki/airline-surarken'
+Plug 'Sclarki/neonwave.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
+Plug 'bling/vim-airline'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'romainl/flattened'
-Plug 'Sclarki/neonwave.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 " }}}
 
 " Text Objects {{{
