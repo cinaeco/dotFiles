@@ -13,15 +13,6 @@ if has("syntax")
   syntax enable
 endif
 
-" Register plugins
-if filereadable(expand("~/dotfiles/vim/plugins.vim"))
-  source ~/dotfiles/vim/plugins.vim
-endif
-
-""""""""
-"" Tabs and Text Formatting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nowrap
 set cursorline     " Highlight current line
 set expandtab      " convert tab characters into spaces
@@ -97,6 +88,14 @@ nnoremap <C-b> <C-a>
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
+
+""""""""
+"" Load Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if filereadable(expand("~/dotfiles/vim/plugins.vim"))
+  source ~/dotfiles/vim/plugins.vim
+endif
 
 """"""""
 "" Load Settings Files
