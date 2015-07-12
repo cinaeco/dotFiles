@@ -40,6 +40,10 @@ Plug 'romainl/flattened'
 " }}}
 
 " Text Objects {{{
+" `,` to work with camel/snake case e.g. `ci,w`
+" `e` to work with whole files e.g. `=ae`
+" `s` to work with surrounds e.g. `cs{[`
+" `a` to work with arguments e.g. `cia`
 Plug 'bkad/CamelCaseMotion'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-user'
