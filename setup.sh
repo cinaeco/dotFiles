@@ -77,6 +77,7 @@ echo "Irssi linked."
 
 # Ack
 linkup ~/dotfiles/ack/ackrc ~/.ackrc
+linkup ~/dotfiles/bin/ack ~/bin/ack
 echo "Ack linked."
 
 # Powerline
