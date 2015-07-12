@@ -18,6 +18,7 @@ function! NormalPower()
   AirlineTheme powerlineish
   " Fix sign column colour (for vim-signature, syntastic).
   highlight SignColumn ctermbg=235
+  call MuteSpellCheckHighlights()
   echo "System at normal power..."
 endfunction
 
@@ -25,6 +26,7 @@ function! UltraPower()
   set background=light
   colorscheme neonwave
   AirlineTheme surarken
+  call MuteSpellCheckHighlights()
   echo "Ultra Power Level Activated!"
 endfunction
 
