@@ -48,7 +48,7 @@ alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT # log with trai
 alias gla='gl --all' # show all refs, not just current branch history.
 alias glb='gl --simplify-by-decoration' # concise branch and tag log.
 alias glh='gl --max-count=15'
-alias glp='git log --graph --decorate --patch'
+alias glp='git log --graph --decorate -p'
 alias gls='git log --graph --decorate --stat'
 alias gr='git reset'
 alias grh='git reset --hard'
