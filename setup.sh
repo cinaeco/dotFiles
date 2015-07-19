@@ -27,7 +27,7 @@ linkup() {
 # Run vim-plug's install process.
 # Vim starts with just a registry of plugins and the `nocompatible` flag.
 install_vim_plugins() {
-  vim -u ~/dotfiles/vim/plugins.vim -N +PlugUpgrade +PlugUpdate! +PlugClean! +qall!
+  vim -u ~/dotfiles/vim/plugins.vim -N +PlugUpdate! +PlugClean! +qall!
 }
 
 # }}}

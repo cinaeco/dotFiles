@@ -78,11 +78,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/yaml.vim'
 " }}}
 
-" Games. Why not {{{
-Plug 'katono/rogue.vim'
-Plug 'jmanoel7/vim-games'
-" }}}
-
 " Discarded {{{
 "Plug 'deris/vim-shot-f' - interferes with macro
 "Plug 'haya14busa/incsearch.vim' - interferes with macros
@@ -94,6 +89,10 @@ Plug 'jmanoel7/vim-games'
 "Plug 'garbas/vim-snipmate' ----------+ ancient and messy completion system.
 "Plug 'honza/vim-snippets' -----------|
 "Plug 'tomtom/tlib_vim' --------------/
+"
+" Games!
+"Plug 'katono/rogue.vim' - Does not work with neovim.
+"Plug 'jmanoel7/vim-games'
 " }}}
 
 call plug#end()
