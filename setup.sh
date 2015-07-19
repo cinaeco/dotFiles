@@ -13,10 +13,6 @@
 
 # Support Functions {{{
 
-# Folder for backing up present configuration files.
-backup_dir="/tmp/$(date)"
-mkdir "$backup_dir"
-
 # Backup a given file.
 backup() {
   [ -e "$1" ] && mv "$1" "$backup_dir"
@@ -36,10 +32,14 @@ install_vim_plugins() {
 
 # }}}
 
+# Prepare folders
+backup_dir=~/.dotfilesbackup/$(date)
+mkdir -p "$backup_dir" ~/bin ~/.config ~/.ssh
+echo "Prepared folders."
+
 # Make known_hosts file if none
-mkdir -p ~/.ssh
 touch ~/.ssh/known_hosts
-echo "We touched all the known hosts."
+echo "Touched known hosts."
 
 # Git config
 git config --global color.ui true
@@ -81,7 +81,6 @@ linkup ~/dotfiles/bin/ack ~/bin/ack
 echo "Ack linked."
 
 # Powerline
-mkdir -p ~/.config
 linkup ~/dotfiles/powerline/config ~/.config/powerline
 echo "Powerline linked."
 
