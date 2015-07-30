@@ -7,9 +7,6 @@
 [submodule "powerline/powerline"]
   path = powerline/powerline
   url = https://github.com/Lokaltog/powerline.git
-[submodule "powerline/rainbarf"]
-  path = powerline/rainbarf
-  url = https://github.com/creaktive/rainbarf.git
 [submodule "tmux/rainbarf"]
   path = tmux/rainbarf
   url = https://github.com/creaktive/rainbarf.git
