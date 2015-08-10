@@ -4,9 +4,6 @@
 [submodule "tmux/tmux-colors-solarized"]
   path = tmux/tmux-colors-solarized
   url = https://github.com/seebi/tmux-colors-solarized.git
-[submodule "powerline/powerline"]
-  path = powerline/powerline
-  url = https://github.com/Lokaltog/powerline.git
 [submodule "tmux/rainbarf"]
   path = tmux/rainbarf
   url = https://github.com/creaktive/rainbarf.git
