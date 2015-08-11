@@ -33,7 +33,7 @@ install_vim_plugins() {
 
 # Prepare folders
 backup_dir=~/.dotfilesbackup/$(date)
-mkdir -p "$backup_dir" ~/bin ~/.config ~/.ssh
+mkdir -p "$backup_dir" ~/bin ~/.ssh
 echo "Prepared folders."
 
 # Make known_hosts file if none
@@ -78,10 +78,6 @@ echo "Irssi linked."
 linkup ~/dotfiles/ack/ackrc ~/.ackrc
 linkup ~/dotfiles/bin/ack ~/bin/ack
 echo "Ack linked."
-
-# Powerline
-linkup ~/dotfiles/powerline/config ~/.config/powerline
-echo "Powerline linked."
 
 # Vim (and NeoVim)
 linkup ~/dotfiles/vim/vimrc ~/.vimrc
