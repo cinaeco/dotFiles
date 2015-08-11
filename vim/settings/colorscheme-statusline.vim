@@ -1,29 +1,36 @@
-""""""""
-"" Colour Scheme
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colour Scheme & Status Line
+"
+" Available colour schemes:
+" - flattened_dark
+" - neonwave
 
 " Fix wrong background colour in tmux.
 " http://sunaku.github.io/vim-256color-bce.html
 set t_ut=
 
-" Available colour schemes:
-"colorscheme flattened_dark  " Like solarized but easier.
-"colorscheme neonwave
+" Status line defaults.
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
+set laststatus=2 " always show the status line.
+set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
 
-autocmd VimEnter * call NormalPower()
+" Colour scheme defaults.
+set background=dark
+colorscheme flattened_dark
+" fix sign column colour in flattened_dark (for vim-signature, syntastic).
+highlight SignColumn ctermbg=235
 
 function! NormalPower()
   set background=dark
   colorscheme flattened_dark
   AirlineTheme powerlineish
-  " Fix sign column colour (for vim-signature, syntastic).
   highlight SignColumn ctermbg=235
   call MuteSpellCheckHighlights()
   echo "System at normal power..."
 endfunction
 
 function! UltraPower()
-  set background=light
+  set background=dark
   colorscheme neonwave
   AirlineTheme surarken
   call MuteSpellCheckHighlights()
@@ -41,14 +48,4 @@ function! MuteSpellCheckHighlights()
   hi clear SpellRare
   hi link SpellRare SpellBad
 endfunction
-
-""""""""
-"" Status Line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set laststatus=2
-set noshowmode " don't show e.g. --INSERT-- with themed status lines.
-
-let g:airline_powerline_fonts = 1
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
+call MuteSpellCheckHighlights()
