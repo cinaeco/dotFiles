@@ -14,14 +14,11 @@ The configs reflect a heavy preference for `vim`-like bindings.
 
 - The configs only make sense with at least `zsh` and `vim` installed.
 - `vim` can work with 7.3, but is best with 7.4+ to have all the right patches.
-- `tmux` uses [Powerline][], which expects Python 2.6+.
-
-[Powerline]: https://github.com/powerline/powerline
 
 ## Optional
 
 - The [Solarized][] dark colour palette makes the `zsh` prompt nicer.
-- The [Meslo][] font (Menlo, patched for powerline), makes `tmux` look
+- The [Meslo][] font (Menlo, patched for powerline), makes `vim` and `tmux` look
   better, and has [Rainbarf][] graph glyphs.
 - [Vim-Plug][] needs `vim` to have Python support to perform parallel downloads.
 - [The Silver Searcher][] should be installed where possible. Otherwise, [Ack][]
