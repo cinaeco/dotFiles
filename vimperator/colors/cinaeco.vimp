@@ -40,6 +40,6 @@ hi Filter                background: darkgreen; border-radius: 2px; border: 1px 
 " misc
 """"""""""""""""""""""""""""""""
 
-hi ErrorMsg              color: #dc322f;                   " Type in an invalid command
-hi MoreMsg               color: green;   " mouse-click in completion list to see `MoreMsg`
-hi InfoMsg               color: orange;  " e.g. when downloading files
+hi ErrorMsg              color: #dc322f;  " Type in an invalid command
+hi MoreMsg               color: green;    " mouse-click in completion list to see `MoreMsg`
+hi InfoMsg               color: orange;   " e.g. when downloading files
