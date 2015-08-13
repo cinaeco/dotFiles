@@ -1,23 +1,17 @@
+# The order in, and conditions of, which `zsh` config files are sourced:
 #
-# /etc/zshenv is sourced on all invocations of the
-# shell, unless the -f option is set.  It should
-# contain commands to set the command search path,
-# plus other important environment variables.
-# .zshenv should not contain commands that produce
-# output or assume the shell is attached to a tty.
+# .zshenv: (always)
+# .zprofile: [[ -o login ]]
+# .zshrc: [[ -o interactive ]]
+# .zlogin: [[ -o login ]]
 #
+# As seen, `zshenv` is sourced on all invocations of the shell. It is useful for
+# setting variables that should be available to other programs e.g. `PATH`,
+# `EDITOR`, `PAGER`, and generally not the place to put commands that produce
+# output or assume attachment to a tty/terminal.
 
 export EDITOR='vim'
 
 # Paths
-export PATH=$HOME/dotfiles/powerline/powerline/scripts:$PATH
+export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
-
-# Add /usr/local manpages
-if [[ -d /usr/local/share/man ]];then
-    MANPATH=/usr/local/share/man:$MANPATH
-fi
-if [[ -d /usr/local/man ]];then
-    MANPATH=/usr/local/man:$MANPATH
-fi
-export MANPATH

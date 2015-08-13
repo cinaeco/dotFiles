@@ -33,7 +33,7 @@ install_vim_plugins() {
 
 # Prepare folders
 backup_dir=~/.dotfilesbackup/$(date)
-mkdir -p "$backup_dir" ~/bin ~/.ssh
+mkdir -p "$backup_dir" ~/.ssh
 echo "Prepared folders."
 
 # Make known_hosts file if none
@@ -53,8 +53,8 @@ git submodule update --init
 echo "Submodules done."
 
 # Zsh
-linkup ~/dotfiles/zsh/zshrc ~/.zshrc
 linkup ~/dotfiles/zsh/zshenv ~/.zshenv
+linkup ~/dotfiles/zsh/zshrc ~/.zshrc
 echo "Zsh linked."
 
 # Vimperator
@@ -76,7 +76,6 @@ echo "Irssi linked."
 
 # Ack
 linkup ~/dotfiles/ack/ackrc ~/.ackrc
-linkup ~/dotfiles/bin/ack ~/bin/ack
 echo "Ack linked."
 
 # Vim (and NeoVim)
