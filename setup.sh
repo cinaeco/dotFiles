@@ -20,7 +20,7 @@ backup() {
 
 # Create links after backing up.
 linkup() {
-  backup "$2" && ln -sf "$1" "$2"
+  backup "$2"; ln -sf "$1" "$2"
 }
 
 # Run vim-plug's install process.
