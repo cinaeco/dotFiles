@@ -52,7 +52,7 @@ Plug 'vim-scripts/argtextobj.vim'
 " }}}
 
 " File Browser {{{
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-vinegar'
 " }}}
 
