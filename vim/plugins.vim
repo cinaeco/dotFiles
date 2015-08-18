@@ -13,18 +13,19 @@ call plug#begin('~/.vim/plugged')
 " General {{{
 Plug 'Raimondi/delimitMate'
 Plug 'dkprice/vim-easygrep'
-Plug 'godlygeek/tabular'
 Plug 'haya14busa/vim-asterisk'
 Plug 'joonty/vdebug'
+Plug 'junegunn/vim-easy-align'
 Plug 'matchit.zip'
-Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-scripts/visualrepeat'
 " }}}
 
 " Visual {{{
