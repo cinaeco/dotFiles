@@ -42,9 +42,9 @@ set wildmenu                   " Show list instead of just completing
 set modeline                   " Support vim modelines at the top of files
 set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
 set shortmess+=filmnrxoOtT     " Abbrev. of messages (avoids 'hit enter')
-set scrolloff=10               " Minimum lines to keep above and below cursor
+set scrolloff=5                " Minimum lines to keep above and below cursor
 set sidescroll=1
-set sidescrolloff=15
+set sidescrolloff=10
 set linebreak                  " Break on words when wrapping.
 
 set list

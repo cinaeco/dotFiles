@@ -10,31 +10,32 @@ set t_ut=
 
 " Status line defaults.
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
 set laststatus=2 " always show the status line.
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
-
-" Colour scheme defaults.
-set background=dark
-colorscheme flattened_dark
-" fix sign column colour in flattened_dark (for vim-signature, syntastic).
-highlight SignColumn ctermbg=235
 
 function! NormalPower()
   set background=dark
   colorscheme flattened_dark
-  AirlineTheme powerlineish
-  highlight SignColumn ctermbg=235
+  call SetTheme('powerlineish')
   call MuteSpellCheckHighlights()
-  echo "System at normal power..."
+  " fix sign column colour in flattened_dark (for vim-signature, syntastic).
+  highlight SignColumn ctermbg=235
 endfunction
 
 function! UltraPower()
   set background=dark
   colorscheme neonwave
-  AirlineTheme surarken
+  call SetTheme('surarken')
   call MuteSpellCheckHighlights()
-  echo "Ultra Power Level Activated!"
+endfunction
+
+function! SetTheme(name)
+  " Airline functions are not available at vim start.
+  if exists(':AirlineTheme')
+    exec 'AirlineTheme' a:name
+  else
+    let g:airline_theme = a:name
+  endif
 endfunction
 
 function! MuteSpellCheckHighlights()
@@ -48,4 +49,5 @@ function! MuteSpellCheckHighlights()
   hi clear SpellRare
   hi link SpellRare SpellBad
 endfunction
-call MuteSpellCheckHighlights()
+
+call NormalPower()
