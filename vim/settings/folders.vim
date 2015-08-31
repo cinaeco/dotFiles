@@ -30,7 +30,7 @@ function! InitVimFolders()
     " Use the folders.
     if isdirectory(path)
       let path = substitute(path, " ", "\\\\ ", "g")
-      exec "set " . setting . "=" . path
+      execute "set " . setting . "=" . path
     else
       echo "Warning! Could not create folder: " . path
       echo "Try `mkdir -p " . path . "`"

@@ -1,5 +1,5 @@
 " Folding - Modeline and Notes {{{
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=1 foldmethod=marker:
 "
 "   cinaeco/dotfiles Folding Settings
 "
@@ -77,7 +77,7 @@ if has('folding')
     " Set fold fillchar {{{
     "  - This complicated line is to ensure we replace the fold fillchar only.
     let &l:fillchars = substitute(&l:fillchars,',\?fold:.','','gi')
-    exec 'setlocal fillchars+=fold:' . foldChar
+    execute 'setlocal fillchars+=fold:' . foldChar
     " }}}
 
     " Handle diff foldmethod {{{

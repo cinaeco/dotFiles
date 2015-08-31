@@ -33,7 +33,7 @@ endfunction
 function! SetTheme(name)
   " Airline functions are not available at vim start.
   if exists(':AirlineTheme')
-    exec 'AirlineTheme' a:name
+    execute 'AirlineTheme' a:name
   else
     let g:airline_theme = a:name
   endif

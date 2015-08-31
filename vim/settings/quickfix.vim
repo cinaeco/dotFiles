@@ -53,15 +53,15 @@ if has("autocmd")
 
   " <Tab> and <Bslash> map adding helper. {{{
   function! MapQfPrevNext()
-    exec "nmap <silent> <tab> :cprev<CR>"
-    exec "nmap <silent> <bslash> :cnext<CR>"
+    execute "nmap <silent> <tab> :cprev<CR>"
+    execute "nmap <silent> <bslash> :cnext<CR>"
   endfunction
   " }}}
 
   " <Tab> and <Bslash> map removal helper. {{{
   function! UnmapQfPrefNext()
-    exec "nunmap <tab>"
-    exec "nunmap <bslash>"
+    execute "nunmap <tab>"
+    execute "nunmap <bslash>"
   endfunction
   " }}}
 
