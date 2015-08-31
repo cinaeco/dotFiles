@@ -84,8 +84,8 @@ Enjoy the amount of time wasted on tweaking a setup :D
  - `Prefix + vi motion` moves around panes.
  - `PrefixHold + vi motion` moves around windows.
  - `Alt/Meta + number` moves to window number (1-10).
- - `Ctrl-minus` cuts a pane horizontally (think `-`),
- - `Ctrl-\` cuts a pane vertically (think `|`).
+ - `Prefix + -` cuts a pane horizontally,
+ - `Prefix + \` cuts a pane vertically (think `|`).
  - `Prefix + s` starts synchronized panes.
  - `PrefixHold + s` swaps between sessions.
  - Mouse support works to select/resize panes/windows.

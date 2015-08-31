@@ -20,3 +20,9 @@ nnoremap <silent> <Leader>gap :Git add -p<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gb :Gblame<CR>
+
+" Get what's changed in an as-yet-unsaved file
+if !exists(':DiffOrig')
+  command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_
+      \ | diffthis | wincmd p | diffthis
+endif
