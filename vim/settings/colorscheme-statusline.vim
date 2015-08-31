@@ -12,6 +12,7 @@ set t_ut=
 let g:airline_powerline_fonts = 1
 set laststatus=2 " always show the status line.
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
+set showcmd      " display partial commands on the last line
 
 function! NormalPower()
   set background=dark

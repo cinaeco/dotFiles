@@ -1,5 +1,5 @@
 " Plugins {{{
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=1 foldmethod=marker spell:
 "
 "   Vim Plugin Setup Script
 "

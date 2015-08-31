@@ -1,26 +1,12 @@
-" Screen Movement - Modeline and Notes {{{
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
-"
-"   cinaeco/dotfiles Screen Movement shortcuts
-"
-"   Taken from spf13-vim
-"
-" }}}
-
 " Freedom of movement in visual block mode
 set virtualedit=block
 
-" Smart way to move between windows, with vertical maximisation (spf13-vim).
-map <C-j> <C-w>j<C-w>_
-map <C-k> <C-w>k<C-w>_
-map <C-l> <C-w>l<C-w>_
-map <C-h> <C-w>h<C-w>_
-
-" Smart way to move between windows, without vertical maximisation.
-"noremap <C-j> <C-w>j
-"noremap <C-k> <C-w>k
-"noremap <C-h> <C-w>h
-"noremap <C-l> <C-w>l
+" Smart way to move between windows
+" Enchancing these mapping with vertical maximisation (<C-w>_) is interesting
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
