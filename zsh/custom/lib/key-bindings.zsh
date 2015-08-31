@@ -62,3 +62,6 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# <S-Tab> to tab backwards through autocomplete suggestions.
+bindkey '^[[Z' reverse-menu-complete
