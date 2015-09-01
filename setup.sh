@@ -1,4 +1,7 @@
 #!/bin/sh
+set -euo pipefail
+IFS=$'\n\t'
+
 # Setup Script {{{
 # vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
 #
@@ -15,7 +18,7 @@
 
 # Backup a given file.
 backup() {
-  [ -e "$1" ] && mv "$1" "$backup_dir"
+  [ -e "$1" ] && mv "$1" "$backup_dir" || true
 }
 
 # Create links after backing up.
