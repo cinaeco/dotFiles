@@ -41,7 +41,7 @@ set winminheight=0             " Windows can be 0 line high
 set wildmenu                   " Show list instead of just completing
 set modeline                   " Support vim modelines at the top of files
 set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
-set shortmess+=filmnrxoOtT     " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=filmnrxoOtT     " Abbrev. of messages (reduces 'hit enter')
 set scrolloff=5                " Minimum lines to keep above and below cursor
 set sidescroll=1
 set sidescrolloff=10

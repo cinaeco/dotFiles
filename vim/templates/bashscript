@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# The following comments are all removed when loading this template:
+#
+# The Unofficial "Bash Strict Mode"
+# -e           Failed commands exit
+# -u           Unbound variables exit
+# -o pipefail  Do not hide piped-command failures
+# IFS as newline and tab are better for loops (and name with spaces).
+#
+# Tips:
+# - Options can be switched off and on as required:
+#   - Toggle `-e` if previous command's return value is needed (`$?`).
+#   - Toggle `-u` if sourcing another non-conforming script.
+# - Use default values for positional parameters i.e. `${1:-}`.
+# - Intentionally undefined variables should be set to "" rather than not set.
+# - Learn about "exit traps" to perform `try-catch-finally`-like cleanup tasks
+#
+set -euo pipefail
+IFS=$'\n\t'
