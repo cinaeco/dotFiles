@@ -13,6 +13,7 @@ The configs reflect a heavy preference for `vim`-like bindings.
 ## Requirements
 
 - The configs only make sense with at least `zsh` and `vim` installed.
+- `zsh` has been used with 4.3.17 and up.
 - `vim` can work with 7.3, but is best with 7.4+ to have all the right patches.
 
 ## Optional
@@ -20,11 +21,12 @@ The configs reflect a heavy preference for `vim`-like bindings.
 - The [Solarized][] dark colour palette makes the `zsh` prompt nicer.
 - The [Meslo][] font (Menlo, patched for powerline), makes `vim` and `tmux` look
   better, and has [Rainbarf][] graph glyphs.
-- [Vim-Plug][] needs `vim` to have Python support to perform parallel downloads.
+- [Vim-Plug][] needs plain `vim` to have Python or Ruby support to perform
+  parallel downloads.
 - [The Silver Searcher][] should be installed where possible. Otherwise, [Ack][]
   is part of this repo as a fallback (requires Perl 5.8.8).
 - Install [Pandoc][] for vim to generate documents from `.pandoc` files ([Pandoc
-  Markdown][]).
+  Markdown][]). Use [pandoc-citeproc][] for bibliographical assistance.
 
 [Solarized]: http://ethanschoonover.com/solarized
 [Meslo]: https://github.com/Lokaltog/powerline-fonts
@@ -34,13 +36,15 @@ The configs reflect a heavy preference for `vim`-like bindings.
 [Ack]: http://beyondgrep.com/
 [Pandoc]: http://pandoc.org/
 [Pandoc Markdown]: http://pandoc.org/README.html#pandocs-markdown
+[pandoc-citeproc]: https://github.com/jgm/pandoc-citeproc
 
 ## Set Up
 
-Clone to a user's home folder and run `setup.sh` while in it:
+Clone this repository to the home folder, and run `setup.sh`:
 
-    $ cd ~/dotfiles
-    $ ./setup.sh
+    $ ~/dotfiles/setup.sh
+
+Restart the shell after that.
 
 ## Useful Things
 
