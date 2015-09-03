@@ -3,4 +3,4 @@
 autocmd BufNewFile *.sh 0r ~/dotfiles/vim/templates/bashscript | 2,$ g/^#/d | normal G
 
 " Make shell scripts executable on save.
-autocmd BufWritePost *.sh if getline(1) =~ "^#!/bin/" | silent !chmod +x <afile> | endif
+autocmd BufWritePost *.sh if getline(1) =~ "^#!/bin/" | silent !chmod +x <afile>
