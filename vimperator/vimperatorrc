@@ -10,7 +10,7 @@ colorscheme cinaeco
 set focuscontent
 
 " don't fade out messages, instead just <Esc> to clear
-set messagetimeout=-1
+" set messagetimeout=-1
 
 " use DuckDuckGo plugin
 set defsearch=duckduckgo
@@ -19,8 +19,6 @@ set defsearch=duckduckgo
 """"""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""
-
-let mapleader = ","
 
 " Insert mode! Focus on first imput
 nmap i gi
