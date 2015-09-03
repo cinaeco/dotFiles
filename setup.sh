@@ -51,8 +51,7 @@ git config --global diff.mnemonicPrefix true
 echo "Git config done."
 
 # Initialise and clone any submodules
-git submodule sync
-git submodule update --init
+(cd ~/dotfiles && git submodule sync && git submodule update --init)
 echo "Submodules done."
 
 # Zsh
