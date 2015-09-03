@@ -1,18 +1,7 @@
 #!/bin/bash
+# vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
 set -euo pipefail
 IFS=$'\n\t'
-
-# Setup Script {{{
-# vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
-#
-#   Creates links to configuration files in a user's home folder and downloads
-#   extra software and plugins.
-#
-#   Run from where it's located within dotfiles directory
-#
-#       ./setup.sh
-#
-# }}}
 
 # Support Functions {{{
 
@@ -24,12 +13,6 @@ backup() {
 # Create links after backing up.
 linkup() {
   backup "$2"; ln -sf "$1" "$2"
-}
-
-# Run vim-plug's install process.
-# Vim starts with just a registry of plugins and the `nocompatible` flag.
-install_vim_plugins() {
-  vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
 }
 
 # }}}
@@ -85,7 +68,10 @@ linkup ~/dotfiles/vim/vimrc ~/.vimrc
 linkup ~/dotfiles/vim/vimrc ~/.nvimrc
 linkup ~/dotfiles/vim ~/.vim
 linkup ~/dotfiles/vim ~/.nvim
-install_vim_plugins
 echo "Vim linked."
+
+# vim-plug install process. Starts with plugin list and `nocompatible` flag.
+vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
+echo "Vim plugins done."
 
 echo "Setup complete!"
