@@ -33,7 +33,9 @@ if [[ $POST_1_8_3_GIT -gt 0 ]]; then
 else
   DECO_COLOUR='%Cgreen'
 fi
-GIT_LOG_FORMAT='"format:%C(yellow)%h %Creset%ad %Cblue%an:'$DECO_COLOUR'%d %Creset%s"'
+GIT_LOG_PRETTY="'format:%C(yellow)%h %Creset%ad %Cblue%an:$DECO_COLOUR%d %Creset%s'"
+# Log displays train tracks, decorations, users and dates
+GIT_LOG_DEFAULTS="--graph --date=short --pretty=$GIT_LOG_PRETTY"
 
 alias ga.='git add -A .'
 alias gap='git add -p'
@@ -44,10 +46,10 @@ alias gcob='git checkout -b'
 alias gds='git diff --staged'
 alias gf='git fetch --all --tags && git fetch --all --prune'
 alias ggpush='git push -u origin $(current_branch)'
-alias gl='git log --graph --date=short --pretty='$GIT_LOG_FORMAT # log with train tracks.
+alias gl="git log $GIT_LOG_DEFAULTS"
 alias gla='gl --all' # show all refs, not just current branch history.
 alias glb='gl --simplify-by-decoration' # concise branch and tag log.
-alias glh='gl --max-count=15'
+alias glh="git --no-pager log --max-count=15 $GIT_LOG_DEFAULTS" # show first few.
 alias glp='git log --graph --decorate -p'
 alias gls='git log --graph --decorate --stat'
 alias gr='git reset'
