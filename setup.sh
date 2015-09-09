@@ -7,7 +7,7 @@ IFS=$'\n\t'
 
 # Backup a given file.
 backup() {
-  [ -e "$1" ] && mv "$1" "$backup_dir" || true
+  [[ -e "$1" ]] && mv "$1" "$backup_dir" || true
 }
 
 # Create links after backing up.
