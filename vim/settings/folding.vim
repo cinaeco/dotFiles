@@ -48,7 +48,7 @@ if has('folding')
   " }}}
 
   " Fold Highlighting {{{
-  highlight Folded term=none cterm=none ctermfg=darkgrey ctermbg=none guifg=darkgrey guibg=none
+  "highlight Folded term=none cterm=none ctermfg=darkgrey ctermbg=none guifg=darkgrey guibg=none
   " }}}
 
   " Fold Text {{{

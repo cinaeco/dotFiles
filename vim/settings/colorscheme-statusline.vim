@@ -44,12 +44,16 @@ function! SetTheme(name)
   endif
 endfunction
 
-function! MuteSpellCheckHighlights()
-  hi clear SpellBad   | hi SpellBad cterm=underline
-  " Highlights must be cleared first, or linking will fail.
-  hi clear SpellCap   | hi link SpellCap SpellBad
-  hi clear SpellLocal | hi link SpellLocal SpellBad
-  hi clear SpellRare  | hi link SpellRare SpellBad
+" General Colorscheme overrides
+autocmd ColorScheme * call CustomHighlights()
+function! CustomHighlights()
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  " Mute spellcheck highlighting
+  " Highlights must be cleared first, or `link` will fail.
+  highlight clear SpellBad   | highlight SpellBad cterm=underline
+  highlight clear SpellCap   | highlight link SpellCap SpellBad
+  highlight clear SpellLocal | highlight link SpellLocal SpellBad
+  highlight clear SpellRare  | highlight link SpellRare SpellBad
 endfunction
 
 call Dark()

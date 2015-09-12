@@ -48,7 +48,7 @@ set sidescrolloff=10
 set linebreak                  " Break on words when wrapping.
 
 set list
-set listchars=tab:>\ ,trail:_,extends:#,nbsp:#
+set listchars=tab:>\ ,extends:#,nbsp:#
 
 " Persistent undo is great!
 if has('persistent_undo')

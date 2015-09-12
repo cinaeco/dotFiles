@@ -24,19 +24,17 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/visualrepeat'
 " }}}
 
 " Visual {{{
 Plug 'Sclarki/airline-surarken'
 Plug 'Sclarki/neonwave.vim'
+Plug 'Yggdroot/indentLine'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'kshenoy/vim-signature'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'romainl/flattened'
 " }}}
 
@@ -76,6 +74,7 @@ Plug 'LnL7/vim-nix'
 Plug 'elzr/vim-json'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/yaml.vim'
 " }}}
 
@@ -84,6 +83,7 @@ Plug 'vim-scripts/yaml.vim'
 "Plug 'haya14busa/incsearch.vim' - interferes with macros
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
 "Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
+"Plug 'kshenoy/vim-signature' - nice, but mostly unused.
 "
 "Plug 'MarcWeber/vim-addon-mw-utils' -\
 "Plug 'ervandew/supertab' ------------|
