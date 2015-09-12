@@ -9,9 +9,9 @@
 " http://sunaku.github.io/vim-256color-bce.html
 set t_ut=
 
-" Uncomment this to use proper solarized colours, after the terminal emulator
+" Comment this out to use proper solarized colours, after the terminal emulator
 " palette is properly set up.
-"set t_Co=16
+let g:solarized_termcolors=256
 
 " Status line defaults.
 let g:airline_powerline_fonts = 1
@@ -20,17 +20,20 @@ set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
 set showcmd      " display partial commands on the last line
 
 function! Dark()
-  colorscheme flattened_dark
+  set background=dark
+  colorscheme solarized
   call SetTheme('powerlineish')
   highlight SignColumn ctermbg=235
 endfunction
 
 function! Light()
-  colorscheme flattened_light
+  set background=light
+  colorscheme solarized
   call SetTheme('powerlineish')
 endfunction
 
 function! Neon()
+  set background=light
   colorscheme neonwave
   call SetTheme('surarken')
 endfunction

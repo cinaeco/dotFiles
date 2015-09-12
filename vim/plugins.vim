@@ -35,7 +35,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'romainl/flattened'
 " }}}
 
 " Text Objects {{{
