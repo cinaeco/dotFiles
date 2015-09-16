@@ -65,3 +65,8 @@ bindkey '^Z' fancy-ctrl-z
 
 # <S-Tab> to tab backwards through autocomplete suggestions.
 bindkey '^[[Z' reverse-menu-complete
+
+# Toggle Command Line Editing with <C-x><C-e>, like bash.
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
