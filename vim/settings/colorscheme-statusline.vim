@@ -19,24 +19,18 @@ set laststatus=2 " always show the status line.
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
 set showcmd      " display partial commands on the last line
 
-function! Dark()
-  set background=dark
-  colorscheme solarized
-  call SetTheme('powerlineish')
-  highlight SignColumn ctermbg=235
-endfunction
+command! Dark set background=dark
+      \| colorscheme solarized
+      \| call SetTheme('powerlineish')
+      \| highlight SignColumn ctermbg=235
 
-function! Light()
-  set background=light
-  colorscheme solarized
-  call SetTheme('powerlineish')
-endfunction
+command! Light set background=light
+      \| colorscheme solarized
+      \| call SetTheme('powerlineish')
 
-function! Neon()
-  set background=light
-  colorscheme neonwave
-  call SetTheme('surarken')
-endfunction
+command! Neon set background=light
+      \| colorscheme neonwave
+      \| call SetTheme('surarken')
 
 function! SetTheme(name)
   " Airline functions are not available at vim start.
@@ -59,4 +53,5 @@ function! CustomHighlights()
   highlight clear SpellRare  | highlight link SpellRare SpellBad
 endfunction
 
-call Dark()
+" Set starting colorscheme
+Dark

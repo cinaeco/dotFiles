@@ -30,7 +30,6 @@ Plug 'vim-scripts/visualrepeat'
 " Visual {{{
 Plug 'Sclarki/airline-surarken'
 Plug 'Sclarki/neonwave.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
@@ -83,6 +82,7 @@ Plug 'vim-scripts/yaml.vim'
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
 "Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
 "Plug 'kshenoy/vim-signature' - nice, but mostly unused.
+"Plug 'Yggdroot/indentLine' - performance issues in larger files.
 "
 "Plug 'MarcWeber/vim-addon-mw-utils' -\
 "Plug 'ervandew/supertab' ------------|
