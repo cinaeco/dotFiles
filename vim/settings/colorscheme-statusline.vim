@@ -26,7 +26,7 @@ command! Dark set background=dark
 
 command! Light set background=light
       \| colorscheme solarized
-      \| call SetTheme('powerlineish')
+      \| call SetTheme('papercolor')
 
 command! Neon set background=light
       \| colorscheme neonwave
