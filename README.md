@@ -21,12 +21,12 @@ The configs reflect a heavy preference for `vim`-like bindings.
 - The [Solarized][] dark colour palette makes the `zsh` prompt nicer.
 - The [Meslo][] font (Menlo, patched for powerline), makes `vim` and `tmux` look
   better, and has [Rainbarf][] graph glyphs.
-- [Vim-Plug][] needs plain `vim` to have Python or Ruby support to perform
+- [Vim-Plug][] needs `vim` with Python or Ruby support or neovim to perform
   parallel downloads.
-- [The Silver Searcher][] should be installed where possible. Otherwise, [Ack][]
-  is part of this repo as a fallback (requires Perl 5.8.8).
+- [The Silver Searcher][] should be installed where possible. If not available,
+  [Ack][] (part of this repo) will be used as a fallback (requires Perl 5.8.8).
 - Install [Pandoc][] for vim to generate documents from `.pandoc` files ([Pandoc
-  Markdown][]). Use [pandoc-citeproc][] for bibliographical assistance.
+  Markdown][]). Install [pandoc-citeproc][] for bibliographical assistance.
 
 [Solarized]: http://ethanschoonover.com/solarized
 [Meslo]: https://github.com/Lokaltog/powerline-fonts
@@ -65,19 +65,19 @@ Enjoy the amount of time wasted on tweaking a setup :D
 
 ### Vim
 
-`Space` is the `<leader>`.
+`Space` is the `<Leader>`.
 
-- `<leader>d` is the filebrowser (netrw).
-- `<leader>p` fuzzy-finds files. Best in Git repositories.
-- `<leader>f` fuzzy-finds functions in the current file.
-- `<leader>t` opens a function/variable list for the current file.
-- `<leader>n` toggles line numbers.
-- `<leader>w` saves.
-- `<leader>q` closes files.
+- `<Leader>d` is the filebrowser (netrw).
+- `<Leader>p` fuzzy-finds files. Best in Git repositories.
+- `<Leader>f` fuzzy-finds functions in the current file.
+- `<Leader>t` opens a function/variable list for the current file.
+- `<Leader>n` toggles line numbers.
+- `<Leader>w` saves.
+- `<Leader>q` closes files.
 - Additional text objects exist (see `'Text Objects'` in [plugins.vim][]).
 - Saving `.pandoc` files also outputs `.docx` versions.
 - Activate `:Goyo` for distraction-free writing.
-- Don't forget to invoke `:call UltraPower()`.
+- 3 colour schemes are available. Toggle with `:Dark`, `:Light` and `:Neon`.
 
 [plugins.vim]: vim/plugins.vim
 
@@ -106,14 +106,3 @@ This config provides the following:
 - `j` and `k` half-pages down and up (`<C-d>`/`<C-u>` equivalents).
 - `H`, `J`, `K`, `L` are small motions (5 lines or chars) within a page.
 - `<C-h>` and `<C-l>` relocate a tab left and right.
-
-## Issues
-
-### ZSH is slow in OS X Mavericks!
-
-Check if the slowness occurs in Git repositories. If it does, this is because of
-the Apple-provided version of Git. Install Git through homebrew.
-
-More info: [stackexchange][]
-
-[stackexchange]: http://apple.stackexchange.com/questions/106784/terminal-goes-slow-after-install-mavericks-os
