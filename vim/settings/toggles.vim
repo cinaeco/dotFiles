@@ -2,17 +2,13 @@
 nnoremap <silent> <F2> :set paste! paste?<CR>
 set pastetoggle=<F2>
 
-" Toggle text wrap
-nnoremap <silent> <F3> :set wrap! wrap?<CR>
-
-" Toggle visible whitespace characters
-nnoremap <silent> <Leader>l :set list! list?<CR>
-
-" Toggle scrollbind for moving multiple splits in sync together
-nnoremap <silent> <Leader>s :set scrollbind! scrollbind?<CR>
-
 " Toggle line numbers
-nnoremap <silent> <Leader>n :set number! relativenumber! relativenumber?<CR>
+nnoremap <silent> <Leader>n :set number! relativenumber! number?<CR>
 
 " Toggle Undotree
 nnoremap <silent> <Leader>u :UndotreeToggle<CR>
+
+" Toggle Tagabar
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
+" Close tagbar after we go to selection
+let g:tagbar_autoclose = 1

@@ -8,8 +8,7 @@
 "    - Statbox to right displays line count and fold level.
 "    - SpaceBar toggles folds, if any.
 "        (much more convenient than the 'z' commands)
-"    - SPF13-VIM provides quick foldlevel setting map: <Leader>f[0-9]
-"        (useful with statbox lvl)
+"    - Quick foldlevel setting map: zf[0-9]
 "
 "   Note that custom foldtext will only work for vim 7.3+. For earlier
 "   versions of vim, only the colouring and spacebar mapping will take effect.

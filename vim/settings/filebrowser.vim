@@ -1,9 +1,5 @@
 " Netrw - Vim's built-in file browser.
 
-" Open and close file browser with `<Leader>d`
-nmap <silent> <Leader>d :Explore<CR>
-autocmd FileType netrw map <silent> <buffer> <Leader>d :Rexplore<CR>
-
 " Open files and toggle folders with 'o' like in QuickFix.
 autocmd FileType netrw map <silent> <buffer> o <CR>
 

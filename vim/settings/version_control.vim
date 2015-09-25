@@ -10,9 +10,6 @@ if has("autocmd")
   autocmd BufReadPost fugitive://* set bufhidden=delete
 endif
 
-" Search for conflict markers
-nnoremap <Leader>c /\v^[<\|=>]{7}( .*\|$)<CR>
-
 " Git commands with Fugitive
 nnoremap <silent> <Leader>gc :Gcommit -v<CR>
 nnoremap <silent> <Leader>gl :Glog<CR><CR>

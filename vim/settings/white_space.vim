@@ -16,9 +16,5 @@ function! StripTrailingWhitespace()
   call cursor(l, c)
 endfunction
 
-" Add extra lines up and down
-nnoremap <Leader>j o<Esc>k
-nnoremap <Leader>k O<Esc>j
-
 " Convert tabs to spaces
 nnoremap <silent> <Leader><Tab> :%s/<Tab>/  /g<CR>
