@@ -67,7 +67,6 @@ Enjoy the amount of time wasted on tweaking a setup :D
 
 `Space` is the `<Leader>`.
 
-- `<Leader>d` is the filebrowser (netrw).
 - `<Leader>p` fuzzy-finds files. Best in Git repositories.
 - `<Leader>f` fuzzy-finds functions in the current file.
 - `<Leader>t` opens a function/variable list for the current file.
