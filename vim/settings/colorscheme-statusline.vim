@@ -1,38 +1,52 @@
 " Colour Scheme & Status Line
 "
 " Available colour schemes:
-" - flattened (solarized clone)
+" - solarized
 " - neonwave
 
 " Fix wrong background colour in tmux, when using 256 colours, and when vim
-" changes the background colour.
-" http://sunaku.github.io/vim-256color-bce.html
+" changes the background colour. http://sunaku.github.io/vim-256color-bce.html
 set t_ut=
 
-" Comment this out to use proper solarized colours, after the terminal emulator
-" palette is properly set up.
-let g:solarized_termcolors=256
+" The colour command that was last run.
+let g:current_colour = expand('~/dotfiles/vim/current-colour')
+
+" Mark if the proper solarized colour palette mode should be used.
+let g:solarized_palette = expand('~/dotfiles/vim/use-solarized-palette')
 
 " Status line defaults.
 let g:airline_powerline_fonts = 1
 set laststatus=2 " always show the status line.
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
-set showcmd      " display partial commands on the last line
+set showcmd      " display partial commands on the last line.
 
+" Toggle colour schemes.
 command! Dark set background=dark
       \| colorscheme solarized
-      \| call SetTheme('powerlineish')
+      \| call StatusTheme('powerlineish')
       \| highlight SignColumn ctermbg=235
+      \| call writefile(['Dark'], g:current_colour)
 
 command! Light set background=light
       \| colorscheme solarized
-      \| call SetTheme('papercolor')
+      \| call StatusTheme('papercolor')
+      \| call writefile(['Light'], g:current_colour)
 
 command! Neon set background=light
       \| colorscheme neonwave
-      \| call SetTheme('surarken')
+      \| call StatusTheme('surarken')
+      \| call writefile(['Neon'], g:current_colour)
 
-function! SetTheme(name)
+" Toggle Solarized Colour Palette Degradation.
+command! SolarizedColourPalette execute 'silent !touch' g:solarized_palette
+      \| let g:solarized_termcolors=16
+      \| execute 'source' g:current_colour
+
+command! SolarizedColourDegrade execute 'silent !rm' g:solarized_palette
+      \| let g:solarized_termcolors=256
+      \| execute 'source' g:current_colour
+
+function! StatusTheme(name)
   " Airline functions are not available at vim start.
   if exists(':AirlineTheme')
     execute 'AirlineTheme' a:name
@@ -41,11 +55,11 @@ function! SetTheme(name)
   endif
 endfunction
 
-" General Colorscheme overrides
+" General colour scheme overrides.
 autocmd ColorScheme * call CustomHighlights()
 function! CustomHighlights()
   highlight ExtraWhitespace ctermbg=red guibg=red
-  " Mute spellcheck highlighting
+  " Mute spellcheck highlighting.
   " Highlights must be cleared first, or `link` will fail.
   highlight clear SpellBad   | highlight SpellBad cterm=underline
   highlight clear SpellCap   | highlight link SpellCap SpellBad
@@ -53,5 +67,14 @@ function! CustomHighlights()
   highlight clear SpellRare  | highlight link SpellRare SpellBad
 endfunction
 
-" Set starting colorscheme
-Dark
+" Default to degraded solarized to avoid bad colours on new machines.
+if !filereadable(g:solarized_palette)
+  let g:solarized_termcolors=256
+endif
+
+" Use the last chosen colour scheme or default to Dark.
+if filereadable(expand(g:current_colour))
+  execute 'source' g:current_colour
+else
+  Dark
+endif

@@ -3,6 +3,8 @@ vim/plugged
 vim/spell
 vim/.netrwhist
 vim/autoload/plug.vim.old
+vim/use-solarized-palette
+vim/current-colour
 
 # Vimperator info/history/local settings
 vimperator/info
