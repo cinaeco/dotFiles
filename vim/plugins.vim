@@ -75,6 +75,7 @@ Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/yaml.vim'
+Plug 'nicklasos/vim-jsx-riot'
 " }}}
 
 " Discarded {{{

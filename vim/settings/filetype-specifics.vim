@@ -12,3 +12,9 @@ autocmd FileType litcoffee runtime ftplugin/coffee.vim
 " Compile and Watch should open vertical splits by default
 let coffee_compile_vert = 1
 let coffee_watch_vert = 1
+
+" RiotJS Tag support
+au BufNewFile,BufRead *.tag setlocal ft=javascript
+
+" Add spelling to markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
