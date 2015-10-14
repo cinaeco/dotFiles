@@ -1,10 +1,3 @@
-" Toggle paste mode - no autoindenting of pasted material
-nnoremap <silent> <F2> :set paste! paste?<CR>
-set pastetoggle=<F2>
-
-" Toggle line numbers
-nnoremap <silent> <Leader>n :set number! relativenumber! number?<CR>
-
 " Toggle Undotree
 nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 

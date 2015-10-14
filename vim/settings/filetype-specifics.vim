@@ -1,5 +1,5 @@
 " Formatting for json files
-au FileType json setlocal equalprg=python\ -m\ json.tool
+"au FileType json setlocal equalprg=python\ -m\ json.tool
 
 " yaml highlighting
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/plugged/yaml.vim/colors/yaml.vim

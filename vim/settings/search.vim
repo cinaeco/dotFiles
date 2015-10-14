@@ -1,13 +1,3 @@
-" Backspace to clear current search (and stop highlighting)
-nnoremap <silent> <backspace> :call ClearSearch()<CR>
-
-function! ClearSearch()
-  if (@/ != "")
-    let @/=""
-    redraw
-  endif
-endfunction
-
 " use faster search tools if available
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*

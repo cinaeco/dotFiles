@@ -1,106 +1,270 @@
-" Being vi-compatible disables more advanced features
-set nocompatible
+" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+"
+" The Main VIMRC
+"
+" Configures have-anywhere, plugin-independent settings and mappings.
 
-" Clear all existing autocommands first to avoid unwanted side effects
-if has("autocmd")
-  autocmd!
-  " Automatically detect file types.
-  filetype plugin indent on
-endif
+" Loads plugins from `~/dotfiles/plugins.vim`.
+" Loads additional settings from `~/dotfiles/vim/settings/*.vim`.
+"
 
-" Syntax highlighting.
-if has("syntax")
-  syntax enable
-endif
-
-set nowrap
-set cursorline     " Highlight current line
-set expandtab      " convert tab characters into spaces
-set tabstop=2      " actual tab press distance
-set softtabstop=2  " let backspace delete by indents
-set shiftround     " indent to nearest tabstops
-set shiftwidth=2   " amount to indent with > and <
-set smarttab       " backspace tabs where appropriate even if spaces
-set textwidth=80   " try to keep text within 80 characters
-set colorcolumn=+1 " mark out the limits of the textwidth
-set hidden         " allow changing buffers without unsaved-warnings e.g. for argdo
-
-set mouse=a                    " Mouse support enabled.
-set splitright                 " Puts new vsplit windows to the right of the current
-set splitbelow                 " Puts new split windows to the bottom of the current
-set backspace=indent,eol,start " Backspace for dummies
-set linespace=0                " No extra spaces between rows
-set relativenumber             " Show line numbers relative to current line, and
-set number                     " Show the actual line number on current line.
-set showmatch                  " Show matching brackets/parenthesis
-set incsearch                  " Find as you type search
-set hlsearch                   " Highlight search terms
-set ignorecase                 " Case insensitive search
-set smartcase                  " Case sensitive when uc present
-set winminheight=0             " Windows can be 0 line high
-set wildmenu                   " Show list instead of just completing
+" General Behaviours {{{
+set nocompatible               " Use vim's full features (not vi-compatible)
+set mouse=a                    " Mouse for scrolling and resizing splits
 set modeline                   " Support vim modelines at the top of files
-set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
-set shortmess+=filmnrxoOtT     " Abbrev. of messages (reduces 'hit enter')
-set scrolloff=5                " Minimum lines to keep above and below cursor
-set sidescroll=1
-set sidescrolloff=10
-set linebreak                  " Break on words when wrapping.
+set splitbelow                 " Normal splits open below current
+set splitright                 " Vertical splits open right of current
+set hidden                     " Change buffers without unsaved-warnings
+set backspace=indent,eol,start " Backspace for dummies - deletes most things
+set virtualedit=block          " Move cursor freely in visual block mode
+if has('autocmd')
 
-set list
-set listchars=tab:>\ ,extends:#,nbsp:#
+  " Clear existing autocommands to avoid side effects
+  autocmd!
 
-" Persistent undo is great!
+  " Detect a file's type and use plugin/indent configs if available
+  filetype plugin indent on
+
+  " Restore cursor position in a file (:help last-position-jump)
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+                     \|   execute "normal! g`\""
+                     \| endif
+
+  " Git commit exception - keep cursor at start of file
+  autocmd FileType gitcommit call cursor(1, 1)
+endif
+" }}}
+
+" Persistent Undo {{{
 if has('persistent_undo')
-  set undofile
+  set undofile          " Keep undo history even when files are closed
   set undolevels=1000   " Max changes that can be undone
   set undoreload=10000  " Max lines to save for undo on a buffer reload
 endif
+" }}}
 
-" Join (J) options
-set nojoinspaces        " Prevents inserting two spaces after punctuation
-if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j  " Remove comment characters when joining comment lines.
+" Vim Folders {{{
+
+" Store vim-related files in `~/.vim*` folders (e.g. `~/.vimswap`) instead of
+" at the currently-editted file's location
+let folders = {}
+if &swapfile   | let folders['swap']   = 'directory' | endif
+if &backup     | let folders['backup'] = 'backupdir' | endif
+if has('persistent_undo')
+  if &undofile | let folders['undo']   = 'undodir'   | endif
 endif
 
-""""""""
-"" Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+for [folder, setting] in items(folders)
+  let path = expand('~/.vim'.folder.'/')
+  " Create the folders
+  if exists('*mkdir') && !isdirectory(path)
+    call mkdir(path, 'p')
+  endif
+  " Use the folders
+  if isdirectory(path)
+    execute 'set' setting.'='.path
+  else
+    echo 'Warning! No folder:' path
+  endif
+endfor
+" }}}
 
+" Tabs and Whitespace {{{
+set expandtab      " Convert tabs to spaces
+set tabstop=2      " Number of spaces to a tab
+set softtabstop=2  " Let backspace delete by indents
+set shiftround     " Indent to nearest tabstops
+set shiftwidth=2   " Amount to indent with > and <
+set smarttab       " Backspace tabs where appropriate even if spaces
+if has('autocmd')
+
+  " Highlight trailing whitespace
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
+  " Remove trailing whitespace on save
+  autocmd BufWritePre * call RemoveTrailingWhitespace()
+  function! RemoveTrailingWhitespace()
+    let _s=@/ | let l = line(".") | let c = col(".")  " Save search and cursor
+    %s/\s\+$//e                                       " Remove whitespace
+    let @/=_s | call cursor(l, c)                     " Restore settings
+  endfunction
+endif
+" }}}
+
+" Search {{{
+set hlsearch    " Highlight search terms
+set ignorecase  " Case insensitive search
+set incsearch   " Find as you type search
+set smartcase   " Case sensitive when uc present
+" }}}
+
+" Visuals {{{
+set colorcolumn=+1                      " Highlight the textwidth limit
+set cursorline                          " Highlight current line
+set list                                " Display unprintables (like tabs)
+set listchars=tab:>\ ,extends:#,nbsp:#  " Customise unprintables
+set scrolloff=5                         " Lines to keep above/below cursor
+set shortmess+=filmnrxoOtT              " Abbrev. of messages
+set showmatch                           " Show matching brackets/parenthesis
+set matchpairs+=<:>                     " Match <> as a pair, not just ()[]{}
+set sidescroll=1                        " Side-ways scroll speed
+set sidescrolloff=10                    " Columns to keep left/right of cursor
+set wildmenu                            " Ex command tab-completion shows list
+if has('syntax')
+  syntax enable                         " Syntax highlighting
+endif
+set number                              " Show line numbers
+if v:version >= 703
+  set relativenumber                    " Numbers relative to current line
+endif
+" }}}
+
+" Folding {{{
+if has('folding')
+  set foldenable
+  set foldmethod=indent  " Fold lines based on indentation levels
+  set foldlevel=10       " Files start mostly unfolded, start 10 indents deep
+endif
+" }}}}
+
+" Text Wrapping {{{
+set textwidth=80               " Try to keep text within 80 chars
+set nowrap                     " Start without text wrapping
+set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
+set linebreak                  " Break on words when wrapping
+" }}}
+
+" Join (J) Behaviour {{{
+set nojoinspaces        " Prevents inserting two spaces after punctuation
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j  " Remove comment chars when joining comment lines
+endif
+" }}}
+
+" Status Line {{{
+set laststatus=2  " always show the status line
+set showcmd       " display command keypresses on the last line
+" }}}
+
+" Mappings {{{
+
+" <Space> is a very convenient leader key
 let mapleader = ' '
 
-" Save changes to a file
-nmap <silent> <Leader>w :up<CR>
+" Reload vimrc settings
+map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
 
-" Close a file
-nmap <silent> <Leader>q :q<CR>
+  " Buffers {{{
 
-" More convenient escape
-inoremap kj <Esc>
-inoremap jk <Esc>
+  " Save changes to a buffer
+  map <silent> <Leader>w :up<CR>
 
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
+  " Close a buffer
+  map <silent> <Leader>q :q<CR>
 
-" Remap vim's 'increment next number' to <C-b> since <C-a> is used by tmux.
-nnoremap <C-b> <C-a>
+  " List (:ls) all buffers, <CR> to close, or [number]<CR> to go to one
+  map <Leader>l :buffers<CR>:buffer<Space>
 
-" Allow using the repeat operator with a visual selection (!)
-" http://stackoverflow.com/a/8064607/127816
-vnoremap . :normal .<CR>
+  " Go to a buffer with [number]<CR>
+  nmap <silent> <expr> <CR> (v:count > 0) ? ':<C-U>b'.v:count.'<CR>' : '<CR>'
+  " }}}
 
-""""""""
-"" Load Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " Movement {{{
 
+  " Jump to start and end of line with shift
+  map H ^
+  map L $
+
+  " Move by screen lines when wrapped (g-movements)
+  for key in ['j', 'k', '0', '^', '$']
+    for mode in ['n', 'o', 'x']
+      execute mode.'map <silent> <expr>' key '&wrap ? "g'.key.'" : "'.key.'"'
+    endfor
+  endfor
+
+  " Move between splits easily
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-h> <C-w>h
+  map <C-l> <C-w>l
+  " }}}
+
+  " Visuals {{{
+
+  " Adjust viewports to the same size
+  map <Leader>= <C-w>=
+
+  " Half-screen horizontal scrolling instead of full-screen
+  map zl zL
+  map zh zH
+
+  " Backspace to hide search highlight temporarily
+  nmap <silent> <backspace> :nohlsearch<CR>
+
+  if v:version >= 703
+    " Toggle both types of line numbers together
+    map <Leader>n :set number! relativenumber! number?<CR>
+  endif
+  " }}}
+
+  " Folding {{{
+  if has('folding')
+
+    " Toggle the fold of the current line with double-space
+    nmap <silent> <expr> <Leader><Space> foldlevel('.') ? 'za' : '<Space>'
+
+    " Set fold level 0-9 with zf[number]
+    for lvl in range(10)
+      execute 'nmap <silent> zf'.lvl.' :set foldlevel='.lvl.'<CR>'
+    endfor
+  endif
+  " }}}
+
+  " Editing {{{
+
+  " Yank to end of line. Consistent with `C` and `D`
+  map Y y$
+
+  " More convenient escape
+  imap kj <Esc>
+  imap jk <Esc>
+
+  " Remap number incrementing to `<C-c>`. For when `<C-a>` is used by tmux
+  map <C-c> <C-a>
+
+  " Convert tabs to spaces
+  map <silent> <Leader><Tab> :retab<CR>
+
+  " Toggle paste mode - no autoindenting of pasted material
+  nmap <silent> <F2> :set paste! paste?<CR>
+  set pastetoggle=<F2>
+
+  " Search for version control conflict markers
+  map <Leader>c /\v^[<\|=>]{7}( .*\|$)<CR>
+  " }}}
+" }}}
+
+" Commands {{{
+if has('user_commands')
+
+  " View unsaved changes in a file (:help DiffOrig)
+  command! DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_
+        \| diffthis | wincmd p | diffthis
+
+  " Insert a date/time on the next line
+  command! Date :put = strftime('%d/%m/%Y %I:%M%p')
+endif
+" }}}
+
+" Load Plugins {{{
 if filereadable(expand("~/dotfiles/vim/plugins.vim"))
   source ~/dotfiles/vim/plugins.vim
 endif
+" }}}
 
-""""""""
-"" Load Settings Files
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Load Extra Settings {{{
 for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')
   execute 'source' filePath
 endfor
+" }}}
