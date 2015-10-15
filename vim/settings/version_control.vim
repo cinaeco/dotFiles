@@ -17,3 +17,4 @@ nnoremap <silent> <Leader>gap :Git add -p<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>grbc :Git rebase --continue<CR>
