@@ -1,14 +1,15 @@
 # Vim plugin
-vim/plugged
-vim/spell
 vim/.netrwhist
 vim/autoload/plug.vim.old
-vim/use-solarized-palette
 vim/current-colour
+vim/init.vim
+vim/plugged
+vim/spell
+vim/use-solarized-palette
 
 # Vimperator info/history/local settings
 vimperator/info
 
 # Irssi config files
-irssi/config*
 irssi/*.theme
+irssi/config*

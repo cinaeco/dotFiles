@@ -19,7 +19,7 @@ linkup() {
 
 # Prepare folders
 backup_dir=~/.dotfilesbackup/$(date)
-mkdir -p "$backup_dir" ~/.ssh
+mkdir -p "$backup_dir" ~/.ssh ${XDG_CONFIG_HOME:=$HOME/.config}
 echo "Prepared folders."
 
 # Make known_hosts file if none
@@ -63,12 +63,15 @@ echo "Irssi linked."
 linkup ~/dotfiles/ack/ackrc ~/.ackrc
 echo "Ack linked."
 
-# Vim (and NeoVim)
-linkup ~/dotfiles/vim/vimrc ~/.vimrc
-linkup ~/dotfiles/vim/vimrc ~/.nvimrc
+# Vim
 linkup ~/dotfiles/vim ~/.vim
-linkup ~/dotfiles/vim ~/.nvim
+linkup ~/dotfiles/vim/vimrc ~/.vimrc
 echo "Vim linked."
+
+# NeoVim XDG Config
+linkup ~/dotfiles/vim $XDG_CONFIG_HOME/nvim
+linkup ~/dotfiles/vim/vimrc $XDG_CONFIG_HOME/nvim/init.vim
+echo "NeoVim linked."
 
 # vim-plug install process. Starts with plugin list and `nocompatible` flag.
 vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!

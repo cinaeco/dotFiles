@@ -2,7 +2,7 @@
 
 These are configuration files for:
 
-- Vim (7.4+ or NEOVIM!!)
+- Vim 7.4+ or NeoVim
 - Vimperator (3.8+)
 - Tmux
 - Zsh
@@ -21,7 +21,7 @@ The configs reflect a heavy preference for `vim`-like bindings.
 - The [Solarized][] dark colour palette makes the `zsh` prompt nicer.
 - The [Meslo][] font (Menlo, patched for powerline), makes `vim` and `tmux` look
   better, and has [Rainbarf][] graph glyphs.
-- [Vim-Plug][] needs `vim` with Python or Ruby support or neovim to perform
+- Vim with Python/Ruby support or NeoVim is needed for [Vim-Plug][] to perform
   parallel downloads.
 - [The Silver Searcher][] should be installed where possible. If not available,
   [Ack][] (part of this repo) will be used as a fallback (requires Perl 5.8.8).
