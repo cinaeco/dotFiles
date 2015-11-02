@@ -48,10 +48,12 @@ Restart the shell after that.
 
 ## Useful Things
 
-Here are some of the characteristics of how this config is used. The list is not
-exhaustive: Reading the configs is the only way to really understand what is
-going on. Dive in, learn, modify. Introspect constantly. See what others do.
-Enjoy the amount of time wasted on tweaking a setup :D
+Below are some examples of how this config is used. The list is not exhaustive.
+Users are encouraged to actually read the dotfiles. Hopefully, any comments left
+help users to understand, modify and improve what is there.
+
+And improve you should. Streamline your work flow. Introspect constantly. See
+what others do. Enjoy the amount of time wasted on tweaking a setup :D
 
 ### Zsh
 
