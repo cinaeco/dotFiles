@@ -57,7 +57,6 @@ endfunction
 " General colour scheme overrides.
 autocmd ColorScheme * call CustomHighlights()
 function! CustomHighlights()
-  highlight ExtraWhitespace ctermbg=red guibg=red
   " Mute spellcheck highlighting.
   " Highlights must be cleared first, or `link` will fail.
   highlight clear SpellBad   | highlight SpellBad cterm=underline

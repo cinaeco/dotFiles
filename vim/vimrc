@@ -79,6 +79,7 @@ set smarttab       " Backspace tabs where appropriate even if spaces
 if has('autocmd')
 
   " Highlight trailing whitespace
+  highlight ExtraWhitespace ctermbg=red guibg=red
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
