@@ -11,10 +11,11 @@ if has("autocmd")
 endif
 
 " Git commands with Fugitive
-nnoremap <silent> <Leader>gc :Gcommit -v<CR>
-nnoremap <silent> <Leader>gl :Glog<CR><CR>
-nnoremap <silent> <Leader>gap :Git add -p<CR>
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gd :Gdiff<CR>
-nnoremap <silent> <Leader>gb :Gblame<CR>
-nnoremap <silent> <Leader>grbc :Git rebase --continue<CR>
+nmap <silent> <Leader>gc :Gcommit -v<CR>
+"nmap <silent> <Leader>gl :Glog<CR><CR>
+nmap <silent> <Leader>gl :BCommits<CR>
+nmap <silent> <Leader>gap :Git add -p<CR>
+nmap <silent> <Leader>gs :Gstatus<CR>
+nmap <silent> <Leader>gd :Gdiff<CR>
+nmap <silent> <Leader>gb :Gblame<CR>
+nmap <silent> <Leader>grbc :Git rebase --continue<CR>

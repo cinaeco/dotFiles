@@ -53,6 +53,8 @@ Plug 'vim-scripts/argtextobj.vim'
 
 " File Browser {{{
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 " }}}
 
