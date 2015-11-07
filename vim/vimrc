@@ -1,24 +1,23 @@
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 foldmarker={{{,}}} foldlevel=0 fdm=marker:
 "
 " The Main VIMRC
 "
 " Configures have-anywhere, plugin-independent settings and mappings.
-
+"
 " Loads plugins from `~/dotfiles/plugins.vim`.
 " Loads additional settings from `~/dotfiles/vim/settings/*.vim`.
 "
 
 " General Behaviours {{{
 set nocompatible               " Use vim's full features (not vi-compatible)
-set mouse=a                    " Mouse for scrolling and resizing splits
-set modeline                   " Support vim modelines at the top of files
+set backspace=indent,eol,start " Backspace for dummies - deletes most things
+set hidden                     " Change buffers without unsaved-warnings
+set modeline                   " Support vim modelines (e.g. start of this file)
+set mouse=a                    " Mouse support
 set splitbelow                 " Normal splits open below current
 set splitright                 " Vertical splits open right of current
-set hidden                     " Change buffers without unsaved-warnings
-set backspace=indent,eol,start " Backspace for dummies - deletes most things
 set virtualedit=block          " Move cursor freely in visual block mode
 if has('autocmd')
-
   " Clear existing autocommands to avoid side effects
   autocmd!
 
@@ -30,7 +29,7 @@ if has('autocmd')
                      \|   execute "normal! g`\""
                      \| endif
 
-  " Git commit exception - keep cursor at start of file
+  " Keep cursor at start of buffer for: Git commits
   autocmd FileType gitcommit call cursor(1, 1)
 endif
 " }}}
@@ -43,10 +42,9 @@ if has('persistent_undo')
 endif
 " }}}
 
-" Vim Folders {{{
+" Folders {{{
 
-" Store vim-related files in `~/.vim*` folders (e.g. `~/.vimswap`) instead of
-" at the currently-editted file's location
+" Store vim working files in `~/.vim[something]` folders (e.g. `~/.vimswap`)
 let folders = {}
 if &swapfile   | let folders['swap']   = 'directory' | endif
 if &backup     | let folders['backup'] = 'backupdir' | endif
@@ -71,13 +69,10 @@ endfor
 
 " Tabs and Whitespace {{{
 set expandtab      " Convert tabs to spaces
-set tabstop=2      " Number of spaces to a tab
-set softtabstop=2  " Let backspace delete by indents
 set shiftround     " Indent to nearest tabstops
-set shiftwidth=2   " Amount to indent with > and <
-set smarttab       " Backspace tabs where appropriate even if spaces
+set shiftwidth=2   " Number of spaces for (auto)indent.
+set tabstop=2      " Number of spaces to a tab
 if has('autocmd')
-
   " Highlight trailing whitespace
   highlight ExtraWhitespace ctermbg=red guibg=red
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -95,9 +90,9 @@ endif
 
 " Search {{{
 set hlsearch    " Highlight search terms
-set ignorecase  " Case insensitive search
-set incsearch   " Find as you type search
-set smartcase   " Case sensitive when uc present
+set ignorecase  " Case-insensitive search
+set incsearch   " Find-as-you-type search
+set smartcase   " Case-sensitive when uppercase present
 " }}}
 
 " Visuals {{{
@@ -106,18 +101,18 @@ set cursorline                          " Highlight current line
 set list                                " Display unprintables (like tabs)
 set listchars=tab:>\ ,extends:#,nbsp:#  " Customise unprintables
 set scrolloff=5                         " Lines to keep above/below cursor
-set shortmess+=filmnrxoOtT              " Abbrev. of messages
+set shortmess+=filmnrxoOtT              " Abbreviation of messages
 set showmatch                           " Show matching brackets/parenthesis
 set matchpairs+=<:>                     " Match <> as a pair, not just ()[]{}
 set sidescroll=1                        " Side-ways scroll speed
 set sidescrolloff=10                    " Columns to keep left/right of cursor
-set wildmenu                            " Ex command tab-completion shows list
+set wildmenu                            " Ex command tab-complete shows options
 if has('syntax')
   syntax enable                         " Syntax highlighting
 endif
 set number                              " Show line numbers
 if v:version >= 703
-  set relativenumber                    " Numbers relative to current line
+  set relativenumber                    " Show numbers relative to current line
 endif
 " }}}
 
@@ -133,7 +128,7 @@ endif
 set textwidth=80               " Try to keep text within 80 chars
 set nowrap                     " Start without text wrapping
 set whichwrap=b,s,h,l,<,>,[,]  " Backspace and cursor keys wrap too
-set linebreak                  " Break on words when wrapping
+set linebreak                  " Do not break lines mid-word, only on spaces
 " }}}
 
 " Join (J) Behaviour {{{
@@ -164,10 +159,10 @@ map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
   " Close a buffer
   map <silent> <Leader>q :q<CR>
 
-  " List (:ls) all buffers, <CR> to close, or [number]<CR> to go to one
+  " List (:ls) all buffers, <CR> to close, or [number]<CR> to go to [number]
   map <Leader>l :buffers<CR>:buffer<Space>
 
-  " Go to a buffer with [number]<CR>
+  " Go to buffer [number] with [number]<CR>
   nmap <silent> <expr> <CR> (v:count > 0) ? ':<C-U>b'.v:count.'<CR>' : '<CR>'
   " }}}
 
@@ -177,7 +172,7 @@ map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
   map H ^
   map L $
 
-  " Move by screen lines when wrapped (g-movements)
+  " Move by screen lines, not vim lines, when wrapped (g-movements)
   for key in ['j', 'k', '0', '^', '$']
     for mode in ['n', 'o', 'x']
       execute mode.'map <silent> <expr>' key '&wrap ? "g'.key.'" : "'.key.'"'
@@ -193,7 +188,7 @@ map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
 
   " Visuals {{{
 
-  " Adjust viewports to the same size
+  " Equalise split sizes
   map <Leader>= <C-w>=
 
   " Half-screen horizontal scrolling instead of full-screen
@@ -227,11 +222,11 @@ map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
   " Yank to end of line. Consistent with `C` and `D`
   map Y y$
 
-  " More convenient escape
+  " Convenient escape - mash `jk`
   imap kj <Esc>
   imap jk <Esc>
 
-  " Remap number incrementing to `<C-c>`. For when `<C-a>` is used by tmux
+  " Increment numbers with `<C-c>`. For when `<C-a>` is used by tmux
   map <C-c> <C-a>
 
   " Convert tabs to spaces

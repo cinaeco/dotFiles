@@ -49,19 +49,19 @@ Restart the shell after that.
 ## Useful Things
 
 Below are some examples of how this config is used. The list is not exhaustive.
-Users are encouraged to actually read the dotfiles. Hopefully, any comments left
-help users to understand, modify and improve what is there.
+Users are encouraged to actually read the dotfiles. Comments within the configs
+hopefully help users to understand, modify and improve.
 
 And improve you should. Streamline your work flow. Introspect constantly. See
 what others do. Enjoy the amount of time wasted on tweaking a setup :D
 
 ### Zsh
 
-- Git prompt tries to reflect the actual file state, not just hint at change
-  types.
-- Mostly-Mnemonic Git shortcuts. Go learn Git.
+- Git prompt status tries to reflect the actual work tree state, not just hint
+  at existence of change types like others.
+- Mostly-Mnemonic Git shortcuts. (Go learn Git.)
 - SSH agent forwarding persists through `tmux`/`sudo` when remotes also
-  use these dotfiles. (Be a one-private-key kind of person.)
+  use these dotfiles. (Please use agent forwarding with prudence.)
 - A `.zshlocal` file can contain machine-specific settings.
 - `z` folder jumping enabled, e.g. `z regex` = `cd /path/with/regex`.
 
@@ -69,16 +69,17 @@ what others do. Enjoy the amount of time wasted on tweaking a setup :D
 
 `Space` is the `<Leader>`.
 
+- `<Leader>w` saves.
+- `<Leader>q` closes files.
+- `<Leader>l` lists loaded buffers and lets you jump to them by number.
 - `<Leader>p` fuzzy-finds files. Best in Git repositories.
 - `<Leader>f` fuzzy-finds functions in the current file.
 - `<Leader>t` opens a function/variable list for the current file.
 - `<Leader>n` toggles line numbers.
-- `<Leader>w` saves.
-- `<Leader>q` closes files.
 - Additional text objects exist (see `'Text Objects'` in [plugins.vim][]).
 - Saving `.pandoc` files also outputs `.docx` versions.
-- Activate `:Goyo` for distraction-free writing.
-- 3 colour schemes are available. Toggle with `:Dark`, `:Light` and `:Neon`.
+- `:Goyo` for distraction-free writing.
+- `:Dark`, `:Light` and `:Neon` colour schemes available.
 
 [plugins.vim]: vim/plugins.vim
 
