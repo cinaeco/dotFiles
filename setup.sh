@@ -1,5 +1,5 @@
 #!/bin/bash
-# vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
+# vim: set sw=2 ts=2 sts=2 et tw=80 fmr={{{,}}} fdl=0 fdm=marker:
 set -euo pipefail
 IFS=$'\n\t'
 

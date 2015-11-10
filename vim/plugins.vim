@@ -1,12 +1,12 @@
-" Plugins {{{
-" vim: set sw=2 ts=2 sts=2 et tw=78 foldmarker={{{,}}} foldlevel=1 foldmethod=marker spell:
+" vim: set sw=2 ts=2 sts=2 et tw=80 fmr={{{,}}} fdl=0 fdm=marker:
 "
-"   Vim Plugin Setup Script
+" The Plugin List
 "
-"   This file is used from 2 places:
-"    - vimrc
-"    - setup.sh
-" }}}
+" This file is used from 2 places:
+"
+" - vimrc
+" - setup.sh
+"
 
 call plug#begin('~/.vim/plugged')
 
