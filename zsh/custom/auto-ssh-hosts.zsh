@@ -1,9 +1,6 @@
-#
 # Automagic ssh to known hosts.
-# Thanks to:
-# https://github.com/dangerous/dotfiles
-# Works in conjunction with .ssh/config for username@hostname
 #
+# Works in conjunction with .ssh/config for username@hostname
 
 ## hosts file
 alias hosts='sudo vim /etc/hosts'
