@@ -24,7 +24,9 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-pandoc/vim-pandoc'
+if v:version >= 704
+  Plug 'vim-pandoc/vim-pandoc'
+endif
 Plug 'vim-scripts/visualrepeat'
 " }}}
 
