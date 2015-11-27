@@ -1,6 +1,6 @@
 # Set proxy environment variables
 function setproxy() {
-  proxy_address=${1:-}
+  proxy_address=${1:-} # default value of nothing
   export HTTP_PROXY=$proxy_address
   export HTTPS_PROXY=$proxy_address
   export FTP_PROXY=$proxy_address

@@ -1,10 +1,6 @@
 # Automagic ssh to known hosts.
 #
 # Works in conjunction with .ssh/config for username@hostname
-
-## hosts file
-alias hosts='sudo vim /etc/hosts'
-
 local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 
