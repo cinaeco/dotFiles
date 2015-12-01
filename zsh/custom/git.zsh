@@ -12,8 +12,10 @@ function git_compare_version() {
     t again'
   )
   # Sanitise installed version to 3 digits as well.
+  # The raw version string takes the form 'git version 1.2.3...'
   INSTALLED=$(git --version 2> /dev/null)
-  INSTALLED=${INSTALLED//[git version |.]/}
+  INSTALLED=${INSTALLED:12:5}
+  INSTALLED=${INSTALLED//./}
 
   if [[ $INSTALLED -gt $INPUT ]]; then
     echo 1

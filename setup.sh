@@ -18,7 +18,7 @@ linkup() {
 # }}}
 
 # Prepare folders
-backup_dir=~/.dotfilesbackup/$(date)
+backup_dir=~/.dotfilesbackup/$(date "+%Y-%m-%d-%H%M%S")
 mkdir -p "$backup_dir" ~/.ssh ${XDG_CONFIG_HOME:=$HOME/.config}
 echo "Prepared folders."
 
