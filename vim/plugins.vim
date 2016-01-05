@@ -73,13 +73,14 @@ Plug 'ajh17/VimCompletesMe'
 " Coding Language Support {{{
 Plug 'LnL7/vim-nix'
 Plug 'elzr/vim-json'
+Plug 'nicklasos/vim-jsx-riot'
+Plug 'pearofducks/ansible-vim'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/yaml.vim'
-Plug 'nicklasos/vim-jsx-riot'
 " }}}
 
 " Discarded {{{
