@@ -34,9 +34,10 @@ Plug 'vim-scripts/visualrepeat'
 Plug 'Sclarki/airline-surarken'
 Plug 'Sclarki/neonwave.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Text Objects {{{
