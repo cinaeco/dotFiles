@@ -1,20 +1,29 @@
 #!/bin/bash
 #
-# The following comments are all removed when loading this template:
+# The Unofficial "Bash Strict Mode".
 #
-# The Unofficial "Bash Strict Mode"
-# -e           Failed commands exit
-# -u           Unbound variables exit
-# -o pipefail  Do not hide piped-command failures
-# IFS as newline and tab are better for loops (and name with spaces).
+# -e           Failed commands exit.
+# -u           Unbound variables exit.
+# -o pipefail  Do not hide piped-command failures.
+# IFS=$'\n\t'  Newline/Tab separators are good for loops and names with spaces.
 #
 # Tips:
-# - Options can be switched off and on as required:
-#   - Toggle `-e` if previous command's return value is needed (`$?`).
-#   - Toggle `-u` if sourcing another non-conforming script.
-# - Use default values for positional parameters i.e. `${1:-}`.
-# - Intentionally undefined variables should be set to "" rather than not set.
-# - Learn about "exit traps" to perform `try-catch-finally`-like cleanup tasks
+#
+# 1. Avoid unset (unbound) variables. Use default values for:
+#   - Positional parameters e.g. `${1:-}`.
+#   - Potentially undefined variables e.g. `${ENVVAR:-}`.
+#   - Intentionally empty/undefined variables e.g. `MAYBE_EMPTY=""`.
+#
+# 2. Failed Commands will stop the script. Avoid this by affixing ` || true`.
+#
+# 3. Strict Options can be toggled, if really required:
+#   - Switch off: `set +opt`. Switch back on afterwards: `set -opt`.
+#   - Toggle `-e` if the previous return value (`$?`) is needed.
+#   - Toggle `-u` if sourcing a non-conforming script.
+#
+# 4. Exit Traps can perform try-catch-finally-like clean-up tasks.
+#
+# (These comments are all removed when vim loads this template.)
 #
 set -euo pipefail
 IFS=$'\n\t'
