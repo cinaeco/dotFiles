@@ -134,10 +134,9 @@ function git_prompt_status() {
 
 # Read the current repository (override the default omz function)
 #
-# Cope with non-ssh repos by not relying on ':'. Instead, we look for text
-# between a '/' and whitespace. '.git' is removed.
+# Check for a name in git remotes, between ':' or '/' and a space.
 function current_repository() {
-  local repo=$(git remote -v | head -1 | sed 's/.*\/\([^/]*\)\ .*/\1/')
+  local repo=$(git remote -v | head -1 | sed 's/.*[\/|:]\([^/]*\) .*/\1/')
   echo ${repo%.git}
 }
 
