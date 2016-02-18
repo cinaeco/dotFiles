@@ -1,0 +1,32 @@
+#!/bin/bash
+set -euo pipefail
+
+# Compare 2 version strings.
+#
+# Requires 2 parameters. Version strings are compared numerically, left to
+# right, field by field.
+#
+# Prints 0 if versions are equal.
+# Prints 1 if first > second.
+# Prints -1 if first < second.
+
+# Split strings on '.'.
+IFS=.
+ver1=(${1:?Usage: version-compare ver1 ver2})
+ver2=(${2:?Usage: version-compare ver1 ver2})
+declare i fields
+
+# Number of version fields to be compared = highest array count.
+[[ ${#ver1[@]} > ${#ver2[@]} ]] && fields=${#ver1[@]} || fields=${#ver2[@]}
+
+# Compare fields until a winner is found.
+for (( i=0; i < $fields; i++ )); do
+  # Use zero for missing fields e.g. when 1.2.3 vs 1.2, one more field needed.
+  (( $i >= ${#ver1[@]} )) && ver1[i]=0
+  (( $i >= ${#ver2[@]} )) && ver2[i]=0
+  # Stop whenever a field value is larger than the other. Compared in base 10.
+  (( 10#${ver1[i]} > 10#${ver2[i]} )) && echo "1" && exit
+  (( 10#${ver1[i]} < 10#${ver2[i]} )) && echo "-1" && exit
+done
+# All fields are equivalent.
+echo "0"

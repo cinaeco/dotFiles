@@ -1,36 +1,11 @@
-# Check the installed git against a given version number
-#
-# Prints 1 if installed > input.
-# Prints -1 if installed < input.
-# Prints 0 if they are the same.
-function git_compare_version() {
-  # Sanitise input. Remove dots, right-pad 0's to 3 digits.
-  INPUT=${1//./}
-  INPUT=$(echo $INPUT | sed -e '
-    :again
-    s/^.\{1,2\}$/&0/
-    t again'
-  )
-  # Sanitise installed version to 3 digits as well.
-  # The raw version string takes the form 'git version 1.2.3...'
-  INSTALLED=$(git --version 2> /dev/null)
-  INSTALLED=${INSTALLED:12:5}
-  INSTALLED=${INSTALLED//./}
-
-  if [[ $INSTALLED -gt $INPUT ]]; then
-    echo 1
-  elif [[ $INSTALLED -lt $INPUT ]]; then
-    echo -1
-  else
-    echo 0
-  fi
-  return 0
-}
+# Git version string
+GIT_VERSION=$(git --version 2> /dev/null)
+GIT_VERSION=${GIT_VERSION:12}
 
 # Prepare compact git log (`gl`) format
 #
 # Log displays train tracks, decorations, users and dates.
-if [[ $(git_compare_version "1.8.3") -ge 0 ]]; then
+if [[ $(version-compare $GIT_VERSION "1.8.3") -ge 0 ]]; then
   DECO_COLOUR='%C(auto)'
 else
   DECO_COLOUR='%Cgreen'
