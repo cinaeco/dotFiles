@@ -1,0 +1,84 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+#
+# Backup a ZFS Filesystem.
+#
+# Uses ZFS `send` and `receive` to perform incremental backups for a filesystem
+# and its descendents. Snapshots created to facilitate this are formatted as
+# "manualbackup-YYYY-MM-DD".
+#
+
+usage="Usage: ${0##*/} target_filesystem backup_filesystem"
+fsFrom=${1:?$usage}
+fsTo=${2:?$usage}
+
+# Check that filesystems exist. Also checks that `zfs` exists.
+zfs list -Hd 0 $fsFrom > /dev/null
+zfs list -Hd 0 $fsTo > /dev/null
+echo "Source:        $fsFrom"
+echo "Destination:   $fsTo"
+
+snapPrefix="manualbackup"
+
+# Look for a previous snapshot created by this script.
+snapList=$(zfs list -Ht snapshot | grep $snapPrefix || true)
+prevSnap=$(echo $snapList | head -n 1 | sed 's/.*@\([^ ]*\)\ *.*/\1/')
+echo "Prev Snapshot: ${prevSnap:-none}"
+
+# Next snapshot will be marked with today's date.
+nextSnap=$snapPrefix-$(date +%Y-%m-%d)
+echo "Next Snapshot: $nextSnap"
+echo ""
+
+# Same snapshot? Nothing to do.
+[[ $prevSnap == $nextSnap ]] && echo "Not backing up." && exit
+
+# pv check: displays transfer speed during backup.
+hasPv=$(which pv || true)
+[[ -z $hasPv ]] && echo "Note: Install \`pv\` for transfer speed during backup."
+
+# tmux check: helps avoid accidentally stopping the backup process.
+if [[ -z ${TMUX:-} ]]; then
+  echo "Backing up can take a while! You really should run this in \`tmux\`."
+  echo "Type 'No need for tmux' to run anyway, or press Enter to exit."
+  read ANS
+  [[ $ANS != "No need for tmux" ]] && exit
+fi
+
+echo "Ready. Proceed? (y/n)"
+read ANS
+[[ $ANS != "y" ]] && exit
+
+echo "Creating snapshot $fsFrom@$nextSnap"
+zfs snapshot -r $fsFrom@$nextSnap || true
+
+# Previous snapshot exists?
+# No = perform an initial full backup.
+# Yes = perform an incremental backup.
+if [[ -z $prevSnap ]]; then
+  echo "Initial full backup starting..."
+  if [[ -n $hasPv ]]; then
+    zfs send -R $fsFrom@$nextSnap | pv | zfs receive -F $fsTo
+  else
+    zfs send -R $fsFrom@$nextSnap | zfs receive -F $fsTo
+  fi
+else
+  echo "Incremental backup starting..."
+  if [[ -n $hasPv ]]; then
+    zfs send -R -i $fsFrom@$prevSnap $fsFrom@$nextSnap | pv | zfs receive -F $fsTo
+  else
+    zfs send -R -i $fsFrom@$prevSnap $fsFrom@$nextSnap | zfs receive -F $fsTo
+  fi
+fi
+echo "ZFS Sending/Receiving done."
+
+if [[ -n $prevSnap ]]; then
+  echo $'\nDestroy previous snapshot and finalise backup? (y/n)'
+  read ANS
+  if [[ $ANS == "y" ]]; then
+    zfs destroy -R $fsFrom@$prevSnap
+    zfs destroy -R $fsTo@$prevSnap
+  fi
+fi

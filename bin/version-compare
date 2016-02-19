@@ -12,8 +12,9 @@ set -euo pipefail
 
 # Split strings on '.'.
 IFS=.
-ver1=(${1:?Usage: version-compare ver1 ver2})
-ver2=(${2:?Usage: version-compare ver1 ver2})
+usage="Usage: ${0##*/} ver1 ver2"
+ver1=(${1:?$usage})
+ver2=(${2:?$usage})
 declare i fields
 
 # Number of version fields to be compared = highest array count.
@@ -28,5 +29,6 @@ for (( i=0; i < $fields; i++ )); do
   (( 10#${ver1[i]} > 10#${ver2[i]} )) && echo "1" && exit
   (( 10#${ver1[i]} < 10#${ver2[i]} )) && echo "-1" && exit
 done
+
 # All fields are equivalent.
 echo "0"
