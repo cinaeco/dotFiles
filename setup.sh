@@ -47,17 +47,9 @@ linkup ~/dotfiles/vimperator ~/.vimperator
 linkup ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
 echo "Vimperator linked."
 
-# Screen
-linkup ~/dotfiles/screen/screenrc ~/.screenrc
-echo "Screen linked."
-
 # Tmux
 linkup ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 echo "Tmux linked."
-
-# Irssi
-linkup ~/dotfiles/irssi ~/.irssi
-echo "Irssi linked."
 
 # Ack
 linkup ~/dotfiles/ack/ackrc ~/.ackrc
