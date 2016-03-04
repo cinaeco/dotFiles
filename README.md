@@ -4,16 +4,17 @@ Configuration files for:
 
 - Vim (7.4+) or NeoVim
 - Vimperator (3.8+)
-- Tmux
-- Zsh
+- Tmux (1.8+)
+- Zsh (4.3.17+)
 - Other bits and pieces
 
 Heavy preference for `vim`-like bindings.
 
-## Requirements
+## Installation
 
-- `zsh` has been used with 4.3.17+.
-- `vim` can work with 7.3, but best with 7.4.
+Clone to a home folder.
+Run `make install` or `./install`.
+Restart the terminal session.
 
 ## Recommended
 
@@ -34,17 +35,9 @@ Heavy preference for `vim`-like bindings.
 [Pandoc Markdown]: http://pandoc.org/README.html#pandocs-markdown
 [pandoc-citeproc]: https://github.com/jgm/pandoc-citeproc
 
-## Installation
-
-    $ cd ~
-    $ git clone https://code.parsleygardens.net/cinaeco/dotfiles.git
-    $ ~/dotfiles/setup.sh
-
-Make sure the default shell is ZSH. Restart the terminal session after that.
-
 ## Usage
 
-Below is a non-exhaustive list of how this config is used.
+Below is a non-exhaustive list of dotfiles usage.
 
 ### Zsh
 

@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Create symlink after backing up the target.
+
+usage="Usage: ${0##*/} source_file target_file"
+src=${1:?$usage}
+tgt=${2:?$usage}
+backup=~/.backup
+
+[[ ! -d $backup ]] && mkdir $backup
+[[ -e "$tgt" ]] && mv "$tgt" "$backup/${tgt##*/}-$(date '+%Y-%m-%d-%H%M%S')" || true
+ln -sf "$src" "$tgt"
