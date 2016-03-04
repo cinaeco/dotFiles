@@ -2,13 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-#
 # Backup a ZFS Filesystem.
 #
 # Uses ZFS `send` and `receive` to perform incremental backups for a filesystem
 # and its descendents. Snapshots created to facilitate this are formatted as
 # "manualbackup-YYYY-MM-DD".
-#
 
 usage="Usage: ${0##*/} target_filesystem backup_filesystem"
 fsFrom=${1:?$usage}
@@ -36,7 +34,7 @@ echo ""
 [[ $prevSnap == $nextSnap ]] && echo "Not backing up." && exit
 
 # pv check: displays transfer speed during backup.
-hasPv=$(which pv || true)
+hasPv=$(command -v pv || true)
 [[ -z $hasPv ]] && echo "Note: Install \`pv\` for transfer speed during backup."
 
 # tmux check: helps avoid accidentally stopping the backup process.
