@@ -73,12 +73,10 @@ vim:
 	./bin/linkup ~/dotfiles/vim ~/.vim
 	./bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
 	./bin/linkup ~/dotfiles/vim $(XDG_CONFIG_HOME)/nvim
-	./bin/linkup ~/dotfiles/vim/vimrc $(XDG_CONFIG_HOME)/nvim/init.vim
 	@vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
 rm-vim:
 	rm ~/.vim
 	rm ~/.vimrc
-	rm $(XDG_CONFIG_HOME)/nvim/init.vim
 	rm $(XDG_CONFIG_HOME)/nvim
 
 # }}}

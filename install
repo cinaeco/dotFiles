@@ -43,7 +43,6 @@ echo "Vimperator linked."
 ~/dotfiles/bin/linkup ~/dotfiles/vim ~/.vim
 ~/dotfiles/bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
 ~/dotfiles/bin/linkup ~/dotfiles/vim $XDG_CONFIG_HOME/nvim
-~/dotfiles/bin/linkup ~/dotfiles/vim/vimrc $XDG_CONFIG_HOME/nvim/init.vim
 echo "Vim linked."
 
 # vim-plug install process. Starts with plugin list and `nocompatible` flag.
