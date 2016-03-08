@@ -46,34 +46,34 @@ rm-git:
 	git config --global --unset diff.mnemonicPrefix true
 
 zsh: submodules
-	./bin/linkup ~/dotfiles/zsh/zshenv ~/.zshenv
-	./bin/linkup ~/dotfiles/zsh/zshrc ~/.zshrc
+	@./bin/linkup ~/dotfiles/zsh/zshenv ~/.zshenv
+	@./bin/linkup ~/dotfiles/zsh/zshrc ~/.zshrc
 rm-zsh:
 	rm ~/.zshenv
 	rm ~/.zshrc
 
 tmux: submodules
-	./bin/linkup ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+	@./bin/linkup ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 rm-tmux:
 	rm ~/.tmux.conf
 
 ack:
-	./bin/linkup ~/dotfiles/ack/ackrc ~/.ackrc
+	@./bin/linkup ~/dotfiles/ack/ackrc ~/.ackrc
 rm-ack:
 	rm ~/.ackrc
 
 vimperator:
-	./bin/linkup ~/dotfiles/vimperator ~/.vimperator
-	./bin/linkup ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
+	@./bin/linkup ~/dotfiles/vimperator ~/.vimperator
+	@./bin/linkup ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
 rm-vimperator:
 	rm ~/.vimperator
 	rm ~/.vimperatorrc
 
 vim:
-	./bin/linkup ~/dotfiles/vim ~/.vim
-	./bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
-	./bin/linkup ~/dotfiles/vim $(XDG_CONFIG_HOME)/nvim
-	@vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
+	@./bin/linkup ~/dotfiles/vim ~/.vim
+	@./bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
+	@./bin/linkup ~/dotfiles/vim $(XDG_CONFIG_HOME)/nvim
+	@vim +PlugClean! +PlugUpdate! +quitall!
 rm-vim:
 	rm ~/.vim
 	rm ~/.vimrc

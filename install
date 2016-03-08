@@ -12,7 +12,6 @@ echo "Preparing."
 
 # Initialise submodules
 (cd ~/dotfiles && git submodule sync && git submodule update --init)
-echo "Submodules done."
 
 # Git config
 git config --global color.ui true
@@ -24,29 +23,21 @@ echo "Git config done."
 # Zsh
 ~/dotfiles/bin/linkup ~/dotfiles/zsh/zshenv ~/.zshenv
 ~/dotfiles/bin/linkup ~/dotfiles/zsh/zshrc ~/.zshrc
-echo "Zsh linked."
 
 # Tmux
 ~/dotfiles/bin/linkup ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-echo "Tmux linked."
 
 # Ack
 ~/dotfiles/bin/linkup ~/dotfiles/ack/ackrc ~/.ackrc
-echo "Ack linked."
 
 # Vimperator
 ~/dotfiles/bin/linkup ~/dotfiles/vimperator ~/.vimperator
 ~/dotfiles/bin/linkup ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
-echo "Vimperator linked."
 
 # Vim
 ~/dotfiles/bin/linkup ~/dotfiles/vim ~/.vim
 ~/dotfiles/bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
 ~/dotfiles/bin/linkup ~/dotfiles/vim $XDG_CONFIG_HOME/nvim
-echo "Vim linked."
-
-# vim-plug install process. Starts with plugin list and `nocompatible` flag.
-vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
-echo "Vim plugins done."
+vim +PlugClean! +PlugUpdate! +quitall!
 
 echo "Install complete!"

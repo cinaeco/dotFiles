@@ -7,8 +7,8 @@ IFS=$'\n\t'
 usage="Usage: ${0##*/} source_file target_file"
 src=${1:?$usage}
 tgt=${2:?$usage}
-backup=~/.backup
+bak=~/.backup
 
-[[ ! -d $backup ]] && mkdir $backup
-[[ -e "$tgt" ]] && mv "$tgt" "$backup/${tgt##*/}-$(date '+%Y-%m-%d-%H%M%S')" || true
-ln -sf "$src" "$tgt"
+[[ ! -d $bak ]] && mkdir $bak
+[[ -e "$tgt" ]] && mv -v "$tgt" "$bak/${tgt##*/}-$(date '+%Y%m%d-%H%M%S')" || true
+ln -sfv "$src" "$tgt"
