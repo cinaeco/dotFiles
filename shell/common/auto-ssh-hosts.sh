@@ -1,6 +1,6 @@
 # Automagic ssh to known hosts.
 # Configure usernames for hosts in .ssh/config
-autosshhosts() {
+auto_ssh_hosts() {
   local line host
   IFS=$'\n\t'
   for line in $(grep "^[a-zA-Z]" ~/.ssh/known_hosts); do
@@ -11,7 +11,7 @@ autosshhosts() {
 }
 
 if [[ -f ~/.ssh/known_hosts ]]; then
-  autosshhosts
+  auto_ssh_hosts
 fi
 
 # Hosts file
