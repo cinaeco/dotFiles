@@ -31,7 +31,7 @@ echo "Next Snapshot: $nextSnap"
 echo ""
 
 # Same snapshot? Nothing to do.
-[[ $prevSnap == $nextSnap ]] && echo "Not backing up." && exit
+[[ $prevSnap = $nextSnap ]] && echo "Not backing up." && exit
 
 # pv check: displays transfer speed during backup.
 hasPv=$(command -v pv || true)
@@ -75,7 +75,7 @@ echo "ZFS Sending/Receiving done."
 if [[ -n $prevSnap ]]; then
   echo $'\nDestroy previous snapshot and finalise backup? (y/n)'
   read ANS
-  if [[ $ANS == "y" ]]; then
+  if [[ $ANS = "y" ]]; then
     zfs destroy -R $fsFrom@$prevSnap
     zfs destroy -R $fsTo@$prevSnap
   fi

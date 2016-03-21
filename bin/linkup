@@ -10,5 +10,6 @@ tgt=${2:?$usage}
 bak=~/.backup
 
 [[ ! -d $bak ]] && mkdir $bak
+[[ -L "$tgt" && "$(readlink $tgt)" = "$src" ]] && exit
 [[ -e "$tgt" ]] && mv -v "$tgt" "$bak/${tgt##*/}-$(date '+%Y%m%d-%H%M%S')" || true
 ln -sfv "$src" "$tgt"
