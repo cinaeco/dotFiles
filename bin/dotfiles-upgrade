@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Update files that have been commited to dotfiles
+#
+# Many additions to these dotfiles are copied straight from external sources.
+# One might say that it would be easier to clone submodules. We do not do this:
+#
+# - That would be a lot of unnecessarily heavy submodules.
+# - The files are often small utilities, and do not really need frequent
+#   updating.
+#
+# This script keeps a track of these kinds of files, and performs re-downloading
+# of their (hopefully) latest versions.
+
+echo "Downloading files from external sources:"
+
+# No need to update. Here for reference.
+#echo "ack"
+#curl -# http://beyondgrep.com/ack-2.14-single-file \
+  #-o ~/dotfiles/bin/ack && chmod 0755 ~/dotfiles/bin/ack
+
+# No need to update. Here for reference.
+#echo "gitignore"
+#curl -# https://gist.githubusercontent.com/octocat/9257657/raw/3f9569e65df83a7b328b39a091f0ce9c6efc6429/.gitignore \
+  #-o ~/dotfiles/git/globalignore
+
+echo "tmuxinator completion for bash"
+curl -# https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.bash \
+  -o ~/dotfiles/shell/bash/tmuxinator.bash
+
+echo "tmuxinator completion for zsh"
+curl -# https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh \
+  -o ~/dotfiles/shell/zsh/completions/_tmuxinator
+
+echo "tmux colours - solarized 256"
+curl -# https://raw.githubusercontent.com/seebi/tmux-colors-solarized/master/tmuxcolors-256.conf \
+  -o ~/dotfiles/tmux/tmuxcolors-256.conf
+
+echo "z"
+curl -# https://raw.githubusercontent.com/rupa/z/master/z.sh \
+  -o ~/dotfiles/shell/common/z.sh
+curl -# https://raw.githubusercontent.com/rupa/z/master/z.1 \
+  -o ~/dotfiles/shell/man/man1/z.1
+
+echo "v"
+curl -# https://raw.githubusercontent.com/rupa/v/master/v \
+  -o ~/dotfiles/bin/v && chmod 0755 ~/dotfiles/bin/v
+curl -# https://raw.githubusercontent.com/rupa/v/master/v.1 \
+  -o ~/dotfiles/shell/man/man1/v.1
+
+echo "vim-plug"
+vim +PlugUpgrade +quitall!
+
+echo "submodules"
+git submodule foreach git pull origin master
