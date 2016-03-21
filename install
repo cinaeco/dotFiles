@@ -6,9 +6,8 @@ IFS=$'\n\t'
 # dotfiles installer for when `make` is not available.
 
 # Prep tasks
-mkdir -p ~/.ssh ${XDG_CONFIG_HOME:=$HOME/.config}
-touch ~/.ssh/known_hosts
-echo "Preparing."
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+echo "Prepared."
 
 # Initialise submodules
 (cd ~/dotfiles && git submodule sync && git submodule update --init)
@@ -20,9 +19,13 @@ git config --global core.excludesfile ~/dotfiles/git/globalignore
 git config --global diff.mnemonicPrefix true
 echo "Git config done."
 
+# Bash
+~/dotfiles/bin/linkup ~/dotfiles/shell/bash_profile ~/.bash_profile
+~/dotfiles/bin/linkup ~/dotfiles/shell/bashrc ~/.bashrc
+
 # Zsh
-~/dotfiles/bin/linkup ~/dotfiles/zsh/zshenv ~/.zshenv
-~/dotfiles/bin/linkup ~/dotfiles/zsh/zshrc ~/.zshrc
+~/dotfiles/bin/linkup ~/dotfiles/shell/env ~/.zshenv
+~/dotfiles/bin/linkup ~/dotfiles/shell/zshrc ~/.zshrc
 
 # Tmux
 ~/dotfiles/bin/linkup ~/dotfiles/tmux/tmux.conf ~/.tmux.conf

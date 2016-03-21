@@ -2,8 +2,8 @@
 # dotfiles setup. Run `make install` to perform all setup tasks.
 
 # Groups of targets
-all = git zsh tmux ack vimperator vim
-rm-all = rm-git rm-zsh rm-tmux rm-ack rm-vimperator rm-vim
+all = git bash zsh tmux ack vimperator vim
+rm-all = rm-git rm-bash rm-zsh rm-tmux rm-ack rm-vimperator rm-vim
 
 # Auto-Documenting Section. Displays a target list with `##` descriptions.
 help:
@@ -26,8 +26,7 @@ show-versions: ## List versions of installed software.
 # Setup Tasks {{{
 
 prep:
-	@mkdir -p ~/.ssh $(XDG_CONFIG_HOME)
-	@touch ~/.ssh/known_hosts
+	@mkdir -p $(XDG_CONFIG_HOME)
 
 XDG_CONFIG_HOME ?= $(HOME)/.config
 
@@ -45,9 +44,16 @@ rm-git:
 	git config --global --unset core.excludesFile ".*/dotfiles/git/globalignore"
 	git config --global --unset diff.mnemonicPrefix true
 
-zsh: submodules
-	@./bin/linkup ~/dotfiles/zsh/zshenv ~/.zshenv
-	@./bin/linkup ~/dotfiles/zsh/zshrc ~/.zshrc
+bash:
+	@./bin/linkup ~/dotfiles/shell/bash_profile ~/.bash_profile
+	@./bin/linkup ~/dotfiles/shell/bashrc ~/.bashrc
+rm-bash:
+	rm ~/.bash_profile
+	rm ~/.bashrc
+
+zsh:
+	@./bin/linkup ~/dotfiles/shell/env ~/.zshenv
+	@./bin/linkup ~/dotfiles/shell/zshrc ~/.zshrc
 rm-zsh:
 	rm ~/.zshenv
 	rm ~/.zshrc

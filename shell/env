@@ -1,0 +1,41 @@
+# vim: ft=sh
+export EDITOR='vim'
+export PAGER='less'
+
+# Default Flags for `less`
+# e = quit at end of file
+# i = searches ignore case, unless there are upper case characters
+# r = display raw control characters (Ctrl-A is ^A)
+# M = verbose `less` prompt
+# X = disable termcap init/deinit strings - sometimes these clear the screen.
+export LESS='-iRMX'
+
+# Paths
+export PATH=$HOME/dotfiles/bin:$PATH
+export MANPATH=$MANPATH:$HOME/dotfiles/shell/man
+
+# Config Files: Which Are Sourced, And When?
+#
+# # BASH
+#
+# .bash_profile: interactive login
+# .bash_login: as above but lower preference
+# .profile: as above but lower preference
+# .bashrc: interactive non-login
+#
+# Interactive = not a script.
+# Login = shell that starts with a computer, or connection from tty or ssh.
+# Non-login = shell that starts from a terminal emulator or GUI.
+# So, put things mostly in `.bashrc`, source from `.bash_profile`.
+#
+# # ZSH
+#
+# .zshenv: (always)
+# .zprofile: [[ -o login ]]
+# .zshrc: [[ -o interactive ]]
+# .zlogin: [[ -o login ]]
+#
+# As seen, `zshenv` is sourced on all invocations of zsh. It is useful for
+# setting variables that should be available to other programs e.g. `PATH`,
+# `EDITOR`, `PAGER`, and generally not the place to put commands that produce
+# output or assume attachment to a tty/terminal.

@@ -1,0 +1,61 @@
+# vim: ft=sh
+# A script to make using 256 colours less painful.
+#
+# Adapted from http://github.com/sykora/etc/blob/master/zsh/functions/spectrum/
+# P.C. Shyamshankar <sykora@lucentbeing.com>
+
+# Create foreground and background colour arrays for 256 colours.
+declare -a FG BG
+
+# Determine prompt colour escape strings.
+if [[ -n ${BASH_VERSION-} ]]; then
+  cStart='\[\e['
+  cEnd='m\]'
+elif [[ -n ${ZSH_VERSION-} ]]; then
+  # ZSH specifics: A = associative array, H = hide value when echoed, g = global
+  declare -AHg FG BG
+  cStart='%{['
+  cEnd='m%}'
+fi
+
+# The arrays will be 1-based because this is ZSH default behaviour.
+# This can be changed with the `KSH_ARRAYS` option, but we do not.
+# First 16 are the ANSI Terminal colours and bright variants:
+# Black, Red, Green, Yellow, Blue, Magenta, Cyan, White
+for colour in {0..255}; do
+    FG[$colour]=$cStart"38;5;"$colour$cEnd
+    BG[$colour]=$cStart"48;5;"$colour$cEnd
+done
+
+# Create text effects.
+cReset=$cStart"0"$cEnd
+cBol=$cStart"1"$cEnd # bold
+cIta=$cStart"3"$cEnd # italic
+cUnd=$cStart"4"$cEnd # underline
+cBli=$cStart"5"$cEnd # blink
+cRev=$cStart"7"$cEnd # reverse
+cnBol=$cStart"22"$cEnd # no-bold
+cnIta=$cStart"23"$cEnd # no-italic
+cnUnd=$cStart"24"$cEnd # no-underline
+cnBli=$cStart"25"$cEnd # no-blink
+cnRev=$cStart"27"$cEnd # no-reverse
+
+SPECTRUM_TEXT=${SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+
+# Show all 256 colours with colour number
+function spectrum_ls() {
+  local line
+  for code in {0..255}; do
+    line="$code: ${FG[$code]}$SPECTRUM_TEXT$cReset"
+    [[ -n $(command -v print) ]] && print -P -- $line || printf "$line\n"
+  done
+}
+
+# Show all 256 colours where the background is set to specific colour
+function spectrum_bls() {
+  local line
+  for code in {0..255}; do
+    line="$code: ${BG[$code]}$SPECTRUM_TEXT$cReset"
+    [[ -n $(command -v print) ]] && print -P -- $line || printf "$line\n"
+  done
+}

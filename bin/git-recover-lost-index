@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Recover indexed/staged changes that were lost.
+#
+# Though not commited yet, git actually stores information about staged changes.
+# This function locates all dangling/orphaned blobs and puts them in text files.
+# These files can then be checked for changes that a user has lost.
+# http://blog.ctp.com/2013/11/21/git-recovering-from-mistakes/
+for blob in $(git fsck --lost-found | awk '$2 == "blob" { print $3 }'); do
+  git cat-file -p $blob > $blob.txt;
+done

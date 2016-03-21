@@ -1,0 +1,8 @@
+# vim: ft=sh
+# Define the loading order of common shell scripts
+source ~/dotfiles/shell/common/vars
+source ~/dotfiles/shell/common/colours
+
+for file in ~/dotfiles/shell/common/*.sh; do
+  source $file
+done

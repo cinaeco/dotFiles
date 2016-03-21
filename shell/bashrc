@@ -1,0 +1,37 @@
+source ~/dotfiles/shell/env
+
+[[ -r ~/.bashlocal ]] && source ~/.bashlocal
+
+# Use vi-bindings in readline for command editing
+set -o vi
+
+source ~/dotfiles/shell/common/load
+
+for file in ~/dotfiles/shell/bash/*.bash; do
+  source $file
+done
+
+# Command Prompt
+#
+#     [host]  directory  gitinfo  jobinfo
+#     user -
+#
+PROMPT_COMMAND='PS1="
+${FG[6]}[\h]  ${FG[3]}$(shortcwd)$(__gitp "  %s")$(getajob)
+${FG[5]}\u - $cReset"'
+
+# Display suspended/backgrounded job count, if any.
+function getajob() {
+  local jobcount=$(jobs | wc -l)
+  [[ $jobcount -ne 0 ]] && printf "  ${FG[63]}[jobs]: ${FG[1]}\j" || printf ''
+}
+
+# Display up to 3 segments of the current working directory.
+function shortcwd() {
+  local folder=$(pwd) fld='[^/]*'
+  folder=${folder/$HOME/"~"}
+  folder=$(echo $folder | sed 's|.*/\('$fld'/'$fld'/'$fld'\)|\1|')
+  printf $folder
+}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

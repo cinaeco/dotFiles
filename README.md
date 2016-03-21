@@ -2,25 +2,25 @@
 
 Configuration files for:
 
+- Bash (3.2+) and Zsh (4.3.17+)
 - Vim (7.4+) or NeoVim
 - Vimperator (3.8+)
 - Tmux (1.8+)
-- Zsh (4.3.17+)
 - Other bits and pieces
 
 Heavy preference for `vim`-like bindings.
 
 ## Installation
 
-Clone to a home folder.
-Run `make install` or `./install`.
+Clone to a home folder and run `make install` or `./install`.
+
 Restart the terminal session.
 
 ## Recommended
 
 - Colour palette: [Solarized][].
 - Font: [Meslo for Powerline][] (works well with [Rainbarf][]).
-- NeoVim or Vim+Python/Ruby support - for [Vim-Plug][] parallel downloads.
+- [Vim-Plug][] parallel downloads - requires Vim+Python/Ruby support, or Neovim.
 - [The Silver Searcher][] - fast code search ([Ack][] included as fallback).
 - [Pandoc][] - Vim creates documents from `.pandoc` files ([Pandoc Markdown][]).
 - [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
@@ -39,14 +39,19 @@ Restart the terminal session.
 
 Below is a non-exhaustive list of dotfiles usage.
 
-### Zsh
+### Bash/Zsh
 
-- `z` folder jumping enabled, i.e. `z regex` = `cd /path/with/regex`.
-- Shell prompt displays Git repository info and work tree status.
-- Mostly-Mnemonic Git shortcuts, e.g. `gs` is `git status`, `gd` is `git diff`.
-- SSH agent use is encouraged. `ssh-add` is run at shell start if an identity is
-  not already loaded.
-- A `.zshlocal` file can contain machine-specific settings.
+- Case-insensitive completion.
+- The excellent [z][] and [v][] commands:
+  - `z` for folder jumping: `z regex` = `cd /path/with/regex`.
+  - `v` for file editing: `v regex` = `vim /path/with/regex`.
+- Multi-line shell prompt that displays Git repo info and job count.
+- Mostly-Mnemonic Git shortcuts: `gs` = `git status`, `gd` = `git diff`, etc.
+- SSH agent automated - attempts to load identities with `ssh-add` on start.
+- Machine-specific settings can be contained in `.bashlocal` and `.zshlocal`.
+
+[z]: https://github.com/rupa/z
+[v]: https://github.com/rupa/v
 
 ### Vim
 
