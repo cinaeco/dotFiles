@@ -4,13 +4,26 @@ IFS=$'\n\t'
 
 # Display a list of software versions dotfiles is interested in.
 
-echo "Installed:"
-command -v git >/dev/null && git version || true
-command -v bash >/dev/null && bash --version | head -n 1 || true
-command -v zsh >/dev/null && zsh --version || true
-command -v tmux >/dev/null && tmux -V || true
-command -v vim >/dev/null  && vim --version | head -n 1 || true
-command -v nvim >/dev/null && nvim -v | head -n 1 || true
-command -v ag >/dev/null && ag --version | head -n 1 || true
-command -v pandoc >/dev/null && pandoc -v | head -n 1 || true
-command -v pandoc-citeproc >/dev/null && pandoc-citeproc -V | head -n 1 || true
+echo 'Installed:'
+
+version_commands=( \
+  'git version' \
+  'bash --version' \
+  'zsh --version' \
+  'tmux -V' \
+  'vim --version' \
+  'nvim -v' \
+  'ag --version' \
+  'pandoc -v' \
+  'pandoc-citeproc -V' \
+  'tmuxinator version' \
+  )
+
+for ver_com in ${version_commands[@]}; do
+  com=${ver_com%% *}
+  if [[ -n $(command -v $com) ]]; then
+    eval "$ver_com" | head -n 1
+  else
+    echo "$com - none"
+  fi
+done
