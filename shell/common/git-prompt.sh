@@ -37,7 +37,7 @@ function __gitp() {
   # Prepare display elements.
   [[ $bare = 'true' ]] && bare=${GITP_BARE:-"$cRed BARE"} || bare=''
   local location="$(__gitp_location $commit)"
-  if [[ $worktree = 'true' ]]; then
+  if [[ $worktree = 'true' && -z $GITP_SIMPLE ]]; then
     # Many things only matter if in a work tree (i.e. not bare, not in gitdir).
     __gitp_status
     local op="$(__gitp_op $gitdir)"
@@ -238,4 +238,13 @@ function __gitp_branch() {
   local ref
   ref=$(git symbolic-ref --quiet HEAD 2>/dev/null)
   printf "${ref#refs/heads/}"
+}
+
+# Toggle git prompt's "simple" mode.
+# This mode will simply display the location information and bare state. It is
+# useful for slow machines (e.g. tablets) or slow repositories (e.g. hundreds of
+# changed files). For a more permanent setting, set the `GITP_SIMPLE` variable
+# to a non-zero string before `__gitp()` is run.
+function toggle_gitp_simple() {
+  [[ -z $GITP_SIMPLE ]] && GITP_SIMPLE=true || GITP_SIMPLE=''
 }
