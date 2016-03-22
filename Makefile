@@ -79,7 +79,8 @@ vim:
 	@./bin/linkup ~/dotfiles/vim ~/.vim
 	@./bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
 	@./bin/linkup ~/dotfiles/vim $(XDG_CONFIG_HOME)/nvim
-	@vim +PlugClean! +PlugUpdate! +quitall!
+	@# Use barebones config to avoid vimrc errors on fresh dotfiles installs.
+	@vim -N -u ~/dotfiles/vim/plugins.vim +PlugClean! +PlugUpdate! +quitall!
 rm-vim:
 	rm ~/.vim
 	rm ~/.vimrc
