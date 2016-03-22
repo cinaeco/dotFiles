@@ -2,9 +2,6 @@ source ~/dotfiles/shell/env
 
 [[ -r ~/.bashlocal ]] && source ~/.bashlocal
 
-# Use vi-bindings in readline for command editing
-set -o vi
-
 source ~/dotfiles/shell/common/load
 
 for file in ~/dotfiles/shell/bash/*.bash; do
