@@ -6,6 +6,10 @@
 # X = disable termcap init/deinit strings - sometimes these clear the screen.
 export LESS='-iRMX'
 
-if srchilitepath=$(command -v src-hilite-lesspipe.sh); then
-  export LESSOPEN="| $srchilitepath %s"
+# Try to perform syntax highlighting.
+# `pygments` has slightly friendlier defaults than `source-highlight`.
+if [[ -n $(command -v pygmentize) ]]; then
+  export LESSOPEN="| pygmentize -g %s"
+elif [[ -n $(command -v src-hilite-lesspipe.sh) ]]; then
+  export LESSOPEN="| src-hilite-lesspipe.sh %s"
 fi

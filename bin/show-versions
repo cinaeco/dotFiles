@@ -17,6 +17,7 @@ version_commands=( \
   'pandoc -v' \
   'pandoc-citeproc -V' \
   'tmuxinator version' \
+  'pygmentize -V' \
   'source-highlight -V' \
   )
 
