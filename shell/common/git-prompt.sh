@@ -223,7 +223,7 @@ function __gitp_dirty() {
 #
 # Check for a name in git remotes, between ':' or '/' and a space.
 function __gitp_repo() {
-  local repo="$(git remote -v | head -n 1 2> /dev/null)"
+  local repo="$(git remote -v | head -n 1 2>/dev/null)"
   repo=${repo##*[:|/]}
   repo=${repo% *}
   printf "${repo%.git}"

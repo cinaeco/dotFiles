@@ -60,7 +60,7 @@ function add_keys() {
 # Start a new agent.
 function start_agent() {
   echo "Starting a new SSH Agent."
-  eval `ssh-agent` &> /dev/null
+  eval `ssh-agent` &>/dev/null
   link_socket
 }
 

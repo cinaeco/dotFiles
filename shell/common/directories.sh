@@ -9,6 +9,7 @@ fi
 # Folder listing/traversal
 alias l='ls'
 alias la='ls -A'
+alias ll='ls -lh'
 alias lal='ls -Alh'
 
 # Common places

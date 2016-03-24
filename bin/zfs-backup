@@ -13,8 +13,8 @@ fsFrom=${1:?$usage}
 fsTo=${2:?$usage}
 
 # Check that filesystems exist. Also checks that `zfs` exists.
-zfs list -Hd 0 $fsFrom > /dev/null
-zfs list -Hd 0 $fsTo > /dev/null
+zfs list -Hd 0 $fsFrom >/dev/null
+zfs list -Hd 0 $fsTo >/dev/null
 echo "Source:        $fsFrom"
 echo "Destination:   $fsTo"
 
