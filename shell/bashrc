@@ -28,7 +28,7 @@ function shortcwd() {
   local folder=$(pwd) fld='[^/]*'
   folder=${folder/$HOME/"~"}
   folder=$(echo $folder | sed 's|.*/\('$fld'/'$fld'/'$fld'\)|\1|')
-  printf $folder
+  printf "$folder"
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
