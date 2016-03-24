@@ -97,16 +97,14 @@ function __gitp_op() {
   local bisect=${GITP_BISECT:-"$cRed BISECT"}
   local  merge=${GITP_MERGE:-"$cRed MERGE"}
   local rebase=${GITP_REBASE:-"$cRed REBASE"}
-  local op
 
   if [[ -e "$1/BISECT_LOG" ]]; then
-    op+="$bisect"
+    echo "$bisect"
   elif [[ -e "$1/MERGE_HEAD" ]]; then
-    op+="$merge"
+    echo "$merge"
   elif [[ -e "$1/rebase" || -e "$1/rebase-apply" ||  -e "$1/rebase-merge" || -e "$1/../.dotest" ]]; then
-    op+="$rebase"
+    echo "$rebase"
   fi
-  echo "$op"
 }
 
 # Compare the local and remote tracking branches (upstream).
