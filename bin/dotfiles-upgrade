@@ -54,4 +54,4 @@ echo "vim-plug"
 vim +PlugUpgrade +quitall!
 
 echo "submodules"
-git submodule foreach git pull origin master
+(cd ~/dotfiles && git submodule foreach git pull origin master)
