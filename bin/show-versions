@@ -17,6 +17,7 @@ version_commands=( \
   'pandoc -v' \
   'pandoc-citeproc -V' \
   'tmuxinator version' \
+  'source-highlight -V' \
   )
 
 for ver_com in ${version_commands[@]}; do
