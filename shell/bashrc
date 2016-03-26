@@ -1,12 +1,12 @@
 source ~/dotfiles/shell/env
 
-[[ -r ~/.bashlocal ]] && source ~/.bashlocal
-
 source ~/dotfiles/shell/common/load
 
 for file in ~/dotfiles/shell/bash/*.bash; do
   source $file
 done
+
+[[ -r ~/.bashlocal ]] && source ~/.bashlocal
 
 # Command Prompt
 #
