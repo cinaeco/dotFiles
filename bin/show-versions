@@ -22,7 +22,9 @@ version_commands=( \
   )
 
 for ver_com in ${version_commands[@]}; do
+  # Get the executable name.
   com=${ver_com%% *}
+  # Report version if executable exists, otherwise report none.
   if [[ -n $(command -v $com) ]]; then
     eval "$ver_com" | head -n 1 || true
   else
