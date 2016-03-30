@@ -12,6 +12,7 @@ abstract: |
 # Bibliography
 
 ---
+" Record uncited references that should still appear in the bibliography here.
 nocite: |
 
 ---

@@ -5,7 +5,7 @@
 # - terminfo - "smkx" and "rmkx"
 
 
-# Use vi-bindings in ZLE (Zsh Line Editor) for command editing
+# Use vi-bindings in ZLE (Zsh Line Editor) for command editing.
 bindkey -v
 
 
@@ -15,14 +15,13 @@ bindkey '^[[Z' reverse-menu-complete
 
 # Command line editing with text editor: `v` in vi-command mode or `<C-x><C-e>`.
 #
-# Load the `edit-command-line` function from an fpath folder.
-# e.g. /usr/share/zsh/*/functions
+# Load a function from an fpath folder. e.g. /usr/share/zsh/*/functions.
 autoload -Uz edit-command-line
 zle -N edit-command-line
-# `-N` creates a New user-defined widget that fires a given function.
-# OR if no function is given, the widget will fire a function of the same name.
-bindkey '\C-x\C-e' edit-command-line # Bind the widget to a key.
-bindkey -M vicmd v edit-command-line # Same, for a given keymap (vicmd).
+# `-N` creates a New user-defined widget that fires a function. In this case,
+# since no function is given, the widget will fire a function of the same name.
+bindkey '\C-x\C-e' edit-command-line # Bind the widget to keys.
+bindkey -M vicmd v edit-command-line # Same, but only for the `vicmd` keymap.
 
 
 # Make Ctrl-z also bring jobs back to the foreground.
@@ -64,3 +63,11 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-init   # Special Widget: runs before each new line of input.
   zle -N zle-line-finish # Special Widget: runs after input has been read.
 fi
+
+
+# Leaving this here because OMZ uses it without explanation, and it took some
+# experimentation to find out why. This setting affects what emacs keybindings
+# (e.g. M-b and M-f) consider a word. Setting this to an empty string means that
+# motions would stop at all non-alphanumeric characters. This is irrelevant for
+# vi keybindings which employ the concepts of "words" and "WORDS".
+#WORDCHARS=''
