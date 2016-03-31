@@ -4,16 +4,16 @@
 # - zshcompsys
 
 
-setopt auto_menu        # show completion menu on succesive tab press
-setopt complete_in_word # Perform completion from both ends of a word
-setopt always_to_end    # Move cursor to end of word after completion
+setopt auto_menu        # show completion menu on succesive tab press.
+setopt complete_in_word # Perform completion from both ends of a word.
+setopt always_to_end    # Move cursor to end of word after completion.
 
 
 # Add custom completions from dotfiles to fpath.
 fpath=(~/dotfiles/shell/zsh/completions $fpath)
 
 
-# Load completion functions
+# Load completion functions.
 #
 # `compinit` - Completion initisation.
 # `compaudit` - Finds insecure completion folders (wrong owner, 777) in fpath.
@@ -22,7 +22,7 @@ fpath=(~/dotfiles/shell/zsh/completions $fpath)
 autoload -Uz compinit compaudit #compinstall
 
 
-# Initialise completion
+# Initialise completion.
 compinit
 
 
@@ -32,13 +32,21 @@ compinit
 zmodload -i zsh/complist
 
 
+# Colour completion listings.
+zstyle ':completion:*' list-colors ''
+
+
+# Highlight the current completion selection.
+zstyle ':completion:*' menu select
+
+
 # Case-insensitive completion.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 
-# Completion Waiting Dots
+# Completion Waiting Dots.
 expand-or-complete-with-dots() {
-  # toggle line-wrapping off and back on again
+  # Toggle line-wrapping off and back on again.
   [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti rmam
   print -Pn "%{$FG[1]......$cReset%}"
   [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti smam
