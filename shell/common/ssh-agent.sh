@@ -34,10 +34,9 @@ function agent_setup() {
 
 # Create a symlink to an existing auth socket.
 function link_socket() {
-  local target="$SSH_AUTH_SOCK"
   local link="$HOME/.ssh/authsock"
-  if [[ -n $target && $target != $link ]]; then
-    ln -sf $target $link &>/dev/null
+  if [[ -n $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $link ]]; then
+    ln -sf $SSH_AUTH_SOCK $link &>/dev/null
     export SSH_AUTH_SOCK=$link
   fi
 }
