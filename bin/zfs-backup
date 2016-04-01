@@ -21,8 +21,8 @@ echo "Destination:   $fsTo"
 snapPrefix="manualbackup"
 
 # Look for a previous snapshot created by this script.
-snapList=$(zfs list -Ht snapshot | grep $snapPrefix || true)
-prevSnap=$(echo $snapList | head -n 1 | sed 's/.*@\([^ ]*\)\ *.*/\1/')
+snapLine=$(zfs list -Ht snapshot | grep $snapPrefix | head -n 1 || true)
+prevSnap=$(echo $snapLine | sed 's/.*@\([^ ]*\)\ *.*/\1/')
 echo "Prev Snapshot: ${prevSnap:-none}"
 
 # Next snapshot will be marked with today's date.
