@@ -38,7 +38,7 @@ function __gitp() {
   [[ $bare = 'true' ]] && bare=${GITP_BARE:-"$cRed BARE"} || bare=''
   local location="$(__gitp_location $commit)"
   if [[ $worktree = 'true' && -z $GITP_SIMPLE ]]; then
-    # Many things only matter if in a work tree (i.e. not bare, not in gitdir).
+    # Many things only matter if in a work tree (i.e. not bare or in gitdir).
     __gitp_status
     local op="$(__gitp_op $gitdir)"
     local remote="$(__gitp_remote)"
@@ -58,7 +58,7 @@ function __gitp() {
 function __gitp_status() {
   GITP_STATUS=''
 
-  # Ignore work tree changes in submodules to speed up prompt rendering.
+  # If available, ignore submodule work tree changes to speed up prompt.
   GITP_STATUS=$(git status --porcelain --ignore-submodules=dirty 2>/dev/null) \
     || GITP_STATUS=$(git status --porcelain)
 }
@@ -170,7 +170,7 @@ function __gitp_wips() {
 # indicated by `GITP_CHANGES_MAX`. Gives a good visual of what has changed.
 #
 # Performance note: if the git prompt is slow, it is more because `git status`
-# is slow. Change-string building is near-instantaneous since it is just string
+# is slow. This function is near-instantaneous since it is just string
 # manipulation.
 function __gitp_changes() {
   [[ -z $GITP_STATUS ]] && return

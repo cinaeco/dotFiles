@@ -50,6 +50,10 @@ curl -# https://raw.githubusercontent.com/rupa/v/master/v \
 curl -# https://raw.githubusercontent.com/rupa/v/master/v.1 \
   -o ~/dotfiles/shell/man/man1/v.1
 
+echo "coloured manpages"
+curl -# https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
+  -o ~/dotfiles/shell/common/coloured-man-pages.sh
+
 echo "vim-plug"
 vim +PlugUpgrade +quitall!
 
