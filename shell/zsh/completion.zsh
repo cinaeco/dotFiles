@@ -44,6 +44,10 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 
+# Use caching so that commands like apt and dpkg complete are useable.
+zstyle ':completion::complete:*' use-cache on
+
+
 # Completion Waiting Dots.
 expand-or-complete-with-dots() {
   # Toggle line-wrapping off and back on again.
