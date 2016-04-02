@@ -26,13 +26,17 @@ echo "Downloading files from external sources:"
 #curl -# https://gist.githubusercontent.com/octocat/9257657/raw/3f9569e65df83a7b328b39a091f0ce9c6efc6429/.gitignore \
   #-o ~/dotfiles/git/globalignore
 
-echo "tmuxinator completion for bash"
+echo "Completions for bash"
 curl -# https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.bash \
   -o ~/dotfiles/shell/bash/tmuxinator.bash
 
-echo "tmuxinator completion for zsh"
-curl -# https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh \
+echo "Completions for zsh"
+curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_tmuxinator \
   -o ~/dotfiles/shell/zsh/completions/_tmuxinator
+curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_ack \
+  -o ~/dotfiles/shell/zsh/completions/_ack
+curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_ag \
+  -o ~/dotfiles/shell/zsh/completions/_ag
 
 echo "tmux colours - solarized 256"
 curl -# https://raw.githubusercontent.com/seebi/tmux-colors-solarized/master/tmuxcolors-256.conf \

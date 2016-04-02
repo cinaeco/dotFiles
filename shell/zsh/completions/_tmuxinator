@@ -1,4 +1,17 @@
 #compdef tmuxinator mux
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for tmuxinator (https://github.com/tmuxinator/tmuxinator)
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Christopher Chow (https://github.com/Soliah)
+#
+# ------------------------------------------------------------------------------
 
 _tmuxinator() {
   local commands projects
