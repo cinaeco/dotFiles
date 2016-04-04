@@ -17,13 +17,13 @@ fpath=(~/dotfiles/shell/zsh/completions $fpath)
 #
 # `compinit` - Completion initisation.
 # `compaudit` - Finds insecure completion folders (wrong owner, 777) in fpath.
-# Used by compinit internally, added here to be called manually.
+#   Used by compinit internally but can be added here to be called manually.
 # `compinstall` - Completion configurator.
-autoload -Uz compinit compaudit #compinstall
+autoload -Uz compinit #compaudit compinstall
 
 
-# Initialise completion.
-compinit
+# Initialise completion (and ignore compaudit check).
+compinit -i
 
 
 # Load zsh module for completion listing extensions.
