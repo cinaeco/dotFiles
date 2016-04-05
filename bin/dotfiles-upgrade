@@ -59,7 +59,7 @@ curl -# https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/
   -o ~/dotfiles/shell/common/coloured-man-pages.sh
 
 echo "vim-plug"
-vim +PlugUpgrade +quitall!
+vim +PlugUpgrade +PlugUpdate! +quitall!
 
 echo "submodules"
 (cd ~/dotfiles && git submodule foreach git pull origin master)

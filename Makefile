@@ -7,18 +7,21 @@ rm-all = rm-git rm-bash rm-zsh rm-tmux rm-ack rm-vimperator rm-vim
 
 # Auto-Documenting Section. Displays a target list with `##` descriptions.
 help:
-	@echo "Available tasks:"
+	@echo "* Available tasks:"
 	@grep -E '^[a-zA-Z_-]+:.*## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-16s %s\n", $$1, $$2}'
 	@echo ""
-	@echo "Individual setup tasks:"
+	@echo "* Individual setup tasks:"
 	@echo "$(all)"
-.PHONY: help uninstall install $(all) $(rm-all)
+.PHONY: help install uninstall upgrade show-versions $(all) $(rm-all)
 
 install: prep $(all) ## Set up all configurations.
 	@echo "Install complete!"
 
 uninstall: $(rm-all) ## Remove all configurations.
 	@echo "Uninstalled!"
+
+upgrade: ## Update external files to latest versions.
+	@./bin/dotfiles-upgrade
 
 show-versions: ## List versions of installed software.
 	@./bin/show-versions
