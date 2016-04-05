@@ -6,6 +6,10 @@ export PAGER='less'
 export PATH=$HOME/dotfiles/bin:$HOME/bin:$PATH
 export MANPATH=$MANPATH:$HOME/dotfiles/shell/man
 
+# Machine-specific environment settings
+[[ -n ${BASH_VERSION-} && -r ~/.bashenv.local ]] && source ~/.bashenv.local
+[[ -n ${ZSH_VERSION-} && -r ~/.zshenv.local ]] && source ~/.zshenv.local
+
 # Config Files: Which Are Sourced, And When?
 #
 # # BASH

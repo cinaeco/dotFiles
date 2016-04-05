@@ -4,8 +4,6 @@ for file in ~/dotfiles/shell/zsh/*.zsh; do
   source $file
 done
 
-[[ -r ~/.zshlocal ]] && source ~/.zshlocal
-
 # Command Prompt
 #
 #     [host]  directory  gitinfo  jobinfo
@@ -16,5 +14,7 @@ PROMPT='
 $FG[6][%m]  $FG[3]%3~$(__gitp "  %s")%(1j.  $FG[63][jobs]: $FG[1]%j.)
 $FG[5]%n - $cReset'
 RPROMPT='$(vimode) $cReset%T $FG[7]%h$cReset'
+
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

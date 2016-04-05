@@ -48,7 +48,9 @@ Below is a non-exhaustive list of dotfiles usage.
 - Multi-line shell prompt that displays Git repo info and job count.
 - Mostly-Mnemonic Git shortcuts: `gs` = `git status`, `gd` = `git diff`, etc.
 - SSH agent automated - attempts to load identities with `ssh-add` on start.
-- Machine-specific settings can be contained in `.bashlocal` and `.zshlocal`.
+- Machine-specific settings can be contained in `.local` files:
+  - bash: `~/.bashrc.local` and `~/.bashenv.local`
+  - zsh: `~/.zshrc.local` and `~/.zshenv.local`
 
 [z]: https://github.com/rupa/z
 [v]: https://github.com/rupa/v

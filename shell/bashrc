@@ -9,8 +9,6 @@ for file in ~/dotfiles/shell/bash/*.bash; do
   source $file
 done
 
-[[ -r ~/.bashlocal ]] && source ~/.bashlocal
-
 # Command Prompt
 #
 #     [host]  directory  gitinfo  jobinfo
@@ -20,18 +18,6 @@ PROMPT_COMMAND='PS1="
 ${FG[6]}[\h]  ${FG[3]}$(shortcwd)$(__gitp "  %s")$(getajob)
 ${FG[5]}\u - $cReset"'
 
-# Display suspended/backgrounded job count, if any.
-function getajob() {
-  local jobcount=$(jobs | wc -l)
-  [[ $jobcount -ne 0 ]] && printf "  ${FG[63]}[jobs]: ${FG[1]}\j" || printf ''
-}
-
-# Display up to 3 segments of the current working directory.
-function shortcwd() {
-  local folder=$(pwd) fld='[^/]*'
-  folder=${folder/$HOME/"~"}
-  folder=$(echo $folder | sed 's|.*/\('$fld'/'$fld'/'$fld'\)|\1|')
-  printf "$folder"
-}
+[[ -r ~/.bashrc.local ]] && source ~/.bashrc.local
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
