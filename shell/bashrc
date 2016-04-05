@@ -1,5 +1,8 @@
 source ~/dotfiles/shell/env
 
+# Only load interactive settings when in interactive shells.
+[[ $- != *i* ]] && return
+
 source ~/dotfiles/shell/common/load
 
 for file in ~/dotfiles/shell/bash/*.bash; do
