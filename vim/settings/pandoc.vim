@@ -8,8 +8,16 @@ let g:pandoc#filetypes#pandoc_markdown = 0
 " complement Pandoc.
 let g:pandoc#syntax#conceal#use = 0
 
+" Hard-wrap lines to 80 characters, except for headers and code blocks.
+let g:pandoc#formatting#mode = 'hA'
+let g:pandoc#formatting#textwidth = 80
+
 " Write `docx` versions of `pandoc` files on save.
 let g:pandoc#command#autoexec_on_writes = 1
 let g:pandoc#command#autoexec_command = 'Pandoc docx --smart'
 
+" Correct spelling using first suggestion from spell check.
 map <leader>z 1z=
+
+" Omni-complete from bibliographic sources e.g. bibtex. Citekeys start with '@'.
+autocmd FileType pandoc let b:vcm_omni_pattern = '@'
