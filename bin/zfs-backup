@@ -8,9 +8,9 @@ IFS=$'\n\t'
 # and its descendents. Snapshots created to facilitate this are formatted as
 # "manualbackup-YYYY-MM-DD".
 
-usage="Usage: ${0##*/} target_filesystem backup_filesystem"
-fsFrom=${1:?$usage}
-fsTo=${2:?$usage}
+[[ $# != 2 ]] && echo "Usage: ${0##*/} target_filesys backup_filesys" && exit 1
+fsFrom=$1
+fsTo=$2
 
 # Check that filesystems exist. Also checks that `zfs` exists.
 zfs list -Hd 0 $fsFrom >/dev/null

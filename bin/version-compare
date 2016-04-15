@@ -12,9 +12,9 @@ set -euo pipefail
 
 # Split strings on '.'.
 IFS=.
-usage="Usage: ${0##*/} ver1 ver2"
-ver1=(${1:?$usage})
-ver2=(${2:?$usage})
+[[ $# != 2 ]] && echo "Usage: ${0##*/} ver1 ver2" && exit 1
+ver1=($1)
+ver2=($2)
 declare i fields
 
 # Number of version fields to be compared = highest array count.

@@ -4,9 +4,9 @@ IFS=$'\n\t'
 
 # Create symlink after backing up the target.
 
-usage="Usage: ${0##*/} source_file target_file"
-src=${1:?$usage}
-tgt=${2:?$usage}
+[[ $# != 2 ]] && echo "Usage: ${0##*/} source_file target_file" && exit 1
+src=$1
+tgt=$2
 bak=~/.backup
 
 [[ ! -d $bak ]] && mkdir $bak
