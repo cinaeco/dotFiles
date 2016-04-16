@@ -84,6 +84,7 @@ Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/yaml.vim'
+Plug 'vimperator/vimperator.vim'
 " }}}
 
 " Discarded {{{
