@@ -9,15 +9,6 @@ for file in ~/dotfiles/shell/bash/*.bash; do
   source $file
 done
 
-# Command Prompt
-#
-#     [host]  directory  gitinfo  jobinfo
-#     user -
-#
-PROMPT_COMMAND='PS1="
-${FG[6]}[\h]  ${FG[3]}$(shortcwd)$(__gitp "  %s")$(getajob)
-${FG[5]}\u - $cReset"'
-
 [[ -r ~/.bashrc.local ]] && source ~/.bashrc.local
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -1,4 +1,11 @@
-# Functions used in building the command prompt.
+# Command Prompt
+#
+#     [host]  directory  gitinfo  jobinfo
+#     user -
+#
+PROMPT_COMMAND='PS1="
+${FG[6]}[\h]  ${FG[3]}$(shortcwd)$(__gitp "  %s")$(getajob)
+${FG[5]}\u - $cReset"'
 
 # Display suspended/backgrounded job count, if any.
 function getajob() {
@@ -8,8 +15,8 @@ function getajob() {
 
 # Display up to 3 segments of the current working directory.
 function shortcwd() {
-  local folder=$(pwd) fld='[^/]*'
-  folder=${folder/$HOME/"~"}
+  local fld='[^/]*'
+  folder=${PWD/$HOME/"~"}
   folder=$(echo $folder | sed 's|.*/\('$fld'/'$fld'/'$fld'\)|\1|')
   printf "$folder"
 }
