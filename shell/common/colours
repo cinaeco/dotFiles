@@ -18,13 +18,12 @@ elif [[ -n ${ZSH_VERSION-} ]]; then
   cEnd='m%}'
 fi
 
-# The arrays will be 1-based because this is ZSH default behaviour.
-# This can be changed with the `KSH_ARRAYS` option, but we do not.
+# Build the colour array.
 # First 16 are the ANSI Terminal colours and bright variants:
 # Black, Red, Green, Yellow, Blue, Magenta, Cyan, White
 for colour in {0..255}; do
-    FG[$colour]=$cStart"38;5;"$colour$cEnd
-    BG[$colour]=$cStart"48;5;"$colour$cEnd
+  FG[$colour]=$cStart"38;5;"$colour$cEnd
+  BG[$colour]=$cStart"48;5;"$colour$cEnd
 done
 
 # Create text effects.
@@ -42,7 +41,7 @@ cnRev=$cStart"27"$cEnd # no-reverse
 
 SPECTRUM_TEXT=${SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
 
-# Show all 256 colours with colour number
+# Show all as foreground colours
 function spectrum_ls() {
   local line
   for code in {0..255}; do
@@ -51,7 +50,7 @@ function spectrum_ls() {
   done
 }
 
-# Show all 256 colours where the background is set to specific colour
+# Show all as background colours
 function spectrum_bls() {
   local line
   for code in {0..255}; do

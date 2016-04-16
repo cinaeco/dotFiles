@@ -2,7 +2,7 @@
 #
 # Format:
 #
-#     [repo:branch:commit] BARE BISECT/MERGE/REBASE NO-REMOTE/NO-RTB/AHEAD/BEHIND/DIVERGED WIP STASH +±xcru?
+#     [repo:decoration:commit] BARE BISECT/MERGE/REBASE NO-REMOTE/NO-RTB/AHEAD/BEHIND/DIVERGED WIP STASH +±xcru?
 #
 # Usage:
 #
@@ -82,14 +82,14 @@ function __gitp_cprep() {
   cgYel=$cStart'38;5;220'$cEnd
 }
 
-# Get location i.e. which repo/branch/commit is this?
+# Get location i.e. which repo/decoration/commit is this?
 function __gitp_location() {
   local prefix=${GITP_PREFIX:-'['}
   local suffix=${GITP_SUFFIX:-"]"}
   local repo=$(__gitp_repo)
-  local branch=$(__gitp_branch)
-  [[ -z $branch ]] && branch=$(git describe --tags --exact-match 2>/dev/null)
-  echo "$prefix$repo:$branch:$1$suffix"
+  local deco=$(__gitp_branch)
+  [[ -z $deco ]] && deco=$(git describe --tags --exact-match 2>/dev/null)
+  echo "$prefix$repo:$deco:$1$suffix"
 }
 
 # Determine if a repo is in the middle of an "operation" e.g. rebase, bisect.
@@ -242,7 +242,7 @@ function __gitp_branch() {
 # This mode will simply display the location information and bare state. It is
 # useful for slow machines (e.g. tablets) or slow repositories (e.g. hundreds of
 # changed files). For a more permanent setting, set the `GITP_SIMPLE` variable
-# to a non-zero string before `__gitp()` is run.
+# to a non-zero string.
 function toggle_gitp_simple() {
   [[ -z $GITP_SIMPLE ]] && GITP_SIMPLE=true || GITP_SIMPLE=''
 }
