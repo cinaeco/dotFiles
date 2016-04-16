@@ -4,6 +4,8 @@
 # Groups of targets
 all = git bash zsh tmux ack vimperator vim
 rm-all = rm-git rm-bash rm-zsh rm-tmux rm-ack rm-vimperator rm-vim
+aux = help install uninstall upgrade show-versions submodules xdg
+.PHONY: $(all) $(rm-all) $(aux)
 
 # Auto-Documenting Section. Displays a target list with `##` descriptions.
 help:
@@ -12,9 +14,8 @@ help:
 	@echo ""
 	@echo "* Individual setup tasks:"
 	@echo "$(all)"
-.PHONY: help install uninstall upgrade show-versions $(all) $(rm-all)
 
-install: prep $(all) ## Set up all configurations.
+install: $(all) ## Set up all configurations.
 	@echo "Install complete!"
 
 uninstall: $(rm-all) ## Remove all configurations.
@@ -28,13 +29,13 @@ show-versions: ## List versions of installed software.
 
 # Setup Tasks {{{
 
-prep:
+submodules:
+	@cd ~/dotfiles && git submodule sync && git submodule update --init
+
+xdg:
 	@mkdir -p $(XDG_CONFIG_HOME)
 
 XDG_CONFIG_HOME ?= $(HOME)/.config
-
-submodules:
-	@cd ~/dotfiles && git submodule sync && git submodule update --init
 
 git:
 	git config --global color.ui true
@@ -78,7 +79,7 @@ rm-vimperator:
 	rm ~/.vimperator
 	rm ~/.vimperatorrc
 
-vim:
+vim: xdg
 	@./bin/linkup ~/dotfiles/vim ~/.vim
 	@./bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc
 	@./bin/linkup ~/dotfiles/vim $(XDG_CONFIG_HOME)/nvim

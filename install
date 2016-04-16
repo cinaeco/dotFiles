@@ -5,12 +5,11 @@ IFS=$'\n\t'
 
 # dotfiles installer for when `make` is not available.
 
-# Prep tasks
-mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-echo "Prepared."
-
 # Initialise submodules
 (cd ~/dotfiles && git submodule sync && git submodule update --init)
+
+# XDG folder
+mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 
 # Git config
 git config --global color.ui true
