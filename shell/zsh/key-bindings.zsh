@@ -39,11 +39,10 @@ bindkey '^Z' fancy-ctrl-z
 
 # Key bindings for history search
 #
-# Start typing + [Up-Arrow] - fuzzy find history forward
+# [Up & Down Arrow] - search through history for the current input string.
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
   bindkey "${terminfo[kcuu1]}" up-line-or-search
 fi
-# Start typing + [Down-Arrow] - fuzzy find history backward
 if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-search
 fi

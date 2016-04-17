@@ -10,3 +10,7 @@ bind '\C-w:backward-kill-word'
 
 # Set Ctrl-l to clear the screen.
 bind '\C-l:clear-screen'
+
+# Search history for the current input string.
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'

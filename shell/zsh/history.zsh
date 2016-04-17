@@ -1,7 +1,7 @@
 ## Command history configuration
 HISTSIZE=10000 # Max events stored in the internal history list.
 SAVEHIST=10000 # Max events to save to file when interactive shell exits.
-[[ -z "$HISTFILE" ]] && HISTFILE=$HOME/.zshhistory
+HISTFILE=$HOME/.zsh_history
 
 # Show history
 #alias history='fc -l 1' # No timestamps

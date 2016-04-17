@@ -35,3 +35,6 @@ export MANPATH=$MANPATH:$HOME/dotfiles/shell/man
 # setting variables that should be available to other programs e.g. `PATH`,
 # `EDITOR`, `PAGER`, and generally not the place to put commands that produce
 # output or assume attachment to a tty/terminal.
+#
+# https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
+# http://blog.flowblok.id.au/2013-02/shell-startup-scripts.html
