@@ -1,15 +1,21 @@
-" Netrw - Vim's built-in file browser.
+" Dirvish file browser.
 
-" Open files and toggle folders with 'o' like in QuickFix.
-autocmd FileType netrw map <silent> <buffer> o <CR>
+" Use relative paths if there is no `conceal` ability.
+let g:dirvish_relative_paths = (v:version <= 703 ? 1 : 0)
 
-" Errors should not open new splits. Use normal error handling, `:messages`.
-let g:netrw_use_errorwindow = 0
+augroup dirvishCustomisation
+  autocmd!
 
-" Use tree-style browsing by default
-" 0 = normal, 1 = details, 2 = ls, 3 = tree
-let g:netrw_liststyle = 3
+  " Allow fugitive.vim commands in dirvish buffers.
+  autocmd FileType dirvish call fugitive#detect(@%)
 
+  " Use 'o' to (o)pen and 'i' to spl(i)t.
+  autocmd FileType dirvish let s:nowait = (v:version > 703 ? '<nowait>' : '')
+        \| execute 'nnoremap '.s:nowait.'<buffer><silent> o :<C-U>.call dirvish#open("edit", 0)<CR>'
+        \| execute 'nnoremap '.s:nowait.'<buffer><silent> i :<C-U>.call dirvish#open("split", 1)<CR>'
+        \| execute 'xnoremap '.s:nowait.'<buffer><silent> O :call dirvish#open("edit", 0)<CR>'
+        \| execute 'xnoremap '.s:nowait.'<buffer><silent> I :call dirvish#open("split", 1)<CR>'
+augroup END
 
 " CtrlP - Fuzzy Finder in Vimscript
 

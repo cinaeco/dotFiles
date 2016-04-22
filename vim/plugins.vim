@@ -56,7 +56,7 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
+Plug 'justinmk/vim-dirvish'
 " }}}
 
 " Code Browser {{{
@@ -88,12 +88,13 @@ Plug 'vimperator/vimperator.vim'
 " }}}
 
 " Discarded {{{
+"Plug 'Yggdroot/indentLine' - performance issues in larger files.
 "Plug 'deris/vim-shot-f' - interferes with macro
 "Plug 'haya14busa/incsearch.vim' - interferes with macros
+"Plug 'kshenoy/vim-signature' - nice, but mostly unused.
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
 "Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
-"Plug 'kshenoy/vim-signature' - nice, but mostly unused.
-"Plug 'Yggdroot/indentLine' - performance issues in larger files.
+"Plug 'tpope/vim-vinegar' - moved from netrw to dirvish.
 "
 "Plug 'MarcWeber/vim-addon-mw-utils' -\
 "Plug 'ervandew/supertab' ------------|
