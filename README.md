@@ -8,7 +8,7 @@ Configuration files for:
 - Tmux (1.8+)
 - Other bits and pieces
 
-Heavy preference for `vim`-like bindings.
+Heavy preference for Vim-like bindings.
 
 ## Installation
 
