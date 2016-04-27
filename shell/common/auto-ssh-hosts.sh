@@ -13,3 +13,6 @@ auto_ssh_hosts() {
 if [[ -f ~/.ssh/known_hosts ]]; then
   auto_ssh_hosts
 fi
+
+# Hosts file
+alias hosts='sudo vim /etc/hosts'
