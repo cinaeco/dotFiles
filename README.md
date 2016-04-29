@@ -61,7 +61,7 @@ Below is a non-exhaustive list of dotfiles usage.
 
 - `<Leader>w` saves.
 - `<Leader>q` closes files.
-- `<Leader>l` lists loaded buffers and lets you jump to them by number.
+- `<Leader>l` lists loaded buffers and allows jumping to them by number.
 - `<Leader>p` fuzzy-finds files.
 - `<Leader>f` fuzzy-finds functions in the current file.
 - `<Leader>t` opens a function/variable list for the current file.
@@ -70,7 +70,7 @@ Below is a non-exhaustive list of dotfiles usage.
 - Additional text objects exist (see `'Text Objects'` in [plugins.vim][]).
 - Saving `.pandoc` files also outputs `.docx` versions.
 - `:Goyo` for distraction-free writing.
-- `:Dark`, `:Light` and `:Neon` colour schemes available.
+- `:Alduin`, `:Dark`, `:Light` and `:Neon` colour schemes available.
 
 [plugins.vim]: vim/plugins.vim
 

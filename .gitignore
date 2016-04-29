@@ -3,9 +3,9 @@ vim/.netrwhist
 vim/autoload/plug.vim.old
 vim/current-colour
 vim/plugged
+vim/snippets
 vim/spell
 vim/use-solarized-palette
-vim/snippets
 
 # Vimperator
 vimperator/info

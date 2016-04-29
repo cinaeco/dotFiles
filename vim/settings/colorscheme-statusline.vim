@@ -20,6 +20,11 @@ let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|rst|org|pandoc'
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
 
 " Toggle colour schemes.
+command! Alduin let g:alduin_Contract_Vampirism = 1
+      \| colorscheme alduin
+      \| call StatusTheme('ubaryd')
+      \| call writefile(['Alduin'], g:current_colour)
+
 command! Dark set background=dark
       \| colorscheme solarized
       \| call StatusTheme('powerlineish')
@@ -37,11 +42,11 @@ command! Neon set background=light
       \| call writefile(['Neon'], g:current_colour)
 
 " Toggle Solarized Colour Palette Degradation.
-command! SolarizedColourPalette execute 'silent !touch' g:solarized_palette
+command! SolarizedColourProper execute 'silent !touch' g:solarized_palette
       \| let g:solarized_termcolors=16
       \| execute 'source' g:current_colour
 
-command! SolarizedColourDegrade execute 'silent !rm' g:solarized_palette
+command! SolarizedColourDegraded execute 'silent !rm' g:solarized_palette
       \| let g:solarized_termcolors=256
       \| execute 'source' g:current_colour
 
@@ -70,9 +75,9 @@ if !filereadable(g:solarized_palette)
   let g:solarized_termcolors=256
 endif
 
-" Use the last chosen colour scheme or default to Dark.
+" Use the last chosen colour scheme or default to a dark colorscheme.
 if filereadable(expand(g:current_colour))
   execute 'source' g:current_colour
 else
-  Dark
+  Alduin
 endif

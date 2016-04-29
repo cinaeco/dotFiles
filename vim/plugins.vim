@@ -31,6 +31,7 @@ Plug 'vim-scripts/visualrepeat'
 " }}}
 
 " Visual {{{
+Plug 'AlessandroYorba/Alduin'
 Plug 'Sclarki/airline-surarken'
 Plug 'Sclarki/neonwave.vim'
 Plug 'altercation/vim-colors-solarized'
