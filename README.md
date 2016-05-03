@@ -10,6 +10,8 @@ Configuration files for:
 
 Heavy preference for Vim-like bindings.
 
+![Screenshot](docs/screenshot.png)
+
 ## Installation
 
 Clone to a home folder and run `make install` or `./install`.
@@ -26,7 +28,7 @@ Restart the terminal session.
 - [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
 
 [Solarized]: http://ethanschoonover.com/solarized
-[Meslo for Powerline]: https://github.com/Lokaltog/powerline-fonts
+[Meslo for Powerline]: https://github.com/powerline/fonts
 [Rainbarf]: https://github.com/creaktive/rainbarf
 [Vim-Plug]: https://github.com/junegunn/vim-plug
 [The Silver Searcher]: https://github.com/ggreer/the_silver_searcher

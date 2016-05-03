@@ -46,13 +46,13 @@ echo "z"
 curl -# https://raw.githubusercontent.com/rupa/z/master/z.sh \
   -o ~/dotfiles/shell/common/z.sh
 curl -# https://raw.githubusercontent.com/rupa/z/master/z.1 \
-  -o ~/dotfiles/shell/man/man1/z.1
+  -o ~/dotfiles/docs/man/man1/z.1
 
 echo "v"
 curl -# https://raw.githubusercontent.com/rupa/v/master/v \
   -o ~/dotfiles/bin/v && chmod 0755 ~/dotfiles/bin/v
 curl -# https://raw.githubusercontent.com/rupa/v/master/v.1 \
-  -o ~/dotfiles/shell/man/man1/v.1
+  -o ~/dotfiles/docs/man/man1/v.1
 
 echo "coloured manpages"
 curl -# https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \

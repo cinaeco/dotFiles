@@ -4,7 +4,7 @@ export PAGER='less'
 
 # Paths
 export PATH=$HOME/dotfiles/bin:$HOME/bin:$PATH
-export MANPATH=$MANPATH:$HOME/dotfiles/shell/man
+export MANPATH=$MANPATH:$HOME/dotfiles/docs/man
 
 # Machine-specific environment settings
 [[ -n ${BASH_VERSION-} && -r ~/.bashenv.local ]] && source ~/.bashenv.local
