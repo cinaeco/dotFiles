@@ -3,7 +3,7 @@
 Configuration files for:
 
 - Bash (3.2+) and Zsh (4.3.17+)
-- Vim (7.4+) or NeoVim
+- Vim (7+) and NeoVim
 - Vimperator (3.8+)
 - Tmux (1.8+)
 - Other bits and pieces
@@ -62,13 +62,14 @@ Below is a non-exhaustive list of dotfiles usage.
 `Space` is the `<Leader>`.
 
 - `<Leader>w` saves.
-- `<Leader>q` closes files.
+- `<Leader>q` closes.
 - `<Leader>l` lists loaded buffers and allows jumping to them by number.
 - `<Leader>p` fuzzy-finds files.
 - `<Leader>f` fuzzy-finds functions in the current file.
 - `<Leader>t` opens a function/variable list for the current file.
 - `<Leader>n` toggles line numbers.
 - `<Leader>c` finds VCS conflict markers.
+- `-` opens a file browser.
 - Additional text objects exist (see `'Text Objects'` in [plugins.vim][]).
 - Saving `.pandoc` files also outputs `.docx` versions.
 - `:Goyo` for distraction-free writing.

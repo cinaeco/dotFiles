@@ -94,22 +94,22 @@ set smartcase   " Case-sensitive when uppercase present
 " }}}
 
 " Visuals {{{
-set colorcolumn=+1                      " Highlight the textwidth limit
 set cursorline                          " Highlight current line
 set list                                " Display unprintables (like tabs)
 set listchars=tab:>\ ,extends:#,nbsp:#  " Customise unprintables
+set matchpairs+=<:>                     " Match <> as a pair, not just ()[]{}
+set number                              " Show line numbers
 set scrolloff=5                         " Lines to keep above/below cursor
 set shortmess+=filmnrxoOtT              " Abbreviation of messages
 set showmatch                           " Show matching brackets/parenthesis
-set matchpairs+=<:>                     " Match <> as a pair, not just ()[]{}
 set sidescroll=1                        " Side-ways scroll speed
 set sidescrolloff=10                    " Columns to keep left/right of cursor
 set wildmenu                            " Ex command tab-complete shows options
 if has('syntax')
   syntax enable                         " Syntax highlighting
 endif
-set number                              " Show line numbers
 if v:version >= 703
+  set colorcolumn=+1                    " Highlight the textwidth limit
   set relativenumber                    " Show numbers relative to current line
 endif
 " }}}

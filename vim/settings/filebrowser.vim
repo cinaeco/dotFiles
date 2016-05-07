@@ -1,3 +1,12 @@
+" Netrw - Vim's built-in file browser.
+
+" Put errors in `:messages`
+let g:netrw_use_errorwindow = 0
+
+" 'o' to (o)pen
+autocmd FileType netrw map <silent> <buffer> o <CR>
+
+
 " Dirvish file browser.
 
 " Use relative paths if there is no `conceal` ability.
@@ -10,7 +19,7 @@ augroup dirvishCustomisation
   autocmd FileType dirvish call fugitive#detect(@%)
 
   " Add/Adjust mappings.
-  " - Reverse 'o' to (o)pen and 'i' to spl(i)t.
+  " - 'o' to (o)pen and 'i' to spl(i)t.
   " - Create, Delete, Rename with 'mc', 'md', 'mr'.
   autocmd FileType dirvish let s:nowait = (v:version > 703 ? '<nowait>' : '')
         \| execute 'nnoremap '.s:nowait.'<buffer><silent> o :<C-U>.call dirvish#open("edit", 0)<CR>'
@@ -59,19 +68,22 @@ function! FileRename()
 endfunction
 
 
-" CtrlP - Fuzzy Finder in Vimscript
-let s:fallback = executable('ag') ? 'ag %s -l --nocolor -g ""' : 'find %s -type f'
+" Fuzzy Finder
 
+" Set `<Leader>p` to FZF if possible. CtrlP is always available at `<C-p>`
+if executable('fzf')
+  map <silent> <Leader>p :FZF<CR>
+else
+  let g:ctrlp_map = '<Leader>p'
+endif
+
+" CtrlP uses `git ls-files` in git repos, otherwise `ag` then `find`.
 let g:ctrlp_user_command = [
   \ '.git',
   \ 'cd %s && git ls-files . -co --exclude-standard',
-  \ s:fallback
+  \ executable('ag') ? 'ag %s -l --nocolor -g ""' : 'find %s -type f'
 \]
 
-" Function definition jumping with CtrlP's Funky plugin.
+" CtrlP Funky plugin - jump to function definitions in the current file.
 let g:ctrlp_extensions = ['funky']
 map <silent> <Leader>f :CtrlPFunky<CR>
-
-
-" FZF - Fuzzy Finder in Go/Ruby
-map <silent> <Leader>p :FZF<CR>

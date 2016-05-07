@@ -14,7 +14,6 @@ silent! call plug#begin('~/dotfiles/vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'dkprice/vim-easygrep'
 Plug 'haya14busa/vim-asterisk'
-Plug 'joonty/vdebug'
 Plug 'junegunn/vim-easy-align'
 Plug 'matchit.zip'
 Plug 'mbbill/undotree'
@@ -24,10 +23,13 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/visualrepeat'
+if v:version >= 703
+  Plug 'joonty/vdebug'
+endif
 if v:version >= 704
   Plug 'vim-pandoc/vim-pandoc'
 endif
-Plug 'vim-scripts/visualrepeat'
 " }}}
 
 " Visual {{{
@@ -57,7 +59,11 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-dirvish'
+if v:version >= 702
+  Plug 'justinmk/vim-dirvish'
+else
+  Plug 'tpope/vim-vinegar'
+endif
 " }}}
 
 " Code Browser {{{
@@ -79,13 +85,15 @@ Plug 'LnL7/vim-nix'
 Plug 'elzr/vim-json'
 Plug 'nicklasos/vim-jsx-riot'
 Plug 'pearofducks/ansible-vim'
-Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/yaml.vim'
 Plug 'vimperator/vimperator.vim'
+if v:version > 700 || (v:version == 700 && has('patch175'))
+  Plug 'scrooloose/syntastic'
+endif
 " }}}
 
 " Discarded {{{
@@ -95,7 +103,6 @@ Plug 'vimperator/vimperator.vim'
 "Plug 'kshenoy/vim-signature' - nice, but mostly unused.
 "Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
 "Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
-"Plug 'tpope/vim-vinegar' - moved from netrw to dirvish.
 "
 "Plug 'MarcWeber/vim-addon-mw-utils' -\
 "Plug 'ervandew/supertab' ------------|
