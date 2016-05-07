@@ -4,6 +4,12 @@
 
 if [ -n "${1}" ]
 then
+  echo "THIS SCRIPT IS DEPRECATED!"
+  echo "You should install and run \`zfsnap\` (http://www.zfsnap.org/) instead."
+  echo "Still run this script? (y/N)"
+  read ANS
+  [[ $ANS != "y" ]] && exit;
+
   echo "This will *RECURSIVELY* destroy all ZFS auto snapshots (not your manually created snaps). "
   echo "Parent and child filesystem snapshots to be destroyed: ${1}"
   echo "Continue? (y/n)"

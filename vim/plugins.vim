@@ -8,7 +8,7 @@
 " - setup.sh
 "
 
-call plug#begin('~/dotfiles/vim/plugged')
+silent! call plug#begin('~/dotfiles/vim/plugged')
 
 " General {{{
 Plug 'Raimondi/delimitMate'
