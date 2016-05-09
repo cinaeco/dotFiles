@@ -5,7 +5,7 @@
 #
 PROMPT_COMMAND='PS1="
 ${FG[6]}[\h]  ${FG[3]}$(shortcwd)$(__gitp "  %s")$(getajob)
-${FG[5]}\u - $cReset"'
+${FG[5]}\u - $cReset";'$PROMPT_COMMAND
 
 # Display suspended/backgrounded job count, if any.
 function getajob() {
