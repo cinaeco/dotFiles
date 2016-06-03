@@ -236,6 +236,10 @@ map <leader>s :source $MYVIMRC<CR>:echo "vimrc reloaded..."<CR>
 
   " Search for version control conflict markers
   map <Leader>c /\v^[<\|=>]{7}( .*\|$)<CR>
+
+  " Do math on the current line.
+  map <silent> <Leader>m :exe "normal 0f=d$"<CR>0y$A=<C-r>=<C-r>"<CR><Esc>
+  "map <silent> <Leader>m yyp:.!bc<CR>
   " }}}
 " }}}
 
