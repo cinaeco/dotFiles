@@ -9,7 +9,7 @@ src=$1
 tgt=$2
 bak=~/.backup
 
-[[ ! -d $bak ]] && mkdir $bak
+mkdir -p $bak
 
 # Check if the desired link already exists.
 [[ -L "$tgt" && "$(readlink $tgt)" = "$src" ]] && exit

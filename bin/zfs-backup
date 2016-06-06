@@ -72,11 +72,9 @@ else
 fi
 echo "ZFS Sending/Receiving done."
 
-if [[ -n $prevSnap ]]; then
-  echo $'\nDestroy previous snapshot and finalise backup? (y/n)'
-  read ANS
-  if [[ $ANS = "y" ]]; then
-    zfs destroy -R $fsFrom@$prevSnap
-    zfs destroy -R $fsTo@$prevSnap
-  fi
-fi
+echo $'\nDestroying previous snapshot and finalising backup.'
+zfs destroy -R $fsFrom@$prevSnap
+zfs destroy -R $fsTo@$prevSnap
+
+echo $'\nScrubbing backup filesystem'
+zpool scrub $fsTo
