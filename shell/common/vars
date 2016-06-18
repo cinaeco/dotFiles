@@ -5,4 +5,4 @@ TERM="xterm-256color"
 
 # Git version string
 GIT_VER=$(git --version 2>/dev/null)
-GIT_VER=${GIT_VER:12}
+GIT_VER=${GIT_VER:12:5}
