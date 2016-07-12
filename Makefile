@@ -9,10 +9,9 @@ aux = help install uninstall upgrade show-versions submodules xdg
 
 # Auto-Documenting Section. Displays a target list with `##` descriptions.
 help:
-	@echo "* Available tasks:"
-	@grep -E '^[a-zA-Z_-]+:.*## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-16s %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "* %-16s %s\n", $$1, $$2}'
 	@echo ""
-	@echo "* Individual setup tasks:"
+	@echo "Individual setup tasks:"
 	@echo "$(all)"
 
 install: $(all) ## Set up all configurations.

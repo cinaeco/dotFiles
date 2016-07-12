@@ -7,7 +7,7 @@
 # Unlike the blog post from which this is taken, there is no output colorisation
 # (e.g. `\033[36m`) for better compatibility in different setups.
 help:
-	@grep -E '^[a-zA-Z_-]+:.*## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-15s %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "* %-15s %s\n", $$1, $$2}'
 .PHONY: help
 
 example: dependency ## Run the example task

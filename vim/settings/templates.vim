@@ -8,4 +8,4 @@ autocmd BufWritePost *.sh if getline(1) =~ "^#!/" | silent !chmod +x <afile> | e
 autocmd BufNewFile [Mm]akefile silent 0r ~/dotfiles/vim/templates/makefile | silent 4,$ g/^#/d | normal G
 
 " Template for pandoc files.
-autocmd BufNewFile *.pandoc silent 0r ~/dotfiles/vim/templates/pandoc | silent 0,$ g/^"/d | normal G
+autocmd BufNewFile *.pandoc silent 0r ~/dotfiles/vim/templates/pandoc | silent 0,$ g/^"/d | normal 2G$
