@@ -77,7 +77,11 @@ endif
 " }}}
 
 " Completion and Snippets {{{
-Plug 'ajh17/VimCompletesMe'
+if v:version >= 704 || (v:version == 703 && has('insert_expand') && has('menu'))
+  Plug 'lifepillar/vim-mucomplete'
+else
+  Plug 'ajh17/VimCompletesMe'
+endif
 " }}}
 
 " Coding Language Support {{{
@@ -94,6 +98,10 @@ Plug 'vimperator/vimperator.vim'
 if v:version > 700 || (v:version == 700 && has('patch175'))
   Plug 'scrooloose/syntastic'
 endif
+" }}}
+
+" Language Support {{{
+Plug 'reedes/vim-wordy'
 " }}}
 
 " Discarded {{{
