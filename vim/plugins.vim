@@ -59,7 +59,7 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
-if v:version >= 702
+if v:version >= 704 || (v:version == 703 && has('patch438'))
   Plug 'justinmk/vim-dirvish'
 else
   Plug 'tpope/vim-vinegar'
