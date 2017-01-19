@@ -8,8 +8,7 @@
 """"""""""""""""""""""""""""""""
 
 
-" avoid contamination from other colorschemes, setup basic theme
-hi clear
+" setup basic theme
 hi Normal                background: #222; color: #ddd; font-size: 14px;
 
 
