@@ -5,8 +5,8 @@
 # - terminfo - "smkx" and "rmkx"
 
 
-# Use vi-bindings in ZLE (Zsh Line Editor) for command editing.
-bindkey -v
+# Maybe use vi-bindings in ZLE (Zsh Line Editor) for command editing.
+[[ $VI_MODE = 1 ]] && bindkey -v || bindkey -e
 
 
 # <S-Tab> to cycle backwards through autocomplete suggestions.
