@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+function usage() {
+  echo "Usage: weather [OPTION] [location]"
+  echo "  -1  Print weather forecast for 1 day"
+  echo "  -a  Print all weather forecasts"
+  echo "  -h  Display this help message"
+  exit 1
+}
+
+lines="1,7"
+
+OPTIND=1
+while getopts ":1ah" opt; do
+  case $opt in
+    1) lines="1,17" ;;
+    a) lines="" ;;
+    h) usage ;;
+    ?) echo "Unknown option: $OPTARG"; usage ;;
+  esac
+done
+shift $((OPTIND-1))
+
+curl -s wttr.in/${1:-} | sed -n "$lines"p
