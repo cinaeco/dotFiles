@@ -12,10 +12,10 @@ silent! call plug#begin('~/dotfiles/vim/plugged')
 
 " General {{{
 Plug 'Raimondi/delimitMate'
+Plug 'adelarsq/vim-matchit'
 Plug 'dkprice/vim-easygrep'
 Plug 'haya14busa/vim-asterisk'
 Plug 'junegunn/vim-easy-align'
-Plug 'matchit.zip'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
@@ -34,9 +34,9 @@ endif
 
 " Visual {{{
 Plug 'AlessandroYorba/Alduin'
-Plug 'Sclarki/airline-surarken'
-Plug 'Sclarki/neonwave.vim'
+Plug 'MidnaPeach/neonwave.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'cinaeco/airline-surarken'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
