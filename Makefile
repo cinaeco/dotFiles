@@ -14,10 +14,10 @@ help:
 	@echo "Individual setup tasks:"
 	@echo "$(all)"
 
-install: $(all) ## Set up all configurations.
+install: $(all) ## Set up all configuration files.
 	@echo "Install complete!"
 
-uninstall: $(rm-all) ## Remove all configurations.
+uninstall: $(rm-all) ## Remove all configuration files.
 	@echo "Uninstalled!"
 
 upgrade: ## Update external files to latest versions.

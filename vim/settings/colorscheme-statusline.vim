@@ -15,7 +15,6 @@ let g:current_colour = expand('~/dotfiles/vim/current-colour')
 let g:solarized_palette = expand('~/dotfiles/vim/use-solarized-palette')
 
 " Status line defaults.
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|rst|org|pandoc'
 set noshowmode   " hide modes e.g. --INSERT-- with themed status lines.
 
