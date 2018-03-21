@@ -87,8 +87,8 @@ endif
 " Coding Language Support {{{
 Plug 'LnL7/vim-nix'
 Plug 'elzr/vim-json'
-Plug 'nicklasos/vim-jsx-riot'
 Plug 'pearofducks/ansible-vim'
+Plug 'ryym/vim-riot'
 Plug 'sheerun/vim-polyglot'
 Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'

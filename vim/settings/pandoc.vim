@@ -14,7 +14,7 @@ let g:pandoc#formatting#textwidth = 80
 
 " Write `docx` versions of `pandoc` files on save.
 let g:pandoc#command#autoexec_on_writes = 1
-let g:pandoc#command#autoexec_command = 'Pandoc docx --smart'
+let g:pandoc#command#autoexec_command = 'Pandoc docx'
 
 " Correct spelling using first suggestion from spell check.
 map <leader>z 1z=
