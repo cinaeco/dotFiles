@@ -36,6 +36,9 @@ echo "Git config done."
 ~/dotfiles/bin/linkup ~/dotfiles/vimperator ~/.vimperator
 ~/dotfiles/bin/linkup ~/dotfiles/vimperator/vimperatorrc ~/.vimperatorrc
 
+# Tridactyl
+~/dotfiles/bin/linkup ~/dotfiles/tridactyl/tridactylrc ~/.tridactylrc
+
 # Vim
 ~/dotfiles/bin/linkup ~/dotfiles/vim ~/.vim
 ~/dotfiles/bin/linkup ~/dotfiles/vim/vimrc ~/.vimrc

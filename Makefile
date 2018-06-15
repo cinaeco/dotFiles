@@ -2,8 +2,8 @@
 # dotfiles setup. Run `make install` to perform all setup tasks.
 
 # Groups of targets
-all = git bash zsh tmux ack vimperator vim
-rm-all = rm-git rm-bash rm-zsh rm-tmux rm-ack rm-vimperator rm-vim
+all = git bash zsh tmux ack vimperator tridactyl vim
+rm-all = rm-git rm-bash rm-zsh rm-tmux rm-ack rm-vimperator rm-tridactyl rm-vim
 aux = help install uninstall upgrade show-versions submodules xdg
 .PHONY: $(all) $(rm-all) $(aux)
 
@@ -77,6 +77,11 @@ vimperator:
 rm-vimperator:
 	rm ~/.vimperator
 	rm ~/.vimperatorrc
+
+tridactyl:
+	@./bin/linkup ~/dotfiles/tridactyl/tridactylrc ~/.tridactylrc
+rm-tridactyl:
+	rm ~/.tridactylrc
 
 vim: xdg
 	@./bin/linkup ~/dotfiles/vim ~/.vim

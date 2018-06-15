@@ -4,7 +4,7 @@ Configuration files for:
 
 - Bash (3.2+) and Zsh (4.3.17+)
 - Vim (7+) and NeoVim
-- Vimperator (3.8+)
+- Vimperator (3.8+) and Tridactyl
 - Tmux (1.8+)
 - Other bits and pieces
 
@@ -90,7 +90,7 @@ Below is a non-exhaustive list of dotfiles usage.
 - `<C-a><C-s>` swaps between sessions.
 - Mouse support works for selecting and resizing panes/windows.
 
-### Vimperator
+### Vimperator and Tridactyl
 
 Apart from the default Vimperator goodness e.g.
 
@@ -98,9 +98,9 @@ Apart from the default Vimperator goodness e.g.
 - `f` and `F` follow links on this tab/in a new tab.
 - et cetera...
 
-These dotfiles provide the following:
+These dotfiles provide a dark theme and the following binding changes:
 
-- `h` and `l` - move left and right between tabs.
-- `j` and `k` - scroll the page down and up.
-- `H`, `J`, `K`, `L` - scroll the page slowly (left, down, up, right).
+- `h` and `l` - change between tabs (left and right).
+- `j` and `k` - scroll by a half-page (down and up).
+- `H`, `J`, `K`, `L` - scroll slowly (left, down, up, right).
 - `<C-h>` and `<C-l>` - relocate a tab left and right.
