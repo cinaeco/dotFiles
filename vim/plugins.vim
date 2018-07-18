@@ -24,9 +24,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/visualrepeat'
-if v:version >= 703
-  Plug 'joonty/vdebug'
-endif
 if v:version >= 704
   Plug 'vim-pandoc/vim-pandoc'
 endif
@@ -34,9 +31,9 @@ endif
 
 " Visual {{{
 Plug 'AlessandroYorba/Alduin'
-Plug 'MidnaPeach/neonwave.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cinaeco/airline-surarken'
+Plug 'cinaeco/neonwave.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'

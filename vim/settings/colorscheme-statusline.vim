@@ -3,6 +3,7 @@
 " Available colour schemes:
 " - solarized
 " - neonwave
+" - alduin
 
 " Fix wrong background colour in tmux, when using 256 colours, and when vim
 " changes the background colour. http://sunaku.github.io/vim-256color-bce.html
