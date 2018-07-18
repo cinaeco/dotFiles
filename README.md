@@ -74,6 +74,7 @@ Below is a non-exhaustive list of dotfiles usage.
 - Saving `.pandoc` files also outputs `.docx` versions.
 - `:Goyo` for distraction-free writing.
 - `:Alduin`, `:Dark`, `:Light` and `:Neon` colour schemes available.
+- Machine-specific plugins can be specified in `~/.vim/plugins.vim.local`.
 
 [plugins.vim]: vim/plugins.vim
 

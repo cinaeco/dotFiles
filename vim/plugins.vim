@@ -2,11 +2,6 @@
 "
 " The Plugin List
 "
-" This file is used from 2 places:
-"
-" - vimrc
-" - setup.sh
-"
 
 silent! call plug#begin('~/dotfiles/vim/plugged')
 
@@ -63,16 +58,6 @@ else
 endif
 " }}}
 
-" Code Browser {{{
-Plug 'tacahiroy/ctrlp-funky'
-if executable('ctags')
-  Plug 'majutsushi/tagbar'
-  if executable('phpctags')
-    Plug 'vim-php/tagbar-phpctags.vim'
-  endif
-endif
-" }}}
-
 " Completion and Snippets {{{
 if v:version >= 704 || (v:version == 703 && has('insert_expand') && has('menu'))
   Plug 'lifepillar/vim-mucomplete'
@@ -82,15 +67,7 @@ endif
 " }}}
 
 " Coding Language Support {{{
-Plug 'LnL7/vim-nix'
-Plug 'elzr/vim-json'
-Plug 'pearofducks/ansible-vim'
-Plug 'ryym/vim-riot'
-Plug 'sheerun/vim-polyglot'
-Plug 'tobyS/pdv'
-Plug 'tobyS/vmustache'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-scripts/yaml.vim'
 Plug 'vimperator/vimperator.vim'
 if v:version > 700 || (v:version == 700 && has('patch175'))
   Plug 'scrooloose/syntastic'
@@ -101,23 +78,10 @@ endif
 Plug 'reedes/vim-wordy'
 " }}}
 
-" Discarded {{{
-"Plug 'Yggdroot/indentLine' - performance issues in larger files.
-"Plug 'deris/vim-shot-f' - interferes with macro
-"Plug 'haya14busa/incsearch.vim' - interferes with macros
-"Plug 'kshenoy/vim-signature' - nice, but mostly unused.
-"Plug 'scrooloose/nerdtree' - moved away from drawer-style browser to netrw.
-"Plug 'terryma/vim-expand-region' - cool, but often slower than text objects.
-"
-"Plug 'MarcWeber/vim-addon-mw-utils' -\
-"Plug 'ervandew/supertab' ------------|
-"Plug 'garbas/vim-snipmate' ----------+ ancient and messy completion system.
-"Plug 'honza/vim-snippets' -----------|
-"Plug 'tomtom/tlib_vim' --------------/
-"
-" Games!
-"Plug 'katono/rogue.vim' - Does not work with neovim.
-"Plug 'jmanoel7/vim-games'
+" Local Plugins {{{
+if filereadable(expand("~/dotfiles/vim/plugins.vim.local"))
+  source ~/dotfiles/vim/plugins.vim.local
+endif
 " }}}
 
 call plug#end()
