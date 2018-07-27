@@ -4,6 +4,8 @@ vim/autoload/plug.vim.old
 vim/current-colour
 vim/plugged
 vim/plugins.vim.local
+vim/settings/*.vim.local
+vim/settings/local
 vim/snippets
 vim/spell
 vim/use-solarized-palette

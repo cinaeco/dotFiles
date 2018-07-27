@@ -262,7 +262,9 @@ endif
 " }}}
 
 " Load Extra Settings {{{
-for filePath in split(globpath('~/dotfiles/vim/settings', '*.vim'), '\n')
+let settings = split(globpath('~/dotfiles/vim/settings, ~/dotfiles/vim/settings/local', '*.vim'), '\n')
+let settings += split(globpath('~/dotfiles/vim/settings, ~/dotfiles/vim/settings/local', '*.vim.local'), '\n')
+for filePath in settings
   execute 'source' filePath
 endfor
 " }}}

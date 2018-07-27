@@ -18,25 +18,6 @@ Clone to a home folder and run `make install` or `./install`.
 
 Restart the terminal session.
 
-## Recommended
-
-- Colour palette: [Solarized][].
-- Font: [Meslo for Powerline][] (works well with [Rainbarf][]).
-- [Vim-Plug][] parallel downloads - requires Vim+Python/Ruby support, or Neovim.
-- [The Silver Searcher][] - fast code search ([Ack][] included as fallback).
-- [Pandoc][] - Vim creates documents from `.pandoc` files ([Pandoc Markdown][]).
-- [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
-
-[Solarized]: http://ethanschoonover.com/solarized
-[Meslo for Powerline]: https://github.com/powerline/fonts
-[Rainbarf]: https://github.com/creaktive/rainbarf
-[Vim-Plug]: https://github.com/junegunn/vim-plug
-[The Silver Searcher]: https://github.com/ggreer/the_silver_searcher
-[Ack]: http://beyondgrep.com/
-[Pandoc]: http://pandoc.org/
-[Pandoc Markdown]: http://pandoc.org/README.html#pandocs-markdown
-[pandoc-citeproc]: https://github.com/jgm/pandoc-citeproc
-
 ## Usage
 
 Below is a non-exhaustive list of dotfiles usage.
@@ -50,7 +31,7 @@ Below is a non-exhaustive list of dotfiles usage.
 - Multi-line shell prompt that displays Git repo info and job count.
 - Mostly-Mnemonic Git shortcuts: `gs` = `git status`, `gd` = `git diff`, etc.
 - SSH agent automated - attempts to load identities with `ssh-add` on start.
-- Machine-specific settings can be contained in `.local` files:
+- Custom settings can be contained in `.local` files:
   - bash: `~/.bashrc.local` and `~/.bashenv.local`
   - zsh: `~/.zshrc.local` and `~/.zshenv.local`
 
@@ -74,7 +55,9 @@ Below is a non-exhaustive list of dotfiles usage.
 - Saving `.pandoc` files also outputs `.docx` versions.
 - `:Goyo` for distraction-free writing.
 - `:Alduin`, `:Dark`, `:Light` and `:Neon` colour schemes available.
-- Machine-specific plugins can be specified in `~/.vim/plugins.vim.local`.
+- Custom plugins can be listed in `~/.vim/plugins.vim.local`.
+- Custom settings can be put in `.vim.local` files in `~/.vim/settings/`, or in
+  a `~/.vim/settings/local/` directory.
 
 [plugins.vim]: vim/plugins.vim
 
@@ -105,3 +88,22 @@ These dotfiles provide a dark theme and the following binding changes:
 - `j` and `k` - scroll by a half-page (down and up).
 - `H`, `J`, `K`, `L` - scroll slowly (left, down, up, right).
 - `<C-h>` and `<C-l>` - relocate a tab left and right.
+
+## Recommended
+
+- Colour palette: [Solarized][].
+- Font: [Meslo for Powerline][] (works well with [Rainbarf][]).
+- Vim with Ruby/Python support, or Neovim: for [Vim-Plug][] parallel downloads.
+- [The Silver Searcher][] - fast text search ([Ack][] included as fallback).
+- [Pandoc][] - Vim creates documents from `.pandoc` files ([Pandoc Markdown][]).
+- [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
+
+[Solarized]: http://ethanschoonover.com/solarized
+[Meslo for Powerline]: https://github.com/powerline/fonts
+[Rainbarf]: https://github.com/creaktive/rainbarf
+[Vim-Plug]: https://github.com/junegunn/vim-plug
+[The Silver Searcher]: https://github.com/ggreer/the_silver_searcher
+[Ack]: http://beyondgrep.com/
+[Pandoc]: http://pandoc.org/
+[Pandoc Markdown]: http://pandoc.org/README.html#pandocs-markdown
+[pandoc-citeproc]: https://github.com/jgm/pandoc-citeproc
