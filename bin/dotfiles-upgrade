@@ -38,10 +38,6 @@ curl -# https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completio
 echo "Completions for zsh"
 curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_tmuxinator \
   -o ~/dotfiles/shell/zsh/completions/_tmuxinator
-curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_ack \
-  -o ~/dotfiles/shell/zsh/completions/_ack
-curl -# https://raw.githubusercontent.com/zsh-users/zsh-completions/master/src/_ag \
-  -o ~/dotfiles/shell/zsh/completions/_ag
 
 echo "z"
 curl -# https://raw.githubusercontent.com/rupa/z/master/z.sh \
