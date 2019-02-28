@@ -1,17 +1,21 @@
 ---
-title:
-abstract: |
-
+title: Example
+author: Author Name
+date: 1 January 2000
 ---
 
 # Introduction
 
-# Conclusion
+## Page 1
 
-# Bibliography
+- Item 1
+- Item 2
+
+## Page 2
+
+- Item 3
 
 ---
-suppress-bibliography: false
 " Record uncited references that should still appear in the bibliography here.
 nocite: |
 

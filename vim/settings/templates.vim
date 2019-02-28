@@ -9,3 +9,6 @@ autocmd BufNewFile [Mm]akefile silent 0r ~/dotfiles/vim/templates/makefile | sil
 
 " Template for pandoc files.
 autocmd BufNewFile *.pandoc silent 0r ~/dotfiles/vim/templates/pandoc | silent 0,$ g/^"/d | normal 2G$
+
+" Template for pandoc silde files.
+autocmd BufNewFile *.pandoc_slides silent 0r ~/dotfiles/vim/templates/pandoc_slides | silent 0,$ g/^"/d | normal 2G$

@@ -103,7 +103,7 @@ set scrolloff=5                         " Lines to keep above/below cursor
 set shortmess+=filmnrxoOtT              " Abbreviation of messages
 set showmatch                           " Show matching brackets/parenthesis
 set sidescroll=1                        " Side-ways scroll speed
-set sidescrolloff=10                    " Columns to keep left/right of cursor
+set sidescrolloff=1                     " Columns to keep left/right of cursor
 set wildmenu                            " Ex command tab-complete shows options
 if has('syntax')
   syntax enable                         " Syntax highlighting
