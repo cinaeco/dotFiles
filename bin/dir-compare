@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Compare two directories, listing files that exist only in the first and not
+# the second.
+#
+# Useful for quickly comparing two directories for missing files. From
+# https://stackoverflow.com/questions/28205735/how-do-i-compare-file-names-in-two-directories-in-shell-script
+
+[[ $# != 2 ]] && echo "Usage: ${0##*/} dir1 dir2" && exit 1
+dir1=$1
+dir2=$2
+
+find "$dir2" "$dir2" "$dir1" -printf '%P\n' | sort | uniq -u
