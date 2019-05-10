@@ -1,5 +1,7 @@
 set theme dark
-guiset hoverlink top-right
+
+" Move link-hover URL up to not obscure the command line
+guiset_quiet hoverlink top-right
 
 set searchengine duckduckgo
 
@@ -9,7 +11,7 @@ set hintnames numeric
 
 " Make Tridactyl work on more sites at the expense of some security
 set csp clobber
-fixamo
+fixamo_quiet
 
 " Sanity before custom bindings
 reset all
@@ -29,9 +31,12 @@ bind K scrollline -5
 bind L scrollpx 50
 
 " Relocate tabs
-bind <c-l>  tabmove +1
-bind <c-h>  tabmove -1
+bind <c-l> tabmove +1
+bind <c-h> tabmove -1
 
 " Go forwards and backwards through history
 bind <c-o> back
 bind <c-i> forward
+
+" Focus on an input
+bind i focusinput
