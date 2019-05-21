@@ -1,7 +1,7 @@
 set theme dark
 
-" Move link-hover URL up to not obscure the command line
-guiset_quiet hoverlink top-right
+" Move link-hover URL to not obscure the command line
+guiset_quiet hoverlink right
 
 set searchengine duckduckgo
 
