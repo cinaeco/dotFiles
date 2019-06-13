@@ -47,7 +47,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/argtextobj.vim'
 " }}}
 
-" File Browser {{{
+" File Browser and Search {{{
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'

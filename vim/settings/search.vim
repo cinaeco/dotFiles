@@ -1,5 +1,7 @@
 " use faster search tools if available
-if executable('ag')
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+elseif executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
 elseif executable('ack')

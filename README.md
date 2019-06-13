@@ -94,7 +94,7 @@ These dotfiles provide a dark theme and the following binding changes:
 - Colour palette: [Solarized][].
 - Font: [Meslo for Powerline][] (works well with [Rainbarf][]).
 - Vim with Ruby/Python support, or Neovim: for [Vim-Plug][] parallel downloads.
-- [The Silver Searcher][] - fast text search ([Ack][] included as fallback).
+- [Ripgrep][] - fast text search ([Ack][] included as fallback).
 - [Pandoc][] - Vim creates documents from `.pandoc` files ([Pandoc Markdown][]).
 - [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
 
@@ -102,7 +102,7 @@ These dotfiles provide a dark theme and the following binding changes:
 [Meslo for Powerline]: https://github.com/powerline/fonts
 [Rainbarf]: https://github.com/creaktive/rainbarf
 [Vim-Plug]: https://github.com/junegunn/vim-plug
-[The Silver Searcher]: https://github.com/ggreer/the_silver_searcher
+[ripgrep]: https://github.com/BurntSushi/ripgrep
 [Ack]: http://beyondgrep.com/
 [Pandoc]: http://pandoc.org/
 [Pandoc Markdown]: http://pandoc.org/README.html#pandocs-markdown

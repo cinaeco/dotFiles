@@ -100,7 +100,3 @@ let g:ctrlp_user_command = [
   \ 'cd %s && git ls-files . -co --exclude-standard',
   \ executable('ag') ? 'ag %s -l --nocolor -g ""' : 'find %s -type f'
 \]
-
-" CtrlP Funky plugin - jump to function definitions in the current file.
-let g:ctrlp_extensions = ['funky']
-map <silent> <Leader>f :CtrlPFunky<CR>
