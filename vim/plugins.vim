@@ -8,12 +8,10 @@ silent! call plug#begin('~/dotfiles/vim/plugged')
 " General {{{
 Plug 'Raimondi/delimitMate'
 Plug 'adelarsq/vim-matchit'
-Plug 'dkprice/vim-easygrep'
 Plug 'haya14busa/vim-asterisk'
 Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -25,24 +23,17 @@ endif
 " }}}
 
 " Visual {{{
-Plug 'AlessandroYorba/Alduin'
-Plug 'altercation/vim-colors-solarized'
 Plug 'cinaeco/airline-surarken'
 Plug 'cinaeco/neonwave.vim'
+Plug 'sainnhe/vim-color-vanilla-cake'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Text Objects {{{
-" `,` to work with camel/snake case e.g. `ci,w`
-" `e` to work with whole files e.g. `=ae`
 " `s` to work with surrounds e.g. `cs{[`
 " `a` to work with arguments e.g. `cia`
-Plug 'bkad/CamelCaseMotion'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/argtextobj.vim'
 " }}}
@@ -59,11 +50,7 @@ endif
 " }}}
 
 " Completion and Snippets {{{
-if v:version >= 704 || (v:version == 703 && has('insert_expand') && has('menu'))
-  Plug 'lifepillar/vim-mucomplete'
-else
-  Plug 'ajh17/VimCompletesMe'
-endif
+Plug 'ajh17/VimCompletesMe'
 " }}}
 
 " Coding Language Support {{{
@@ -72,10 +59,6 @@ Plug 'vimperator/vimperator.vim'
 if v:version > 700 || (v:version == 700 && has('patch175'))
   Plug 'scrooloose/syntastic'
 endif
-" }}}
-
-" Language Support {{{
-Plug 'reedes/vim-wordy'
 " }}}
 
 " Local Plugins {{{

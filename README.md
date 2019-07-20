@@ -14,13 +14,12 @@ Heavy preference for Vim-like bindings.
 
 ## Installation
 
-Clone to a home folder and run `make install` or `./install`.
-
-Restart the terminal session.
+Clone to a home folder and run `make install` or `./install`. Restart the
+terminal session.
 
 ## Usage
 
-Below is a non-exhaustive list of dotfiles usage.
+Below is a non-exhaustive list of dotfiles features.
 
 ### Bash/Zsh
 
@@ -46,15 +45,12 @@ Below is a non-exhaustive list of dotfiles usage.
 - `<Leader>q` closes.
 - `<Leader>l` lists loaded buffers and allows jumping to them by number.
 - `<Leader>p` fuzzy-finds files.
-- `<Leader>f` fuzzy-finds functions in the current file.
-- `<Leader>t` opens a function/variable list for the current file.
 - `<Leader>n` toggles line numbers.
 - `<Leader>c` finds VCS conflict markers.
 - `-` opens a file browser.
 - Additional text objects exist (see `'Text Objects'` in [plugins.vim][]).
-- Saving `.pandoc` files also outputs `.docx` versions.
 - `:Goyo` for distraction-free writing.
-- `:Alduin`, `:Dark`, `:Light` and `:Neon` colour schemes available.
+- `:Dark`, `:Light` colour schemes available.
 - Custom plugins can be listed in `~/.vim/plugins.vim.local`.
 - Custom settings can be put in `.vim.local` files in `~/.vim/settings/`, or in
   a `~/.vim/settings/local/` directory.
@@ -91,14 +87,12 @@ These dotfiles provide a dark theme and the following binding changes:
 
 ## Recommended
 
-- Colour palette: [Solarized][].
 - Font: [Meslo for Powerline][] (works well with [Rainbarf][]).
 - Vim with Ruby/Python support, or Neovim: for [Vim-Plug][] parallel downloads.
 - [Ripgrep][] - fast text search ([Ack][] included as fallback).
 - [Pandoc][] - Vim creates documents from `.pandoc` files ([Pandoc Markdown][]).
 - [pandoc-citeproc][] - bibliographical assistance when using Pandoc.
 
-[Solarized]: http://ethanschoonover.com/solarized
 [Meslo for Powerline]: https://github.com/powerline/fonts
 [Rainbarf]: https://github.com/creaktive/rainbarf
 [Vim-Plug]: https://github.com/junegunn/vim-plug
