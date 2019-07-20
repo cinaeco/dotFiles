@@ -4,13 +4,8 @@
 # r = display raw control characters (Ctrl-A is ^A)
 # R = display raw ANSI colour escape sequences `^[[...m`
 # M = verbose `less` prompt
-# X = disable termcap init/deinit strings - sometimes these clear the screen.
+# X = disable termcap init/deinit strings - sometimes these clear the screen
 export LESS='-iRMX'
 
-# Try to perform syntax highlighting.
-# `pygments` has slightly friendlier defaults than `source-highlight`.
-if [[ -n $(command -v pygmentize) ]]; then
-  export LESSOPEN="| pygmentize -g %s"
-elif [[ -n $(command -v src-hilite-lesspipe.sh) ]]; then
-  export LESSOPEN="| src-hilite-lesspipe.sh %s"
-fi
+# Use `lesspipe` to display binary file contents.
+[[ -n $(command -v lesspipe) ]] && eval "$(lesspipe)"
