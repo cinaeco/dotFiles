@@ -12,11 +12,10 @@
 [[ ${#KEY_FILES[@]} = 0 ]] && KEY_FILES=(~/.ssh/id_rsa ~/.ssh/id_dsa ~/.ssh/id_ecdsa ~/.ssh/identity)
 
 function agent_setup() {
+  echo 'Running `agent_setup` ...'
+
   # Run if ssh is installed.
   command -v ssh >/dev/null || return
-
-  # Make sure the folder for the symlink exists.
-  mkdir -p ~/.ssh
 
   # Try to symlink an auth socket, to connect any existing agent.
   link_socket
@@ -34,6 +33,8 @@ function agent_setup() {
 
 # Create a symlink to an existing auth socket.
 function link_socket() {
+  # Make sure the folder for the symlink exists.
+  mkdir -p ~/.ssh
   local link="$HOME/.ssh/authsock"
   if [[ -n $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $link ]]; then
     ln -sf $SSH_AUTH_SOCK $link &>/dev/null
@@ -64,4 +65,6 @@ function start_agent() {
 }
 
 # Go!
-agent_setup
+# Automatic key loading can be disabled by setting `$DISABLE_SSH_AGENT_AUTOADD`
+# to `1` (running `agent_setup` manually would still work).
+[[ $DISABLE_SSH_AGENT_AUTOADD == 1 ]] && link_socket || agent_setup
