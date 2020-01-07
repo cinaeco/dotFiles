@@ -59,6 +59,10 @@ echo "rainbarf"
 curl -# https://raw.githubusercontent.com/creaktive/rainbarf/master/rainbarf \
   -o ~/dotfiles/bin/rainbarf
 
+echo "vim-airline theme"
+curl -# https://raw.githubusercontent.com/vim-airline/vim-airline-themes/master/autoload/airline/themes/papercolor.vim \
+  -o ~/dotfiles/vim/autoload/airline/themes/papercolor.vim
+
 echo "vim-plug"
 vim +PlugUpgrade +PlugUpdate! +quitall!
 

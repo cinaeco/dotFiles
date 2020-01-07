@@ -25,7 +25,7 @@ endif
 " Visual {{{
 Plug 'cinaeco/airline-surarken'
 Plug 'cinaeco/neonwave.vim'
-Plug 'sainnhe/vim-color-vanilla-cake'
+Plug 'briemens/vim-color-vanilla-cake'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
