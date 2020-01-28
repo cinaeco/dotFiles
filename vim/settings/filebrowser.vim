@@ -15,9 +15,6 @@ let g:dirvish_relative_paths = (v:version <= 703 ? 1 : 0)
 augroup dirvishCustomisation
   autocmd!
 
-  " Allow fugitive.vim commands in dirvish buffers.
-  autocmd FileType dirvish call fugitive#detect(@%)
-
   " Add/Adjust mappings.
   " - 'o' to (o)pen and 'i' to spl(i)t.
   " - Add, Copy, Delete, Rename with 'ma', 'mc', 'md', 'mr'.

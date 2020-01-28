@@ -11,4 +11,4 @@ au BufEnter *.conf,*.ini setlocal textwidth=0
 au BufNewFile,BufRead *.tag setlocal ft=javascript
 
 " Add spelling to markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
+au FileType markdown setlocal spell
