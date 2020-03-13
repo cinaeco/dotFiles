@@ -55,6 +55,7 @@ Plug 'ajh17/VimCompletesMe'
 
 " Coding Language Support {{{
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-scripts/yaml.vim'
 Plug 'vimperator/vimperator.vim'
 if v:version > 700 || (v:version == 700 && has('patch175'))
   Plug 'scrooloose/syntastic'
