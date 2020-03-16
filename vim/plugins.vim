@@ -40,7 +40,7 @@ Plug 'vim-scripts/argtextobj.vim'
 
 " File Browser and Search {{{
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 if v:version >= 704 || (v:version == 703 && has('patch438'))
   Plug 'justinmk/vim-dirvish'
