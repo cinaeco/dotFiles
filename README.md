@@ -29,10 +29,12 @@ Below is a non-exhaustive list of dotfiles features.
   - `v` for file editing: `v regex` = `vim /path/with/regex`.
 - Multi-line shell prompt that displays Git repo info and job count.
 - Mostly-Mnemonic Git shortcuts: `gs` = `git status`, `gd` = `git diff`, etc.
-- SSH agent automated - attempts to load identities with `ssh-add` on start.
 - Custom settings can be contained in `.local` files:
   - bash: `~/.bashrc.local` and `~/.bashenv.local`
   - zsh: `~/.zshrc.local` and `~/.zshenv.local`
+- SSH agent automation:
+  - Set `AUTO_AGENT_SETUP=1` (in an env file) to auto-load keys into
+    `ssh-agent`.
 
 [z]: https://github.com/rupa/z
 [v]: https://github.com/rupa/v

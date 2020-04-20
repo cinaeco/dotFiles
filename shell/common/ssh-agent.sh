@@ -1,19 +1,10 @@
-# Start ssh-agent and load available identities. Standardize location of the
-# ssh-agent authentication socket.
+# This script starts an ssh-agent and load available keys.
 #
-# `$SSH_AUTH_SOCK` is an environment variable set by `ssh-agent`, that points to
-# a socket that allows users to connect to it. This script symlinks the socket
-# to a predefined location (in a user's `.ssh` folder) so that a user's
-# different shell instances (e.g. in screen or tmux) can be automatically
-# connected to that same agent.
-
-# Override `$KEY_FILES` before this script is loaded to specify which identities
-# to load. Defaults to `ssh-add`'s standard files.
-[[ ${#KEY_FILES[@]} = 0 ]] && KEY_FILES=(~/.ssh/id_rsa ~/.ssh/id_dsa ~/.ssh/id_ecdsa ~/.ssh/identity)
+# It provides an `agent_setup` function that a user can manually run to load
+# keys, OR it can automatically load keys IF the `AUTO_AGENT_SETUP` envvar is
+# set to `1`.
 
 function agent_setup() {
-  echo 'Running `agent_setup` ...'
-
   # Run if ssh is installed.
   command -v ssh >/dev/null || return
 
@@ -32,6 +23,11 @@ function agent_setup() {
 }
 
 # Create a symlink to an existing auth socket.
+#
+# `$SSH_AUTH_SOCK` points to a socket that allows users to connect to
+# `ssh-agent`. This function symlinks the socket to a fixed location (in the
+# `.ssh` folder) so that a user's different shell instances (e.g. in tmux panes)
+# will connect to the same agent, and not try to initialise another.
 function link_socket() {
   # Make sure the folder for the symlink exists.
   mkdir -p ~/.ssh
@@ -64,7 +60,9 @@ function start_agent() {
   link_socket
 }
 
+# Override `$KEY_FILES` before this script is loaded to specify which identities
+# to load. Defaults to `ssh-add`'s standard files.
+[[ ${#KEY_FILES[@]} = 0 ]] && KEY_FILES=(~/.ssh/id_rsa ~/.ssh/id_dsa ~/.ssh/id_ecdsa ~/.ssh/identity)
+
 # Go!
-# Automatic key loading can be disabled by setting `$DISABLE_SSH_AGENT_AUTOADD`
-# to `1` (running `agent_setup` manually would still work).
-[[ $DISABLE_SSH_AGENT_AUTOADD == 1 ]] && link_socket || agent_setup
+[[ $AUTO_AGENT_SETUP == 1 ]] && agent_setup || link_socket
