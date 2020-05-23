@@ -12,3 +12,6 @@ vim/use-solarized-palette
 
 # Vimperator
 vimperator/info
+
+# Manpages
+docs/man/mandoc.db
