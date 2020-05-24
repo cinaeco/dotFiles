@@ -255,6 +255,10 @@ if has('user_commands')
 endif
 " }}}
 
+" Workaround for bad vim-pandoc behaviour. Delete this line when the issue is
+" resolved: https://github.com/vim-pandoc/vim-pandoc/issues/342
+let g:pandoc#filetypes#pandoc_markdown = 0
+
 " Load Plugins {{{
 if filereadable(expand("~/dotfiles/vim/plugins.vim"))
   source ~/dotfiles/vim/plugins.vim
